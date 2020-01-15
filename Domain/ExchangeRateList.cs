@@ -11,12 +11,13 @@ namespace RatesParsingWeb.Domain
     public class ExchangeRateList
     {
         public int Id { get; set; }
-        public int BankId { get; set; }
 
         /// <summary>
         /// Дата и время получения данных об обменных курсах.
         /// </summary>
         public DateTime DateTimeStamp { get; set; }
+        
+        public virtual int BankId { get; set; }
 
         /// <summary>
         /// Ссылка на банк.

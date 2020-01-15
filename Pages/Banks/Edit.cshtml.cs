@@ -6,16 +6,16 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using RatesParsingWeb.Data;
 using RatesParsingWeb.Domain;
+using RatesParsingWeb.Storage;
 
 namespace RatesParsingWeb
 {
     public class EditModel : PageModel
     {
-        private readonly RatesParsingWeb.Data.BankRatesContext _context;
+        private readonly RatesParsingWeb.Storage.BankRatesContext _context;
 
-        public EditModel(RatesParsingWeb.Data.BankRatesContext context)
+        public EditModel(RatesParsingWeb.Storage.BankRatesContext context)
         {
             _context = context;
         }
@@ -37,7 +37,7 @@ namespace RatesParsingWeb
             {
                 return NotFound();
             }
-           ViewData["CurrencyId"] = new SelectList(_context.Set<Currency>(), "Id", "Id");
+           ViewData["CurrencyID"] = new SelectList(_context.Currencies, "Id", "Id");
             return Page();
         }
 

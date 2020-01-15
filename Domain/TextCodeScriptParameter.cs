@@ -8,7 +8,7 @@ namespace RatesParsingWeb.Domain
     /// <summary>
     /// Параметр скрипта для выполнения парсинга.
     /// </summary>
-    public class ScriptParameter
+    public class TextCodeScriptParameter
     {
         public int Id { get; set; }
 
@@ -16,11 +16,12 @@ namespace RatesParsingWeb.Domain
         /// Значение параметра.
         /// </summary>
         public string Value { get; set; }
-        public int ScriptAssignmentId { get; set; }
+
+        public virtual int TextCodeScriptAssignmentId { get; set; }
 
         /// <summary>
         /// Ссылка на скрипт.
         /// </summary>
-        public virtual UnitScriptAssignment ScriptAssignment { get; set; }
+        public virtual TextCodeScriptAssignment TextCodeScriptAssignment { get; set; }
     }
 }

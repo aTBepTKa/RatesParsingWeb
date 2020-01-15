@@ -5,16 +5,16 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using RatesParsingWeb.Data;
 using RatesParsingWeb.Domain;
+using RatesParsingWeb.Storage;
 
 namespace RatesParsingWeb
 {
     public class DetailsModel : PageModel
     {
-        private readonly RatesParsingWeb.Data.BankRatesContext _context;
+        private readonly RatesParsingWeb.Storage.BankRatesContext _context;
 
-        public DetailsModel(RatesParsingWeb.Data.BankRatesContext context)
+        public DetailsModel(RatesParsingWeb.Storage.BankRatesContext context)
         {
             _context = context;
         }

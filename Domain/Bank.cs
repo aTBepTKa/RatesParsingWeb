@@ -26,14 +26,9 @@ namespace RatesParsingWeb.Domain
         /// Ссылка на страницу, содержащую обменные курсы валют.
         /// </summary>
         public string RatesUrl { get; set; }
+        
 
-        public int CurrencyId { get; set; }
-
-
-        /// <summary>
-        /// Основная валюта банка.
-        /// </summary>
-        public Currency Currency { get; set; }
+        public virtual int CurrencyID { get; set; }
 
         /// <summary>
         /// Обменные курсы банка (результаты парсинга).
@@ -43,6 +38,11 @@ namespace RatesParsingWeb.Domain
         /// <summary>
         /// Настройки парсинга страницы.
         /// </summary>
-        public ParsingSettings ParsingSettings { get; set; }
+        public virtual ParsingSettings ParsingSettings { get; set; }
+
+        /// <summary>
+        /// Основная валюта банка.
+        /// </summary>
+        public virtual Currency Currency { get; set; }
     }
 }

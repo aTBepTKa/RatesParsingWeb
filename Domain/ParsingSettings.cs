@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace RatesParsingWeb.Domain
 {
@@ -9,8 +9,8 @@ namespace RatesParsingWeb.Domain
     /// Содержит данные для выполнения парсинга страницы.
     /// </summary>
     public class ParsingSettings
-    {
-        public int Id { get; set; }
+    {       
+        public int BankId { get; set; }
 
         /// <summary>
         /// XPath для текстового кода валюты.
@@ -56,15 +56,13 @@ namespace RatesParsingWeb.Domain
         /// <summary>
         /// Сценарии для обработки единицы измерения валюты.
         /// </summary>
-        public virtual ICollection<UnitScriptAssignment> UnitScripts { get; set; }
+        //public virtual ICollection<UnitScriptAssignment> UnitScripts { get; set; }
 
         /// <summary>
         /// Сценарии для обработки текстового кода валюты.
         /// </summary>
-        public virtual ICollection<TextCodeScriptAssignment> TextCodeScripts { get; set; }
-
-        public int BankId { get; set; }
-
+        //public virtual ICollection<TextCodeScriptAssignment> TextCodeScripts { get; set; }
+               
         /// <summary>
         /// Ссылка на банк.
         /// </summary>

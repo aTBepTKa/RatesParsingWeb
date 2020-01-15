@@ -5,23 +5,23 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using RatesParsingWeb.Data;
 using RatesParsingWeb.Domain;
+using RatesParsingWeb.Storage;
 
 namespace RatesParsingWeb
 {
     public class CreateModel : PageModel
     {
-        private readonly RatesParsingWeb.Data.BankRatesContext _context;
+        private readonly RatesParsingWeb.Storage.BankRatesContext _context;
 
-        public CreateModel(RatesParsingWeb.Data.BankRatesContext context)
+        public CreateModel(RatesParsingWeb.Storage.BankRatesContext context)
         {
             _context = context;
         }
 
         public IActionResult OnGet()
         {
-        ViewData["CurrencyId"] = new SelectList(_context.Set<Currency>(), "Id", "Id");
+        ViewData["CurrencyID"] = new SelectList(_context.Currencies, "Id", "Id");
             return Page();
         }
 

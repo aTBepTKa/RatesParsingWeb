@@ -27,5 +27,8 @@ namespace RatesParsingWeb.Domain
         /// Цифровой код валюты.
         /// </summary>
         public int NumCode { get; set; }
+
+        public virtual ICollection<Bank> Banks { get; set; }
+        public virtual ICollection<ExchangeRate> ExchangeRates { get; set; }
     }
 }

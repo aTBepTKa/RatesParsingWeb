@@ -11,8 +11,6 @@ namespace RatesParsingWeb.Domain
     public class ExchangeRate
     {
         public int Id { get; set; }
-        public int ExchangeRateListId { get; set; }
-        public int CurrencyId { get; set; }
 
         /// <summary>
         /// Единица измерения валюты.
@@ -24,14 +22,18 @@ namespace RatesParsingWeb.Domain
         /// </summary>
         public decimal ExchangeRateValue { get; set; }
 
-        /// <summary>
-        /// Тип валюты.
-        /// </summary>
-        public virtual Currency Currency { get; set; }
+        
+        public virtual int CurrencyID { get; set; }
+
+        public virtual int ExchangeRateListId { get; set; }
 
         /// <summary>
         /// Ссылка на список всех обменных курсов банка.
         /// </summary>
         public virtual ExchangeRateList ExchangeRateList { get; set; }
+        /// <summary>
+        /// Тип валюты.
+        /// </summary>
+        public virtual Currency Currency { get; set; }
     }
 }
