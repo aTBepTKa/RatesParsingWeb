@@ -17,7 +17,7 @@ namespace RatesParsingWeb.Domain
         /// </summary>
         public DateTime DateTimeStamp { get; set; }
         
-        public virtual int BankId { get; set; }
+        public int BankId { get; set; }
 
         /// <summary>
         /// Ссылка на банк.

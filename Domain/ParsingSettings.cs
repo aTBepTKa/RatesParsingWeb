@@ -10,7 +10,7 @@ namespace RatesParsingWeb.Domain
     /// </summary>
     public class ParsingSettings
     {       
-        public int BankId { get; set; }
+        public int Id { get; set; }
 
         /// <summary>
         /// XPath для текстового кода валюты.
@@ -35,12 +35,12 @@ namespace RatesParsingWeb.Domain
         /// <summary>
         /// Номер первой строки для парсинга.
         /// </summary>
-        public int StartXpathRow { get; set; }
+        public int? StartXpathRow { get; set; }
 
         /// <summary>
         /// Номер последней строки для парсинга.
         /// </summary>
-        public int EndXpathRow { get; set; }
+        public int? EndXpathRow { get; set; }
 
         /// <summary>
         /// Символ разделения десятичной части числа.
@@ -52,20 +52,21 @@ namespace RatesParsingWeb.Domain
         /// </summary>
         public string NumberGroupSeparator { get; set; }
 
-
         /// <summary>
         /// Сценарии для обработки единицы измерения валюты.
         /// </summary>
-        //public virtual ICollection<UnitScriptAssignment> UnitScripts { get; set; }
+        public virtual ICollection<UnitScriptAssignment> UnitScripts { get; set; }
 
         /// <summary>
         /// Сценарии для обработки текстового кода валюты.
         /// </summary>
-        //public virtual ICollection<TextCodeScriptAssignment> TextCodeScripts { get; set; }
+        public virtual ICollection<TextCodeScriptAssignment> TextCodeScripts { get; set; }
                
+        public int BankId { get; set; }
         /// <summary>
         /// Ссылка на банк.
         /// </summary>
-        public Bank Bank { get; set; }
+        public virtual Bank Bank { get; set; }
+
     }
 }

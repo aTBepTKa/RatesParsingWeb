@@ -41,7 +41,7 @@
                 @Html.DisplayFor(modelItem => item.RatesUrl)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Currency.Id)
+                @Html.DisplayFor(modelItem => item.Currency.CurrencyName) (@Html.DisplayFor(modelItem => item.Currency.TextCode))
             </td>
             <td>
                 <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |

@@ -9,7 +9,7 @@ namespace RatesParsingWeb.Storage
 {
     public class BankRatesContext : DbContext
     {
-        public BankRatesContext (DbContextOptions<BankRatesContext> options)
+        public BankRatesContext(DbContextOptions<BankRatesContext> options)
             : base(options)
         {
         }
@@ -27,20 +27,25 @@ namespace RatesParsingWeb.Storage
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            // Установить ключ для реализации связи 1:1.
-            modelBuilder.Entity<ParsingSettings>().HasKey(k => k.BankId);
-
-            // Отключить каскадное удаление для исключения циклических каскадных путей.
+            // Запретить удаление строки валюты, если есть связанные записи.
             modelBuilder.Entity<Currency>()
                 .HasMany(i => i.Banks)
                 .WithOne(i => i.Currency)
-                .OnDelete(DeleteBehavior.ClientSetNull);
+                .OnDelete(DeleteBehavior.Restrict);
             modelBuilder.Entity<Currency>()
                 .HasMany(i => i.ExchangeRates)
                 .WithOne(i => i.Currency)
-                .OnDelete(DeleteBehavior.ClientSetNull);
+                .OnDelete(DeleteBehavior.Restrict);
+
+            // Установить обязательные свойства.
+            modelBuilder.Entity<Bank>().Property(i => i.BankName).IsRequired();
+            modelBuilder.Entity<Bank>().Property(i => i.RatesUrl).IsRequired();
+            modelBuilder.Entity<Script>().Property(i => i.Name).IsRequired();
+            modelBuilder.Entity<UnitScriptParameter>().Property(i => i.Value).IsRequired();
+            modelBuilder.Entity<TextCodeScriptParameter>().Property(i => i.Value).IsRequired();
+            modelBuilder.Entity<ExchangeRateList>().Property(i => i.DateTimeStamp).IsRequired();
+            modelBuilder.Entity<ExchangeRate>().Property(i => i.ExchangeRateValue).IsRequired();
+            modelBuilder.Entity<Currency>().Property(i => i.TextCode).IsRequired();
         }
-
-
     }
 }

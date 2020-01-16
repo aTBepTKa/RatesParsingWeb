@@ -28,7 +28,7 @@ namespace RatesParsingWeb.Domain
         public string RatesUrl { get; set; }
         
 
-        public virtual int CurrencyID { get; set; }
+        public int CurrencyID { get; set; }
 
         /// <summary>
         /// Обменные курсы банка (результаты парсинга).

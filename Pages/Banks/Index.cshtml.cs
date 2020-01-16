@@ -24,7 +24,7 @@ namespace RatesParsingWeb
         public async Task OnGetAsync()
         {
             Bank = await _context.Banks
-                .Include(b => b.Currency).ToListAsync();
+                .Include(b => b.Currency).ToListAsync();                    
         }
     }
 }

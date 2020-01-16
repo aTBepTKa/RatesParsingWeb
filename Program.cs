@@ -28,8 +28,7 @@ namespace RatesParsingWeb
             try
             {
                 var context = services.GetRequiredService<BankRatesContext>();
-                context.Database.EnsureDeleted();
-                context.Database.EnsureCreated();
+                DbInitiallizer.Initialize(context);
             }
             catch (Exception ex)
             {

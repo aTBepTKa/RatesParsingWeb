@@ -23,9 +23,9 @@ namespace RatesParsingWeb.Domain
         public decimal ExchangeRateValue { get; set; }
 
         
-        public virtual int CurrencyID { get; set; }
+        public int CurrencyID { get; set; }
 
-        public virtual int ExchangeRateListId { get; set; }
+        public int ExchangeRateListId { get; set; }
 
         /// <summary>
         /// Ссылка на список всех обменных курсов банка.

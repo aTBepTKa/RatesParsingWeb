@@ -17,7 +17,7 @@ namespace RatesParsingWeb.Domain
         /// </summary>
         public string Value { get; set; }
 
-        public virtual int UnitScriptAssignmentId { get; set; }
+        public int UnitScriptAssignmentId { get; set; }
 
         /// <summary>
         /// Ссылка на скрипт.
