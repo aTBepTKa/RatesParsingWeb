@@ -10,6 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 using RatesParsingWeb.Storage;
+using RatesParsingWeb.Storage.Repositories;
 
 namespace RatesParsingWeb
 {
@@ -27,8 +28,12 @@ namespace RatesParsingWeb
         {
             services.AddRazorPages();
 
-            services.AddDbContext<BankRatesContext>(options =>
-                    options.UseSqlServer(Configuration.GetConnectionString("BankRatesContext")));
+            var optionsBuilder = new DbContextOptionsBuilder<BankRatesContext>();
+            optionsBuilder.UseSqlServer(Configuration.GetConnectionString("BankRatesContext"));
+            services.AddScoped<IBankRepository>(i => new BankRepository(optionsBuilder.Options));
+
+            //services.AddDbContext<BankRatesContext>(options =>
+            //        options.UseSqlServer(Configuration.GetConnectionString("BankRatesContext")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

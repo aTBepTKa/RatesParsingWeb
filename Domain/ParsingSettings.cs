@@ -45,12 +45,12 @@ namespace RatesParsingWeb.Domain
         /// <summary>
         /// Символ разделения десятичной части числа.
         /// </summary>
-        public string NumberDecimalSeparator { get; set; }
+        public char NumberDecimalSeparator { get; set; }
 
         /// <summary>
         /// Символ разделения групп разрядов числа.
         /// </summary>
-        public string NumberGroupSeparator { get; set; }
+        public char NumberGroupSeparator { get; set; }
 
         /// <summary>
         /// Сценарии для обработки единицы измерения валюты.

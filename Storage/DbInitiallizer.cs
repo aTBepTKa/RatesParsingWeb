@@ -22,12 +22,34 @@ namespace RatesParsingWeb.Storage
             context.Database.EnsureDeleted();
             context.Database.EnsureCreated();
 
-            // Заполнить табдицу Currencies.
+            // Заполнить таблицу Currencies.
             var currencySerializer = new CurrencySerializer();
-            IEnumerable<Currency> currencies = currencySerializer.GetCurrenciesFromXml();
-            foreach(var curr in currencies)
+            IEnumerable<CurrencyXmlItem> currenciesXml = currencySerializer.GetCurrenciesFromXml();
+            var currencies = new List<Currency>(currenciesXml.Count());
+            foreach (var cur in currenciesXml)
             {
-                context.Currencies.Add(curr);
+                var newCurrency = new Currency
+                {
+                    CurrencyName = cur.CcyNm,
+                    TextCode = cur.Ccy,
+                };
+                if (int.TryParse(cur.CcyNbr, out int numCodeTemp))
+                {
+                    newCurrency.NumCode = numCodeTemp;
+                    currencies.Add(newCurrency);
+                }
+            }
+            context.Currencies.AddRange(currencies);
+            context.SaveChanges();
+
+            // Заполнить таблицу Banks.
+            var banks = new Bank[]
+            {
+                new Bank{BankName = "TestName"}
+            };
+            foreach (var bank in banks)
+            {
+                context.Banks.Add(bank);
             }
             context.SaveChanges();
         }

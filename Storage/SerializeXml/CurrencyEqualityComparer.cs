@@ -11,7 +11,8 @@ namespace RatesParsingWeb.Storage.SerializeXml
         {
             if (x.Ccy == null && y.Ccy == null)
                 return true;
-
+            if ((x.Ccy != null && y.Ccy == null) || (x.Ccy == null && y.Ccy != null))
+                return false;
             return x.Ccy == y.Ccy;
         }
 

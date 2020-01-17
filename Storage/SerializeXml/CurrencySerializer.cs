@@ -15,12 +15,12 @@ namespace RatesParsingWeb.Storage.SerializeXml
         /// Получить данные типов валют из файла.
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<Currency> GetCurrenciesFromXml()
+        public IEnumerable<CurrencyXmlItem> GetCurrenciesFromXml()
         {
             // Получить xml файл из папки проекта.
             string workingDirectory = Directory.GetCurrentDirectory();
             string xmlRelativeFilePath = @"\App_data\ISO4217.xml";
-            string fileName = string.Concat(workingDirectory, xmlRelativeFilePath);
+            string fileName = Path.Combine(workingDirectory, xmlRelativeFilePath);
 
             // Получить данные из XML файла и удалить дубликаты.
             CurrencyXmlData currenciesFromXml;
@@ -30,24 +30,8 @@ namespace RatesParsingWeb.Storage.SerializeXml
                 currenciesFromXml = (CurrencyXmlData)serializer.Deserialize(fileStream);
             }
             var currenciesFromXmlNoDuplicates = currenciesFromXml.CcyNtry.Distinct(new CurrencyEqualityComparer());
-            
-            // Конвертировать полученные данные в формат для БД.
-            var currencies = new List<Currency>();
-            foreach (var cur in currenciesFromXmlNoDuplicates)
-            {                
-                var newCurrency = new Currency
-                {
-                    CurrencyName = cur.CcyNm,
-                    TextCode = cur.Ccy,
-                };
-                if (int.TryParse(cur.CcyNbr, out int numCodeTemp))
-                {
-                    newCurrency.NumCode = numCodeTemp;
-                    currencies.Add(newCurrency);
-                }
-            }
 
-            return currencies;
+            return currenciesFromXmlNoDuplicates;
         }
     }
 }

@@ -7,15 +7,15 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using RatesParsingWeb.Domain;
-using RatesParsingWeb.Storage;
+using RatesParsingWeb.Storage.Repositories;
 
 namespace RatesParsingWeb
 {
     public class EditModel : PageModel
     {
-        private readonly RatesParsingWeb.Storage.BankRatesContext _context;
+        private readonly IBankRepository _context;
 
-        public EditModel(RatesParsingWeb.Storage.BankRatesContext context)
+        public EditModel(IBankRepository context)
         {
             _context = context;
         }
@@ -30,14 +30,13 @@ namespace RatesParsingWeb
                 return NotFound();
             }
 
-            Bank = await _context.Banks
-                .Include(b => b.Currency).FirstOrDefaultAsync(m => m.Id == id);
+            Bank = await _context.GetBankByIdAsync(id);
 
             if (Bank == null)
             {
                 return NotFound();
             }
-           ViewData["CurrencyID"] = new SelectList(_context.Currencies, "Id", "Id");
+           ViewData["CurrencyID"] = new SelectList(_context.GetCurrencies(), "Id", "Id");
             return Page();
         }
 
