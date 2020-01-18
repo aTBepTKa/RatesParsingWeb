@@ -8,7 +8,7 @@ namespace RatesParsingWeb.Storage.Repositories
 {
     public interface IBankRepository
     {
-        Task<List<Bank>> GetBankListAsync();
+        Task<List<Bank>> GetBankWithCurrencies();
         Task<Bank> GetBankByIdAsync(int? id);
         IEnumerable<Currency> GetCurrencies();
     }

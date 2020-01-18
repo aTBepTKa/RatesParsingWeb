@@ -23,7 +23,7 @@ namespace RatesParsingWeb
 
         public async Task OnGetAsync()
         {
-            Bank = await _context.GetBankListAsync();
+            Bank = await _context.GetBankWithCurrencies();
         }
     }
 }
