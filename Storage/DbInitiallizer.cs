@@ -19,9 +19,6 @@ namespace RatesParsingWeb.Storage
         /// <param name="context">Контекст базы данных.</param>
         public static void Initialize(BankRatesContext context)
         {
-            context.Database.EnsureDeleted();
-            context.Database.EnsureCreated();
-
             // Заполнить таблицу Currencies.
             var currencySerializer = new CurrencySerializer();
             IEnumerable<CurrencyXmlItem> currenciesXml = currencySerializer.GetCurrenciesFromXml();
@@ -30,7 +27,7 @@ namespace RatesParsingWeb.Storage
             {
                 var newCurrency = new Currency
                 {
-                    CurrencyName = cur.CcyNm,
+                    Name = cur.CcyNm,
                     TextCode = cur.Ccy,
                 };
                 if (int.TryParse(cur.CcyNbr, out int numCodeTemp))
@@ -45,12 +42,20 @@ namespace RatesParsingWeb.Storage
             // Заполнить таблицу Banks.
             var banks = new Bank[]
             {
-                new Bank{BankName = "TestName"}
+                new Bank
+                {
+                    Name = "National Bank of Georgia",
+                    Currency = context.Currencies.Where(i=>i.TextCode=="GEL").FirstOrDefault(),
+                    RatesUrl = "https://www.nbg.gov.ge/index.php?m=582&lng=eng"
+                },
+                new Bank
+                {
+                    Name = "National Bank of Poland",
+                    Currency = context.Currencies.Where(i=>i.TextCode=="PLN").FirstOrDefault(),
+                    RatesUrl = "https://www.nbp.pl/homen.aspx?f=/kursy/RatesA.html"
+                }
             };
-            foreach (var bank in banks)
-            {
-                context.Banks.Add(bank);
-            }
+            context.AddRange(banks);
             context.SaveChanges();
         }
     }

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using RatesParsingWeb.Domain;
+using RatesParsingWeb.Storage.SerializeXml;
 
 namespace RatesParsingWeb.Storage
 {
@@ -11,7 +12,7 @@ namespace RatesParsingWeb.Storage
     {
         public BankRatesContext(DbContextOptions<BankRatesContext> options)
             : base(options)
-        {           
+        {
         }
 
         public DbSet<Bank> Banks { get; set; }
@@ -34,9 +35,9 @@ namespace RatesParsingWeb.Storage
                 .OnDelete(DeleteBehavior.Restrict);
 
             // Установить свойства для Bank.
-            modelBuilder.Entity<Bank>().Property(i => i.BankName).IsRequired();
+            modelBuilder.Entity<Bank>().Property(i => i.Name).IsRequired();
             modelBuilder.Entity<Bank>().Property(i => i.RatesUrl).IsRequired();
-            modelBuilder.Entity<Bank>().Property(i => i.BankName).HasMaxLength(50);
+            modelBuilder.Entity<Bank>().Property(i => i.Name).HasMaxLength(50);
             modelBuilder.Entity<Bank>().Property(i => i.BankUrl).HasMaxLength(2000);
             modelBuilder.Entity<Bank>().Property(i => i.RatesUrl).HasMaxLength(2000);
 
@@ -55,8 +56,8 @@ namespace RatesParsingWeb.Storage
 
             // Установить свойства для Currency.
             modelBuilder.Entity<Currency>().Property(i => i.TextCode).IsRequired();
-            modelBuilder.Entity<Currency>().Property(i => i.CurrencyName).HasMaxLength(50);
-            modelBuilder.Entity<Currency>().Property(i => i.TextCode).HasMaxLength(3).IsFixedLength();
+            modelBuilder.Entity<Currency>().Property(i => i.Name).HasMaxLength(50);
+            modelBuilder.Entity<Currency>().Property(i => i.TextCode);
 
             // Установить свойства UnitScript.
             modelBuilder.Entity<UnitScriptParameter>().Property(i => i.Value).IsRequired();
@@ -65,6 +66,58 @@ namespace RatesParsingWeb.Storage
             // Установить свойства для TextCode.
             modelBuilder.Entity<TextCodeScriptParameter>().Property(i => i.Value).IsRequired();
             modelBuilder.Entity<TextCodeScriptParameter>().Property(i => i.Value).HasMaxLength(50);
+
+            // Заполнить базу данных начальными данными.
+            // Заполнить таблицу Currencies.
+            /*var currencySerializer = new CurrencySerializer();
+            IEnumerable<CurrencyXmlItem> currenciesXml = currencySerializer.GetCurrenciesFromXml();
+            var currencies = new List<Currency>(currenciesXml.Count());
+            int id = 1;
+            foreach (var cur in currenciesXml)
+            {
+                var newCurrency = new Currency
+                {                    
+                    Id = id++,
+                    Name = cur.CcyNm,
+                    TextCode = cur.Ccy
+                };
+                if (int.TryParse(cur.CcyNbr, out int numCodeTemp))
+                {
+                    newCurrency.NumCode = numCodeTemp;
+                    currencies.Add(newCurrency);
+                }
+            }
+            modelBuilder.Entity<Currency>().HasData(currencies);*/
+
+
+            /*
+            // Заполнить таблицу Banks.
+            modelBuilder.Entity<Bank>().HasData(
+                new Bank
+                {
+                    Name = "National Bank of Georgia",
+                    Currency = Currencies.Where(i => i.TextCode == "GEL").FirstOrDefault(),
+                    RatesUrl = "https://www.nbg.gov.ge/index.php?m=582&lng=eng"
+                },
+                new Bank
+                {
+                    Name = "National Bank of Poland",
+                    Currency = Currencies.Where(i => i.TextCode == "PLN").FirstOrDefault(),
+                    RatesUrl = "https://www.nbp.pl/homen.aspx?f=/kursy/RatesA.html"
+                },
+                new Bank
+                {
+                    Name = "The Central Bank of the Russian Federation",
+                    Currency = Currencies.Where(i=>i.TextCode == "RUB").FirstOrDefault(),
+                    RatesUrl = "https://www.cbr.ru/eng/currency_base/daily/"
+                },
+                new Bank
+                {
+                    Name = "European Central Bank",
+                    Currency = Currencies.Where(i=>i.TextCode == "EUR").FirstOrDefault(),
+                    RatesUrl = "https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/index.en.html"
+                }
+            );*/
         }
     }
 }

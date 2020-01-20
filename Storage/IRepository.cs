@@ -6,17 +6,18 @@ using System.Threading.Tasks;
 
 namespace RatesParsingWeb.Storage
 {
-    public interface IRepositoryBase<T> where T : class
+    public interface IRepository<T> where T : class
     {
         Task AddAsync(T entity);
         Task AddRangeAsync(T[] entity);
         Task<bool> AnyAsync(Expression<Func<T, bool>> where);
         Task<int> CountAsync(Expression<Func<T, bool>> where = null);
         Task<IEnumerable<T>> GetAll();
-        Task<T> GetByIdAsync(int id);
+        Task<T> GetByIdAsync(int? id);
         Task<T> GetFirstOrDefaultAsync(Expression<Func<T, bool>> where);
         Task<IEnumerable<T>> GetMany(Expression<Func<T, bool>> where);
         IQueryable<T> Query();
         Task SaveChangesAsync();
+        void SetStateModifed(T t);
     }
 }

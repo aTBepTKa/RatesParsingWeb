@@ -8,10 +8,12 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using RatesParsingWeb.Domain;
 using RatesParsingWeb.Storage.Repositories;
+using RatesParsingWeb.Models;
+using RatesParsingWeb.Pages.Banks;
 
 namespace RatesParsingWeb
 {
-    public class EditModel : PageModel
+    public class EditModel : BaseBankPageModel
     {
         private readonly IBankRepository _context;
 
@@ -21,7 +23,8 @@ namespace RatesParsingWeb
         }
 
         [BindProperty]
-        public Bank Bank { get; set; }
+        public BankModel BankModel { get; set; }
+        private Bank BankDomain { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -30,13 +33,14 @@ namespace RatesParsingWeb
                 return NotFound();
             }
 
-            Bank = await _context.GetBankByIdAsync(id);
+            BankDomain = await _context.GetByIdAsync(id);
+            BankModel = GetBankModel(BankDomain);
 
-            if (Bank == null)
+            if (BankModel == null)
             {
                 return NotFound();
             }
-           ViewData["CurrencyID"] = new SelectList(_context.GetCurrencies(), "Id", "Id");
+            ViewData["CurrencyID"] = new SelectList(_context.GetCurrencies(), "Id", "TextCode");
             return Page();
         }
 
@@ -49,7 +53,8 @@ namespace RatesParsingWeb
                 return Page();
             }
 
-            _context.Attach(Bank).State = EntityState.Modified;
+            _context.SetStateModifed(BankDomain);
+            SetModelToDomain(BankModel, BankDomain);
 
             try
             {
@@ -57,7 +62,7 @@ namespace RatesParsingWeb
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!BankExists(Bank.Id))
+                if (! await BankExists(BankModel.Id))
                 {
                     return NotFound();
                 }
@@ -70,9 +75,17 @@ namespace RatesParsingWeb
             return RedirectToPage("./Index");
         }
 
-        private bool BankExists(int id)
+        private async Task <bool> BankExists(int id)
         {
-            return _context.Banks.Any(e => e.Id == id);
+            return await _context.AnyAsync(i => i.Id == id);
+        }
+
+        private void SetModelToDomain(BankModel model, Bank domain)
+        {
+            domain.Name = model.Name;
+            domain.BankUrl = model.BankUrl;
+            domain.Currency = _context.GetCurrencies().FirstOrDefault(i => i.Id == model.Id);
+            domain.RatesUrl = model.RatesUrl;
         }
     }
 }

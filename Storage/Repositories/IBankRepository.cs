@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace RatesParsingWeb.Storage.Repositories
 {
-    public interface IBankRepository
+    public interface IBankRepository : IRepository<Bank>
     {
-        Task<List<Bank>> GetBankWithCurrencies();
-        Task<Bank> GetBankByIdAsync(int? id);
         IEnumerable<Currency> GetCurrencies();
+
     }
 }

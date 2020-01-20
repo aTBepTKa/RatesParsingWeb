@@ -7,10 +7,13 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using RatesParsingWeb.Domain;
 using RatesParsingWeb.Storage.Repositories;
+using RatesParsingWeb.Storage;
+using RatesParsingWeb.Models;
+using RatesParsingWeb.Pages.Banks;
 
 namespace RatesParsingWeb
 {
-    public class IndexModel : PageModel
+    public class IndexModel : BaseBankPageModel
     {
         private readonly IBankRepository _context;
 
@@ -19,11 +22,13 @@ namespace RatesParsingWeb
             _context = context;
         }
 
-        public IList<Bank> Bank { get;set; }
+        public List<BankModel> Banks { get;set; }
 
         public async Task OnGetAsync()
         {
-            Bank = await _context.GetBankWithCurrencies();
+            var banksRepo = await _context.GetAll();
+            foreach(var item in banksRepo)            
+                Banks.Add(GetBankModel(item));            
         }
     }
 }

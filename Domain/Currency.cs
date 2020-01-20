@@ -16,7 +16,7 @@ namespace RatesParsingWeb.Domain
         /// <summary>
         /// Наименование валюты.
         /// </summary>
-        public string CurrencyName { get; set; }
+        public string Name { get; set; }
 
         /// <summary>
         /// Текстовый код валюты.

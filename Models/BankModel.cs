@@ -3,12 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace RatesParsingWeb.Domain
+namespace RatesParsingWeb.Models
 {
-    /// <summary>
-    /// Представляет данные банка с данными для выполнения парсинга страниц и результатами парсинга.
-    /// </summary>
-    public class Bank
+    public class BankModel
     {
         public int Id { get; set; }
 
@@ -26,23 +23,20 @@ namespace RatesParsingWeb.Domain
         /// Ссылка на страницу, содержащую обменные курсы валют.
         /// </summary>
         public string RatesUrl { get; set; }
-        
-
-        public int CurrencyID { get; set; }
 
         /// <summary>
-        /// Обменные курсы банка (результаты парсинга).
+        /// Ссылка на основную валюту банка.
         /// </summary>
-        public virtual ICollection<ExchangeRateList> ExchangeRateLists { get; set; }
+        public int CurrencyId { get; set; }
 
         /// <summary>
-        /// Настройки парсинга страницы.
+        /// Наименование валюты.
         /// </summary>
-        public virtual ParsingSettings ParsingSettings { get; set; }
+        public string CurrencyName { get; set; }
 
         /// <summary>
-        /// Основная валюта банка.
+        /// Текстовый код валюты.
         /// </summary>
-        public virtual Currency Currency { get; set; }
+        public string CurrencyTextCode { get; set; }
     }
 }

@@ -2,7 +2,7 @@
 @model RatesParsingWeb.IndexModel
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Банки";
 }
 
 <h1>Index</h1>
@@ -14,25 +14,25 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Bank[0].BankName)
+                @Html.DisplayNameFor(model => model.Banks.First().Name)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Bank[0].BankUrl)
+                @Html.DisplayNameFor(model => model.Banks.First().BankUrl)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Bank[0].RatesUrl)
+                @Html.DisplayNameFor(model => model.Banks.First().RatesUrl)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Bank[0].Currency)
+                @Html.DisplayNameFor(model => model.Banks.First().CurrencyName)
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.Bank) {
+@foreach (var item in Model.Banks) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.BankName)
+                @Html.DisplayFor(modelItem => item.Name)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.BankUrl)
@@ -41,7 +41,7 @@
                 @Html.DisplayFor(modelItem => item.RatesUrl)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Currency.CurrencyName) (@Html.DisplayFor(modelItem => item.Currency.TextCode))
+                @Html.DisplayFor(modelItem => item.CurrencyName) (@Html.DisplayFor(modelItem => item.CurrencyTextCode))
             </td>
             <td>
                 <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |

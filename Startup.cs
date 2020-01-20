@@ -27,13 +27,9 @@ namespace RatesParsingWeb
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddRazorPages();
-
-            var optionsBuilder = new DbContextOptionsBuilder<BankRatesContext>();
-            optionsBuilder.UseSqlServer(Configuration.GetConnectionString("BankRatesContext"));
-            services.AddScoped<IBankRepository>(i => new BankRepository(optionsBuilder.Options));
-
-            //services.AddDbContext<BankRatesContext>(options =>
-            //        options.UseSqlServer(Configuration.GetConnectionString("BankRatesContext")));
+            services.AddDbContext<BankRatesContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("BankRatesContext")));
+            services.AddScoped<IBankRepository, BankRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

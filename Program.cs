@@ -7,7 +7,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using RatesParsingWeb.Domain;
 using RatesParsingWeb.Storage;
+using RatesParsingWeb.Storage.Repositories;
 
 namespace RatesParsingWeb
 {
@@ -16,26 +18,25 @@ namespace RatesParsingWeb
         public static void Main(string[] args)
         {
             var host = CreateHostBuilder(args).Build();
-            CreateDbIfNotExists(host);
+            //CreateDbIfNotExists(host);
             host.Run();
         }
 
-        private static void CreateDbIfNotExists(IHost host)
+        /*private static void CreateDbIfNotExists(IHost host)
         {
             using var scope = host.Services.CreateScope();
             var services = scope.ServiceProvider;
-
             try
             {
                 var context = services.GetRequiredService<BankRatesContext>();
-                DbInitiallizer.Initialize(context);
+                context.Database.EnsureCreated();                
             }
             catch (Exception ex)
             {
                 var logger = services.GetRequiredService<ILogger<Program>>();
                 logger.LogError(ex, "An error occurred creating the DB.");
             }
-        }
+        }*/
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)

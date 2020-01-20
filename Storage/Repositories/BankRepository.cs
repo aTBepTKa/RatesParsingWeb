@@ -8,19 +8,19 @@ using System.Threading.Tasks;
 namespace RatesParsingWeb.Storage.Repositories
 {
     public class BankRepository : RepositoryBase<Bank>, IBankRepository
-    {
-        public BankRepository(DbContextOptions<BankRatesContext> options) :
-            base(options)
+    {        
+        public BankRepository(BankRatesContext context) :
+            base(context)
         { }
 
-        public async Task<List<Bank>> GetBankWithCurrencies() =>
-             await _context.Banks.Include(b => b.Currency).ToListAsync();
-
-        public async Task<Bank> GetBankByIdAsync(int? id) =>
-            await _context.Banks
-                .Include(b => b.Currency).FirstOrDefaultAsync(m => m.Id == id);
-
+        /// <summary>
+        /// Возвращает список банков с основной валютой банка.
+        /// </summary>
+        /// <returns></returns>
+        public override async Task<IEnumerable<Bank>> GetAll() =>
+            await _dbSet.Include(i => i.Currency).AsNoTracking().ToListAsync();
+        
         public IEnumerable<Currency> GetCurrencies() =>
-            _context.Currencies;
+            _context.Currencies.ToList();
     }
 }

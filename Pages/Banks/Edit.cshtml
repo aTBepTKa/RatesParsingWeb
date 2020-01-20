@@ -13,26 +13,26 @@
     <div class="col-md-4">
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Bank.Id" />
+            <input type="hidden" asp-for="BankModel.Id" />
             <div class="form-group">
-                <label asp-for="Bank.BankName" class="control-label"></label>
-                <input asp-for="Bank.BankName" class="form-control" />
-                <span asp-validation-for="Bank.BankName" class="text-danger"></span>
+                <label asp-for="BankModel.Name" class="control-label"></label>
+                <input asp-for="BankModel.Name" class="form-control" />
+                <span asp-validation-for="BankModel.Name" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Bank.BankUrl" class="control-label"></label>
-                <input asp-for="Bank.BankUrl" class="form-control" />
-                <span asp-validation-for="Bank.BankUrl" class="text-danger"></span>
+                <label asp-for="BankModel.BankUrl" class="control-label"></label>
+                <input asp-for="BankModel.BankUrl" class="form-control" />
+                <span asp-validation-for="BankModel.BankUrl" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Bank.RatesUrl" class="control-label"></label>
-                <input asp-for="Bank.RatesUrl" class="form-control" />
-                <span asp-validation-for="Bank.RatesUrl" class="text-danger"></span>
+                <label asp-for="BankModel.RatesUrl" class="control-label"></label>
+                <input asp-for="BankModel.RatesUrl" class="form-control" />
+                <span asp-validation-for="BankModel.RatesUrl" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Bank.CurrencyID" class="control-label"></label>
-                <select asp-for="Bank.CurrencyID" class="form-control" asp-items="ViewBag.CurrencyID"></select>
-                <span asp-validation-for="Bank.CurrencyID" class="text-danger"></span>
+                <label asp-for="BankModel.CurrencyId" class="control-label"></label>
+                <select asp-for="BankModel.CurrencyId" class="form-control" asp-items="ViewBag.CurrencyID"></select>
+                <span asp-validation-for="BankModel.CurrencyId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />

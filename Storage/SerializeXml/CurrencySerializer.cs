@@ -21,6 +21,8 @@ namespace RatesParsingWeb.Storage.SerializeXml
             string workingDirectory = Directory.GetCurrentDirectory();
             string xmlRelativeFilePath = @"\App_data\ISO4217.xml";
             string fileName = Path.Combine(workingDirectory, xmlRelativeFilePath);
+            // Временно, ибо спать хочется.
+            fileName = @"d:\Projects\WEB\ASP\ExchangeRatesParsing\RatesParsingWeb\App_Data\ISO4217.xml";
 
             // Получить данные из XML файла и удалить дубликаты.
             CurrencyXmlData currenciesFromXml;
