@@ -11,6 +11,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 using RatesParsingWeb.Storage;
 using RatesParsingWeb.Storage.Repositories;
+using RatesParsingWeb.Storage.Repositories.Interfaces;
 
 namespace RatesParsingWeb
 {
@@ -30,6 +31,7 @@ namespace RatesParsingWeb
             services.AddDbContext<BankRatesContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("BankRatesContext")));
             services.AddScoped<IBankRepository, BankRepository>();
+            services.AddScoped<ICurrency, CurrencyRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -5,8 +5,9 @@ using System.Linq;
 using System.Linq.Expressions;
 using System;
 using System.Collections.Generic;
+using RatesParsingWeb.Storage.Repositories.Interfaces;
 
-namespace RatesParsingWeb.Storage
+namespace RatesParsingWeb.Storage.Repositories
 {
     /// <summary>
     /// Базовый класс для работы с сущностями БД.
@@ -27,7 +28,7 @@ namespace RatesParsingWeb.Storage
         /// </summary>
         /// <param name="entity"></param>
         /// <returns></returns>
-        public async Task AddAsync(T entity) =>
+        public virtual async Task AddAsync(T entity) =>
             await _context.AddAsync(entity);
 
         /// <summary>
@@ -35,7 +36,7 @@ namespace RatesParsingWeb.Storage
         /// </summary>
         /// <param name="entity"></param>
         /// <returns></returns>
-        public async Task AddRangeAsync(T[] entity) =>        
+        public virtual async Task AddRangeAsync(T[] entity) =>        
             await _context.AddRangeAsync(entity);
 
         /// <summary>
@@ -43,7 +44,7 @@ namespace RatesParsingWeb.Storage
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public async Task<T> GetByIdAsync(int? id) =>
+        public virtual async Task<T> GetByIdAsync(int? id) =>
             await _dbSet.FindAsync(id);
 
         /// <summary>
@@ -51,7 +52,7 @@ namespace RatesParsingWeb.Storage
         /// </summary>
         /// <param name="where"></param>
         /// <returns></returns>
-        public async Task<T> GetFirstOrDefaultAsync(Expression<Func<T, bool>> where) =>
+        public virtual async Task<T> GetFirstOrDefaultAsync(Expression<Func<T, bool>> where) =>
             await _dbSet.FirstOrDefaultAsync(where);
 
         /// <summary>
@@ -66,7 +67,7 @@ namespace RatesParsingWeb.Storage
         /// </summary>
         /// <param name="where"></param>
         /// <returns></returns>
-        public async Task<IEnumerable<T>> GetMany(Expression<Func<T, bool>> where) =>
+        public virtual async Task<IEnumerable<T>> GetMany(Expression<Func<T, bool>> where) =>
             await _dbSet.Where(where).ToListAsync();
 
         /// <summary>
@@ -74,7 +75,7 @@ namespace RatesParsingWeb.Storage
         /// </summary>
         /// <param name="where"></param>
         /// <returns></returns>
-        public async Task<bool> AnyAsync(Expression<Func<T, bool>> where) =>
+        public virtual async Task<bool> AnyAsync(Expression<Func<T, bool>> where) =>
             await _dbSet.AnyAsync(where);
 
         /// <summary>
@@ -82,7 +83,7 @@ namespace RatesParsingWeb.Storage
         /// </summary>
         /// <param name="where"></param>
         /// <returns></returns>
-        public async Task<int> CountAsync(Expression<Func<T, bool>> where = null)
+        public virtual async Task<int> CountAsync(Expression<Func<T, bool>> where = null)
         {
             if (where == null)
                 return await _dbSet.CountAsync();
@@ -101,7 +102,7 @@ namespace RatesParsingWeb.Storage
         /// Сохранить изменения в базе данных.
         /// </summary>
         /// <returns></returns>
-        public async Task SaveChangesAsync() =>
+        public virtual async Task SaveChangesAsync() =>
             await _context.SaveChangesAsync();
 
         /// <summary>

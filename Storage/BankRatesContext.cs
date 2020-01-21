@@ -68,6 +68,7 @@ namespace RatesParsingWeb.Storage
             modelBuilder.Entity<TextCodeScriptParameter>().Property(i => i.Value).HasMaxLength(50);
 
             // Заполнить базу данных начальными данными.
+
             // Заполнить таблицу Currencies.
             /*var currencySerializer = new CurrencySerializer();
             IEnumerable<CurrencyXmlItem> currenciesXml = currencySerializer.GetCurrenciesFromXml();

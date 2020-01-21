@@ -8,6 +8,8 @@ using RatesParsingWeb.Storage.SerializeXml;
 
 namespace RatesParsingWeb.Storage
 {
+    // Пусть пока побудет. А вообще УДОЛИТЬ!
+
     /// <summary>
     /// Заполняет базу данных тестовыми данными.
     /// </summary>

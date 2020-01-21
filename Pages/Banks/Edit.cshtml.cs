@@ -10,6 +10,7 @@ using RatesParsingWeb.Domain;
 using RatesParsingWeb.Storage.Repositories;
 using RatesParsingWeb.Models;
 using RatesParsingWeb.Pages.Banks;
+using RatesParsingWeb.Storage.Repositories.Interfaces;
 
 namespace RatesParsingWeb
 {

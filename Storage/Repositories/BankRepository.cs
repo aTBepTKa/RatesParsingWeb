@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using RatesParsingWeb.Domain;
+using RatesParsingWeb.Storage.Repositories.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
