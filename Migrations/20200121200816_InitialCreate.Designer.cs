@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RatesParsingWeb.Storage;
 
 namespace RatesParsingWeb.Migrations
 {
     [DbContext(typeof(BankRatesContext))]
-    partial class BankRatesContextModelSnapshot : ModelSnapshot
+    [Migration("20200121200816_InitialCreate")]
+    partial class InitialCreate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -48,36 +50,6 @@ namespace RatesParsingWeb.Migrations
                     b.HasIndex("CurrencyId");
 
                     b.ToTable("Banks");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CurrencyId = 64,
-                            Name = "National Bank of Georgia",
-                            RatesUrl = "https://www.nbg.gov.ge/index.php?m=582&lng=eng"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            CurrencyId = 124,
-                            Name = "National Bank of Poland",
-                            RatesUrl = "https://www.nbp.pl/homen.aspx?f=/kursy/RatesA.html"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            CurrencyId = 127,
-                            Name = "The Central Bank of the Russian Federation",
-                            RatesUrl = "https://www.cbr.ru/eng/currency_base/daily/"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            CurrencyId = 3,
-                            Name = "European Central Bank",
-                            RatesUrl = "https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/index.en.html"
-                        });
                 });
 
             modelBuilder.Entity("RatesParsingWeb.Domain.Currency", b =>

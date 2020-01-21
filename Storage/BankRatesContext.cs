@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
@@ -56,7 +57,7 @@ namespace RatesParsingWeb.Storage
 
             // Установить свойства для Currency.
             modelBuilder.Entity<Currency>().Property(i => i.TextCode).IsRequired();
-            modelBuilder.Entity<Currency>().Property(i => i.Name).HasMaxLength(50);
+            modelBuilder.Entity<Currency>().Property(i => i.Name).HasMaxLength(100);
             modelBuilder.Entity<Currency>().Property(i => i.TextCode);
 
             // Установить свойства UnitScript.
@@ -70,15 +71,18 @@ namespace RatesParsingWeb.Storage
             // Заполнить базу данных начальными данными.
 
             // Заполнить таблицу Currencies.
-            /*var currencySerializer = new CurrencySerializer();
+            var currencySerializer = new CurrencySerializer();
             IEnumerable<CurrencyXmlItem> currenciesXml = currencySerializer.GetCurrenciesFromXml();
             var currencies = new List<Currency>(currenciesXml.Count());
-            int id = 1;
+            // Можно ли для ID использовать значимые для пользователя значения?
+            // В данном случае для сущности Currency, полю Id, присвоить значение NumCode (цифровой код валюты),
+            // который является вроде как уникальным.
+            int currencyId = 2;
             foreach (var cur in currenciesXml)
             {
                 var newCurrency = new Currency
                 {                    
-                    Id = id++,
+                    Id = currencyId++,
                     Name = cur.CcyNm,
                     TextCode = cur.Ccy
                 };
@@ -88,37 +92,49 @@ namespace RatesParsingWeb.Storage
                     currencies.Add(newCurrency);
                 }
             }
-            modelBuilder.Entity<Currency>().HasData(currencies);*/
+            modelBuilder.Entity<Currency>().HasData(currencies);
 
 
-            /*
-            // Заполнить таблицу Banks.
+            // Заполнить таблицу Banks.        
+            // Как заполнять таблицу связанными данными? Пример:
+            //new Bank
+            //{
+            //    Name = "National Bank of Georgia",
+            //    CurrencyId = Currencies.Where(i => i.TextCode == "GEL").FirstOrDefault().Id, // Не работает при выполнении миграции.
+            //    RatesUrl = "https://www.nbg.gov.ge/index.php?m=582&lng=eng"
+            //}         
+            // Почему не работает понятно из текста ошибки, а как сделать правильно?
+            int bankId = 1;
             modelBuilder.Entity<Bank>().HasData(
                 new Bank
                 {
+                    Id = bankId++,
                     Name = "National Bank of Georgia",
-                    Currency = Currencies.Where(i => i.TextCode == "GEL").FirstOrDefault(),
+                    CurrencyId = 64, // GEL
                     RatesUrl = "https://www.nbg.gov.ge/index.php?m=582&lng=eng"
                 },
                 new Bank
                 {
+                    Id = bankId++,
                     Name = "National Bank of Poland",
-                    Currency = Currencies.Where(i => i.TextCode == "PLN").FirstOrDefault(),
+                    CurrencyId = 124, // PLN
                     RatesUrl = "https://www.nbp.pl/homen.aspx?f=/kursy/RatesA.html"
                 },
                 new Bank
                 {
+                    Id = bankId++,
                     Name = "The Central Bank of the Russian Federation",
-                    Currency = Currencies.Where(i=>i.TextCode == "RUB").FirstOrDefault(),
+                    CurrencyId = 127, // RUB
                     RatesUrl = "https://www.cbr.ru/eng/currency_base/daily/"
                 },
                 new Bank
                 {
+                    Id = bankId++,
                     Name = "European Central Bank",
-                    Currency = Currencies.Where(i=>i.TextCode == "EUR").FirstOrDefault(),
+                    CurrencyId = 3, // EUR
                     RatesUrl = "https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/index.en.html"
                 }
-            );*/
+            );
         }
     }
 }

@@ -23,7 +23,7 @@ namespace RatesParsingWeb.Domain
         public decimal ExchangeRateValue { get; set; }
 
         
-        public int CurrencyID { get; set; }
+        public int CurrencyId { get; set; }
 
         public int ExchangeRateListId { get; set; }
 
