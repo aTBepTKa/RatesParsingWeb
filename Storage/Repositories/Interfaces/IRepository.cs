@@ -13,7 +13,7 @@ namespace RatesParsingWeb.Storage.Repositories.Interfaces
         Task<bool> AnyAsync(Expression<Func<T, bool>> where);
         Task<int> CountAsync(Expression<Func<T, bool>> where = null);
         Task<IEnumerable<T>> GetAll();
-        Task<T> GetByIdAsync(int? id);
+        Task<T> GetByIdAsync(int id);
         Task<T> GetFirstOrDefaultAsync(Expression<Func<T, bool>> where);
         Task<IEnumerable<T>> GetMany(Expression<Func<T, bool>> where);
         IQueryable<T> Query();

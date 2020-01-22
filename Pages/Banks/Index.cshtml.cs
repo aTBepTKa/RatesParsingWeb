@@ -16,23 +16,25 @@ namespace RatesParsingWeb
 {
     public class IndexModel : BaseBankPageModel
     {
-        private readonly IBankRepository _context;
+        private readonly IBankRepository bankRepository;
 
         public IndexModel(IBankRepository context)
         {
-            _context = context;
+            bankRepository = context;
         }
 
         public List<BankModel> Banks { get; set; }
+        public BankModel FirstBankObject { get;  set; }
 
         public async Task OnGetAsync()
         {
-            var banksDomain = await _context.GetAll();
-            if (banksDomain != null)
+            IEnumerable<Bank> banksDomain = await bankRepository.GetAll();
+            if (banksDomain != null && banksDomain.Any())
             {
                 Banks = new List<BankModel>(banksDomain.Count());
                 foreach (var item in banksDomain)
                     Banks.Add(GetBankModel(item));
+                FirstBankObject = Banks[0];
             }
         }
     }

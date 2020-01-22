@@ -31,14 +31,5 @@ namespace RatesParsingWeb.Pages.Banks
                 CurrencyTextCode = bank.Currency.TextCode
                 // Прикольная лесенка получилась.
             };
-        protected Bank GetBankDomain(BankModel bank) =>
-            new Bank
-            {
-                Id = bank.Id,
-                Name = bank.Name,
-                BankUrl = bank.BankUrl,
-                RatesUrl = bank.RatesUrl,
-                CurrencyId = bank.CurrencyId
-            };
     }
 }

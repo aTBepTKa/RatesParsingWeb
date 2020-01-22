@@ -8,7 +8,5 @@ namespace RatesParsingWeb.Storage.Repositories.Interfaces
 {
     public interface IBankRepository : IRepository<Bank>
     {
-        IEnumerable<Currency> GetCurrencies();
-
     }
 }

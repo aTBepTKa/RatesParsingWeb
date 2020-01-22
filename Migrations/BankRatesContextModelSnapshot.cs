@@ -53,28 +53,28 @@ namespace RatesParsingWeb.Migrations
                         new
                         {
                             Id = 1,
-                            CurrencyId = 64,
+                            CurrencyId = 981,
                             Name = "National Bank of Georgia",
                             RatesUrl = "https://www.nbg.gov.ge/index.php?m=582&lng=eng"
                         },
                         new
                         {
                             Id = 2,
-                            CurrencyId = 124,
+                            CurrencyId = 985,
                             Name = "National Bank of Poland",
                             RatesUrl = "https://www.nbp.pl/homen.aspx?f=/kursy/RatesA.html"
                         },
                         new
                         {
                             Id = 3,
-                            CurrencyId = 127,
+                            CurrencyId = 643,
                             Name = "The Central Bank of the Russian Federation",
                             RatesUrl = "https://www.cbr.ru/eng/currency_base/daily/"
                         },
                         new
                         {
                             Id = 4,
-                            CurrencyId = 3,
+                            CurrencyId = 978,
                             Name = "European Central Bank",
                             RatesUrl = "https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/index.en.html"
                         });
@@ -105,1255 +105,1076 @@ namespace RatesParsingWeb.Migrations
                     b.HasData(
                         new
                         {
-                            Id = 2,
+                            Id = 971,
                             Name = "Afghani",
-                            NumCode = 971,
                             TextCode = "AFN"
                         },
                         new
                         {
-                            Id = 3,
+                            Id = 978,
                             Name = "Euro",
-                            NumCode = 978,
                             TextCode = "EUR"
                         },
                         new
                         {
-                            Id = 4,
+                            Id = 8,
                             Name = "Lek",
-                            NumCode = 8,
                             TextCode = "ALL"
                         },
                         new
                         {
-                            Id = 5,
+                            Id = 12,
                             Name = "Algerian Dinar",
-                            NumCode = 12,
                             TextCode = "DZD"
                         },
                         new
                         {
-                            Id = 6,
+                            Id = 840,
                             Name = "US Dollar",
-                            NumCode = 840,
                             TextCode = "USD"
                         },
                         new
                         {
-                            Id = 7,
+                            Id = 973,
                             Name = "Kwanza",
-                            NumCode = 973,
                             TextCode = "AOA"
                         },
                         new
                         {
-                            Id = 8,
+                            Id = 951,
                             Name = "East Caribbean Dollar",
-                            NumCode = 951,
                             TextCode = "XCD"
                         },
                         new
                         {
-                            Id = 10,
+                            Id = 32,
                             Name = "Argentine Peso",
-                            NumCode = 32,
                             TextCode = "ARS"
                         },
                         new
                         {
-                            Id = 11,
+                            Id = 51,
                             Name = "Armenian Dram",
-                            NumCode = 51,
                             TextCode = "AMD"
                         },
                         new
                         {
-                            Id = 12,
+                            Id = 533,
                             Name = "Aruban Florin",
-                            NumCode = 533,
                             TextCode = "AWG"
                         },
                         new
                         {
-                            Id = 13,
+                            Id = 36,
                             Name = "Australian Dollar",
-                            NumCode = 36,
                             TextCode = "AUD"
                         },
                         new
                         {
-                            Id = 14,
+                            Id = 944,
                             Name = "Azerbaijan Manat",
-                            NumCode = 944,
                             TextCode = "AZN"
                         },
                         new
                         {
-                            Id = 15,
+                            Id = 44,
                             Name = "Bahamian Dollar",
-                            NumCode = 44,
                             TextCode = "BSD"
                         },
                         new
                         {
-                            Id = 16,
+                            Id = 48,
                             Name = "Bahraini Dinar",
-                            NumCode = 48,
                             TextCode = "BHD"
                         },
                         new
                         {
-                            Id = 17,
+                            Id = 50,
                             Name = "Taka",
-                            NumCode = 50,
                             TextCode = "BDT"
                         },
                         new
                         {
-                            Id = 18,
+                            Id = 52,
                             Name = "Barbados Dollar",
-                            NumCode = 52,
                             TextCode = "BBD"
                         },
                         new
                         {
-                            Id = 19,
+                            Id = 933,
                             Name = "Belarusian Ruble",
-                            NumCode = 933,
                             TextCode = "BYN"
                         },
                         new
                         {
-                            Id = 20,
+                            Id = 84,
                             Name = "Belize Dollar",
-                            NumCode = 84,
                             TextCode = "BZD"
                         },
                         new
                         {
-                            Id = 21,
+                            Id = 952,
                             Name = "CFA Franc BCEAO",
-                            NumCode = 952,
                             TextCode = "XOF"
                         },
                         new
                         {
-                            Id = 22,
+                            Id = 60,
                             Name = "Bermudian Dollar",
-                            NumCode = 60,
                             TextCode = "BMD"
                         },
                         new
                         {
-                            Id = 23,
+                            Id = 356,
                             Name = "Indian Rupee",
-                            NumCode = 356,
                             TextCode = "INR"
                         },
                         new
                         {
-                            Id = 24,
+                            Id = 64,
                             Name = "Ngultrum",
-                            NumCode = 64,
                             TextCode = "BTN"
                         },
                         new
                         {
-                            Id = 25,
+                            Id = 68,
                             Name = "Boliviano",
-                            NumCode = 68,
                             TextCode = "BOB"
                         },
                         new
                         {
-                            Id = 26,
+                            Id = 984,
                             Name = "Mvdol",
-                            NumCode = 984,
                             TextCode = "BOV"
                         },
                         new
                         {
-                            Id = 27,
+                            Id = 977,
                             Name = "Convertible Mark",
-                            NumCode = 977,
                             TextCode = "BAM"
                         },
                         new
                         {
-                            Id = 28,
+                            Id = 72,
                             Name = "Pula",
-                            NumCode = 72,
                             TextCode = "BWP"
                         },
                         new
                         {
-                            Id = 29,
+                            Id = 578,
                             Name = "Norwegian Krone",
-                            NumCode = 578,
                             TextCode = "NOK"
                         },
                         new
                         {
-                            Id = 30,
+                            Id = 986,
                             Name = "Brazilian Real",
-                            NumCode = 986,
                             TextCode = "BRL"
                         },
                         new
                         {
-                            Id = 31,
+                            Id = 96,
                             Name = "Brunei Dollar",
-                            NumCode = 96,
                             TextCode = "BND"
                         },
                         new
                         {
-                            Id = 32,
+                            Id = 975,
                             Name = "Bulgarian Lev",
-                            NumCode = 975,
                             TextCode = "BGN"
                         },
                         new
                         {
-                            Id = 33,
+                            Id = 108,
                             Name = "Burundi Franc",
-                            NumCode = 108,
                             TextCode = "BIF"
                         },
                         new
                         {
-                            Id = 34,
+                            Id = 132,
                             Name = "Cabo Verde Escudo",
-                            NumCode = 132,
                             TextCode = "CVE"
                         },
                         new
                         {
-                            Id = 35,
+                            Id = 116,
                             Name = "Riel",
-                            NumCode = 116,
                             TextCode = "KHR"
                         },
                         new
                         {
-                            Id = 36,
+                            Id = 950,
                             Name = "CFA Franc BEAC",
-                            NumCode = 950,
                             TextCode = "XAF"
                         },
                         new
                         {
-                            Id = 37,
+                            Id = 124,
                             Name = "Canadian Dollar",
-                            NumCode = 124,
                             TextCode = "CAD"
                         },
                         new
                         {
-                            Id = 38,
+                            Id = 136,
                             Name = "Cayman Islands Dollar",
-                            NumCode = 136,
                             TextCode = "KYD"
                         },
                         new
                         {
-                            Id = 39,
+                            Id = 152,
                             Name = "Chilean Peso",
-                            NumCode = 152,
                             TextCode = "CLP"
                         },
                         new
                         {
-                            Id = 40,
+                            Id = 990,
                             Name = "Unidad de Fomento",
-                            NumCode = 990,
                             TextCode = "CLF"
                         },
                         new
                         {
-                            Id = 41,
+                            Id = 156,
                             Name = "Yuan Renminbi",
-                            NumCode = 156,
                             TextCode = "CNY"
                         },
                         new
                         {
-                            Id = 42,
+                            Id = 170,
                             Name = "Colombian Peso",
-                            NumCode = 170,
                             TextCode = "COP"
                         },
                         new
                         {
-                            Id = 43,
+                            Id = 970,
                             Name = "Unidad de Valor Real",
-                            NumCode = 970,
                             TextCode = "COU"
                         },
                         new
                         {
-                            Id = 44,
+                            Id = 174,
                             Name = "Comorian Franc ",
-                            NumCode = 174,
                             TextCode = "KMF"
                         },
                         new
                         {
-                            Id = 45,
+                            Id = 976,
                             Name = "Congolese Franc",
-                            NumCode = 976,
                             TextCode = "CDF"
                         },
                         new
                         {
-                            Id = 46,
+                            Id = 554,
                             Name = "New Zealand Dollar",
-                            NumCode = 554,
                             TextCode = "NZD"
                         },
                         new
                         {
-                            Id = 47,
+                            Id = 188,
                             Name = "Costa Rican Colon",
-                            NumCode = 188,
                             TextCode = "CRC"
                         },
                         new
                         {
-                            Id = 48,
+                            Id = 191,
                             Name = "Kuna",
-                            NumCode = 191,
                             TextCode = "HRK"
                         },
                         new
                         {
-                            Id = 49,
+                            Id = 192,
                             Name = "Cuban Peso",
-                            NumCode = 192,
                             TextCode = "CUP"
                         },
                         new
                         {
-                            Id = 50,
+                            Id = 931,
                             Name = "Peso Convertible",
-                            NumCode = 931,
                             TextCode = "CUC"
                         },
                         new
                         {
-                            Id = 51,
+                            Id = 532,
                             Name = "Netherlands Antillean Guilder",
-                            NumCode = 532,
                             TextCode = "ANG"
                         },
                         new
                         {
-                            Id = 52,
+                            Id = 203,
                             Name = "Czech Koruna",
-                            NumCode = 203,
                             TextCode = "CZK"
                         },
                         new
                         {
-                            Id = 53,
+                            Id = 208,
                             Name = "Danish Krone",
-                            NumCode = 208,
                             TextCode = "DKK"
                         },
                         new
                         {
-                            Id = 54,
+                            Id = 262,
                             Name = "Djibouti Franc",
-                            NumCode = 262,
                             TextCode = "DJF"
                         },
                         new
                         {
-                            Id = 55,
+                            Id = 214,
                             Name = "Dominican Peso",
-                            NumCode = 214,
                             TextCode = "DOP"
                         },
                         new
                         {
-                            Id = 56,
+                            Id = 818,
                             Name = "Egyptian Pound",
-                            NumCode = 818,
                             TextCode = "EGP"
                         },
                         new
                         {
-                            Id = 57,
+                            Id = 222,
                             Name = "El Salvador Colon",
-                            NumCode = 222,
                             TextCode = "SVC"
                         },
                         new
                         {
-                            Id = 58,
+                            Id = 232,
                             Name = "Nakfa",
-                            NumCode = 232,
                             TextCode = "ERN"
                         },
                         new
                         {
-                            Id = 59,
+                            Id = 230,
                             Name = "Ethiopian Birr",
-                            NumCode = 230,
                             TextCode = "ETB"
                         },
                         new
                         {
-                            Id = 60,
+                            Id = 238,
                             Name = "Falkland Islands Pound",
-                            NumCode = 238,
                             TextCode = "FKP"
                         },
                         new
                         {
-                            Id = 61,
+                            Id = 242,
                             Name = "Fiji Dollar",
-                            NumCode = 242,
                             TextCode = "FJD"
                         },
                         new
                         {
-                            Id = 62,
+                            Id = 953,
                             Name = "CFP Franc",
-                            NumCode = 953,
                             TextCode = "XPF"
                         },
                         new
                         {
-                            Id = 63,
+                            Id = 270,
                             Name = "Dalasi",
-                            NumCode = 270,
                             TextCode = "GMD"
                         },
                         new
                         {
-                            Id = 64,
+                            Id = 981,
                             Name = "Lari",
-                            NumCode = 981,
                             TextCode = "GEL"
                         },
                         new
                         {
-                            Id = 65,
+                            Id = 936,
                             Name = "Ghana Cedi",
-                            NumCode = 936,
                             TextCode = "GHS"
                         },
                         new
                         {
-                            Id = 66,
+                            Id = 292,
                             Name = "Gibraltar Pound",
-                            NumCode = 292,
                             TextCode = "GIP"
                         },
                         new
                         {
-                            Id = 67,
+                            Id = 320,
                             Name = "Quetzal",
-                            NumCode = 320,
                             TextCode = "GTQ"
                         },
                         new
                         {
-                            Id = 68,
+                            Id = 826,
                             Name = "Pound Sterling",
-                            NumCode = 826,
                             TextCode = "GBP"
                         },
                         new
                         {
-                            Id = 69,
+                            Id = 324,
                             Name = "Guinean Franc",
-                            NumCode = 324,
                             TextCode = "GNF"
                         },
                         new
                         {
-                            Id = 70,
+                            Id = 328,
                             Name = "Guyana Dollar",
-                            NumCode = 328,
                             TextCode = "GYD"
                         },
                         new
                         {
-                            Id = 71,
+                            Id = 332,
                             Name = "Gourde",
-                            NumCode = 332,
                             TextCode = "HTG"
                         },
                         new
                         {
-                            Id = 72,
+                            Id = 340,
                             Name = "Lempira",
-                            NumCode = 340,
                             TextCode = "HNL"
                         },
                         new
                         {
-                            Id = 73,
+                            Id = 344,
                             Name = "Hong Kong Dollar",
-                            NumCode = 344,
                             TextCode = "HKD"
                         },
                         new
                         {
-                            Id = 74,
+                            Id = 348,
                             Name = "Forint",
-                            NumCode = 348,
                             TextCode = "HUF"
                         },
                         new
                         {
-                            Id = 75,
+                            Id = 352,
                             Name = "Iceland Krona",
-                            NumCode = 352,
                             TextCode = "ISK"
                         },
                         new
                         {
-                            Id = 76,
+                            Id = 360,
                             Name = "Rupiah",
-                            NumCode = 360,
                             TextCode = "IDR"
                         },
                         new
                         {
-                            Id = 77,
+                            Id = 960,
                             Name = "SDR (Special Drawing Right)",
-                            NumCode = 960,
                             TextCode = "XDR"
                         },
                         new
                         {
-                            Id = 78,
+                            Id = 364,
                             Name = "Iranian Rial",
-                            NumCode = 364,
                             TextCode = "IRR"
                         },
                         new
                         {
-                            Id = 79,
+                            Id = 368,
                             Name = "Iraqi Dinar",
-                            NumCode = 368,
                             TextCode = "IQD"
                         },
                         new
                         {
-                            Id = 80,
+                            Id = 376,
                             Name = "New Israeli Sheqel",
-                            NumCode = 376,
                             TextCode = "ILS"
                         },
                         new
                         {
-                            Id = 81,
+                            Id = 388,
                             Name = "Jamaican Dollar",
-                            NumCode = 388,
                             TextCode = "JMD"
                         },
                         new
                         {
-                            Id = 82,
+                            Id = 392,
                             Name = "Yen",
-                            NumCode = 392,
                             TextCode = "JPY"
                         },
                         new
                         {
-                            Id = 83,
+                            Id = 400,
                             Name = "Jordanian Dinar",
-                            NumCode = 400,
                             TextCode = "JOD"
                         },
                         new
                         {
-                            Id = 84,
+                            Id = 398,
                             Name = "Tenge",
-                            NumCode = 398,
                             TextCode = "KZT"
                         },
                         new
                         {
-                            Id = 85,
+                            Id = 404,
                             Name = "Kenyan Shilling",
-                            NumCode = 404,
                             TextCode = "KES"
                         },
                         new
                         {
-                            Id = 86,
+                            Id = 408,
                             Name = "North Korean Won",
-                            NumCode = 408,
                             TextCode = "KPW"
                         },
                         new
                         {
-                            Id = 87,
+                            Id = 410,
                             Name = "Won",
-                            NumCode = 410,
                             TextCode = "KRW"
                         },
                         new
                         {
-                            Id = 88,
+                            Id = 414,
                             Name = "Kuwaiti Dinar",
-                            NumCode = 414,
                             TextCode = "KWD"
                         },
                         new
                         {
-                            Id = 89,
+                            Id = 417,
                             Name = "Som",
-                            NumCode = 417,
                             TextCode = "KGS"
                         },
                         new
                         {
-                            Id = 90,
+                            Id = 418,
                             Name = "Lao Kip",
-                            NumCode = 418,
                             TextCode = "LAK"
                         },
                         new
                         {
-                            Id = 91,
+                            Id = 422,
                             Name = "Lebanese Pound",
-                            NumCode = 422,
                             TextCode = "LBP"
                         },
                         new
                         {
-                            Id = 92,
+                            Id = 426,
                             Name = "Loti",
-                            NumCode = 426,
                             TextCode = "LSL"
                         },
                         new
                         {
-                            Id = 93,
+                            Id = 710,
                             Name = "Rand",
-                            NumCode = 710,
                             TextCode = "ZAR"
                         },
                         new
                         {
-                            Id = 94,
+                            Id = 430,
                             Name = "Liberian Dollar",
-                            NumCode = 430,
                             TextCode = "LRD"
                         },
                         new
                         {
-                            Id = 95,
+                            Id = 434,
                             Name = "Libyan Dinar",
-                            NumCode = 434,
                             TextCode = "LYD"
                         },
                         new
                         {
-                            Id = 96,
+                            Id = 756,
                             Name = "Swiss Franc",
-                            NumCode = 756,
                             TextCode = "CHF"
                         },
                         new
                         {
-                            Id = 97,
+                            Id = 446,
                             Name = "Pataca",
-                            NumCode = 446,
                             TextCode = "MOP"
                         },
                         new
                         {
-                            Id = 98,
+                            Id = 807,
                             Name = "Denar",
-                            NumCode = 807,
                             TextCode = "MKD"
                         },
                         new
                         {
-                            Id = 99,
+                            Id = 969,
                             Name = "Malagasy Ariary",
-                            NumCode = 969,
                             TextCode = "MGA"
                         },
                         new
                         {
-                            Id = 100,
+                            Id = 454,
                             Name = "Malawi Kwacha",
-                            NumCode = 454,
                             TextCode = "MWK"
                         },
                         new
                         {
-                            Id = 101,
+                            Id = 458,
                             Name = "Malaysian Ringgit",
-                            NumCode = 458,
                             TextCode = "MYR"
                         },
                         new
                         {
-                            Id = 102,
+                            Id = 462,
                             Name = "Rufiyaa",
-                            NumCode = 462,
                             TextCode = "MVR"
                         },
                         new
                         {
-                            Id = 103,
+                            Id = 929,
                             Name = "Ouguiya",
-                            NumCode = 929,
                             TextCode = "MRU"
                         },
                         new
                         {
-                            Id = 104,
+                            Id = 480,
                             Name = "Mauritius Rupee",
-                            NumCode = 480,
                             TextCode = "MUR"
                         },
                         new
                         {
-                            Id = 105,
+                            Id = 965,
                             Name = "ADB Unit of Account",
-                            NumCode = 965,
                             TextCode = "XUA"
                         },
                         new
                         {
-                            Id = 106,
+                            Id = 484,
                             Name = "Mexican Peso",
-                            NumCode = 484,
                             TextCode = "MXN"
                         },
                         new
                         {
-                            Id = 107,
+                            Id = 979,
                             Name = "Mexican Unidad de Inversion (UDI)",
-                            NumCode = 979,
                             TextCode = "MXV"
                         },
                         new
                         {
-                            Id = 108,
+                            Id = 498,
                             Name = "Moldovan Leu",
-                            NumCode = 498,
                             TextCode = "MDL"
                         },
                         new
                         {
-                            Id = 109,
+                            Id = 496,
                             Name = "Tugrik",
-                            NumCode = 496,
                             TextCode = "MNT"
                         },
                         new
                         {
-                            Id = 110,
+                            Id = 504,
                             Name = "Moroccan Dirham",
-                            NumCode = 504,
                             TextCode = "MAD"
                         },
                         new
                         {
-                            Id = 111,
+                            Id = 943,
                             Name = "Mozambique Metical",
-                            NumCode = 943,
                             TextCode = "MZN"
                         },
                         new
                         {
-                            Id = 112,
+                            Id = 104,
                             Name = "Kyat",
-                            NumCode = 104,
                             TextCode = "MMK"
                         },
                         new
                         {
-                            Id = 113,
+                            Id = 516,
                             Name = "Namibia Dollar",
-                            NumCode = 516,
                             TextCode = "NAD"
                         },
                         new
                         {
-                            Id = 114,
+                            Id = 524,
                             Name = "Nepalese Rupee",
-                            NumCode = 524,
                             TextCode = "NPR"
                         },
                         new
                         {
-                            Id = 115,
+                            Id = 558,
                             Name = "Cordoba Oro",
-                            NumCode = 558,
                             TextCode = "NIO"
                         },
                         new
                         {
-                            Id = 116,
+                            Id = 566,
                             Name = "Naira",
-                            NumCode = 566,
                             TextCode = "NGN"
                         },
                         new
                         {
-                            Id = 117,
+                            Id = 512,
                             Name = "Rial Omani",
-                            NumCode = 512,
                             TextCode = "OMR"
                         },
                         new
                         {
-                            Id = 118,
+                            Id = 586,
                             Name = "Pakistan Rupee",
-                            NumCode = 586,
                             TextCode = "PKR"
                         },
                         new
                         {
-                            Id = 119,
+                            Id = 590,
                             Name = "Balboa",
-                            NumCode = 590,
                             TextCode = "PAB"
                         },
                         new
                         {
-                            Id = 120,
+                            Id = 598,
                             Name = "Kina",
-                            NumCode = 598,
                             TextCode = "PGK"
                         },
                         new
                         {
-                            Id = 121,
+                            Id = 600,
                             Name = "Guarani",
-                            NumCode = 600,
                             TextCode = "PYG"
                         },
                         new
                         {
-                            Id = 122,
+                            Id = 604,
                             Name = "Sol",
-                            NumCode = 604,
                             TextCode = "PEN"
                         },
                         new
                         {
-                            Id = 123,
+                            Id = 608,
                             Name = "Philippine Peso",
-                            NumCode = 608,
                             TextCode = "PHP"
                         },
                         new
                         {
-                            Id = 124,
+                            Id = 985,
                             Name = "Zloty",
-                            NumCode = 985,
                             TextCode = "PLN"
                         },
                         new
                         {
-                            Id = 125,
+                            Id = 634,
                             Name = "Qatari Rial",
-                            NumCode = 634,
                             TextCode = "QAR"
                         },
                         new
                         {
-                            Id = 126,
+                            Id = 946,
                             Name = "Romanian Leu",
-                            NumCode = 946,
                             TextCode = "RON"
                         },
                         new
                         {
-                            Id = 127,
+                            Id = 643,
                             Name = "Russian Ruble",
-                            NumCode = 643,
                             TextCode = "RUB"
                         },
                         new
                         {
-                            Id = 128,
+                            Id = 646,
                             Name = "Rwanda Franc",
-                            NumCode = 646,
                             TextCode = "RWF"
                         },
                         new
                         {
-                            Id = 129,
+                            Id = 654,
                             Name = "Saint Helena Pound",
-                            NumCode = 654,
                             TextCode = "SHP"
                         },
                         new
                         {
-                            Id = 130,
+                            Id = 882,
                             Name = "Tala",
-                            NumCode = 882,
                             TextCode = "WST"
                         },
                         new
                         {
-                            Id = 131,
+                            Id = 930,
                             Name = "Dobra",
-                            NumCode = 930,
                             TextCode = "STN"
                         },
                         new
                         {
-                            Id = 132,
+                            Id = 682,
                             Name = "Saudi Riyal",
-                            NumCode = 682,
                             TextCode = "SAR"
                         },
                         new
                         {
-                            Id = 133,
+                            Id = 941,
                             Name = "Serbian Dinar",
-                            NumCode = 941,
                             TextCode = "RSD"
                         },
                         new
                         {
-                            Id = 134,
+                            Id = 690,
                             Name = "Seychelles Rupee",
-                            NumCode = 690,
                             TextCode = "SCR"
                         },
                         new
                         {
-                            Id = 135,
+                            Id = 694,
                             Name = "Leone",
-                            NumCode = 694,
                             TextCode = "SLL"
                         },
                         new
                         {
-                            Id = 136,
+                            Id = 702,
                             Name = "Singapore Dollar",
-                            NumCode = 702,
                             TextCode = "SGD"
                         },
                         new
                         {
-                            Id = 137,
+                            Id = 994,
                             Name = "Sucre",
-                            NumCode = 994,
                             TextCode = "XSU"
                         },
                         new
                         {
-                            Id = 138,
+                            Id = 90,
                             Name = "Solomon Islands Dollar",
-                            NumCode = 90,
                             TextCode = "SBD"
                         },
                         new
                         {
-                            Id = 139,
+                            Id = 706,
                             Name = "Somali Shilling",
-                            NumCode = 706,
                             TextCode = "SOS"
                         },
                         new
                         {
-                            Id = 140,
+                            Id = 728,
                             Name = "South Sudanese Pound",
-                            NumCode = 728,
                             TextCode = "SSP"
                         },
                         new
                         {
-                            Id = 141,
+                            Id = 144,
                             Name = "Sri Lanka Rupee",
-                            NumCode = 144,
                             TextCode = "LKR"
                         },
                         new
                         {
-                            Id = 142,
+                            Id = 938,
                             Name = "Sudanese Pound",
-                            NumCode = 938,
                             TextCode = "SDG"
                         },
                         new
                         {
-                            Id = 143,
+                            Id = 968,
                             Name = "Surinam Dollar",
-                            NumCode = 968,
                             TextCode = "SRD"
                         },
                         new
                         {
-                            Id = 144,
+                            Id = 748,
                             Name = "Lilangeni",
-                            NumCode = 748,
                             TextCode = "SZL"
                         },
                         new
                         {
-                            Id = 145,
+                            Id = 752,
                             Name = "Swedish Krona",
-                            NumCode = 752,
                             TextCode = "SEK"
                         },
                         new
                         {
-                            Id = 146,
+                            Id = 947,
                             Name = "WIR Euro",
-                            NumCode = 947,
                             TextCode = "CHE"
                         },
                         new
                         {
-                            Id = 147,
+                            Id = 948,
                             Name = "WIR Franc",
-                            NumCode = 948,
                             TextCode = "CHW"
                         },
                         new
                         {
-                            Id = 148,
+                            Id = 760,
                             Name = "Syrian Pound",
-                            NumCode = 760,
                             TextCode = "SYP"
                         },
                         new
                         {
-                            Id = 149,
+                            Id = 901,
                             Name = "New Taiwan Dollar",
-                            NumCode = 901,
                             TextCode = "TWD"
                         },
                         new
                         {
-                            Id = 150,
+                            Id = 972,
                             Name = "Somoni",
-                            NumCode = 972,
                             TextCode = "TJS"
                         },
                         new
                         {
-                            Id = 151,
+                            Id = 834,
                             Name = "Tanzanian Shilling",
-                            NumCode = 834,
                             TextCode = "TZS"
                         },
                         new
                         {
-                            Id = 152,
+                            Id = 764,
                             Name = "Baht",
-                            NumCode = 764,
                             TextCode = "THB"
                         },
                         new
                         {
-                            Id = 153,
+                            Id = 776,
                             Name = "Pa’anga",
-                            NumCode = 776,
                             TextCode = "TOP"
                         },
                         new
                         {
-                            Id = 154,
+                            Id = 780,
                             Name = "Trinidad and Tobago Dollar",
-                            NumCode = 780,
                             TextCode = "TTD"
                         },
                         new
                         {
-                            Id = 155,
+                            Id = 788,
                             Name = "Tunisian Dinar",
-                            NumCode = 788,
                             TextCode = "TND"
                         },
                         new
                         {
-                            Id = 156,
+                            Id = 949,
                             Name = "Turkish Lira",
-                            NumCode = 949,
                             TextCode = "TRY"
                         },
                         new
                         {
-                            Id = 157,
+                            Id = 934,
                             Name = "Turkmenistan New Manat",
-                            NumCode = 934,
                             TextCode = "TMT"
                         },
                         new
                         {
-                            Id = 158,
+                            Id = 800,
                             Name = "Uganda Shilling",
-                            NumCode = 800,
                             TextCode = "UGX"
                         },
                         new
                         {
-                            Id = 159,
+                            Id = 980,
                             Name = "Hryvnia",
-                            NumCode = 980,
                             TextCode = "UAH"
                         },
                         new
                         {
-                            Id = 160,
+                            Id = 784,
                             Name = "UAE Dirham",
-                            NumCode = 784,
                             TextCode = "AED"
                         },
                         new
                         {
-                            Id = 161,
+                            Id = 997,
                             Name = "US Dollar (Next day)",
-                            NumCode = 997,
                             TextCode = "USN"
                         },
                         new
                         {
-                            Id = 162,
+                            Id = 858,
                             Name = "Peso Uruguayo",
-                            NumCode = 858,
                             TextCode = "UYU"
                         },
                         new
                         {
-                            Id = 163,
+                            Id = 940,
                             Name = "Uruguay Peso en Unidades Indexadas (UI)",
-                            NumCode = 940,
                             TextCode = "UYI"
                         },
                         new
                         {
-                            Id = 164,
+                            Id = 927,
                             Name = "Unidad Previsional",
-                            NumCode = 927,
                             TextCode = "UYW"
                         },
                         new
                         {
-                            Id = 165,
+                            Id = 860,
                             Name = "Uzbekistan Sum",
-                            NumCode = 860,
                             TextCode = "UZS"
                         },
                         new
                         {
-                            Id = 166,
+                            Id = 548,
                             Name = "Vatu",
-                            NumCode = 548,
                             TextCode = "VUV"
                         },
                         new
                         {
-                            Id = 167,
+                            Id = 928,
                             Name = "Bolívar Soberano",
-                            NumCode = 928,
                             TextCode = "VES"
                         },
                         new
                         {
-                            Id = 168,
+                            Id = 704,
                             Name = "Dong",
-                            NumCode = 704,
                             TextCode = "VND"
                         },
                         new
                         {
-                            Id = 169,
+                            Id = 886,
                             Name = "Yemeni Rial",
-                            NumCode = 886,
                             TextCode = "YER"
                         },
                         new
                         {
-                            Id = 170,
+                            Id = 967,
                             Name = "Zambian Kwacha",
-                            NumCode = 967,
                             TextCode = "ZMW"
                         },
                         new
                         {
-                            Id = 171,
+                            Id = 932,
                             Name = "Zimbabwe Dollar",
-                            NumCode = 932,
                             TextCode = "ZWL"
                         },
                         new
                         {
-                            Id = 172,
+                            Id = 955,
                             Name = "Bond Markets Unit European Composite Unit (EURCO)",
-                            NumCode = 955,
                             TextCode = "XBA"
                         },
                         new
                         {
-                            Id = 173,
+                            Id = 956,
                             Name = "Bond Markets Unit European Monetary Unit (E.M.U.-6)",
-                            NumCode = 956,
                             TextCode = "XBB"
                         },
                         new
                         {
-                            Id = 174,
+                            Id = 957,
                             Name = "Bond Markets Unit European Unit of Account 9 (E.U.A.-9)",
-                            NumCode = 957,
                             TextCode = "XBC"
                         },
                         new
                         {
-                            Id = 175,
+                            Id = 958,
                             Name = "Bond Markets Unit European Unit of Account 17 (E.U.A.-17)",
-                            NumCode = 958,
                             TextCode = "XBD"
                         },
                         new
                         {
-                            Id = 176,
+                            Id = 963,
                             Name = "Codes specifically reserved for testing purposes",
-                            NumCode = 963,
                             TextCode = "XTS"
                         },
                         new
                         {
-                            Id = 177,
+                            Id = 999,
                             Name = "The codes assigned for transactions where no currency is involved",
-                            NumCode = 999,
                             TextCode = "XXX"
                         },
                         new
                         {
-                            Id = 178,
+                            Id = 959,
                             Name = "Gold",
-                            NumCode = 959,
                             TextCode = "XAU"
                         },
                         new
                         {
-                            Id = 179,
+                            Id = 964,
                             Name = "Palladium",
-                            NumCode = 964,
                             TextCode = "XPD"
                         },
                         new
                         {
-                            Id = 180,
+                            Id = 962,
                             Name = "Platinum",
-                            NumCode = 962,
                             TextCode = "XPT"
                         },
                         new
                         {
-                            Id = 181,
+                            Id = 961,
                             Name = "Silver",
-                            NumCode = 961,
                             TextCode = "XAG"
                         });
                 });

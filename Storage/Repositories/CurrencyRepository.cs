@@ -7,7 +7,7 @@ using RatesParsingWeb.Domain;
 
 namespace RatesParsingWeb.Storage.Repositories
 {
-    public class CurrencyRepository : RepositoryBase<Currency>, ICurrency
+    public class CurrencyRepository : RepositoryBase<Currency>, ICurrencyRepository
     {
         public CurrencyRepository(BankRatesContext context) : base(context)
         {

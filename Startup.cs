@@ -31,7 +31,7 @@ namespace RatesParsingWeb
             services.AddDbContext<BankRatesContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("BankRatesContext")));
             services.AddScoped<IBankRepository, BankRepository>();
-            services.AddScoped<ICurrency, CurrencyRepository>();
+            services.AddScoped<ICurrencyRepository, CurrencyRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

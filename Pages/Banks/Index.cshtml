@@ -2,7 +2,7 @@
 @model RatesParsingWeb.IndexModel
 
 @{
-    ViewData["Title"] = "Банки";
+    ViewData["Title"] = "Banks";
 }
 
 <h1>Index</h1>
@@ -12,18 +12,18 @@
 </p>
 <table class="table">
     <thead>
-        <tr>
+        <tr>            
             <th>
-                @Html.DisplayNameFor(model => model.Banks.First().Name)
+                @Html.DisplayNameFor(model => model.FirstBankObject.Name)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Banks.First().BankUrl)
+                @Html.DisplayNameFor(model => model.FirstBankObject.BankUrl)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Banks.First().RatesUrl)
+                @Html.DisplayNameFor(model => model.FirstBankObject.RatesUrl)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Banks.First().CurrencyName)
+                @Html.DisplayNameFor(model => model.FirstBankObject.CurrencyName)
             </th>
             <th></th>
         </tr>

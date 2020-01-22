@@ -74,64 +74,49 @@ namespace RatesParsingWeb.Storage
             var currencySerializer = new CurrencySerializer();
             IEnumerable<CurrencyXmlItem> currenciesXml = currencySerializer.GetCurrenciesFromXml();
             var currencies = new List<Currency>(currenciesXml.Count());
-            // Можно ли для ID использовать значимые для пользователя значения?
-            // В данном случае для сущности Currency, полю Id, присвоить значение NumCode (цифровой код валюты),
-            // который является вроде как уникальным.
-            int currencyId = 2;
             foreach (var cur in currenciesXml)
             {
-                var newCurrency = new Currency
-                {                    
-                    Id = currencyId++,
-                    Name = cur.CcyNm,
-                    TextCode = cur.Ccy
-                };
+                var newCurrency = new Currency();
                 if (int.TryParse(cur.CcyNbr, out int numCodeTemp))
                 {
-                    newCurrency.NumCode = numCodeTemp;
+                    newCurrency.Id = numCodeTemp;
+                    newCurrency.Name = cur.CcyNm;
+                    newCurrency.TextCode = cur.Ccy;
                     currencies.Add(newCurrency);
-                }
+                }                
             }
             modelBuilder.Entity<Currency>().HasData(currencies);
 
 
             // Заполнить таблицу Banks.        
-            // Как заполнять таблицу связанными данными? Пример:
-            //new Bank
-            //{
-            //    Name = "National Bank of Georgia",
-            //    CurrencyId = Currencies.Where(i => i.TextCode == "GEL").FirstOrDefault().Id, // Не работает при выполнении миграции.
-            //    RatesUrl = "https://www.nbg.gov.ge/index.php?m=582&lng=eng"
-            //}         
-            // Почему не работает понятно из текста ошибки, а как сделать правильно?
             int bankId = 1;
             modelBuilder.Entity<Bank>().HasData(
                 new Bank
                 {
                     Id = bankId++,
                     Name = "National Bank of Georgia",
-                    CurrencyId = 64, // GEL
+                    CurrencyId = 981, // GEL
                     RatesUrl = "https://www.nbg.gov.ge/index.php?m=582&lng=eng"
                 },
                 new Bank
                 {
                     Id = bankId++,
                     Name = "National Bank of Poland",
-                    CurrencyId = 124, // PLN
+                    CurrencyId = 985, // PLN
                     RatesUrl = "https://www.nbp.pl/homen.aspx?f=/kursy/RatesA.html"
                 },
                 new Bank
                 {
                     Id = bankId++,
                     Name = "The Central Bank of the Russian Federation",
-                    CurrencyId = 127, // RUB
+                    CurrencyId = 643, // RUB
                     RatesUrl = "https://www.cbr.ru/eng/currency_base/daily/"
                 },
                 new Bank
                 {
                     Id = bankId++,
                     Name = "European Central Bank",
-                    CurrencyId = 3, // EUR
+                    CurrencyId = 978, // EUR
                     RatesUrl = "https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/index.en.html"
                 }
             );

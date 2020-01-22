@@ -14,13 +14,13 @@ namespace RatesParsingWeb.Storage.Repositories
     /// </summary>
     public class RepositoryBase<T> : IRepository<T> where T : class
     {
-        protected readonly BankRatesContext _context;
+        protected readonly BankRatesContext bankRatesContext;
         protected DbSet<T> _dbSet;
 
         public RepositoryBase(BankRatesContext context)
         {
-            _context = context;
-            _dbSet = _context.Set<T>();
+            bankRatesContext = context;
+            _dbSet = bankRatesContext.Set<T>();
         }
 
         /// <summary>
@@ -29,22 +29,22 @@ namespace RatesParsingWeb.Storage.Repositories
         /// <param name="entity"></param>
         /// <returns></returns>
         public virtual async Task AddAsync(T entity) =>
-            await _context.AddAsync(entity);
+            await bankRatesContext.AddAsync(entity);
 
         /// <summary>
         /// Добавить массив элементов.
         /// </summary>
         /// <param name="entity"></param>
         /// <returns></returns>
-        public virtual async Task AddRangeAsync(T[] entity) =>        
-            await _context.AddRangeAsync(entity);
+        public virtual Task AddRangeAsync(T[] entity) =>        
+            bankRatesContext.AddRangeAsync(entity);
 
         /// <summary>
         /// Получить элемент по Id.
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public virtual async Task<T> GetByIdAsync(int? id) =>
+        public virtual async Task<T> GetByIdAsync(int id) =>
             await _dbSet.FindAsync(id);
 
         /// <summary>
@@ -52,15 +52,15 @@ namespace RatesParsingWeb.Storage.Repositories
         /// </summary>
         /// <param name="where"></param>
         /// <returns></returns>
-        public virtual async Task<T> GetFirstOrDefaultAsync(Expression<Func<T, bool>> where) =>
-            await _dbSet.FirstOrDefaultAsync(where);
+        public virtual Task<T> GetFirstOrDefaultAsync(Expression<Func<T, bool>> where) =>
+            _dbSet.FirstOrDefaultAsync(where);
 
         /// <summary>
         /// Получить последовательность элементов.
         /// </summary>
         /// <returns></returns>
         public virtual async Task<IEnumerable<T>> GetAll() =>
-            await _dbSet.ToListAsync();
+            await _dbSet.ToArrayAsync();
 
         /// <summary>
         /// Получить последовательность элементов согласно выражению.
@@ -68,27 +68,27 @@ namespace RatesParsingWeb.Storage.Repositories
         /// <param name="where"></param>
         /// <returns></returns>
         public virtual async Task<IEnumerable<T>> GetMany(Expression<Func<T, bool>> where) =>
-            await _dbSet.Where(where).ToListAsync();
+            await _dbSet.Where(where).ToArrayAsync();
 
         /// <summary>
         /// Определить существют ли элементы в последовательности, удовлетворяющие выражению.
         /// </summary>
         /// <param name="where"></param>
         /// <returns></returns>
-        public virtual async Task<bool> AnyAsync(Expression<Func<T, bool>> where) =>
-            await _dbSet.AnyAsync(where);
+        public virtual Task<bool> AnyAsync(Expression<Func<T, bool>> where) =>
+            _dbSet.AnyAsync(where);
 
         /// <summary>
         /// Возвращает количество элементов в последовательности.
         /// </summary>
         /// <param name="where"></param>
         /// <returns></returns>
-        public virtual async Task<int> CountAsync(Expression<Func<T, bool>> where = null)
+        public virtual Task<int> CountAsync(Expression<Func<T, bool>> where = null)
         {
             if (where == null)
-                return await _dbSet.CountAsync();
+                return _dbSet.CountAsync();
             else
-                return await _dbSet.CountAsync(where);
+                return _dbSet.CountAsync(where);
         }
 
         /// <summary>
@@ -103,14 +103,16 @@ namespace RatesParsingWeb.Storage.Repositories
         /// </summary>
         /// <returns></returns>
         public virtual async Task SaveChangesAsync() =>
-            await _context.SaveChangesAsync();
+            await bankRatesContext.SaveChangesAsync();
 
         /// <summary>
         /// Установить модифицированное состояние объекта. 
         /// </summary>
         /// <param name="t"></param>
         public void SetStateModifed(T t) =>
-            _context.Attach(t).State = EntityState.Modified;
+            bankRatesContext.Attach(t).State = EntityState.Modified;
+
+        // TODO: добавить OrderBy.
     }
 }
 // Гуглить Generic Repository, Unit of work.

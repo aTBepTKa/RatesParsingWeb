@@ -19,9 +19,17 @@ namespace RatesParsingWeb.Storage.Repositories
         /// </summary>
         /// <returns></returns>
         public override async Task<IEnumerable<Bank>> GetAll() =>
-            await _dbSet.Include(i => i.Currency).AsNoTracking().ToListAsync();
-        
-        public IEnumerable<Currency> GetCurrencies() =>
-            _context.Currencies.ToList();
+            await _dbSet.Include(i => i.Currency).ToArrayAsync();
+
+        /// <summary>
+        /// Возвращает банк по Id с основной валютой банка.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public override async Task<Bank> GetByIdAsync(int id) =>
+            await _dbSet
+            .Include(i => i.Currency)
+            .Where(i => i.Id == id)
+            .FirstOrDefaultAsync();
     }
 }

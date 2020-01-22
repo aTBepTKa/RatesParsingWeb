@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RatesParsingWeb.Storage.Repositories.Interfaces
 {
-    public interface ICurrency : IRepository<Currency>
+    public interface ICurrencyRepository : IRepository<Currency>
     {
         
     }
