@@ -23,6 +23,7 @@ namespace RatesParsingWeb.Domain
         /// </summary>
         public string TextCode { get; set; }
 
+        // TODO: удалить поле NumCode, так как цифровой код валюты соответствует ID.
         /// <summary>
         /// Цифровой код валюты.
         /// </summary>

@@ -1,23 +1,20 @@
 ﻿@page
-@model RatesParsingWeb.IndexModel
+@model IndexModel
 
 @{
-    ViewData["Title"] = "Banks";
+    ViewData["Title"] = "Список банков";
 }
 
-<h1>Index</h1>
+<h1>Список банков</h1>
 
 <p>
-    <a asp-page="Create">Create New</a>
+    <a asp-page="Create">Создать новый</a>
 </p>
 <table class="table">
     <thead>
-        <tr>            
+        <tr>
             <th>
                 @Html.DisplayNameFor(model => model.FirstBankObject.Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FirstBankObject.BankUrl)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.FirstBankObject.RatesUrl)
@@ -29,26 +26,24 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.Banks) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.BankUrl)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.RatesUrl)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CurrencyName) (@Html.DisplayFor(modelItem => item.CurrencyTextCode))
-            </td>
-            <td>
-                <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model.Banks)
+        {
+            <tr>
+                <td>
+                    <a href="@item.BankUrl">@item.Name</a>
+                </td>
+                <td>
+                    <a href="@item.RatesUrl">Курсы</a>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CurrencyName) (@Html.DisplayFor(modelItem => item.CurrencyTextCode))
+                </td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@item.Id">Редактировать</a> |
+                    <a asp-page="./Details" asp-route-id="@item.Id">Подробнее</a> |
+                    <a asp-page="./Delete" asp-route-id="@item.Id">Удалить</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

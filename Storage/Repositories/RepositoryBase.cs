@@ -111,8 +111,6 @@ namespace RatesParsingWeb.Storage.Repositories
         /// <param name="t"></param>
         public void SetStateModifed(T t) =>
             bankRatesContext.Attach(t).State = EntityState.Modified;
-
-        // TODO: добавить OrderBy.
     }
 }
 // Гуглить Generic Repository, Unit of work.

@@ -1,0 +1,55 @@
+﻿@page
+@model IndexModel
+
+@{
+    ViewData["Title"] = "Список валют";
+}
+
+<h1>Список валют</h1>
+
+<p>
+    <a asp-page="Create">Создать новую</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th >
+                @Html.DisplayNameFor(model => model.FirstCurrencyObject.TextCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstCurrencyObject.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstCurrencyObject.Id)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.CurrencyModelList)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TextCode)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@item.Id">Редактировать</a> |
+                    <a asp-page="./Details" asp-route-id="@item.Id">Подробнее</a> |
+                    <a asp-page="./Delete" asp-route-id="@item.Id">Удалить</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<div>
+    <a asp-page="/Index">Вернуться на главную</a>
+</div>
+<div>
+    <a asp-page="/Banks/Index">Вернуться к списку банков</a>
+</div>

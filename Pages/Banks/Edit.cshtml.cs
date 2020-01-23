@@ -8,11 +8,10 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using RatesParsingWeb.Domain;
 using RatesParsingWeb.Models;
-using RatesParsingWeb.Pages.Banks;
 using RatesParsingWeb.Storage.Repositories.Interfaces;
 using Mapster;
 
-namespace RatesParsingWeb
+namespace RatesParsingWeb.Pages.Banks
 {
     public class EditModel : BaseBankPageModel
     {
@@ -37,8 +36,16 @@ namespace RatesParsingWeb
                 return NotFound();
             }
             BankModel = GetBankModel(BankDomain);
-            // TODO: Приделать муравью х... Order для сортировки валют (мб еще где понадобится).
-            ViewData["CurrencyID"] = new SelectList(await currencyRepository.GetAll(), "Id", "TextCode");
+
+            // Сформировать список валюты для выпадающего списка.            
+            IEnumerable<Currency> currenciesDomain = await currencyRepository.GetAll();            
+            var currenciesModel = new List<CurrencyModel>(currenciesDomain.Count());
+            foreach (var currencyDomain in currenciesDomain)
+            {
+                var newCurrencyModel = currencyDomain.Adapt<CurrencyModel>();
+                currenciesModel.Add(newCurrencyModel);
+            }
+            ViewData["CurrencyID"] = new SelectList(currenciesModel, "Id", "CodeWithName");
             return Page();
         }
 
@@ -56,7 +63,7 @@ namespace RatesParsingWeb
             BankDomain = BankModel.Adapt<Bank>();
             bankRepository.SetStateModifed(BankDomain);
             await bankRepository.SaveChangesAsync();
-            
+
             return RedirectToPage("./Index");
         }
 

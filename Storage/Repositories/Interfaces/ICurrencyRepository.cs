@@ -8,6 +8,5 @@ namespace RatesParsingWeb.Storage.Repositories.Interfaces
 {
     public interface ICurrencyRepository : IRepository<Currency>
     {
-        
     }
 }
