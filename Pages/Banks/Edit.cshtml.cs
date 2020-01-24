@@ -31,20 +31,13 @@ namespace RatesParsingWeb.Pages.Banks
         public async Task<IActionResult> OnGetAsync(int id)
         {
             BankDomain = await bankRepository.GetByIdAsync(id);
-            if (BankDomain == null)
-            {
-                return NotFound();
-            }
+            if (BankDomain == null)            
+                return NotFound();            
             BankModel = GetBankModel(BankDomain);
 
             // Сформировать список валюты для выпадающего списка.            
-            IEnumerable<Currency> currenciesDomain = await currencyRepository.GetAll();            
-            var currenciesModel = new List<CurrencyModel>(currenciesDomain.Count());
-            foreach (var currencyDomain in currenciesDomain)
-            {
-                var newCurrencyModel = currencyDomain.Adapt<CurrencyModel>();
-                currenciesModel.Add(newCurrencyModel);
-            }
+            IEnumerable<Currency> currenciesDomain = await currencyRepository.GetAll();
+            List<CurrencyModel> currenciesModel = currenciesDomain.Adapt<List<CurrencyModel>>();
             ViewData["CurrencyID"] = new SelectList(currenciesModel, "Id", "CodeWithName");
             return Page();
         }

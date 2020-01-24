@@ -26,9 +26,15 @@ namespace RatesParsingWeb.Storage.Repositories
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public override async Task<Bank> GetByIdAsync(int id) =>
-            await _dbSet
+        public override Task<Bank> GetByIdAsync(int id) =>
+            _dbSet
             .Include(i => i.Currency)
             .FirstOrDefaultAsync(i=>i.Id == id);
+
+        public Task<Bank> GetByIdWithSettings(int id) =>
+            _dbSet
+            .Include(i => i.Currency)
+            .Include(i => i.ParsingSettings)
+            .FirstOrDefaultAsync(i => i.Id == id);
     }
 }

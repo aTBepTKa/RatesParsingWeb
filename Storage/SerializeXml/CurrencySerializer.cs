@@ -12,27 +12,18 @@ namespace RatesParsingWeb.Storage.SerializeXml
     public class CurrencySerializer
     {
         /// <summary>
-        /// Получить данные типов валют из файла.
+        /// Получить данные типов валют из файла ресурсов.
         /// </summary>
         /// <returns></returns>
         public IEnumerable<CurrencyXmlItem> GetCurrenciesFromXml()
         {
-            // Получить xml файл из папки проекта.
-            string workingDirectory = Directory.GetCurrentDirectory();
-            string xmlRelativeFilePath = @"\App_data\ISO4217.xml";
-            string fileName = Path.Combine(workingDirectory, xmlRelativeFilePath);
-            // Временно, ибо спать хочется.
-            fileName = @"d:\Projects\WEB\ASP\ExchangeRatesParsing\RatesParsingWeb\App_Data\ISO4217.xml";
-
-            // Получить данные из XML файла и удалить дубликаты.
             CurrencyXmlData currenciesFromXml;
-            using (var fileStream = new FileStream(fileName, FileMode.OpenOrCreate))
+            using (var reader = new StringReader(Properties.Resources.ISO4217))
             {
                 var serializer = new XmlSerializer(typeof(CurrencyXmlData));
-                currenciesFromXml = (CurrencyXmlData)serializer.Deserialize(fileStream);
+                currenciesFromXml = (CurrencyXmlData)serializer.Deserialize(reader);
             }
             var currenciesFromXmlNoDuplicates = currenciesFromXml.CcyNtry.Distinct(new CurrencyEqualityComparer());
-
             return currenciesFromXmlNoDuplicates;
         }
     }

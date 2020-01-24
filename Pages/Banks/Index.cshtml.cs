@@ -10,6 +10,7 @@ using RatesParsingWeb.Storage.Repositories;
 using RatesParsingWeb.Storage;
 using RatesParsingWeb.Models;
 using RatesParsingWeb.Storage.Repositories.Interfaces;
+using Mapster;
 
 namespace RatesParsingWeb.Pages.Banks
 {
@@ -22,18 +23,16 @@ namespace RatesParsingWeb.Pages.Banks
             bankRepository = context;
         }
 
-        public List<BankModel> Banks { get; set; }
-        public BankModel FirstBankObject { get;  set; }
+        public List<BankModel> BanksModelList { get; set; }
+        public BankModel FirstBankObject { get; set; }
 
         public async Task OnGetAsync()
         {
             IEnumerable<Bank> banksDomain = await bankRepository.GetAll();
-            if (banksDomain != null && banksDomain.Any())
+            if (banksDomain.Any())
             {
-                Banks = new List<BankModel>(banksDomain.Count());
-                foreach (var item in banksDomain)
-                    Banks.Add(GetBankModel(item));
-                FirstBankObject = Banks[0];
+                BanksModelList = banksDomain.Adapt<List<BankModel>>();
+                FirstBankObject = BanksModelList[0];
             }
         }
     }

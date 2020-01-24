@@ -28,15 +28,9 @@ namespace RatesParsingWeb.Pages.Currencies
         public async Task OnGetAsync()
         {
             IEnumerable<Currency> currenciesDomain = await currencyRepository.GetAll();
-            if (currenciesDomain != null && currenciesDomain.Any())
-            {
-                CurrencyModelList = new List<CurrencyModel>(currenciesDomain.Count());
-                foreach (var curr in currenciesDomain)
-                {
-                    CurrencyModelList.Add(curr.Adapt<CurrencyModel>());
-                }
-                FirstCurrencyObject = CurrencyModelList[0];
-            }
+            CurrencyModelList = currenciesDomain.Adapt<List<CurrencyModel>>();
+            FirstCurrencyObject = CurrencyModelList[0];
         }
     }
 }
+

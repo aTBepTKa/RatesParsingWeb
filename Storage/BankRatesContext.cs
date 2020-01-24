@@ -69,61 +69,10 @@ namespace RatesParsingWeb.Storage
             modelBuilder.Entity<TextCodeScriptParameter>().Property(i => i.Value).HasMaxLength(50);
 
             // Заполнить базу данных начальными данными.
-
-            // Заполнить таблицу Currencies.
-            var currencySerializer = new CurrencySerializer();
-            IEnumerable<CurrencyXmlItem> currenciesXml = currencySerializer.GetCurrenciesFromXml();
-            var currencies = new List<Currency>(currenciesXml.Count());
-            foreach (var cur in currenciesXml)
-            {
-                var newCurrency = new Currency();
-                if (int.TryParse(cur.CcyNbr, out int numCodeTemp))
-                {
-                    newCurrency.Id = numCodeTemp;
-                    newCurrency.Name = cur.CcyNm;
-                    newCurrency.TextCode = cur.Ccy;
-                    currencies.Add(newCurrency);
-                }                
-            }
-            modelBuilder.Entity<Currency>().HasData(currencies);
+            var seedData = new SeedData(modelBuilder);
+            seedData.SeedAll();
 
 
-            // Заполнить таблицу Banks.        
-            int bankId = 1;
-            modelBuilder.Entity<Bank>().HasData(
-                new Bank
-                {
-                    Id = bankId++,
-                    Name = "National Bank of Georgia",
-                    CurrencyId = 981, // GEL
-                    BankUrl = "https://www.nbg.gov.ge",
-                    RatesUrl = "https://www.nbg.gov.ge/index.php?m=582&lng=eng"
-                },
-                new Bank
-                {
-                    Id = bankId++,
-                    Name = "National Bank of Poland",
-                    CurrencyId = 985, // PLN
-                    BankUrl = "https://www.nbp.pl",
-                    RatesUrl = "https://www.nbp.pl/homen.aspx?f=/kursy/RatesA.html"
-                },
-                new Bank
-                {
-                    Id = bankId++,
-                    Name = "The Central Bank of the Russian Federation",
-                    CurrencyId = 643, // RUB
-                    BankUrl = "https://www.cbr.ru",
-                    RatesUrl = "https://www.cbr.ru/eng/currency_base/daily/"
-                },
-                new Bank
-                {
-                    Id = bankId++,
-                    Name = "European Central Bank",
-                    CurrencyId = 978, // EUR
-                    BankUrl = "https://www.ecb.europa.eu",
-                    RatesUrl = "https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/index.en.html"
-                }
-            );
         }
     }
 }

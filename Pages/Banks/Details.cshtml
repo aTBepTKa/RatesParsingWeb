@@ -1,43 +1,56 @@
-﻿@*@page
-@model RatesParsingWeb.DetailsModel
+﻿@page
+@model RatesParsingWeb.Pages.Banks.DetailsModel
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Подробности";
 }
 
-<h1>Details</h1>
+<h1>Подробности</h1>
 
 <div>
-    <h4>Bank</h4>
+    <h4>Банк</h4>
     <hr />
     <dl class="row">
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Bank.BankName)
+            @Html.DisplayNameFor(model => model.BankModel.Name)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Bank.BankName)
+            @Html.DisplayFor(model => model.BankModel.Name)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Bank.BankUrl)
+            @Html.DisplayNameFor(model => model.BankModel.BankUrl)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Bank.BankUrl)
+            @Html.DisplayFor(model => model.BankModel.BankUrl)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Bank.RatesUrl)
+            @Html.DisplayNameFor(model => model.BankModel.RatesUrl)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Bank.RatesUrl)
+            <a href="@Model.BankModel.RatesUrl">@Model.BankModel.RatesUrl</a>
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Bank.Currency)
+            @Html.DisplayNameFor(model => model.BankModel.CurrencyName)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Bank.Currency.Id)
+            @Html.DisplayFor(model => model.BankModel.CurrencyTextCode) (@Html.DisplayFor(model => model.BankModel.CurrencyName))
         </dd>
     </dl>
 </div>
 <div>
-    <a asp-page="./Edit" asp-route-id="@Model.Bank.Id">Edit</a> |
-    <a asp-page="./Index">Back to List</a>
-</div>*@
+    @if (Model.ParsingSettingsModel != null)
+    {
+        <h4>Настройки парсинга</h4>
+        <hr />
+        <div>Запилить красиво!</div>
+        @Html.DisplayFor(model => model.ParsingSettingsModel)
+    }
+    else
+    {
+        <h4>Настройки парсинга отсутствуют</h4>
+    }
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.BankModel.Id">Редактировать</a> |
+    <a asp-page="./Index">Вернуться к списку банков</a>
+</div>
