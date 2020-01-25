@@ -67,32 +67,36 @@ namespace RatesParsingWeb.Storage
                 new Bank
                 {
                     Id = bankId++,
+                    SwiftCode = "BNLNGE22XXX",
                     Name = "National Bank of Georgia",
-                    CurrencyId = Currencies.Where(i=>i.TextCode == "GEL").FirstOrDefault().Id,
+                    CurrencyId = Currencies.Single(i=>i.TextCode == "GEL").Id,
                     BankUrl = "https://www.nbg.gov.ge",
                     RatesUrl = "https://www.nbg.gov.ge/index.php?m=582&lng=eng"
                 },
                 new Bank
                 {
                     Id = bankId++,
+                    SwiftCode = "NBPLPLPWBAN",
                     Name = "National Bank of Poland",
-                    CurrencyId = Currencies.Where(i=>i.TextCode == "PLN").FirstOrDefault().Id,                    
+                    CurrencyId = Currencies.Single(i=>i.TextCode == "PLN").Id,                    
                     BankUrl = "https://www.nbp.pl",
                     RatesUrl = "https://www.nbp.pl/homen.aspx?f=/kursy/RatesA.html"
                 },
                 new Bank
                 {
                     Id = bankId++,
+                    SwiftCode = "CBRFRUMMXXX",
                     Name = "The Central Bank of the Russian Federation",
-                    CurrencyId = Currencies.Where(i=>i.TextCode == "RUB").FirstOrDefault().Id,                    
+                    CurrencyId = Currencies.Single(i=>i.TextCode == "RUB").Id,                    
                     BankUrl = "https://www.cbr.ru",
                     RatesUrl = "https://www.cbr.ru/eng/currency_base/daily/"
                 },
                 new Bank
                 {
                     Id = bankId++,
+                    SwiftCode = "ECBFDEFFEUM",
                     Name = "European Central Bank",
-                    CurrencyId = Currencies.Where(i=>i.TextCode == "EUR").FirstOrDefault().Id,                    
+                    CurrencyId = Currencies.Single(i=>i.TextCode == "EUR").Id,                    
                     BankUrl = "https://www.ecb.europa.eu",
                     RatesUrl = "https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/index.en.html"
                 }
@@ -112,7 +116,7 @@ namespace RatesParsingWeb.Storage
                 new ParsingSettings
                 {
                     Id = settingsId,
-                    BankId = Banks.Where(i=>i.Name == "National Bank of Georgia").FirstOrDefault().Id,
+                    BankId = Banks.Single(i=>i.SwiftCode == "BNLNGE22XXX").Id,
                     NumberDecimalSeparator = '.',
                     NumberGroupSeparator = ',',
                     StartXpathRow = 2,

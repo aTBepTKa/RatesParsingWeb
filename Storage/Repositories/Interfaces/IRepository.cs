@@ -53,13 +53,13 @@ namespace RatesParsingWeb.Storage.Repositories.Interfaces
         Task<IEnumerable<T>> GetMany(Expression<Func<T, bool>> where);
 
         /// <summary>
-        /// Получить последовательность элементов как IQueryable (медленнее но с наименьшими затратами ресурсов).
+        /// Возвращает объект типа IQueryable<T>.
         /// </summary>
         /// <returns></returns>
         IQueryable<T> Query();
 
         /// <summary>
-        /// Сохранить изменения в базе данных.
+        /// Сохранить изменения.
         /// </summary>
         /// <returns></returns>
         Task SaveChangesAsync();

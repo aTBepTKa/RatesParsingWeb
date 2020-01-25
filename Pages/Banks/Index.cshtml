@@ -36,7 +36,7 @@
                     <a href="@item.RatesUrl">Курсы</a>
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.CurrencyName) (@Html.DisplayFor(modelItem => item.CurrencyTextCode))
+                    @Html.DisplayFor(modelItem => item.CurrencyTextCode) (@Html.DisplayFor(modelItem => item.CurrencyName))
                 </td>
                 <td>
                     <a asp-page="./Edit" asp-route-id="@item.Id">Редактировать</a> |

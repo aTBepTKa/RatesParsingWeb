@@ -28,17 +28,16 @@ namespace RatesParsingWeb.Pages.Banks
         public BankModel BankModel { get; set; }
         private Bank BankDomain { get; set; }
 
+        public SelectList CurrencySelectList { get; set; }
+
         public async Task<IActionResult> OnGetAsync(int id)
         {
             BankDomain = await bankRepository.GetByIdAsync(id);
-            if (BankDomain == null)            
-                return NotFound();            
+            if (BankDomain == null)
+                return NotFound();
             BankModel = GetBankModel(BankDomain);
 
-            // Сформировать список валюты для выпадающего списка.            
-            IEnumerable<Currency> currenciesDomain = await currencyRepository.GetAll();
-            List<CurrencyModel> currenciesModel = currenciesDomain.Adapt<List<CurrencyModel>>();
-            ViewData["CurrencyID"] = new SelectList(currenciesModel, "Id", "CodeWithName");
+            CurrencySelectList = await GetCurrencySelectListAsync();
             return Page();
         }
 
@@ -60,9 +59,16 @@ namespace RatesParsingWeb.Pages.Banks
             return RedirectToPage("./Index");
         }
 
-        private async Task<bool> BankExists(int id)
+        private async Task<bool> BankExists(int id) =>
+            await bankRepository.AnyAsync(i => i.Id == id);
+
+
+        private async Task<SelectList> GetCurrencySelectListAsync()
         {
-            return await bankRepository.AnyAsync(i => i.Id == id);
+            IEnumerable<Currency> currenciesDomain = await currencyRepository.GetAll();
+            var currenciesModel = currenciesDomain.Adapt<IEnumerable<CurrencyModel>>();
+            var selectList = new SelectList(currenciesModel, "Id", "CodeWithName");
+            return selectList;
         }
     }
 }

@@ -23,13 +23,13 @@ namespace RatesParsingWeb.Pages.Banks
             new BankModel
             {
                 Id = bank.Id,
+                SwiftCode = bank.SwiftCode,
                 Name = bank.Name,
                 BankUrl = bank.BankUrl,
                 RatesUrl = bank.RatesUrl,
                 CurrencyId = bank.CurrencyId,
                 CurrencyName = bank.Currency.Name,
                 CurrencyTextCode = bank.Currency.TextCode
-                // Прикольная лесенка получилась.
             };
     }
 }

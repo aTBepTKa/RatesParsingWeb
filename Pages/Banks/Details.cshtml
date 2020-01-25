@@ -21,7 +21,7 @@
             @Html.DisplayNameFor(model => model.BankModel.BankUrl)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.BankModel.BankUrl)
+            <a href="@Model.BankModel.BankUrl">@Model.BankModel.BankUrl</a>
         </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.BankModel.RatesUrl)
@@ -42,8 +42,56 @@
     {
         <h4>Настройки парсинга</h4>
         <hr />
-        <div>Запилить красиво!</div>
-        @Html.DisplayFor(model => model.ParsingSettingsModel)
+        <dl class="row">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.ParsingSettingsModel.TextCodeXpath)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.ParsingSettingsModel.TextCodeXpath)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.ParsingSettingsModel.ExchangeRateXpath)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.ParsingSettingsModel.ExchangeRateXpath)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.ParsingSettingsModel.UnitXpath)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.ParsingSettingsModel.UnitXpath)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.ParsingSettingsModel.VariablePartOfXpath)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.ParsingSettingsModel.VariablePartOfXpath)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.ParsingSettingsModel.StartXpathRow)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.ParsingSettingsModel.StartXpathRow)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.ParsingSettingsModel.EndXpathRow)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.ParsingSettingsModel.EndXpathRow)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.ParsingSettingsModel.NumberDecimalSeparator)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.ParsingSettingsModel.NumberDecimalSeparator)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.ParsingSettingsModel.NumberGroupSeparator)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.ParsingSettingsModel.NumberGroupSeparator)
+            </dd>
+        </dl>
     }
     else
     {

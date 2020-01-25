@@ -36,6 +36,8 @@ namespace RatesParsingWeb.Storage
                 .OnDelete(DeleteBehavior.Restrict);
 
             // Установить свойства для Bank.
+            modelBuilder.Entity<Bank>().Property(i => i.SwiftCode).IsRequired();
+            modelBuilder.Entity<Bank>().Property(i => i.SwiftCode).HasMaxLength(11).IsFixedLength();
             modelBuilder.Entity<Bank>().Property(i => i.Name).IsRequired();
             modelBuilder.Entity<Bank>().Property(i => i.RatesUrl).IsRequired();
             modelBuilder.Entity<Bank>().Property(i => i.Name).HasMaxLength(50);
@@ -58,7 +60,7 @@ namespace RatesParsingWeb.Storage
             // Установить свойства для Currency.
             modelBuilder.Entity<Currency>().Property(i => i.TextCode).IsRequired();
             modelBuilder.Entity<Currency>().Property(i => i.Name).HasMaxLength(100);
-            modelBuilder.Entity<Currency>().Property(i => i.TextCode);
+            modelBuilder.Entity<Currency>().Property(i => i.TextCode).HasMaxLength(3).IsFixedLength();
 
             // Установить свойства UnitScript.
             modelBuilder.Entity<UnitScriptParameter>().Property(i => i.Value).IsRequired();

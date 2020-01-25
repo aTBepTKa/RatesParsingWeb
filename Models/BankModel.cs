@@ -11,6 +11,12 @@ namespace RatesParsingWeb.Models
         public int Id { get; set; }
 
         /// <summary>
+        /// SWIFT код банка.
+        /// </summary>
+        [DisplayName("SWIFT код банка")]
+        public string SwiftCode { get; set; }
+
+        /// <summary>
         /// Название банка.
         /// </summary>
         [DisplayName("Название банка")]

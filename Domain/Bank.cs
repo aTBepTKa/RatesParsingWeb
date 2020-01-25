@@ -13,6 +13,11 @@ namespace RatesParsingWeb.Domain
         public int Id { get; set; }
 
         /// <summary>
+        /// SWIFT код банка.
+        /// </summary>
+        public string SwiftCode { get; set; }
+
+        /// <summary>
         /// Название банка.
         /// </summary>
         public string Name { get; set; }
