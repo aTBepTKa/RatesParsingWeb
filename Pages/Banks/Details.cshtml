@@ -18,16 +18,22 @@
             @Html.DisplayFor(model => model.BankModel.Name)
         </dd>
         <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.BankModel.SwiftCode)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.BankModel.SwiftCode)
+        </dd>
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.BankModel.BankUrl)
         </dt>
         <dd class="col-sm-10">
-            <a href="@Model.BankModel.BankUrl">@Model.BankModel.BankUrl</a>
+            <a href="@Model.BankModel.BankUrl" target="_blank">@Model.BankModel.BankUrl</a>
         </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.BankModel.RatesUrl)
         </dt>
         <dd class="col-sm-10">
-            <a href="@Model.BankModel.RatesUrl">@Model.BankModel.RatesUrl</a>
+            <a href="@Model.BankModel.RatesUrl" target="_blank">@Model.BankModel.RatesUrl</a>
         </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.BankModel.CurrencyName)

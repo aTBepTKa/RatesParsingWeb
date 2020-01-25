@@ -56,6 +56,7 @@ namespace RatesParsingWeb.Storage
 
             // Установить свойства для ExchangeRate.
             modelBuilder.Entity<ExchangeRate>().Property(i => i.ExchangeRateValue).IsRequired();
+            modelBuilder.Entity<ExchangeRate>().Property(i => i.ExchangeRateValue).HasColumnType("decimal(18, 4)");
 
             // Установить свойства для Currency.
             modelBuilder.Entity<Currency>().Property(i => i.TextCode).IsRequired();
