@@ -29,12 +29,6 @@ namespace RatesParsingWeb.Storage
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            // Запретить удаление строки валюты, если есть связанные записи.
-            modelBuilder.Entity<Currency>().HasMany(i => i.Banks).WithOne(i => i.Currency)
-                .OnDelete(DeleteBehavior.Restrict);
-            modelBuilder.Entity<Currency>().HasMany(i => i.ExchangeRates).WithOne(i => i.Currency)
-                .OnDelete(DeleteBehavior.Restrict);
-
             // Установить свойства для Bank.
             modelBuilder.Entity<Bank>().Property(i => i.SwiftCode).IsRequired();
             modelBuilder.Entity<Bank>().Property(i => i.SwiftCode).HasMaxLength(11).IsFixedLength();
@@ -62,6 +56,11 @@ namespace RatesParsingWeb.Storage
             modelBuilder.Entity<Currency>().Property(i => i.TextCode).IsRequired();
             modelBuilder.Entity<Currency>().Property(i => i.Name).HasMaxLength(100);
             modelBuilder.Entity<Currency>().Property(i => i.TextCode).HasMaxLength(3).IsFixedLength();
+            // Запретить удаление строки валюты, если есть связанные записи.
+            modelBuilder.Entity<Currency>().HasMany(i => i.Banks).WithOne(i => i.Currency)
+                .OnDelete(DeleteBehavior.Restrict);
+            modelBuilder.Entity<Currency>().HasMany(i => i.ExchangeRates).WithOne(i => i.Currency)
+                .OnDelete(DeleteBehavior.Restrict);
 
             // Установить свойства UnitScript.
             modelBuilder.Entity<UnitScriptParameter>().Property(i => i.Value).IsRequired();
