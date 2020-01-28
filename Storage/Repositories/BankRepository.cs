@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace RatesParsingWeb.Storage.Repositories
 {
     public class BankRepository : RepositoryBase<Bank>, IBankRepository
-    {        
+    {
         public BankRepository(BankRatesContext context) :
             base(context)
         { }
@@ -29,7 +29,7 @@ namespace RatesParsingWeb.Storage.Repositories
         public override Task<Bank> GetByIdAsync(int id) =>
             _dbSet
             .Include(i => i.Currency)
-            .FirstOrDefaultAsync(i=>i.Id == id);
+            .FirstOrDefaultAsync(i => i.Id == id);
 
         public Task<Bank> GetByIdWithSettings(int id) =>
             _dbSet

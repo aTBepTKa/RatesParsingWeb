@@ -11,16 +11,17 @@ using RatesParsingWeb.Storage;
 using RatesParsingWeb.Models;
 using RatesParsingWeb.Storage.Repositories.Interfaces;
 using Mapster;
+using RatesParsingWeb.Services.Interfaces;
 
 namespace RatesParsingWeb.Pages.Banks
 {
     public class IndexModel : BaseBankPageModel
     {
-        private readonly IBankRepository bankRepository;
+        private readonly IBankService bankService;
 
-        public IndexModel(IBankRepository context)
+        public IndexModel(IBankService context)
         {
-            bankRepository = context;
+            bankService = context;
         }
 
         public List<BankModel> BanksModelList { get; set; }
@@ -28,7 +29,7 @@ namespace RatesParsingWeb.Pages.Banks
 
         public async Task OnGetAsync()
         {
-            IEnumerable<Bank> banksDomain = await bankRepository.GetAll();
+            IEnumerable<Bank> banksDomain = await bankService.GetAll();
             if (banksDomain.Any())
             {
                 BanksModelList = banksDomain.Adapt<List<BankModel>>();

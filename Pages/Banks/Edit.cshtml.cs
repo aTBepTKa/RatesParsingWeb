@@ -9,19 +9,21 @@ using Microsoft.EntityFrameworkCore;
 using RatesParsingWeb.Domain;
 using RatesParsingWeb.Models;
 using RatesParsingWeb.Storage.Repositories.Interfaces;
+using RatesParsingWeb.Services.Interfaces;
 using Mapster;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace RatesParsingWeb.Pages.Banks
 {
     public class EditModel : BaseBankPageModel
     {
-        private readonly IBankRepository bankRepository;
-        private readonly ICurrencyRepository currencyRepository;
+        private readonly IBankService  bankService;
+        private readonly ICurrencyService currencyService;
 
-        public EditModel(IBankRepository bank, ICurrencyRepository currency)
+        public EditModel(IBankService bank, ICurrencyService currency)
         {
-            bankRepository = bank;
-            currencyRepository = currency;
+            bankService = bank;
+            currencyService = currency;
         }
 
         [BindProperty]
@@ -32,7 +34,7 @@ namespace RatesParsingWeb.Pages.Banks
 
         public async Task<IActionResult> OnGetAsync(int id)
         {
-            BankDomain = await bankRepository.GetByIdAsync(id);
+            BankDomain = await bankService.GetByIdAsync(id);
             if (BankDomain == null)
                 return NotFound();
             BankModel = GetBankModel(BankDomain);
@@ -53,19 +55,21 @@ namespace RatesParsingWeb.Pages.Banks
             }
 
             BankDomain = BankModel.Adapt<Bank>();
-            bankRepository.SetStateModifed(BankDomain);
-            await bankRepository.SaveChangesAsync();
+            if (!bankService.IsValid(BankDomain, ModelState))
+                return Page();
+            bankService.SetStateModifed(BankDomain);
+            await bankService.Commit();
 
             return RedirectToPage("./Index");
         }
 
         private async Task<bool> BankExists(int id) =>
-            await bankRepository.AnyAsync(i => i.Id == id);
+            await bankService.AnyAsync(i => i.Id == id);
 
 
         private async Task<SelectList> GetCurrencySelectListAsync()
         {
-            IEnumerable<Currency> currenciesDomain = await currencyRepository.GetAll();
+            IEnumerable<Currency> currenciesDomain = await currencyService.GetAll();
             var currenciesModel = currenciesDomain.Adapt<IEnumerable<CurrencyModel>>();
             var selectList = new SelectList(currenciesModel, "Id", "CodeWithName");
             return selectList;

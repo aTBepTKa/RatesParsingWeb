@@ -10,16 +10,17 @@ using RatesParsingWeb.Storage;
 using RatesParsingWeb.Storage.Repositories.Interfaces;
 using RatesParsingWeb.Models;
 using Mapster;
+using RatesParsingWeb.Services.Interfaces;
 
 namespace RatesParsingWeb.Pages.Currencies
 {
     public class IndexModel : PageModel
     {
-        private readonly ICurrencyRepository currencyRepository;
+        private readonly ICurrencyService  currencyService;
 
-        public IndexModel(ICurrencyRepository context)
+        public IndexModel(ICurrencyService context)
         {
-            currencyRepository = context;
+            currencyService = context;
         }
 
         public List<CurrencyModel> CurrencyModelList { get; set; }
@@ -27,7 +28,7 @@ namespace RatesParsingWeb.Pages.Currencies
 
         public async Task OnGetAsync()
         {
-            IEnumerable<Currency> currenciesDomain = await currencyRepository.GetAll();
+            IEnumerable<Currency> currenciesDomain = await currencyService.GetAll();
             CurrencyModelList = currenciesDomain.Adapt<List<CurrencyModel>>();
             FirstCurrencyObject = CurrencyModelList[0];
         }
