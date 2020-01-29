@@ -6,6 +6,8 @@ using RatesParsingWeb.Models;
 using RatesParsingWeb.Domain;
 using RatesParsingWeb.Storage.Repositories;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using RatesParsingWeb.Dto;
+using Mapster;
 
 namespace RatesParsingWeb.Pages.Banks
 {
@@ -19,17 +21,9 @@ namespace RatesParsingWeb.Pages.Banks
         /// </summary>
         /// <param name="bank"></param>
         /// <returns></returns>
-        protected BankModel GetBankModel(Bank bank) =>
-            new BankModel
-            {
-                Id = bank.Id,
-                SwiftCode = bank.SwiftCode,
-                Name = bank.Name,
-                BankUrl = bank.BankUrl,
-                RatesUrl = bank.RatesUrl,
-                CurrencyId = bank.CurrencyId,
-                CurrencyName = bank.Currency.Name,
-                CurrencyTextCode = bank.Currency.TextCode
-            };
+        protected BankModel GetBankModel(BankDto bank) =>
+             bank.Adapt<BankModel>();
+
+
     }
 }

@@ -5,6 +5,27 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Pages\Currencies\**" />
+    <Content Remove="Pages\Currencies\**" />
+    <EmbeddedResource Remove="Pages\Currencies\**" />
+    <None Remove="Pages\Currencies\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Pages\Banks\Create.cshtml.cs" />
+    <Compile Remove="Pages\Banks\Delete.cshtml.cs" />
+    <Compile Remove="Pages\Banks\Details.cshtml.cs" />
+    <Compile Remove="Pages\Banks\Edit.cshtml.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="Pages\Banks\Create.cshtml" />
+    <Content Remove="Pages\Banks\Delete.cshtml" />
+    <Content Remove="Pages\Banks\Details.cshtml" />
+    <Content Remove="Pages\Banks\Edit.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove=".gitattributes" />
     <None Remove=".gitignore" />
   </ItemGroup>

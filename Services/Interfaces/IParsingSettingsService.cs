@@ -1,8 +1,9 @@
 ﻿using RatesParsingWeb.Domain;
+using RatesParsingWeb.Dto;
 
 namespace RatesParsingWeb.Services.Interfaces
 {
-    public interface IParsingSettingsService : IService<ParsingSettings>
+    public interface IParsingSettingsService : ICrudService<ParsingSettingsDto>
     {
     }
 }

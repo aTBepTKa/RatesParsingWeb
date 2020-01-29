@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace RatesParsingWeb.Storage.Repositories
 {
-    public class BankRepository : RepositoryBase<Bank>, IBankRepository
+    public class BankRepository : IRepositoryBase<Bank>, IBankRepository
     {
         public BankRepository(BankRatesContext context) :
             base(context)
@@ -19,7 +19,8 @@ namespace RatesParsingWeb.Storage.Repositories
         /// </summary>
         /// <returns></returns>
         public override async Task<IEnumerable<Bank>> GetAll() =>
-            await _dbSet.Include(i => i.Currency).ToArrayAsync();
+            // Скачал какую-то хуйню, предложило добваить ConfigureAwait.
+            await _dbSet.Include(i => i.Currency).ToArrayAsync().ConfigureAwait(true); 
 
         /// <summary>
         /// Возвращает банк по Id с основной валютой банка.
@@ -31,7 +32,7 @@ namespace RatesParsingWeb.Storage.Repositories
             .Include(i => i.Currency)
             .FirstOrDefaultAsync(i => i.Id == id);
 
-        public Task<Bank> GetByIdWithSettings(int id) =>
+        public Task<Bank> GetByIdWithSettingsAcync(int id) =>            
             _dbSet
             .Include(i => i.Currency)
             .Include(i => i.ParsingSettings)

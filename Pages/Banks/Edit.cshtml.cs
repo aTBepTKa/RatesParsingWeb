@@ -12,12 +12,13 @@ using RatesParsingWeb.Storage.Repositories.Interfaces;
 using RatesParsingWeb.Services.Interfaces;
 using Mapster;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
+using RatesParsingWeb.Dto;
 
 namespace RatesParsingWeb.Pages.Banks
 {
     public class EditModel : BaseBankPageModel
     {
-        private readonly IBankService  bankService;
+        private readonly IBankService bankService;
         private readonly ICurrencyService currencyService;
 
         public EditModel(IBankService bank, ICurrencyService currency)
@@ -28,16 +29,16 @@ namespace RatesParsingWeb.Pages.Banks
 
         [BindProperty]
         public BankModel BankModel { get; set; }
-        private Bank BankDomain { get; set; }
+        private BankDto BankDto { get; set; }
 
         public SelectList CurrencySelectList { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int id)
         {
-            BankDomain = await bankService.GetByIdAsync(id);
-            if (BankDomain == null)
+            BankDto = await bankService.GetByIdAsync(id);
+            if (BankDto == null)
                 return NotFound();
-            BankModel = GetBankModel(BankDomain);
+            BankModel = GetBankModel(BankDto);
 
             CurrencySelectList = await GetCurrencySelectListAsync();
             return Page();
@@ -49,28 +50,28 @@ namespace RatesParsingWeb.Pages.Banks
             {
                 return Page();
             }
-            if (!await BankExists(BankModel.Id))
-            {
-                return NotFound();
-            }
+            //if (! await BankExists(BankModel.Id))
+            //{
+            //    return NotFound();
+            //}
 
-            BankDomain = BankModel.Adapt<Bank>();
-            if (!bankService.IsValid(BankDomain, ModelState))
+            BankDto = BankModel.Adapt<BankDto>();
+            if (! await bankService.UpdateBankAsync(BankDto))
                 return Page();
-            bankService.SetStateModifed(BankDomain);
-            await bankService.Commit();
+
+
 
             return RedirectToPage("./Index");
         }
 
-        private async Task<bool> BankExists(int id) =>
-            await bankService.AnyAsync(i => i.Id == id);
+        //private async Task<bool> BankExists(int id) =>
+        //    await bankService.AnyAsync(i => i.Id == id);
 
 
         private async Task<SelectList> GetCurrencySelectListAsync()
         {
-            IEnumerable<Currency> currenciesDomain = await currencyService.GetAll();
-            var currenciesModel = currenciesDomain.Adapt<IEnumerable<CurrencyModel>>();
+            IEnumerable<CurrencyModel> currenciesDto = (await currencyService.GetAll()).Adapt<IEnumerable<CurrencyModel>>();
+            var currenciesModel = currenciesDto.Adapt<IEnumerable<CurrencyModel>>();
             var selectList = new SelectList(currenciesModel, "Id", "CodeWithName");
             return selectList;
         }

@@ -23,8 +23,8 @@ namespace RatesParsingWeb.Models
         /// Название банка.
         /// </summary>
         [DisplayName("Название банка")]
-        [Required(ErrorMessage ="Поле является обязательным")]
-        [StringLength(50, ErrorMessage ="Максимальная длина названия не более 50 символов")]
+        [Required(ErrorMessage = "Поле является обязательным")]
+        [StringLength(50, ErrorMessage = "Максимальная длина названия не более 50 символов")]
         public string Name { get; set; }
 
         /// <summary>
@@ -37,29 +37,14 @@ namespace RatesParsingWeb.Models
         /// <summary>
         /// Ссылка на страницу, содержащую обменные курсы валют.
         /// </summary>
-        [DisplayName("Страница курсов")]
+        [DisplayName("Страница курсов банка")]
         [Required(ErrorMessage = "Поле является обязательным")]
         [Url(ErrorMessage = "Необходимо ввести ссылку")]
         public string RatesUrl { get; set; }
 
         /// <summary>
-        /// Ссылка на основную валюту банка.
+        /// Основная валюта банка.
         /// </summary>
-        [DisplayName("Код валюты")]
-        [Required(ErrorMessage = "Поле является обязательным")]
-        public int CurrencyId { get; set; }
-
-        /// <summary>
-        /// Наименование валюты.
-        /// </summary>
-        [DisplayName("Наименование валюты")]
-        public string CurrencyName { get; set; }
-
-        /// <summary>
-        /// Текстовый код валюты.
-        /// </summary>
-        [DisplayName("Код валюты")]
-        [StringLength(3,MinimumLength =3,ErrorMessage = "Длина кода составляет 3 символа")]
-        public string CurrencyTextCode { get; set; }
+        public CurrencyModel CurrencyModel { get; set; }
     }
 }

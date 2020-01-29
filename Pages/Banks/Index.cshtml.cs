@@ -1,17 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.EntityFrameworkCore;
-using RatesParsingWeb.Domain;
-using RatesParsingWeb.Storage.Repositories;
-using RatesParsingWeb.Storage;
 using RatesParsingWeb.Models;
-using RatesParsingWeb.Storage.Repositories.Interfaces;
 using Mapster;
 using RatesParsingWeb.Services.Interfaces;
+using RatesParsingWeb.Dto;
 
 namespace RatesParsingWeb.Pages.Banks
 {
@@ -29,10 +22,16 @@ namespace RatesParsingWeb.Pages.Banks
 
         public async Task OnGetAsync()
         {
-            IEnumerable<Bank> banksDomain = await bankService.GetAll();
-            if (banksDomain.Any())
+            IEnumerable<BankDto> banksDto = await bankService.GetAll();
+            if (banksDto.Any())
             {
-                BanksModelList = banksDomain.Adapt<List<BankModel>>();
+                BanksModelList = new List<BankModel>(banksDto.Count());
+                foreach (var bank in banksDto)
+                {
+                    var newBankModel = bank.Adapt<BankModel>();
+                    newBankModel.CurrencyModel = bank.CurrencyDto.Adapt<CurrencyModel>();
+                    BanksModelList.Add(newBankModel);
+                }
                 FirstBankObject = BanksModelList[0];
             }
         }

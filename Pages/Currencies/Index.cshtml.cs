@@ -28,7 +28,7 @@ namespace RatesParsingWeb.Pages.Currencies
 
         public async Task OnGetAsync()
         {
-            IEnumerable<Currency> currenciesDomain = await currencyService.GetAll();
+            IEnumerable<CurrencyModel> currenciesDomain = (await currencyService.GetAll()).Adapt<IEnumerable<CurrencyModel>>();
             CurrencyModelList = currenciesDomain.Adapt<List<CurrencyModel>>();
             FirstCurrencyObject = CurrencyModelList[0];
         }

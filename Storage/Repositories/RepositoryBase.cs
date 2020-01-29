@@ -12,12 +12,12 @@ namespace RatesParsingWeb.Storage.Repositories
     /// <summary>
     /// Базовый класс для работы с сущностями БД.
     /// </summary>
-    public class RepositoryBase<T> : IRepository<T> where T : class
+    public class IRepositoryBase<T> : IRepository<T> where T : class
     {
         protected readonly BankRatesContext bankRatesContext;
         protected DbSet<T> _dbSet;
 
-        public RepositoryBase(BankRatesContext context)
+        public IRepositoryBase(BankRatesContext context)
         {
             bankRatesContext = context;
             _dbSet = bankRatesContext.Set<T>();

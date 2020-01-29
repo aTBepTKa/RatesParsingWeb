@@ -8,7 +8,7 @@ using System.Linq.Expressions;
 
 namespace RatesParsingWeb.Storage.Repositories
 {
-    public class CurrencyRepository : RepositoryBase<Currency>, ICurrencyRepository
+    public class CurrencyRepository : IRepositoryBase<Currency>, ICurrencyRepository
     {
         public CurrencyRepository(BankRatesContext context) : base(context)
         { }

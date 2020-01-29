@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace RatesParsingWeb.Storage.Repositories
 {
-    public class ParsingSettingsRepository : RepositoryBase<ParsingSettings>, IParsingSettingsRepository
+    public class ParsingSettingsRepository : IRepositoryBase<ParsingSettings>, IParsingSettingsRepository
     {
         public ParsingSettingsRepository(BankRatesContext context) : base(context)
         {

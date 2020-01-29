@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc.ModelBinding;
 using RatesParsingWeb.Domain;
+using RatesParsingWeb.Dto;
 using RatesParsingWeb.Services.Interfaces;
 using RatesParsingWeb.Storage;
 using RatesParsingWeb.Storage.Repositories;
+using RatesParsingWeb.Storage.Repositories.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,14 +12,16 @@ using System.Threading.Tasks;
 
 namespace RatesParsingWeb.Services
 {
-    public class ParsingSettingsService : ServiceBase<ParsingSettings>, IParsingSettingsService
+    public class ParsingSettingsService : BaseCrudService<ParsingSettingsDto, ParsingSettings>, IParsingSettingsService
     {
+        private readonly IParsingSettingsRepository ParsingSettingsRepository;
         public ParsingSettingsService(BankRatesContext context)
         {
-            RepositoryBase = new ParsingSettingsRepository(context);
+            ParsingSettingsRepository = new ParsingSettingsRepository(context);
+            BaseRepository = ParsingSettingsRepository;
         }
 
-        public override bool IsValid(ParsingSettings parsingSettings, ModelStateDictionary modelState)
+        public override bool IsValid(ParsingSettingsDto t)
         {
             return true;
         }

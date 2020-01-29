@@ -11,6 +11,7 @@ using RatesParsingWeb.Storage;
 using RatesParsingWeb.Storage.Repositories.Interfaces;
 using RatesParsingWeb.Services.Interfaces;
 using Mapster;
+using RatesParsingWeb.Dto;
 
 namespace RatesParsingWeb.Pages.Banks
 {
@@ -25,21 +26,22 @@ namespace RatesParsingWeb.Pages.Banks
 
         public BankModel BankModel { get; set; }
         public ParsingSettingsModel ParsingSettingsModel { get; set; }
-        private Bank BankDomain { get; set; }
+        private BankDto BankDto { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int id)
         {
-            BankDomain = await bankService.GetByIdWithSettings(id);
-            if (BankDomain == null)
+            //BankDomain = await bankService.GetByIdWithSettings(id);
+            BankDto = await bankService.GetByIdAsync(id);
+            if (BankDto == null)
                 return NotFound();
-            BankModel = GetBankModel(BankDomain);
+            BankModel = GetBankModel(BankDto);
 
-            if (BankDomain.ParsingSettings == null)
-            {
-                return Page();
-            }
+            //if (BankDto.ParsingSettings == null)
+            //{
+            //    return Page();
+            //}
 
-            ParsingSettingsModel = BankDomain.ParsingSettings.Adapt<ParsingSettingsModel>();
+            //ParsingSettingsModel = BankDto.ParsingSettings.Adapt<ParsingSettingsModel>();
 
             return Page();
         }
