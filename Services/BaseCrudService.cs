@@ -20,6 +20,9 @@ namespace RatesParsingWeb.Services
     {
         protected IRepository<RepositoryType> BaseRepository { get; set; }
 
+        public virtual async Task<IEnumerable<DtoType>> GetAllAsync() =>
+            (await BaseRepository.GetAllAsync()).Adapt<IEnumerable<DtoType>>();
+
         public abstract bool IsValid(DtoType t);
     }
 }

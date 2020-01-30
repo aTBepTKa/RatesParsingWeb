@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 using RatesParsingWeb.Domain;
 using RatesParsingWeb.Dto;
@@ -11,17 +12,17 @@ namespace RatesParsingWeb.Services.Interfaces
     public interface IBankService : ICrudService<BankDto>
     {
         /// <summary>
-        /// Получить все элементы.
+        /// Получить все объекты банка, включая основную валюту банка.
         /// </summary>
         /// <returns></returns>      
-        Task<IEnumerable<BankDto>> GetAll();
+        Task<IEnumerable<BankDto>> GetBankListAsync();
 
         /// <summary>
         /// Получить банк с основной валютой.
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        Task<BankDto> GetByIdAsync(int id);
+        Task<BankDto> GetBankAsync(int id);
 
         /// <summary>
         /// Обновить данные банка.

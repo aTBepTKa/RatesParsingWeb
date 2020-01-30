@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace RatesParsingWeb.Storage.Repositories.Interfaces
@@ -16,10 +17,18 @@ namespace RatesParsingWeb.Storage.Repositories.Interfaces
         new Task<Bank> GetByIdAsync(int id);
 
         /// <summary>
+        /// Получить банк по ID включая зависимые объекты.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="expression"></param>
+        /// <returns></returns>
+        Task<Bank> GetByIdAsync(int id, params Expression<Func<Bank, object>>[] expression);
+
+        /// <summary>
         /// Получить список банков с основной валютой.
         /// </summary>
         /// <returns></returns>
-        new Task<IEnumerable<Bank>> GetAll();
+        Task<IEnumerable<Bank>> GetAllWithCurrenciesAsync();
 
         /// <summary>
         /// Возвращает банк по ID с основной валютой банка и настройками парсинга.

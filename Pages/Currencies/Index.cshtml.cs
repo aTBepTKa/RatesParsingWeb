@@ -5,18 +5,16 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using RatesParsingWeb.Domain;
-using RatesParsingWeb.Storage;
-using RatesParsingWeb.Storage.Repositories.Interfaces;
 using RatesParsingWeb.Models;
 using Mapster;
 using RatesParsingWeb.Services.Interfaces;
+using RatesParsingWeb.Dto;
 
 namespace RatesParsingWeb.Pages.Currencies
 {
     public class IndexModel : PageModel
     {
-        private readonly ICurrencyService  currencyService;
+        private readonly ICurrencyService currencyService;
 
         public IndexModel(ICurrencyService context)
         {
@@ -28,8 +26,9 @@ namespace RatesParsingWeb.Pages.Currencies
 
         public async Task OnGetAsync()
         {
-            IEnumerable<CurrencyModel> currenciesDomain = (await currencyService.GetAll()).Adapt<IEnumerable<CurrencyModel>>();
-            CurrencyModelList = currenciesDomain.Adapt<List<CurrencyModel>>();
+            IEnumerable<CurrencyDto> currenciesDto = await currencyService.GetAllAsync();
+            if (currenciesDto.Any())
+                CurrencyModelList = new List<CurrencyModel>(currenciesDto.Adapt<IEnumerable<CurrencyModel>>());
             FirstCurrencyObject = CurrencyModelList[0];
         }
     }

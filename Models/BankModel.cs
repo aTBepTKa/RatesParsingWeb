@@ -46,5 +46,7 @@ namespace RatesParsingWeb.Models
         /// Основная валюта банка.
         /// </summary>
         public CurrencyModel CurrencyModel { get; set; }
+
+        public ParsingSettingsModel ParsingSettingsModel { get; set; }
     }
 }

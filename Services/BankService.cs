@@ -9,6 +9,7 @@ using RatesParsingWeb.Storage.Repositories.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace RatesParsingWeb.Services
@@ -55,42 +56,77 @@ namespace RatesParsingWeb.Services
             return modelState.IsValid;
         }
 
-        public async Task<IEnumerable<BankDto>> GetAll()
+        public async Task<IEnumerable<BankDto>> GetBankListAsync()
         {
-            var banks = await BankRepository.GetAll();
+            var banks = await BankRepository.GetAllAsync(i => i.Currency);
             var bankDtoList = new List<BankDto>(banks.Count());
-            foreach(var bank in banks)
-            {                
-                var newBankDto = bank.Adapt<BankDto>();
-                newBankDto.CurrencyDto = bank.Currency.Adapt<CurrencyDto>();
-                bankDtoList.Add(newBankDto);
-            }
+            foreach (var bank in banks)
+                bankDtoList.Add(MapDomainToDto(bank));
             return bankDtoList;
+        }
+
+        public async Task<BankDto> GetBankAsync(int id)
+        {
+            var bankDomain = await BankRepository.GetByIdAsync(id,
+                c => c.Currency,
+                s => s.ParsingSettings);
+
+            var bankDto = MapDomainToDto(bankDomain);
+            return bankDto;
         }
 
         public async Task<bool> UpdateBankAsync(BankDto bankDto)
         {
             if (!IsValid(bankDto))
                 return false;
-            var bank = await BankRepository.GetByIdAsync(bankDto.Id);
-            if (bank == null)
+            Bank bankToUpdate = await BankRepository.GetByIdAsync(bankDto.Id);
+            if (bankToUpdate == null)
                 return false;
 
-            bank.Adapt(bankDto);
-            BankRepository.SetStateModifed(bank);
+            bankDto.Adapt(bankToUpdate);
+            BankRepository.SetStateModifed(bankToUpdate);
             await BankRepository.SaveChangesAsync();
             return true;
         }
 
-        public async Task<BankDto> GetByIdAsync(int id)
+        /// <summary>
+        /// Преобразовать доменную модель в модель DTO.
+        /// </summary>
+        /// <param name="bank"></param>
+        /// <returns></returns>
+        private BankDto MapDomainToDto(Bank bank)
         {
-            var bankDomain = await BankRepository.GetByIdAsync(id);
-            if (bankDomain == null)
-                throw new Exception($"Банк с ID = {id} не найден.");
-            var bankDto = new BankDto();
-            bankDto.Adapt(bankDomain);
-            bankDto.CurrencyDto.Adapt(bankDomain.Currency);
-            return bankDto;            
+            if (bank != null)
+            {
+                var newBankDto = bank.Adapt<BankDto>();
+                if (bank.Currency != null)
+                    newBankDto.CurrencyDto = bank.Currency.Adapt<CurrencyDto>();
+                if (bank.ParsingSettings != null)
+                    newBankDto.ParsingSettingsDto = bank.ParsingSettings.Adapt<ParsingSettingsDto>();
+                return newBankDto;
+            }
+            else
+                return null;
+        }
+
+        /// <summary>
+        /// Преобразовать модель DTO в доменную модель.
+        /// </summary>
+        /// <param name="bankDto"></param>
+        /// <returns></returns>
+        private Bank MapDtoToDomain(BankDto bankDto)
+        {
+            if (bankDto != null)
+            {
+                var newBankDomain = bankDto.Adapt<Bank>();
+                if (bankDto.CurrencyDto != null)
+                    newBankDomain.Currency = bankDto.CurrencyDto.Adapt<Currency>();
+                if (bankDto.ParsingSettingsDto != null)
+                    newBankDomain.ParsingSettings = bankDto.ParsingSettingsDto.Adapt<ParsingSettings>();
+                return newBankDomain;
+            }
+            else
+                return null;
         }
     }
 }

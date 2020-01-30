@@ -8,13 +8,13 @@ using System.Linq.Expressions;
 
 namespace RatesParsingWeb.Storage.Repositories
 {
-    public class CurrencyRepository : IRepositoryBase<Currency>, ICurrencyRepository
+    public class CurrencyRepository : RepositoryBase<Currency>, ICurrencyRepository
     {
         public CurrencyRepository(BankRatesContext context) : base(context)
         { }
 
-        public override async Task<IEnumerable<Currency>> GetAll() =>
-             (await base.GetAll()).OrderBy(i => i.TextCode);
+        public override async Task<IEnumerable<Currency>> GetAllAsync() =>
+             (await base.GetAllAsync()).OrderBy(i => i.TextCode);
 
     }
 }

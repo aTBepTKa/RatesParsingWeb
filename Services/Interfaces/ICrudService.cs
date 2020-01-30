@@ -14,5 +14,13 @@ namespace RatesParsingWeb.Services.Interfaces
         /// </summary>
         /// <returns></returns>
         bool IsValid(T t);
+
+        /// <summary>
+        /// Получить все элементы.
+        /// </summary>
+        /// <returns></returns>
+        Task<IEnumerable<T>> GetAllAsync();
+
+
     }
 }

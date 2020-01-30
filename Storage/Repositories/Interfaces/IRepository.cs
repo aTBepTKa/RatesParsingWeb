@@ -29,9 +29,16 @@ namespace RatesParsingWeb.Storage.Repositories.Interfaces
         Task<int> CountAsync(Expression<Func<T, bool>> where = null);
 
         /// <summary>
-        /// Получить последовательность элементов.
+        /// Получить все элементы.
         /// </summary>
-        Task<IEnumerable<T>> GetAll();
+        Task<IEnumerable<T>> GetAllAsync();
+
+        /// <summary>
+        /// Получить все элементы включая зависимые объекты.
+        /// </summary>
+        /// <param name="includes"></param>
+        /// <returns></returns>
+        Task<IEnumerable<T>> GetAllAsync(params Expression<Func<T, object>>[] includes);
 
         /// <summary>
         /// Получить элемент по Id.
@@ -69,5 +76,6 @@ namespace RatesParsingWeb.Storage.Repositories.Interfaces
         /// </summary>
         /// <param name="t"></param>
         void SetStateModifed(T t);
+
     }
 }

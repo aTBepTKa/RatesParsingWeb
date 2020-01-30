@@ -1,39 +1,36 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using RatesParsingWeb.Domain;
 using RatesParsingWeb.Storage.Repositories.Interfaces;
+using RatesParsingWeb.Extentions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace RatesParsingWeb.Storage.Repositories
 {
-    public class BankRepository : IRepositoryBase<Bank>, IBankRepository
+    public class BankRepository : RepositoryBase<Bank>, IBankRepository
     {
         public BankRepository(BankRatesContext context) :
             base(context)
         { }
 
-        /// <summary>
-        /// Возвращает список банков с основной валютой банка.
-        /// </summary>
-        /// <returns></returns>
-        public override async Task<IEnumerable<Bank>> GetAll() =>
-            // Скачал какую-то хуйню, предложило добваить ConfigureAwait.
-            await _dbSet.Include(i => i.Currency).ToArrayAsync().ConfigureAwait(true); 
+        // TODO: Разобраться с ConfigureAwait (шо цэ за хуйня).
+        public async Task<IEnumerable<Bank>> GetAllWithCurrenciesAsync() =>            
+            await dbSet.Include(i => i.Currency).ToArrayAsync().ConfigureAwait(true); 
 
-        /// <summary>
-        /// Возвращает банк по Id с основной валютой банка.
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        public override Task<Bank> GetByIdAsync(int id) =>
-            _dbSet
+        public override async Task<Bank> GetByIdAsync(int id) =>
+            await // Почему здесь async/await не нужен?
+            dbSet
             .Include(i => i.Currency)
             .FirstOrDefaultAsync(i => i.Id == id);
 
+        public async Task<Bank> GetByIdAsync(int id, params Expression<Func<Bank, object>>[] expression) =>
+            await dbSet.IncludeEntities(expression).FirstOrDefaultAsync(i => i.Id == id);
+
         public Task<Bank> GetByIdWithSettingsAcync(int id) =>            
-            _dbSet
+            dbSet
             .Include(i => i.Currency)
             .Include(i => i.ParsingSettings)
             .FirstOrDefaultAsync(i => i.Id == id);

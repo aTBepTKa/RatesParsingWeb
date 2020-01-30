@@ -22,18 +22,10 @@ namespace RatesParsingWeb.Pages.Banks
 
         public async Task OnGetAsync()
         {
-            IEnumerable<BankDto> banksDto = await bankService.GetAll();
-            if (banksDto.Any())
-            {
-                BanksModelList = new List<BankModel>(banksDto.Count());
-                foreach (var bank in banksDto)
-                {
-                    var newBankModel = bank.Adapt<BankModel>();
-                    newBankModel.CurrencyModel = bank.CurrencyDto.Adapt<CurrencyModel>();
-                    BanksModelList.Add(newBankModel);
-                }
-                FirstBankObject = BanksModelList[0];
-            }
+            IEnumerable<BankDto> bankDtos = await bankService.GetBankListAsync();
+            if (bankDtos.Any())
+                BanksModelList = new List<BankModel>(MapDtoToModels(bankDtos));
+            FirstBankObject = BanksModelList[0];            
         }
     }
 }

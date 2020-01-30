@@ -24,8 +24,6 @@ namespace RatesParsingWeb.Models
         /// Текстовый код валюты.
         /// </summary>
         [DisplayName("Код валюты")]
-        [Required(ErrorMessage = "Поле является обязательным")]
-        [StringLength(3,MinimumLength =3,ErrorMessage = "Длина поля составляет 3 символа")]
         public string TextCode { get; set; }
 
         /// <summary>

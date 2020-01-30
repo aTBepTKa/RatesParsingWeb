@@ -6,61 +6,65 @@ using System.Linq.Expressions;
 using System;
 using System.Collections.Generic;
 using RatesParsingWeb.Storage.Repositories.Interfaces;
+using RatesParsingWeb.Extentions;
 
 namespace RatesParsingWeb.Storage.Repositories
 {
     /// <summary>
     /// Базовый класс для работы с сущностями БД.
     /// </summary>
-    public class IRepositoryBase<T> : IRepository<T> where T : class
+    public class RepositoryBase<T> : IRepository<T> where T : class
     {
         protected readonly BankRatesContext bankRatesContext;
-        protected DbSet<T> _dbSet;
+        protected DbSet<T> dbSet;
 
-        public IRepositoryBase(BankRatesContext context)
+        public RepositoryBase(BankRatesContext context)
         {
             bankRatesContext = context;
-            _dbSet = bankRatesContext.Set<T>();
+            dbSet = bankRatesContext.Set<T>();
         }
 
         public virtual async Task AddAsync(T entity) =>
             await bankRatesContext.AddAsync(entity);
 
-        public virtual Task AddRangeAsync(T[] entity) =>        
+        public virtual Task AddRangeAsync(T[] entity) =>
             bankRatesContext.AddRangeAsync(entity);
 
-
         public virtual async Task<T> GetByIdAsync(int id) =>
-            await _dbSet.FindAsync(id);
+            await dbSet.FindAsync(id);
 
         public virtual Task<T> GetFirstOrDefaultAsync(Expression<Func<T, bool>> where) =>
-            _dbSet.FirstOrDefaultAsync(where);
+            dbSet.FirstOrDefaultAsync(where);
 
-        public virtual async Task<IEnumerable<T>> GetAll() =>
-            await _dbSet.ToArrayAsync();
+        public virtual async Task<IEnumerable<T>> GetAllAsync() =>
+            await dbSet.ToArrayAsync();
+
+        public virtual async Task<IEnumerable<T>> GetAllAsync(params Expression<Func<T, object>>[] includes) =>
+             await dbSet.IncludeEntities(includes).ToArrayAsync();
 
         public virtual async Task<IEnumerable<T>> GetMany(Expression<Func<T, bool>> where) =>
-            await _dbSet.Where(where).ToArrayAsync();
+            await dbSet.Where(where).ToArrayAsync();
 
         public virtual Task<bool> AnyAsync(Expression<Func<T, bool>> where) =>
-            _dbSet.AnyAsync(where);
+            dbSet.AnyAsync(where);
 
         public virtual Task<int> CountAsync(Expression<Func<T, bool>> where = null)
         {
             if (where == null)
-                return _dbSet.CountAsync();
+                return dbSet.CountAsync();
             else
-                return _dbSet.CountAsync(where);
+                return dbSet.CountAsync(where);
         }
 
         public IQueryable<T> Query() =>
-            _dbSet.AsQueryable();
+            dbSet.AsQueryable();
 
         public virtual async Task SaveChangesAsync() =>
             await bankRatesContext.SaveChangesAsync();
 
         public void SetStateModifed(T t) =>
             bankRatesContext.Attach(t).State = EntityState.Modified;
+
     }
 }
 // Гуглить Generic Repository, Unit of work.

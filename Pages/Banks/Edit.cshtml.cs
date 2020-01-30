@@ -16,6 +16,9 @@ using RatesParsingWeb.Dto;
 
 namespace RatesParsingWeb.Pages.Banks
 {
+    // ДОПИЛИТЬ:
+    // - сделать модель для селектЛист
+    // - разобраться с внешними id.
     public class EditModel : BaseBankPageModel
     {
         private readonly IBankService bankService;
@@ -29,16 +32,15 @@ namespace RatesParsingWeb.Pages.Banks
 
         [BindProperty]
         public BankModel BankModel { get; set; }
-        private BankDto BankDto { get; set; }
 
         public SelectList CurrencySelectList { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int id)
         {
-            BankDto = await bankService.GetByIdAsync(id);
-            if (BankDto == null)
+            BankDto bankDto = await bankService.GetBankAsync(id);
+            if (bankDto == null)
                 return NotFound();
-            BankModel = GetBankModel(BankDto);
+            BankModel = MapDtoToModel(bankDto);
 
             CurrencySelectList = await GetCurrencySelectListAsync();
             return Page();
@@ -50,28 +52,17 @@ namespace RatesParsingWeb.Pages.Banks
             {
                 return Page();
             }
-            //if (! await BankExists(BankModel.Id))
-            //{
-            //    return NotFound();
-            //}
-
-            BankDto = BankModel.Adapt<BankDto>();
-            if (! await bankService.UpdateBankAsync(BankDto))
+            BankDto bankDto = MapModelToDto(BankModel);
+            if (! await bankService.UpdateBankAsync(bankDto))
                 return Page();
-
-
-
             return RedirectToPage("./Index");
         }
 
-        //private async Task<bool> BankExists(int id) =>
-        //    await bankService.AnyAsync(i => i.Id == id);
-
-
         private async Task<SelectList> GetCurrencySelectListAsync()
         {
-            IEnumerable<CurrencyModel> currenciesDto = (await currencyService.GetAll()).Adapt<IEnumerable<CurrencyModel>>();
-            var currenciesModel = currenciesDto.Adapt<IEnumerable<CurrencyModel>>();
+            IEnumerable<CurrencyDto> currenciesDto = await currencyService.GetAllAsync();
+            IEnumerable<CurrencyModel> currenciesModel = currenciesDto.Adapt<IEnumerable<CurrencyModel>>();
+
             var selectList = new SelectList(currenciesModel, "Id", "CodeWithName");
             return selectList;
         }

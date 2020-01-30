@@ -35,8 +35,18 @@ namespace RatesParsingWeb.Dto
         public int CurrencyId { get; set; }
 
         /// <summary>
+        /// Настройки парсинга банка.
+        /// </summary>
+        public int ParsingSettingsId { get; set; }
+
+        /// <summary>
         /// Основная валюта банка.
         /// </summary>
         public CurrencyDto CurrencyDto { get; set; }
+
+        /// <summary>
+        /// Настройки парсинга для банка.
+        /// </summary>
+        public ParsingSettingsDto ParsingSettingsDto { get; set; }
     }
 }
