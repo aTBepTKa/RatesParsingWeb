@@ -26,7 +26,8 @@ namespace RatesParsingWeb.Pages.Currencies
 
         public async Task OnGetAsync()
         {
-            IEnumerable<CurrencyDto> currenciesDto = await currencyService.GetAllAsync();
+            IEnumerable<CurrencyDto> currenciesDto = (await currencyService.GetAllAsync());
+            currenciesDto = currenciesDto.OrderBy(i => i.TextCode);
             if (currenciesDto.Any())
                 CurrencyModelList = new List<CurrencyModel>(currenciesDto.Adapt<IEnumerable<CurrencyModel>>());
             FirstCurrencyObject = CurrencyModelList[0];

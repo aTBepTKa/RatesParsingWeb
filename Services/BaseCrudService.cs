@@ -24,5 +24,6 @@ namespace RatesParsingWeb.Services
             (await BaseRepository.GetAllAsync()).Adapt<IEnumerable<DtoType>>();
 
         public abstract bool IsValid(DtoType t);
+        
     }
 }

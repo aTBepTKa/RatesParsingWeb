@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using RatesParsingWeb.Domain;
 using RatesParsingWeb.Dto;
+using RatesParsingWeb.Dto.UpdateAndCreate;
 using RatesParsingWeb.Services.Interfaces;
 using RatesParsingWeb.Storage;
 using RatesParsingWeb.Storage.Repositories;
@@ -50,40 +51,34 @@ namespace RatesParsingWeb.Services
             if (!Uri.TryCreate(bank.RatesUrl, UriKind.Absolute, out _))
                 modelState.AddModelError("RatesUrl", "Ссылка страницы курсов банка некорректна.");
 
-            // Проверить CurrencyId.
-            if (bank.CurrencyDto.Id == 0)
-                modelState.AddModelError("CurrencyTextCode", "Основная валюта банка отсутствует в базе.");
             return modelState.IsValid;
         }
 
-        public async Task<IEnumerable<BankDto>> GetBankListAsync()
+        public async Task<IEnumerable<BankDto>> GetList()
         {
             var banks = await BankRepository.GetAllAsync(i => i.Currency);
-            var bankDtoList = new List<BankDto>(banks.Count());
-            foreach (var bank in banks)
-                bankDtoList.Add(MapDomainToDto(bank));
-            return bankDtoList;
+            return banks.Adapt<IEnumerable<BankDto>>();
         }
 
-        public async Task<BankDto> GetBankAsync(int id)
+        public async Task<BankDto> GetById(int id)
         {
-            var bankDomain = await BankRepository.GetByIdAsync(id,
+            var bankDomain = await BankRepository.GetSingleAsync(
+                i => i.Id == id,
                 c => c.Currency,
                 s => s.ParsingSettings);
-
-            var bankDto = MapDomainToDto(bankDomain);
-            return bankDto;
+            return bankDomain.Adapt<BankDto>();
         }
 
-        public async Task<bool> UpdateBankAsync(BankDto bankDto)
+        public async Task<bool> UpdateBankAsync(BankUpdateDto updateDto)
         {
-            if (!IsValid(bankDto))
-                return false;
-            Bank bankToUpdate = await BankRepository.GetByIdAsync(bankDto.Id);
+            Bank bankToUpdate = await BankRepository.FindAsync(updateDto.Id);
+
             if (bankToUpdate == null)
+                throw new Exception("Ошибка при обновлении банка.");
+            if (!IsValid(updateDto.Adapt<BankDto>()))
                 return false;
 
-            bankDto.Adapt(bankToUpdate);
+            updateDto.Adapt(bankToUpdate);
             BankRepository.SetStateModifed(bankToUpdate);
             await BankRepository.SaveChangesAsync();
             return true;
@@ -100,9 +95,9 @@ namespace RatesParsingWeb.Services
             {
                 var newBankDto = bank.Adapt<BankDto>();
                 if (bank.Currency != null)
-                    newBankDto.CurrencyDto = bank.Currency.Adapt<CurrencyDto>();
+                    newBankDto.Currency = bank.Currency.Adapt<CurrencyDto>();
                 if (bank.ParsingSettings != null)
-                    newBankDto.ParsingSettingsDto = bank.ParsingSettings.Adapt<ParsingSettingsDto>();
+                    newBankDto.ParsingSettings = bank.ParsingSettings.Adapt<ParsingSettingsDto>();
                 return newBankDto;
             }
             else
@@ -119,10 +114,10 @@ namespace RatesParsingWeb.Services
             if (bankDto != null)
             {
                 var newBankDomain = bankDto.Adapt<Bank>();
-                if (bankDto.CurrencyDto != null)
-                    newBankDomain.Currency = bankDto.CurrencyDto.Adapt<Currency>();
-                if (bankDto.ParsingSettingsDto != null)
-                    newBankDomain.ParsingSettings = bankDto.ParsingSettingsDto.Adapt<ParsingSettings>();
+                if (bankDto.Currency != null)
+                    newBankDomain.Currency = bankDto.Currency.Adapt<Currency>();
+                if (bankDto.ParsingSettings != null)
+                    newBankDomain.ParsingSettings = bankDto.ParsingSettings.Adapt<ParsingSettings>();
                 return newBankDomain;
             }
             else

@@ -36,66 +36,66 @@
             <a href="@Model.BankModel.RatesUrl" target="_blank">@Model.BankModel.RatesUrl</a>
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.BankModel.CurrencyModel.Name)
+            @Html.DisplayNameFor(model => model.BankModel.Currency.Name)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.BankModel.CurrencyModel.TextCode) (@Html.DisplayFor(model => model.BankModel.CurrencyModel.Name))
+            @Html.DisplayFor(model => model.BankModel.Currency.TextCode) (@Html.DisplayFor(model => model.BankModel.Currency.Name))
         </dd>
     </dl>
 </div>
 <div>
-    @if (Model.BankModel.ParsingSettingsModel != null)
+    @if (Model.BankModel.ParsingSettings != null)
     {
         <h4>Настройки парсинга</h4>
         <hr />
         <dl class="row">
             <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.BankModel.ParsingSettingsModel.TextCodeXpath)
+                @Html.DisplayNameFor(model => model.BankModel.ParsingSettings.TextCodeXpath)
             </dt>
             <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.BankModel.ParsingSettingsModel.TextCodeXpath)
+                @Html.DisplayFor(model => model.BankModel.ParsingSettings.TextCodeXpath)
             </dd>
             <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.BankModel.ParsingSettingsModel.ExchangeRateXpath)
+                @Html.DisplayNameFor(model => model.BankModel.ParsingSettings.ExchangeRateXpath)
             </dt>
             <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.BankModel.ParsingSettingsModel.ExchangeRateXpath)
+                @Html.DisplayFor(model => model.BankModel.ParsingSettings.ExchangeRateXpath)
             </dd>
             <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.BankModel.ParsingSettingsModel.UnitXpath)
+                @Html.DisplayNameFor(model => model.BankModel.ParsingSettings.UnitXpath)
             </dt>
             <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.BankModel.ParsingSettingsModel.UnitXpath)
+                @Html.DisplayFor(model => model.BankModel.ParsingSettings.UnitXpath)
             </dd>
             <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.BankModel.ParsingSettingsModel.VariablePartOfXpath)
+                @Html.DisplayNameFor(model => model.BankModel.ParsingSettings.VariablePartOfXpath)
             </dt>
             <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.BankModel.ParsingSettingsModel.VariablePartOfXpath)
+                @Html.DisplayFor(model => model.BankModel.ParsingSettings.VariablePartOfXpath)
             </dd>
             <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.BankModel.ParsingSettingsModel.StartXpathRow)
+                @Html.DisplayNameFor(model => model.BankModel.ParsingSettings.StartXpathRow)
             </dt>
             <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.BankModel.ParsingSettingsModel.StartXpathRow)
+                @Html.DisplayFor(model => model.BankModel.ParsingSettings.StartXpathRow)
             </dd>
             <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.BankModel.ParsingSettingsModel.EndXpathRow)
+                @Html.DisplayNameFor(model => model.BankModel.ParsingSettings.EndXpathRow)
             </dt>
             <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.BankModel.ParsingSettingsModel.EndXpathRow)
+                @Html.DisplayFor(model => model.BankModel.ParsingSettings.EndXpathRow)
             </dd>
             <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.BankModel.ParsingSettingsModel.NumberDecimalSeparator)
+                @Html.DisplayNameFor(model => model.BankModel.ParsingSettings.NumberDecimalSeparator)
             </dt>
             <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.BankModel.ParsingSettingsModel.NumberDecimalSeparator)
+                @Html.DisplayFor(model => model.BankModel.ParsingSettings.NumberDecimalSeparator)
             </dd>
             <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.BankModel.ParsingSettingsModel.NumberGroupSeparator)
+                @Html.DisplayNameFor(model => model.BankModel.ParsingSettings.NumberGroupSeparator)
             </dt>
             <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.BankModel.ParsingSettingsModel.NumberGroupSeparator)
+                @Html.DisplayFor(model => model.BankModel.ParsingSettings.NumberGroupSeparator)
             </dd>
         </dl>
     }

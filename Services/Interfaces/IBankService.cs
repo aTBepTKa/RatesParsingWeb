@@ -5,6 +5,7 @@ using System.Linq.Expressions;
 using System.Threading.Tasks;
 using RatesParsingWeb.Domain;
 using RatesParsingWeb.Dto;
+using RatesParsingWeb.Dto.UpdateAndCreate;
 using RatesParsingWeb.Services.Interfaces;
 
 namespace RatesParsingWeb.Services.Interfaces
@@ -15,20 +16,20 @@ namespace RatesParsingWeb.Services.Interfaces
         /// Получить все объекты банка, включая основную валюту банка.
         /// </summary>
         /// <returns></returns>      
-        Task<IEnumerable<BankDto>> GetBankListAsync();
+        Task<IEnumerable<BankDto>> GetList();
 
         /// <summary>
-        /// Получить банк с основной валютой.
+        /// Получить банк с подчиненными данными.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="id">ID получаемого банка.</param>
         /// <returns></returns>
-        Task<BankDto> GetBankAsync(int id);
+        Task<BankDto> GetById(int id);
 
         /// <summary>
         /// Обновить данные банка.
         /// </summary>
         /// <param name="bankToUpdate"></param>
         /// <returns></returns>
-        Task<bool> UpdateBankAsync(BankDto bankToUpdate);
+        Task<bool> UpdateBankAsync(BankUpdateDto bankToUpdate);
     }
 }

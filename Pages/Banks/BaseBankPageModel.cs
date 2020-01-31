@@ -26,10 +26,10 @@ namespace RatesParsingWeb.Pages.Banks
             if (bankDto != null)
             {
                 BankModel bankModel = bankDto.Adapt<BankModel>();
-                if (bankDto.CurrencyDto != null)
-                    bankModel.CurrencyModel = bankDto.CurrencyDto.Adapt<CurrencyModel>();
-                if (bankDto.ParsingSettingsDto != null)
-                    bankModel.ParsingSettingsModel = bankDto.ParsingSettingsDto.Adapt<ParsingSettingsModel>();
+                if (bankDto.Currency != null)
+                    bankModel.Currency = bankDto.Currency.Adapt<CurrencyModel>();
+                if (bankDto.ParsingSettings != null)
+                    bankModel.ParsingSettings = bankDto.ParsingSettings.Adapt<ParsingSettingsModel>();
                 return bankModel;
             }
             else
@@ -64,15 +64,15 @@ namespace RatesParsingWeb.Pages.Banks
             if (bankModel != null)
             {
                 BankDto bankDto = bankModel.Adapt<BankDto>();
-                if (bankModel.CurrencyModel != null)
+                if (bankModel.Currency != null)
                 {
-                    bankDto.CurrencyId = bankModel.CurrencyModel.Id;
-                    bankDto.CurrencyDto = bankModel.CurrencyModel.Adapt<CurrencyDto>();
+                    bankDto.CurrencyId = bankModel.Currency.Id;
+                    bankDto.Currency = bankModel.Currency.Adapt<CurrencyDto>();
                 }
-                if (bankModel.ParsingSettingsModel != null)
+                if (bankModel.ParsingSettings!= null)
                 {
-                    bankDto.ParsingSettingsId = bankModel.ParsingSettingsModel.Id;
-                    bankDto.ParsingSettingsDto = bankModel.ParsingSettingsModel.Adapt<ParsingSettingsDto>();
+                    bankDto.ParsingSettingsId = bankModel.ParsingSettings.Id;
+                    bankDto.ParsingSettings = bankModel.ParsingSettings.Adapt<ParsingSettingsDto>();
                 }
                 
                 return bankDto;

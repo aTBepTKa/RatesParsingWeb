@@ -35,9 +35,9 @@
                 <span asp-validation-for="BankModel.RatesUrl" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="BankModel.CurrencyModel.Id" class="control-label"></label>
-                <select asp-for="BankModel.CurrencyModel.Id" class="form-control" asp-items="@Model.CurrencySelectList"></select>
-                <span asp-validation-for="BankModel.CurrencyModel.Id" class="text-danger"></span>
+                <label asp-for="BankModel.Currency.Id" class="control-label"></label>
+                <select asp-for="BankModel.CurrencyId" class="form-control" asp-items="@Model.CurrencySelectList"></select>
+                <span asp-validation-for="BankModel.Currency.Id" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />

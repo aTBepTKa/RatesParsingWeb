@@ -20,7 +20,7 @@
                 @Html.DisplayNameFor(model => model.FirstBankObject.RatesUrl)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.FirstBankObject.CurrencyModel.Name)
+                @Html.DisplayNameFor(model => model.FirstBankObject.Currency.Name)
             </th>
             <th></th>
         </tr>
@@ -36,7 +36,7 @@
                     <a href="@item.RatesUrl" target="_blank">Курсы</a>
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.CurrencyModel.TextCode) (@Html.DisplayFor(modelItem => item.CurrencyModel.Name))
+                    @Html.DisplayFor(modelItem => item.Currency.TextCode) (@Html.DisplayFor(modelItem => item.Currency.Name))
                 </td>
                 <td>
                     <a asp-page="./Edit" asp-route-id="@item.Id">Редактировать</a> |

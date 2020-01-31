@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using RatesParsingWeb.Models;
 using RatesParsingWeb.Services.Interfaces;
 using RatesParsingWeb.Dto;
+using Mapster;
 
 namespace RatesParsingWeb.Pages.Banks
 {
@@ -23,10 +24,10 @@ namespace RatesParsingWeb.Pages.Banks
         
         public async Task<IActionResult> OnGetAsync(int id)
         {
-            BankDto bankDto = await bankService.GetBankAsync(id);
+            BankDto bankDto = await bankService.GetById(id);
             if (bankDto == null)
                 return NotFound();
-            BankModel = MapDtoToModel(bankDto);
+            BankModel = bankDto.Adapt<BankModel>();
             return Page();
         }
     }

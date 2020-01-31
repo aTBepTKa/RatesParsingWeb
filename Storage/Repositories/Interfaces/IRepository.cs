@@ -31,11 +31,6 @@ namespace RatesParsingWeb.Storage.Repositories.Interfaces
         /// <summary>
         /// Получить все элементы.
         /// </summary>
-        Task<IEnumerable<T>> GetAllAsync();
-
-        /// <summary>
-        /// Получить все элементы включая зависимые объекты.
-        /// </summary>
         /// <param name="includes"></param>
         /// <returns></returns>
         Task<IEnumerable<T>> GetAllAsync(params Expression<Func<T, object>>[] includes);
@@ -45,25 +40,33 @@ namespace RatesParsingWeb.Storage.Repositories.Interfaces
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        Task<T> GetByIdAsync(int id);
+        Task<T> FindAsync(int id);
 
         /// <summary>
-        /// Получить элементы согласно выражению.
+        /// Плдучить единственный элемент последовательности.
         /// </summary>
-        Task<T> GetFirstOrDefaultAsync(Expression<Func<T, bool>> where);
+        /// <param name="predicate"></param>
+        /// <param name="includes"></param>
+        /// <returns></returns>
+        Task<T> GetSingleAsync(Expression<Func<T, bool>> predicate, params Expression<Func<T, object>>[] includes);
+
+        /// <summary>
+        /// Получить элемент согласно выражению.
+        /// </summary>
+        Task<T> GetFirstOrDefaultAsync(Expression<Func<T, bool>> where, params Expression<Func<T, object>>[] includes);
 
         /// <summary>
         /// Получить последовательность элементов согласно выражению.
         /// </summary>
         /// <param name="where"></param>
         /// <returns></returns>
-        Task<IEnumerable<T>> GetMany(Expression<Func<T, bool>> where);
+        Task<IEnumerable<T>> GetManyAsync(Expression<Func<T, bool>> where, params Expression<Func<T, object>>[] includes);
 
         /// <summary>
         /// Возвращает объект типа IQueryable<T>.
         /// </summary>
         /// <returns></returns>
-        IQueryable<T> Query();
+        IQueryable<T> Query(params Expression<Func<T, object>>[] includes);
 
         /// <summary>
         /// Сохранить изменения.

@@ -13,6 +13,7 @@ using RatesParsingWeb.Services.Interfaces;
 using Mapster;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using RatesParsingWeb.Dto;
+using RatesParsingWeb.Dto.UpdateAndCreate;
 
 namespace RatesParsingWeb.Pages.Banks
 {
@@ -37,10 +38,10 @@ namespace RatesParsingWeb.Pages.Banks
 
         public async Task<IActionResult> OnGetAsync(int id)
         {
-            BankDto bankDto = await bankService.GetBankAsync(id);
+            BankDto bankDto = await bankService.GetById(id);
             if (bankDto == null)
                 return NotFound();
-            BankModel = MapDtoToModel(bankDto);
+            BankModel = bankDto.Adapt<BankModel>();
 
             CurrencySelectList = await GetCurrencySelectListAsync();
             return Page();
@@ -52,18 +53,18 @@ namespace RatesParsingWeb.Pages.Banks
             {
                 return Page();
             }
-            BankDto bankDto = MapModelToDto(BankModel);
-            if (! await bankService.UpdateBankAsync(bankDto))
+            var bankDto = BankModel.Adapt<BankUpdateDto>();
+            if (!await bankService.UpdateBankAsync(bankDto))
                 return Page();
             return RedirectToPage("./Index");
         }
 
         private async Task<SelectList> GetCurrencySelectListAsync()
         {
-            IEnumerable<CurrencyDto> currenciesDto = await currencyService.GetAllAsync();
-            IEnumerable<CurrencyModel> currenciesModel = currenciesDto.Adapt<IEnumerable<CurrencyModel>>();
+            var currenciesDto = (await currencyService.GetAllAsync()).OrderBy(i => i.TextCode);
+            var currenciesSelectList = currenciesDto.Adapt<IEnumerable<CurrencySelectListModel>>();
 
-            var selectList = new SelectList(currenciesModel, "Id", "CodeWithName");
+            var selectList = new SelectList(currenciesSelectList, "Id", "CodeWithName");
             return selectList;
         }
     }

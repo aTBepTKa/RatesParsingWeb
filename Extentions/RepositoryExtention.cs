@@ -14,19 +14,17 @@ namespace RatesParsingWeb.Extentions
     public static class RepositoryExtention
     {
         /// <summary>
-        ///  Включает зависимые объекты в запрос.
+        /// Получить последовательность объектов, включая зависимые объекты.
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="query"></param>
         /// <param name="includes"></param>
         /// <returns></returns>
-        public static IQueryable<T> IncludeEntities<T>(this IQueryable<T> query,
+        public static IQueryable<T> GetIncludes<T>(this IQueryable<T> query,
             params Expression<Func<T, object>>[] includes) where T : class
         {
             if (includes != null)
-            {
                 query = includes.Aggregate(query, (current, include) => current.Include(include));
-            }
             return query;
         }
     }

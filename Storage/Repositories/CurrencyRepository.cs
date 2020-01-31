@@ -12,9 +12,5 @@ namespace RatesParsingWeb.Storage.Repositories
     {
         public CurrencyRepository(BankRatesContext context) : base(context)
         { }
-
-        public override async Task<IEnumerable<Currency>> GetAllAsync() =>
-             (await base.GetAllAsync()).OrderBy(i => i.TextCode);
-
     }
 }
