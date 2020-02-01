@@ -10,17 +10,9 @@ namespace RatesParsingWeb.Services.Interfaces
     public interface ICrudService<T> where T : class
     {
         /// <summary>
-        /// Является ли объект валидным.
-        /// </summary>
-        /// <returns></returns>
-        bool IsValid(T t);
-
-        /// <summary>
         /// Получить все элементы.
         /// </summary>
         /// <returns></returns>
         Task<IEnumerable<T>> GetAllAsync();
-
-
     }
 }

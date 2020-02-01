@@ -38,13 +38,13 @@ namespace RatesParsingWeb.Pages.Banks
 
         public async Task<IActionResult> OnGetAsync(int id)
         {
-            BankDto bankDto = await bankService.GetById(id);
+            BankDto bankDto = await bankService.GetById(id);            
             if (bankDto == null)
                 return NotFound();
             BankModel = bankDto.Adapt<BankModel>();
 
             CurrencySelectList = await GetCurrencySelectListAsync();
-            return Page();
+            return Page();            
         }
 
         public async Task<IActionResult> OnPostAsync()

@@ -40,6 +40,13 @@ namespace RatesParsingWeb.Storage.Repositories.Interfaces
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
+        T Find(int id);
+
+        /// <summary>
+        /// Получить элемент по Id асинхронно.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         Task<T> FindAsync(int id);
 
         /// <summary>

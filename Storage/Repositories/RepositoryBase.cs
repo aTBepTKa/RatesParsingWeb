@@ -21,7 +21,7 @@ namespace RatesParsingWeb.Storage.Repositories
         public RepositoryBase(BankRatesContext context)
         {
             bankRatesContext = context;
-            dbSet = bankRatesContext.Set<T>();            
+            dbSet = bankRatesContext.Set<T>();
         }
 
         public virtual async Task AddAsync(T entity) =>
@@ -29,6 +29,9 @@ namespace RatesParsingWeb.Storage.Repositories
 
         public virtual Task AddRangeAsync(T[] entity) =>
             dbSet.AddRangeAsync(entity);
+
+        public virtual T Find(int id) =>
+            dbSet.Find(id);
 
         public virtual async Task<T> FindAsync(int id) =>
             await dbSet.FindAsync(id);

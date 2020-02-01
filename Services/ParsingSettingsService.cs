@@ -19,10 +19,5 @@ namespace RatesParsingWeb.Services
         {
             ParsingSettingsRepository = repository;
         }
-
-        public override bool IsValid(ParsingSettingsDto t)
-        {
-            return true;
-        }
     }
 }

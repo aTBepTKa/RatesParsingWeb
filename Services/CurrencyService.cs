@@ -19,10 +19,5 @@ namespace RatesParsingWeb.Services
         {
             CurrencyRepository = repository;
         }
-
-        public override bool IsValid(CurrencyDto t)
-        {
-            return true;
-        }
     }
 }
