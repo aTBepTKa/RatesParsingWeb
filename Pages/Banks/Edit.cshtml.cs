@@ -43,7 +43,7 @@ namespace RatesParsingWeb.Pages.Banks
                 return NotFound();
             BankModel = bankDto.Adapt<BankModel>();
 
-            CurrencySelectList = await GetCurrencySelectListAsync();
+            CurrencySelectList = await GetCurrencySelectListAsync(BankModel.CurrencyId);
             return Page();            
         }
 
@@ -55,18 +55,23 @@ namespace RatesParsingWeb.Pages.Banks
             }
             var bankUpdateDto = BankModel.Adapt<BankUpdateDto>();
             if (!await bankService.UpdateBankAsync(bankUpdateDto))
+            {
+                // Слетает почему-то.
+                CurrencySelectList = await GetCurrencySelectListAsync(bankUpdateDto.CurrencyId);
                 return Page();
+            }
             return RedirectToPage("./Index");
         }
 
-        private async Task<SelectList> GetCurrencySelectListAsync()
+        private async Task<SelectList> GetCurrencySelectListAsync(int SelectedId)
         {
             var currenciesDto = (await currencyService.GetAllAsync()).OrderBy(i => i.TextCode);
             var currenciesSelectList = currenciesDto.Adapt<IEnumerable<CurrencySelectListModel>>();
 
             var selectList = new SelectList(currenciesSelectList,
                                             nameof(CurrencySelectListModel.Id),
-                                            nameof(CurrencySelectListModel.CodeWithName));
+                                            nameof(CurrencySelectListModel.CodeWithName),
+                                            currenciesSelectList.Single(i=>i.Id == SelectedId));
             return selectList;
         }
     }
