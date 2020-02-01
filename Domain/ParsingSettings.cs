@@ -35,12 +35,12 @@ namespace RatesParsingWeb.Domain
         /// <summary>
         /// Номер первой строки для парсинга.
         /// </summary>
-        public int? StartXpathRow { get; set; }
+        public int StartXpathRow { get; set; }
 
         /// <summary>
         /// Номер последней строки для парсинга.
         /// </summary>
-        public int? EndXpathRow { get; set; }
+        public int EndXpathRow { get; set; }
 
         /// <summary>
         /// Символ разделения десятичной части числа.

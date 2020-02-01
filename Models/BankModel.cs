@@ -48,11 +48,6 @@ namespace RatesParsingWeb.Models
         public int CurrencyId { get; set; }
 
         /// <summary>
-        /// Настройки парсинга банка.
-        /// </summary>
-        public int ParsingSettingsId { get; set; }
-
-        /// <summary>
         /// Основная валюта банка.
         /// </summary>
         public CurrencyModel Currency { get; set; }

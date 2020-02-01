@@ -70,7 +70,9 @@ namespace RatesParsingWeb.Services
 
         public async Task<bool> UpdateBankAsync(BankUpdateDto updateDto)
         {
-            Bank bankToUpdate = await bankRepository.FindAsync(updateDto.Id);
+            Bank bankToUpdate = await bankRepository.GetSingleAsync(
+                i => i.Id == updateDto.Id,
+                i => i.ParsingSettings);
 
             if (bankToUpdate == null)
                 throw new Exception($"Банк с Id '{updateDto.Id}' не найден.");
@@ -83,44 +85,5 @@ namespace RatesParsingWeb.Services
             return true;
         }
 
-        /// <summary>
-        /// Преобразовать доменную модель в модель DTO.
-        /// </summary>
-        /// <param name="bank"></param>
-        /// <returns></returns>
-        private BankDto MapDomainToDto(Bank bank)
-        {
-            if (bank != null)
-            {
-                var newBankDto = bank.Adapt<BankDto>();
-                if (bank.Currency != null)
-                    newBankDto.Currency = bank.Currency.Adapt<CurrencyDto>();
-                if (bank.ParsingSettings != null)
-                    newBankDto.ParsingSettings = bank.ParsingSettings.Adapt<ParsingSettingsDto>();
-                return newBankDto;
-            }
-            else
-                return null;
-        }
-
-        /// <summary>
-        /// Преобразовать модель DTO в доменную модель.
-        /// </summary>
-        /// <param name="bankDto"></param>
-        /// <returns></returns>
-        private Bank MapDtoToDomain(BankDto bankDto)
-        {
-            if (bankDto != null)
-            {
-                var newBankDomain = bankDto.Adapt<Bank>();
-                if (bankDto.Currency != null)
-                    newBankDomain.Currency = bankDto.Currency.Adapt<Currency>();
-                if (bankDto.ParsingSettings != null)
-                    newBankDomain.ParsingSettings = bankDto.ParsingSettings.Adapt<ParsingSettings>();
-                return newBankDomain;
-            }
-            else
-                return null;
-        }
     }
 }

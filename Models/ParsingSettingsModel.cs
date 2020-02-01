@@ -9,8 +9,6 @@ namespace RatesParsingWeb.Models
 {
     public class ParsingSettingsModel
     {
-        public int Id { get; set; }
-
         /// <summary>
         /// XPath для текстового кода валюты.
         /// </summary>
@@ -63,7 +61,7 @@ namespace RatesParsingWeb.Models
         [DisplayName("Разделитель десятичной части")]
         [Required(ErrorMessage = "Поле является обязательным")]
         [StringLength(1, MinimumLength = 1, ErrorMessage = "Разделитель представляется одиночным символом")]
-        public char NumberDecimalSeparator { get; set; }
+        public string NumberDecimalSeparator { get; set; }
 
         /// <summary>
         /// Символ разделения групп разрядов числа.
@@ -71,6 +69,6 @@ namespace RatesParsingWeb.Models
         [DisplayName("Разделитель групп разрядов")]
         [Required(ErrorMessage = "Поле является обязательным")]
         [StringLength(1, MinimumLength = 1, ErrorMessage = "Разделитель представляется одиночным символом")]
-        public char NumberGroupSeparator { get; set; }
+        public string NumberGroupSeparator { get; set; }
     }
 }

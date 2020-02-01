@@ -53,8 +53,8 @@ namespace RatesParsingWeb.Pages.Banks
             {
                 return Page();
             }
-            var bankDto = BankModel.Adapt<BankUpdateDto>();
-            if (!await bankService.UpdateBankAsync(bankDto))
+            var bankUpdateDto = BankModel.Adapt<BankUpdateDto>();
+            if (!await bankService.UpdateBankAsync(bankUpdateDto))
                 return Page();
             return RedirectToPage("./Index");
         }

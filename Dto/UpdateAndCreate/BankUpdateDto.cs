@@ -36,6 +36,6 @@ namespace RatesParsingWeb.Dto.UpdateAndCreate
         /// <summary>
         /// Настройки парсинга банка.
         /// </summary>
-        public int ParsingSettingsId { get; set; }
+        public ParsingSettingsDto ParsingSettings { get; set; }
     }
 }
