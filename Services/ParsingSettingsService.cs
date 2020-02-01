@@ -15,10 +15,9 @@ namespace RatesParsingWeb.Services
     public class ParsingSettingsService : BaseCrudService<ParsingSettingsDto, ParsingSettings>, IParsingSettingsService
     {
         private readonly IParsingSettingsRepository ParsingSettingsRepository;
-        public ParsingSettingsService(BankRatesContext context)
+        public ParsingSettingsService(IParsingSettingsRepository repository) : base(repository)
         {
-            ParsingSettingsRepository = new ParsingSettingsRepository(context);
-            BaseRepository = ParsingSettingsRepository;
+            ParsingSettingsRepository = repository;
         }
 
         public override bool IsValid(ParsingSettingsDto t)

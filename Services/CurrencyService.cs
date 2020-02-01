@@ -15,10 +15,9 @@ namespace RatesParsingWeb.Services
     public class CurrencyService : BaseCrudService<CurrencyDto, Currency>, ICurrencyService
     {
         private readonly ICurrencyRepository CurrencyRepository;
-        public CurrencyService(BankRatesContext context)
+        public CurrencyService(ICurrencyRepository repository) : base(repository)
         {
-            CurrencyRepository = new CurrencyRepository(context);
-            BaseRepository = CurrencyRepository;
+            CurrencyRepository = repository;
         }
 
         public override bool IsValid(CurrencyDto t)

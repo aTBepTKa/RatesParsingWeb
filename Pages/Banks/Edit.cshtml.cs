@@ -64,7 +64,9 @@ namespace RatesParsingWeb.Pages.Banks
             var currenciesDto = (await currencyService.GetAllAsync()).OrderBy(i => i.TextCode);
             var currenciesSelectList = currenciesDto.Adapt<IEnumerable<CurrencySelectListModel>>();
 
-            var selectList = new SelectList(currenciesSelectList, "Id", "CodeWithName");
+            var selectList = new SelectList(currenciesSelectList,
+                                            nameof(CurrencySelectListModel.Id),
+                                            nameof(CurrencySelectListModel.CodeWithName));
             return selectList;
         }
     }

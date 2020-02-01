@@ -35,9 +35,9 @@ namespace RatesParsingWeb
                 options.UseSqlServer(Configuration.GetConnectionString("BankRatesContext")));
 
             // Слой репозитория.
-            //services.AddScoped<IBankRepository, BankRepository>();
-            //services.AddScoped<ICurrencyRepository, CurrencyRepository>();   
-            //services.AddScoped<IParsingSettingsRepository, ParsingSettingsRepository>();
+            services.AddScoped<IBankRepository, BankRepository>();
+            services.AddScoped<ICurrencyRepository, CurrencyRepository>();   
+            services.AddScoped<IParsingSettingsRepository, ParsingSettingsRepository>();
 
             // Слой сервиса.
             services.AddScoped<IBankService, BankService>();

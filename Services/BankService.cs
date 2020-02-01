@@ -17,11 +17,10 @@ namespace RatesParsingWeb.Services
 {
     public class BankService : BaseCrudService<BankDto, Bank>, IBankService
     {
-        private IBankRepository BankRepository { get; set; }
-        public BankService(BankRatesContext context)
+        private readonly IBankRepository bankRepository;
+        public BankService(IBankRepository repository) : base(repository)
         {
-            BankRepository = new BankRepository(context);
-            BaseRepository = BankRepository;
+            bankRepository = repository;
         }
 
         public override bool IsValid(BankDto bank)
@@ -56,13 +55,13 @@ namespace RatesParsingWeb.Services
 
         public async Task<IEnumerable<BankDto>> GetList()
         {
-            var banks = await BankRepository.GetAllAsync(i => i.Currency);
+            var banks = await bankRepository.GetAllAsync(i => i.Currency);
             return banks.Adapt<IEnumerable<BankDto>>();
         }
 
         public async Task<BankDto> GetById(int id)
         {
-            var bankDomain = await BankRepository.GetSingleAsync(
+            var bankDomain = await bankRepository.GetSingleAsync(
                 i => i.Id == id,
                 c => c.Currency,
                 s => s.ParsingSettings);
@@ -71,16 +70,16 @@ namespace RatesParsingWeb.Services
 
         public async Task<bool> UpdateBankAsync(BankUpdateDto updateDto)
         {
-            Bank bankToUpdate = await BankRepository.FindAsync(updateDto.Id);
+            Bank bankToUpdate = await bankRepository.FindAsync(updateDto.Id);
 
             if (bankToUpdate == null)
-                throw new Exception("Ошибка при обновлении банка.");
+                throw new Exception($"Банк с Id '{updateDto.Id}' не найден.");
             if (!IsValid(updateDto.Adapt<BankDto>()))
                 return false;
 
             updateDto.Adapt(bankToUpdate);
-            BankRepository.SetStateModifed(bankToUpdate);
-            await BankRepository.SaveChangesAsync();
+            bankRepository.SetStateModifed(bankToUpdate);
+            await bankRepository.SaveChangesAsync();
             return true;
         }
 

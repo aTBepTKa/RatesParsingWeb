@@ -18,6 +18,11 @@ namespace RatesParsingWeb.Services
     /// <typeparam name="DtoType"></typeparam>
     public abstract class BaseCrudService<DtoType, RepositoryType> : ICrudService<DtoType> where DtoType : class where RepositoryType : class
     {
+        protected BaseCrudService(IRepository<RepositoryType> baseRepository)
+        {
+            BaseRepository = baseRepository;
+        }
+
         protected IRepository<RepositoryType> BaseRepository { get; set; }
 
         public virtual async Task<IEnumerable<DtoType>> GetAllAsync() =>

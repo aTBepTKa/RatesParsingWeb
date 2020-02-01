@@ -21,64 +21,23 @@ namespace RatesParsingWeb.Pages.Banks
         /// </summary>
         /// <param name="bankDto"></param>
         /// <returns></returns>
-        protected BankModel MapDtoToModel(BankDto bankDto)
-        {
-            if (bankDto != null)
-            {
-                BankModel bankModel = bankDto.Adapt<BankModel>();
-                if (bankDto.Currency != null)
-                    bankModel.Currency = bankDto.Currency.Adapt<CurrencyModel>();
-                if (bankDto.ParsingSettings != null)
-                    bankModel.ParsingSettings = bankDto.ParsingSettings.Adapt<ParsingSettingsModel>();
-                return bankModel;
-            }
-            else
-                return null;
-        }
+        protected BankModel MapDtoToModel(BankDto bankDto) =>
+            bankDto?.Adapt<BankModel>();
 
         /// <summary>
         /// Преобразовать коллекцию моделей DTO в модели представления.
         /// </summary>
         /// <param name="bankDtos"></param>
         /// <returns></returns>
-        protected IEnumerable<BankModel> MapDtoToModels(IEnumerable<BankDto> bankDtos)
-        {            
-            if (bankDtos.Any())
-            {
-                var bankModels = new List<BankModel>(bankDtos.Count());
-                foreach (var dto in bankDtos)
-                    bankModels.Add(MapDtoToModel(dto));
-                return bankModels;
-            }
-            else
-                return Enumerable.Empty<BankModel>();
-        }
+        protected IEnumerable<BankModel> MapDtoToModels(IEnumerable<BankDto> bankDtos) =>
+            bankDtos?.Adapt<IEnumerable<BankModel>>();
 
         /// <summary>
         /// Преобразовать модель представления в модель DTO.
         /// </summary>
         /// <param name="bankModel"></param>
         /// <returns></returns>
-        protected BankDto MapModelToDto(BankModel bankModel)
-        {
-            if (bankModel != null)
-            {
-                BankDto bankDto = bankModel.Adapt<BankDto>();
-                if (bankModel.Currency != null)
-                {
-                    bankDto.CurrencyId = bankModel.Currency.Id;
-                    bankDto.Currency = bankModel.Currency.Adapt<CurrencyDto>();
-                }
-                if (bankModel.ParsingSettings!= null)
-                {
-                    bankDto.ParsingSettingsId = bankModel.ParsingSettings.Id;
-                    bankDto.ParsingSettings = bankModel.ParsingSettings.Adapt<ParsingSettingsDto>();
-                }
-                
-                return bankDto;
-            }
-            else
-                return null;
-        }
+        protected BankDto MapModelToDto(BankModel bankModel) =>
+            bankModel?.Adapt<BankDto>();
     }
 }

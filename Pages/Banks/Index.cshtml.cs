@@ -24,8 +24,10 @@ namespace RatesParsingWeb.Pages.Banks
         {
             IEnumerable<BankDto> bankDtos = await bankService.GetList();
             if (bankDtos.Any())
+            {
                 BanksModelList = new List<BankModel>(MapDtoToModels(bankDtos));
-            FirstBankObject = BanksModelList[0];            
+                FirstBankObject = BanksModelList[0];            
+            }
         }
     }
 }

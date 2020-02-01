@@ -26,11 +26,13 @@ namespace RatesParsingWeb.Pages.Currencies
 
         public async Task OnGetAsync()
         {
-            IEnumerable<CurrencyDto> currenciesDto = (await currencyService.GetAllAsync());
-            currenciesDto = currenciesDto.OrderBy(i => i.TextCode);
+            IEnumerable<CurrencyDto> currenciesDto = await currencyService.GetAllAsync();
             if (currenciesDto.Any())
+            {
+                currenciesDto = currenciesDto.OrderBy(i => i.TextCode);
                 CurrencyModelList = new List<CurrencyModel>(currenciesDto.Adapt<IEnumerable<CurrencyModel>>());
-            FirstCurrencyObject = CurrencyModelList[0];
+                FirstCurrencyObject = CurrencyModelList[0];
+            }
         }
     }
 }
