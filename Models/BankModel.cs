@@ -45,6 +45,8 @@ namespace RatesParsingWeb.Models
         /// <summary>
         /// Основная валюта банка.
         /// </summary>
+        [DisplayName("Основная валюта банка")]
+        [Required(ErrorMessage = "Поле является обязательным")]
         public int CurrencyId { get; set; }
 
         /// <summary>

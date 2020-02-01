@@ -40,11 +40,11 @@ namespace RatesParsingWeb.Dto
         /// <summary>
         /// Символ разделения десятичной части числа.
         /// </summary>
-        public char NumberDecimalSeparator { get; set; }
+        public string NumberDecimalSeparator { get; set; }
 
         /// <summary>
         /// Символ разделения групп разрядов числа.
         /// </summary>
-        public char NumberGroupSeparator { get; set; }
+        public string NumberGroupSeparator { get; set; }
     }
 }

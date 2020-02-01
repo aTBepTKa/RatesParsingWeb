@@ -32,15 +32,18 @@ namespace RatesParsingWeb.Storage
             // Установить свойства для Bank.
             modelBuilder.Entity<Bank>().Property(i => i.SwiftCode).IsRequired();
             modelBuilder.Entity<Bank>().Property(i => i.SwiftCode).HasMaxLength(11).IsFixedLength();
+            modelBuilder.Entity<Bank>().HasIndex(i => i.SwiftCode).IsUnique();
             modelBuilder.Entity<Bank>().Property(i => i.Name).IsRequired();
-            modelBuilder.Entity<Bank>().Property(i => i.RatesUrl).IsRequired();
             modelBuilder.Entity<Bank>().Property(i => i.Name).HasMaxLength(50);
+            modelBuilder.Entity<Bank>().HasIndex(i => i.Name).IsUnique();
+            modelBuilder.Entity<Bank>().Property(i => i.RatesUrl).IsRequired();
             modelBuilder.Entity<Bank>().Property(i => i.BankUrl).HasMaxLength(2000);
             modelBuilder.Entity<Bank>().Property(i => i.RatesUrl).HasMaxLength(2000);
 
             // Установить свойства для Script.
             modelBuilder.Entity<Script>().Property(i => i.Name).IsRequired();
             modelBuilder.Entity<Script>().Property(i => i.Name).HasMaxLength(50);
+            modelBuilder.Entity<Script>().HasIndex(i => i.Name).IsUnique();
 
             // Установить свойства для ParsingSettings.
             modelBuilder.Entity<ParsingSettings>().Property(i => i.TextCodeXpath).HasMaxLength(2000);
@@ -54,8 +57,9 @@ namespace RatesParsingWeb.Storage
 
             // Установить свойства для Currency.
             modelBuilder.Entity<Currency>().Property(i => i.TextCode).IsRequired();
-            modelBuilder.Entity<Currency>().Property(i => i.Name).HasMaxLength(100);
             modelBuilder.Entity<Currency>().Property(i => i.TextCode).HasMaxLength(3).IsFixedLength();
+            modelBuilder.Entity<Currency>().HasIndex(i => i.TextCode).IsUnique();
+            modelBuilder.Entity<Currency>().Property(i => i.Name).HasMaxLength(100);
             // Запретить удаление строки валюты, если есть связанные записи.
             modelBuilder.Entity<Currency>().HasMany(i => i.Banks).WithOne(i => i.Currency)
                 .OnDelete(DeleteBehavior.Restrict);
