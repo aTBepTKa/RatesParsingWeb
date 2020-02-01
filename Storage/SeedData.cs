@@ -115,8 +115,21 @@ namespace RatesParsingWeb.Storage
             {
                 new ParsingSettings
                 {
-                    Id = settingsId,
+                    Id = settingsId++,
                     BankId = Banks.Single(i=>i.SwiftCode == "BNLNGE22XXX").Id,
+                    NumberDecimalSeparator = '.',
+                    NumberGroupSeparator = ',',
+                    StartXpathRow = 1,
+                    EndXpathRow = 43,
+                    VariablePartOfXpath = "$VARIABLE",
+                    TextCodeXpath = "//*[@id='currency_id']/table/tr[$VARIABLE]/td[1]",
+                    UnitXpath = "//*[@id='currency_id']/table/tr[$VARIABLE]/td[2]",
+                    ExchangeRateXpath = "//*[@id='currency_id']/table/tr[$VARIABLE]/td[3]"
+                },
+                new ParsingSettings
+                {
+                    Id = settingsId++,
+                    BankId = Banks.Single(i=>i.SwiftCode == "NBPLPLPWBAN").Id,
                     NumberDecimalSeparator = '.',
                     NumberGroupSeparator = ',',
                     StartXpathRow = 2,
@@ -125,7 +138,33 @@ namespace RatesParsingWeb.Storage
                     TextCodeXpath = "//*[@id='article']/table/tr/td/center/table[1]/tr[$VARIABLE]/td[2]",
                     UnitXpath = "//*[@id='article']/table/tr/td/center/table[1]/tr[$VARIABLE]/td[2]",
                     ExchangeRateXpath = "//*[@id='article']/table/tr/td/center/table[1]/tr[$VARIABLE]/td[3]"
-                }
+                },
+                new ParsingSettings
+                {
+                    Id = settingsId++,
+                    BankId = Banks.Single(i=>i.SwiftCode == "CBRFRUMMXXX").Id,
+                    NumberDecimalSeparator = '.',
+                    NumberGroupSeparator = ',',
+                    StartXpathRow = 2,
+                    EndXpathRow = 35,
+                    VariablePartOfXpath = "$VARIABLE",
+                    TextCodeXpath = "//*[@id='content']/table/tbody/tr[$VARIABLE]/td[2]",
+                    UnitXpath = "//*[@id='content']/table/tbody/tr[$VARIABLE]/td[3]",
+                    ExchangeRateXpath = "//*[@id='content']/table/tbody/tr[$VARIABLE]/td[5]"
+                },
+                new ParsingSettings
+                {
+                    Id = settingsId++,
+                    BankId = Banks.Single(i=>i.SwiftCode == "ECBFDEFFEUM").Id,
+                    NumberDecimalSeparator = '.',
+                    NumberGroupSeparator = ',',
+                    StartXpathRow = 1,
+                    EndXpathRow = 32,
+                    VariablePartOfXpath = "$VARIABLE",
+                    TextCodeXpath = "//*[@id='ecb-content-col']/main/div/table/tbody/tr[$VARIABLE]/td[1]",
+                    UnitXpath = "//*[@id='ecb-content-col']/main/div/table/tbody/tr[$VARIABLE]/td[1]",
+                    ExchangeRateXpath = "//*[@id='ecb-content-col']/main/div/table/tbody/tr[$VARIABLE]/td[3]"
+                },
             };
             ModelBuilder.Entity<ParsingSettings>().HasData(settings);
         }
