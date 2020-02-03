@@ -53,14 +53,17 @@ namespace RatesParsingWeb.Storage.Repositories
             await dbSet.GetIncludes(includes).ToArrayAsync();
 
 
-        public virtual async Task<bool> AnyAsync(Expression<Func<T, bool>> where) =>
-            await dbSet.AnyAsync(where);
+        public virtual async Task<bool> AnyAsync(Expression<Func<T, bool>> predicate) =>
+            await dbSet.AnyAsync(predicate);
 
-        public virtual bool Any(Expression<Func<T, bool>> where) =>
-            dbSet.Any(where);
+        public virtual bool Any(Expression<Func<T, bool>> predicate) =>
+            dbSet.Any(predicate);
 
-        public virtual Task<int> CountAsync(Expression<Func<T, bool>> where = null) =>
-             dbSet.CountAsync(where);
+        public Task<bool> AnyWhereAsync(Expression<Func<T, bool>> where, Expression<Func<T, bool>> predicate) =>
+            dbSet.Where(where).AnyAsync(predicate);
+
+        public virtual Task<int> CountAsync(Expression<Func<T, bool>> predicate = null) =>
+             dbSet.CountAsync(predicate);
 
         public IQueryable<T> Query(params Expression<Func<T, object>>[] includes) =>
             dbSet.GetIncludes(includes).AsQueryable();

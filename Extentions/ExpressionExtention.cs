@@ -12,7 +12,7 @@ namespace RatesParsingWeb.Extentions
     public static class ExpressionExtention
     {
         /// <summary>
-        /// Добавить новое выражение к текущему.
+        /// Добавить новое выражение к текущему - НЕ РАБОТАЕТ С EF.
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="left"></param>
@@ -20,7 +20,7 @@ namespace RatesParsingWeb.Extentions
         /// <returns></returns>
         public static Expression<Func<T, bool>> CombineWith<T>(this Expression<Func<T, bool>> left, Expression<Func<T, bool>> right)
         {
-            var param = Expression.Parameter(typeof(T), "i");
+            var param = Expression.Parameter(typeof(T));
             var body = Expression.AndAlso(
                 Expression.Invoke(left, param),
                 Expression.Invoke(right, param));

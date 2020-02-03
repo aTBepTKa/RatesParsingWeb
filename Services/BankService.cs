@@ -41,7 +41,7 @@ namespace RatesParsingWeb.Services
         {
             ValidationCheck(updateDto);
             await UniqueCheck(updateDto, i => i.Id != updateDto.Id);
-            if (!ModelState.IsValid)
+            if (!ValidationDictionary.IsValid)
                 return false;
 
             Bank bankToUpdate = await bankRepository.GetSingleAsync(
@@ -58,37 +58,37 @@ namespace RatesParsingWeb.Services
         {
             // Проверить SwiftCode.
             if (string.IsNullOrEmpty(bank.SwiftCode))
-                ModelState.AddError("SwiftRequired", "SWIFT код обязателен.");
+                ValidationDictionary.AddError("SwiftRequired", "SWIFT код обязателен.");
             else if (bank.SwiftCode.Length != 11)
-                ModelState.AddError("SwiftLength", "Длина SWIFT кода составляет 11 символов.");
+                ValidationDictionary.AddError("SwiftLength", "Длина SWIFT кода составляет 11 символов.");
 
             // Проверить Name.
             if (string.IsNullOrEmpty(bank.Name))
-                ModelState.AddError("NameRequired", "Название банка обязательно.");
+                ValidationDictionary.AddError("NameRequired", "Название банка обязательно.");
             else if (bank.Name.Length > 50)
-                ModelState.AddError("NameLength", "Максимальная длина названия банка не более 50 символов.");
+                ValidationDictionary.AddError("NameLength", "Максимальная длина названия банка не более 50 символов.");
 
             // Проверить BankUrl.
             if (!Uri.TryCreate(bank.BankUrl, UriKind.Absolute, out _))
-                ModelState.AddError("BankUrl", "Ссылка страницы банка некорректна.");
+                ValidationDictionary.AddError("BankUrl", "Ссылка страницы банка некорректна.");
 
             // Проверить RatesUrl.
             if (string.IsNullOrEmpty(bank.RatesUrl))
-                ModelState.AddError("NameRequired", "Страница курсов обязательна.");
+                ValidationDictionary.AddError("NameRequired", "Страница курсов обязательна.");
             else if (!Uri.TryCreate(bank.RatesUrl, UriKind.Absolute, out _))
-                ModelState.AddError("RatesUrl", "Ссылка страницы курсов банка некорректна.");
+                ValidationDictionary.AddError("RatesUrl", "Ссылка страницы курсов банка некорректна.");
         }
 
         private async Task UniqueCheck(IBankRequisites bank, Expression<Func<Bank, bool>> where)
-        {            
+        {
             // Объединить выражение where с выражением отбора по имени.
-            var nameExpession = where.CombineWith(i => i.Name == bank.Name);
-            if (await bankRepository.AnyAsync(nameExpession))
-                ModelState.AddError("Name", $"Банк с именем '{bank.Name}' уже существует.");
+            Expression<Func<Bank, bool>> nameExpession = i => i.Name == bank.Name;
+            if (await bankRepository.AnyWhereAsync(where, nameExpession))
+                ValidationDictionary.AddError("Name", $"Банк с именем '{bank.Name}' уже существует.");
 
-            var swiftExpression = where.CombineWith(i => i.SwiftCode == bank.SwiftCode);
-            if (await bankRepository.AnyAsync(swiftExpression))
-                ModelState.AddError("Name", $"Банк со SWIFT кодом '{bank.SwiftCode}' уже существует.");
+            Expression<Func<Bank, bool>> swiftExpression = i => i.SwiftCode == bank.SwiftCode;
+            if (await bankRepository.AnyWhereAsync(where, swiftExpression))
+                ValidationDictionary.AddError("Name", $"Банк со SWIFT кодом '{bank.SwiftCode}' уже существует.");
         }
     }
 }

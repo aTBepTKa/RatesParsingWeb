@@ -13,7 +13,7 @@ namespace RatesParsingWeb.Services
             ErrorDictioanry = new Dictionary<string, string>();
         }
 
-        public bool IsValid => ErrorDictioanry.Count > 0;
+        public bool IsValid => ErrorDictioanry.Count == 0;
 
         public IDictionary<string, string> ErrorDictioanry { get; }
 

@@ -21,10 +21,10 @@ namespace RatesParsingWeb.Services
         protected BaseCrudService(IRepository<RepositoryType> baseRepository)
         {
             BaseRepository = baseRepository;
-            ModelState = new ValidationDictionary();
+            ValidationDictionary = new ValidationDictionary();
         }
 
-        public IValidationDictionary ModelState { get; }
+        public IValidationDictionary ValidationDictionary { get; }
 
         protected IRepository<RepositoryType> BaseRepository { get; }
 

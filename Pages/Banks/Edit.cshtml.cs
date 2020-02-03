@@ -31,16 +31,16 @@ namespace RatesParsingWeb.Pages.Banks
 
         [BindProperty]
         public BankModel BankModel { get; set; }
-
+        public IValidationDictionary ValidationDictionary { get; set; }
         public SelectList CurrencySelectList => GetCurrencySelectListAsync(BankModel.CurrencyId).Result;
 
         public async Task<IActionResult> OnGetAsync(int id)
         {
-            BankDto bankDto = await bankService.GetById(id);            
+            BankDto bankDto = await bankService.GetById(id);
             if (bankDto == null)
                 return NotFound();
             BankModel = bankDto.Adapt<BankModel>();
-            return Page();            
+            return Page();
         }
 
         public async Task<IActionResult> OnPostAsync()
@@ -50,10 +50,10 @@ namespace RatesParsingWeb.Pages.Banks
                 return Page();
             }
             var bankUpdateDto = BankModel.Adapt<BankUpdateDto>();
-            
+
             if (!await bankService.UpdateBankAsync(bankUpdateDto))
             {
-                AddModelErrors(bankService.ModelState.ErrorDictioanry);
+                ValidationDictionary = bankService.ValidationDictionary;
                 return Page();
             }
             return RedirectToPage("./Index");
@@ -67,16 +67,8 @@ namespace RatesParsingWeb.Pages.Banks
             var selectList = new SelectList(currenciesSelectList,
                                             nameof(CurrencySelectListModel.Id),
                                             nameof(CurrencySelectListModel.CodeWithName),
-                                            currenciesSelectList.Single(i=>i.Id == SelectedId));
+                                            currenciesSelectList.Single(i => i.Id == SelectedId));
             return selectList;
-        }
-
-        private void AddModelErrors(IDictionary<string,string> errors)
-        {
-            foreach(var error in errors)
-            {
-                ModelState.AddModelError(error.Key, error.Value);
-            }
         }
     }
 }
