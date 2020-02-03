@@ -25,12 +25,12 @@ namespace RatesParsingWeb.Storage.Repositories.Interfaces
         Task<bool> AnyAsync(Expression<Func<T, bool>> predicate);
 
         /// <summary>
-        /// Определить существуют ли элементы в последовательности заданной последовательности, удовлетворяющие выражению.
+        /// Определить существуют ли элементы в заданной последовательности, удовлетворяющие выражению.
         /// </summary>
-        /// <param name="where">Выражение для отбора коллекции.</param>
+        /// <param name="where">Выражение для отбора последовательности..</param>
         /// <param name="predicate">Выражение для проверки каждого элемента.</param>
         /// <returns></returns>
-        Task<bool> AnyWhereAsync(Expression<Func<T, bool>> where, Expression<Func<T, bool>> predicate);
+        Task<bool> WhereAnyAsync(Expression<Func<T, bool>> where, Expression<Func<T, bool>> predicate);
 
         /// <summary>
         /// Определить существют ли элементы в последовательности, удовлетворяющие выражению.

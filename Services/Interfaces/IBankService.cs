@@ -26,10 +26,17 @@ namespace RatesParsingWeb.Services.Interfaces
         Task<BankDto> GetById(int id);
 
         /// <summary>
+        /// Создать новый банк.
+        /// </summary>
+        /// <param name="createDto"></param>
+        /// <returns></returns>
+        Task<bool> CreateBankAsync(BankCreateDto createDto);
+
+        /// <summary>
         /// Обновить данные банка.
         /// </summary>
-        /// <param name="bankToUpdate"></param>
+        /// <param name="updateDto"></param>
         /// <returns></returns>
-        Task<bool> UpdateBankAsync(BankUpdateDto bankToUpdate);
+        Task<bool> UpdateBankAsync(BankUpdateDto updateDto);
     }
 }

@@ -8,6 +8,8 @@ using RatesParsingWeb.Storage.Repositories;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using RatesParsingWeb.Dto;
 using Mapster;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using RatesParsingWeb.Services.Interfaces;
 
 namespace RatesParsingWeb.Pages.Banks
 {
@@ -16,6 +18,33 @@ namespace RatesParsingWeb.Pages.Banks
     /// </summary>
     public class BaseBankPageModel : PageModel
     {
+        /// <summary>
+        /// Выпадающий список для выбора валюты.
+        /// </summary>
+        public SelectList CurrencySelectList { get; set; }
+
+        /// <summary>
+        /// Список ошибок валидации.
+        /// </summary>
+        public IValidationDictionary ValidationDictionary { get; set; }
+
+        /// <summary>
+        /// Задать данные для выпадающего списка.
+        /// </summary>
+        /// <param name="SelectedId"></param>
+        /// <param name="currency"></param>
+        /// <returns></returns>
+        protected async Task SetCurrencySelectListAsync(int? SelectedId, ICurrencyService currency)
+        {
+            var currenciesDto = (await currency.GetAllAsync()).OrderBy(i => i.TextCode);
+            var currenciesSelectList = currenciesDto.Adapt<IEnumerable<CurrencySelectListModel>>();
+
+            CurrencySelectList = new SelectList(currenciesSelectList,
+                                            nameof(CurrencySelectListModel.Id),
+                                            nameof(CurrencySelectListModel.CodeWithName),
+                                            currenciesSelectList.FirstOrDefault(i => i.Id == SelectedId));
+        }
+
         /// <summary>
         /// Преобразовать модель DTO в модель представления.
         /// </summary>

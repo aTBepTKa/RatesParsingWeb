@@ -31,15 +31,14 @@ namespace RatesParsingWeb.Pages.Banks
 
         [BindProperty]
         public BankModel BankModel { get; set; }
-        public IValidationDictionary ValidationDictionary { get; set; }
-        public SelectList CurrencySelectList => GetCurrencySelectListAsync(BankModel.CurrencyId).Result;
-
+        
         public async Task<IActionResult> OnGetAsync(int id)
         {
             BankDto bankDto = await bankService.GetById(id);
             if (bankDto == null)
                 return NotFound();
             BankModel = bankDto.Adapt<BankModel>();
+            await SetCurrencySelectListAsync(BankModel.CurrencyId, currencyService);
             return Page();
         }
 
@@ -47,6 +46,7 @@ namespace RatesParsingWeb.Pages.Banks
         {
             if (!ModelState.IsValid)
             {
+                await SetCurrencySelectListAsync(BankModel.CurrencyId, currencyService);
                 return Page();
             }
             var bankUpdateDto = BankModel.Adapt<BankUpdateDto>();
@@ -54,21 +54,12 @@ namespace RatesParsingWeb.Pages.Banks
             if (!await bankService.UpdateBankAsync(bankUpdateDto))
             {
                 ValidationDictionary = bankService.ValidationDictionary;
+                await SetCurrencySelectListAsync(BankModel.CurrencyId, currencyService);
                 return Page();
             }
             return RedirectToPage("./Index");
         }
 
-        private async Task<SelectList> GetCurrencySelectListAsync(int SelectedId)
-        {
-            var currenciesDto = (await currencyService.GetAllAsync()).OrderBy(i => i.TextCode);
-            var currenciesSelectList = currenciesDto.Adapt<IEnumerable<CurrencySelectListModel>>();
 
-            var selectList = new SelectList(currenciesSelectList,
-                                            nameof(CurrencySelectListModel.Id),
-                                            nameof(CurrencySelectListModel.CodeWithName),
-                                            currenciesSelectList.Single(i => i.Id == SelectedId));
-            return selectList;
-        }
     }
 }

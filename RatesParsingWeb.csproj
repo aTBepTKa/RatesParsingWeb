@@ -5,12 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Pages\Banks\Create.cshtml.cs" />
     <Compile Remove="Pages\Banks\Delete.cshtml.cs" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Remove="Pages\Banks\Create.cshtml" />
     <Content Remove="Pages\Banks\Delete.cshtml" />
   </ItemGroup>
 

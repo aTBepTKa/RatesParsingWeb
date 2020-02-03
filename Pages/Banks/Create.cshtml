@@ -1,36 +1,95 @@
-﻿@*@page
-@model RatesParsingWeb.CreateModel
+﻿@page
+@model RatesParsingWeb.Pages.Banks.CreateModel
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Создать";
 }
 
-<h1>Create</h1>
+<h1>Создать</h1>
 
-<h4>Bank</h4>
+<h4>Банк</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form method="post">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <h4>Реквизиты банка</h4>
+            @{
+                if (Model.ValidationDictionary != null && !Model.ValidationDictionary.IsValid)
+                {
+                    <span class="text-danger">Ошибки при обновлении данных:</span>
+                    foreach (var error in Model.ValidationDictionary.ErrorDictioanry)
+                    {
+                        <div>
+                            <span class="text-danger">@error.Key: @error.Value</span>
+                        </div>
+                    }
+                }
+            }
             <div class="form-group">
-                <label asp-for="Bank.BankName" class="control-label"></label>
-                <input asp-for="Bank.BankName" class="form-control" />
-                <span asp-validation-for="Bank.BankName" class="text-danger"></span>
+                <label asp-for="BankModel.Name" class="control-label"></label>
+                <input asp-for="BankModel.Name" class="form-control" />
+                <span asp-validation-for="BankModel.Name" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Bank.BankUrl" class="control-label"></label>
-                <input asp-for="Bank.BankUrl" class="form-control" />
-                <span asp-validation-for="Bank.BankUrl" class="text-danger"></span>
+                <label asp-for="BankModel.SwiftCode" class="control-label"></label>
+                <input asp-for="BankModel.SwiftCode" class="form-control" />
+                <span asp-validation-for="BankModel.SwiftCode" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Bank.RatesUrl" class="control-label"></label>
-                <input asp-for="Bank.RatesUrl" class="form-control" />
-                <span asp-validation-for="Bank.RatesUrl" class="text-danger"></span>
+                <label asp-for="BankModel.BankUrl" class="control-label"></label>
+                <input asp-for="BankModel.BankUrl" class="form-control" />
+                <span asp-validation-for="BankModel.BankUrl" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Bank.CurrencyID" class="control-label"></label>
-                <select asp-for="Bank.CurrencyID" class ="form-control" asp-items="ViewBag.CurrencyID"></select>
+                <label asp-for="BankModel.RatesUrl" class="control-label"></label>
+                <input asp-for="BankModel.RatesUrl" class="form-control" />
+                <span asp-validation-for="BankModel.RatesUrl" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BankModel.CurrencyId" class="control-label"></label>
+                <select asp-for="BankModel.CurrencyId" class="form-control" asp-items="@Model.CurrencySelectList"></select>
+                <span asp-validation-for="BankModel.CurrencyId" class="text-danger"></span>
+            </div>
+            <h4> Настройки парсинга банка</h4>
+            <div class="form-group">
+                <label asp-for="BankModel.ParsingSettings.TextCodeXpath" class="control-label"></label>
+                <input asp-for="BankModel.ParsingSettings.TextCodeXpath" class="form-control" />
+                <span asp-validation-for="BankModel.ParsingSettings.TextCodeXpath" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BankModel.ParsingSettings.ExchangeRateXpath" class="control-label"></label>
+                <input asp-for="BankModel.ParsingSettings.ExchangeRateXpath" class="form-control" />
+                <span asp-validation-for="BankModel.ParsingSettings.ExchangeRateXpath" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BankModel.ParsingSettings.UnitXpath" class="control-label"></label>
+                <input asp-for="BankModel.ParsingSettings.UnitXpath" class="form-control" />
+                <span asp-validation-for="BankModel.ParsingSettings.UnitXpath" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BankModel.ParsingSettings.VariablePartOfXpath" class="control-label"></label>
+                <input asp-for="BankModel.ParsingSettings.VariablePartOfXpath" class="form-control" />
+                <span asp-validation-for="BankModel.ParsingSettings.VariablePartOfXpath" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BankModel.ParsingSettings.StartXpathRow" class="control-label"></label>
+                <input asp-for="BankModel.ParsingSettings.StartXpathRow" class="form-control" />
+                <span asp-validation-for="BankModel.ParsingSettings.StartXpathRow" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BankModel.ParsingSettings.EndXpathRow" class="control-label"></label>
+                <input asp-for="BankModel.ParsingSettings.EndXpathRow" class="form-control" />
+                <span asp-validation-for="BankModel.ParsingSettings.EndXpathRow" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BankModel.ParsingSettings.NumberDecimalSeparator" class="control-label"></label>
+                <input asp-for="BankModel.ParsingSettings.NumberDecimalSeparator" class="form-control" />
+                <span asp-validation-for="BankModel.ParsingSettings.NumberDecimalSeparator" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BankModel.ParsingSettings.NumberGroupSeparator" class="control-label"></label>
+                <input asp-for="BankModel.ParsingSettings.NumberGroupSeparator" class="form-control" />
+                <span asp-validation-for="BankModel.ParsingSettings.NumberGroupSeparator" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
@@ -45,4 +104,4 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}*@
+}

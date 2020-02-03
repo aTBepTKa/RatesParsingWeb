@@ -59,7 +59,7 @@ namespace RatesParsingWeb.Storage.Repositories
         public virtual bool Any(Expression<Func<T, bool>> predicate) =>
             dbSet.Any(predicate);
 
-        public Task<bool> AnyWhereAsync(Expression<Func<T, bool>> where, Expression<Func<T, bool>> predicate) =>
+        public Task<bool> WhereAnyAsync(Expression<Func<T, bool>> where, Expression<Func<T, bool>> predicate) =>
             dbSet.Where(where).AnyAsync(predicate);
 
         public virtual Task<int> CountAsync(Expression<Func<T, bool>> predicate = null) =>
