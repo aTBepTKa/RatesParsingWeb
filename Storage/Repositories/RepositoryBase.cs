@@ -53,8 +53,11 @@ namespace RatesParsingWeb.Storage.Repositories
             await dbSet.GetIncludes(includes).ToArrayAsync();
 
 
-        public virtual Task<bool> AnyAsync(Expression<Func<T, bool>> where) =>
-            dbSet.AnyAsync(where);
+        public virtual async Task<bool> AnyAsync(Expression<Func<T, bool>> where) =>
+            await dbSet.AnyAsync(where);
+
+        public virtual bool Any(Expression<Func<T, bool>> where) =>
+            dbSet.Any(where);
 
         public virtual Task<int> CountAsync(Expression<Func<T, bool>> where = null) =>
              dbSet.CountAsync(where);

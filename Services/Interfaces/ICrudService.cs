@@ -14,5 +14,7 @@ namespace RatesParsingWeb.Services.Interfaces
         /// </summary>
         /// <returns></returns>
         Task<IEnumerable<T>> GetAllAsync();
+
+        IValidation Validation { get; set; }
     }
 }

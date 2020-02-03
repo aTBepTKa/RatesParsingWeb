@@ -44,9 +44,6 @@ namespace RatesParsingWeb.Services
             if (!await IsUpdatable(updateDto, modelState))
                 return false;
 
-            // Присвоить целочисленной переменной i единицу.
-            int i = 1;
-
             Bank bankToUpdate = await bankRepository.GetSingleAsync(
                 i => i.Id == updateDto.Id,
                 i => i.ParsingSettings);
@@ -59,59 +56,65 @@ namespace RatesParsingWeb.Services
             await bankRepository.SaveChangesAsync();
             return true;
         }
-        
-        private async Task<bool> IsUpdatable(BankUpdateDto bankDto, ModelStateDictionary modelState) =>
-            IsValid(bankDto, modelState) && (await IsUniqueForUpdate(bankDto, modelState));
 
-        private async Task<bool> IsCreatable(BankUpdateDto bankDto, ModelStateDictionary modelState) =>
-            IsValid(bankDto, modelState) && (await IsUniqueForCreate(bankDto, modelState));
+        private async Task<bool> IsUpdatable(BankUpdateDto updateDto, ModelStateDictionary modelState) =>
+            IsValid(updateDto, modelState) && (await IsUniqueForUpdate(updateDto, modelState));
 
-        private bool IsValid(BankUpdateDto bankDto, ModelStateDictionary modelState)
+        private async Task<bool> IsCreatable(BankCreateDto createDto, ModelStateDictionary modelState) =>
+            IsValid(createDto, modelState) && (await IsUniqueForCreate(createDto, modelState));
+
+        private bool IsValid(IUpdateCreateFields bank, ModelStateDictionary modelState)
         {
             // Проверить SwiftCode.
-            if (string.IsNullOrEmpty(bankDto.SwiftCode))
+            if (string.IsNullOrEmpty(bank.SwiftCode))
                 modelState.AddModelError("SwiftRequired", "SWIFT код обязателен.");
-            if (bankDto.SwiftCode.Length != 11)
+            if (string.IsNullOrEmpty(bank.SwiftCode) && bank.SwiftCode.Length != 11)
                 modelState.AddModelError("SwiftLength", "Длина SWIFT кода составляет 11 символов.");
 
             // Проверить Name.
-            if (string.IsNullOrEmpty(bankDto.Name))
+            if (string.IsNullOrEmpty(bank.Name))
                 modelState.AddModelError("NameRequired", "Название банка обязательно.");
-            if (bankDto.Name.Length > 50)
+            if (bank.Name.Length > 50)
                 modelState.AddModelError("NameLength", "Максимальная длина названия банка не более 50 символов.");
 
             // Проверить BankUrl.
-            if (!Uri.TryCreate(bankDto.BankUrl, UriKind.Absolute, out _))
+            if (!Uri.TryCreate(bank.BankUrl, UriKind.Absolute, out _))
                 modelState.AddModelError("BankUrl", "Ссылка страницы банка некорректна.");
 
             // Проверить RatesUrl.
-            if (string.IsNullOrEmpty(bankDto.Name))
+            if (string.IsNullOrEmpty(bank.Name))
                 modelState.AddModelError("NameRequired", "Страница курсов обязательна.");
-            if (!Uri.TryCreate(bankDto.RatesUrl, UriKind.Absolute, out _))
+            if (!Uri.TryCreate(bank.RatesUrl, UriKind.Absolute, out _))
                 modelState.AddModelError("RatesUrl", "Ссылка страницы курсов банка некорректна.");
             return modelState.IsValid;
         }
-        
-        private async Task<bool> IsUniqueForUpdate(BankUpdateDto bankDto, ModelStateDictionary modelState)
+
+        private async Task<bool> IsUniqueForUpdate(BankUpdateDto updateDto, ModelStateDictionary modelState)
         {
-            var banksWithoutCurrent = await bankRepository.GetManyAsync(i => i.Id != bankDto.Id);
-            UniqueCheck(bankDto, modelState, banksWithoutCurrent);
+            await UniqueCheck(updateDto, i => i.Id != updateDto.Id, modelState);
             return modelState.IsValid;
         }
 
-        private async Task<bool> IsUniqueForCreate(BankUpdateDto bankDto, ModelStateDictionary modelState)
+        private async Task<bool> IsUniqueForCreate(BankCreateDto createDto, ModelStateDictionary modelState)
         {
-            var banks = await bankRepository.GetAllAsync();
-            UniqueCheck(bankDto, modelState, banks);
+            await UniqueCheck(createDto, null, modelState);
             return modelState.IsValid;
         }
 
-        private void UniqueCheck(BankUpdateDto bankDto, ModelStateDictionary modelState, IEnumerable<Bank> banks)
+        private async Task UniqueCheck(IUpdateCreateFields fields, Expression<Func<Bank, bool>> where, ModelStateDictionary modelState)
         {
-            if (banks.Any(i => i.Name == bankDto.Name))
-                modelState.AddModelError("Name", $"Банк с именем '{bankDto.Name}' уже существует.");
-            if (banks.Any(i => i.SwiftCode == bankDto.SwiftCode))
-                modelState.AddModelError("Name", $"Банк со SWIFT кодом '{bankDto.SwiftCode}' уже существует.");
+            // Объединить два выражения Func: 
+            Expression<Func<Bank, bool>> exprName = i => i.Name == fields.Name;
+            var nameBody = Expression.AndAlso(where.Body, exprName.Body);
+            var nameLambda = Expression.Lambda<Func<Bank, bool>>(nameBody, where.Parameters[0]);
+            if (await bankRepository.AnyAsync(nameLambda))
+                modelState.AddModelError("Name", $"Банк с именем '{fields.Name}' уже существует.");
+
+            Expression<Func<Bank, bool>> exprSwift = i => i.SwiftCode == fields.SwiftCode;
+            var swiftBody = Expression.AndAlso(where.Body, exprSwift.Body);
+            var swiftLambda = Expression.Lambda<Func<Bank, bool>>(swiftBody, where.Parameters[0]);
+            if (await bankRepository.AnyAsync(swiftLambda))
+                modelState.AddModelError("Name", $"Банк со SWIFT кодом '{fields.SwiftCode}' уже существует.");
         }
     }
 }

@@ -19,9 +19,14 @@ namespace RatesParsingWeb.Storage.Repositories.Interfaces
         Task AddRangeAsync(T[] entity);
 
         /// <summary>
-        /// Определить существют ли элементы в последовательности, удовлетворяющие выражению.
+        /// Определить асинхронно существют ли элементы в последовательности, удовлетворяющие выражению.
         /// </summary>
         Task<bool> AnyAsync(Expression<Func<T, bool>> where);
+
+        /// <summary>
+        /// Определить существют ли элементы в последовательности, удовлетворяющие выражению.
+        /// </summary>
+        bool Any(Expression<Func<T, bool>> where);
 
         /// <summary>
         /// Возвращает количество элементов в последовательности.

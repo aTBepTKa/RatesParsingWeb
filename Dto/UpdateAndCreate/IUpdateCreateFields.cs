@@ -5,37 +5,28 @@ using System.Threading.Tasks;
 
 namespace RatesParsingWeb.Dto.UpdateAndCreate
 {
-    public class BankUpdateDto : IUpdateCreateFields
+    interface IUpdateCreateFields
     {
-        public int Id { get; set; }
-        /// <summary>
-        /// SWIFT код банка.
-        /// </summary>
-        public string SwiftCode { get; set; }
+        string SwiftCode { get; set; }
 
         /// <summary>
         /// Название банка.
         /// </summary>
-        public string Name { get; set; }
+        string Name { get; set; }
 
         /// <summary>
         /// Ссылка на главную страницу банка.
         /// </summary>
-        public string BankUrl { get; set; }
+        string BankUrl { get; set; }
 
         /// <summary>
         /// Ссылка на страницу, содержащую обменные курсы валют.
         /// </summary>
-        public string RatesUrl { get; set; }
+        string RatesUrl { get; set; }
 
         /// <summary>
         /// Основная валюта банка.
         /// </summary>
-        public int CurrencyId { get; set; }
-
-        /// <summary>
-        /// Настройки парсинга банка.
-        /// </summary>
-        public ParsingSettingsDto ParsingSettings { get; set; }
+        int CurrencyId { get; set; }
     }
 }

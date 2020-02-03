@@ -1,17 +1,15 @@
 ﻿using System;
+using Mapster;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using RatesParsingWeb.Domain;
 using RatesParsingWeb.Models;
-using RatesParsingWeb.Storage.Repositories.Interfaces;
 using RatesParsingWeb.Services.Interfaces;
-using Mapster;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
 using RatesParsingWeb.Dto;
 using RatesParsingWeb.Dto.UpdateAndCreate;
 
