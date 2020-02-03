@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace RatesParsingWeb.Services
 {
-    public class Validator : IValidation
+    public class ValidationDictionary : IValidationDictionary
     {
-        public Validator()
+        public ValidationDictionary()
         {
             ErrorDictioanry = new Dictionary<string, string>();
         }

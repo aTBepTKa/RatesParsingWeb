@@ -15,6 +15,9 @@ namespace RatesParsingWeb.Services.Interfaces
         /// <returns></returns>
         Task<IEnumerable<T>> GetAllAsync();
 
-        IValidation Validation { get; set; }
+        /// <summary>
+        /// Содержит данные о валидации данных.
+        /// </summary>
+        IValidationDictionary ModelState { get; }
     }
 }

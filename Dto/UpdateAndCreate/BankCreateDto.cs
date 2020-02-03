@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace RatesParsingWeb.Dto.UpdateAndCreate
 {
-    public class BankCreateDto : IUpdateCreateFields
+    public class BankCreateDto : IBankRequisites
     {
         public int Id { get; set; }
         public string SwiftCode { get; set; }

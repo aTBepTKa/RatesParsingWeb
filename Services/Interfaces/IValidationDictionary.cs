@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace RatesParsingWeb.Services.Interfaces
 {
-    public interface IValidation
+    public interface IValidationDictionary
     {
         IDictionary<string, string> ErrorDictioanry { get; }
 

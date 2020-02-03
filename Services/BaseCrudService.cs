@@ -21,9 +21,12 @@ namespace RatesParsingWeb.Services
         protected BaseCrudService(IRepository<RepositoryType> baseRepository)
         {
             BaseRepository = baseRepository;
+            ModelState = new ValidationDictionary();
         }
 
-        protected IRepository<RepositoryType> BaseRepository { get; set; }
+        public IValidationDictionary ModelState { get; }
+
+        protected IRepository<RepositoryType> BaseRepository { get; }
 
         public virtual async Task<IEnumerable<DtoType>> GetAllAsync() =>
             (await BaseRepository.GetAllAsync()).Adapt<IEnumerable<DtoType>>();        

@@ -32,7 +32,7 @@ namespace RatesParsingWeb.Pages.Banks
         [BindProperty]
         public BankModel BankModel { get; set; }
 
-        public SelectList CurrencySelectList { get; set; }
+        public SelectList CurrencySelectList => GetCurrencySelectListAsync(BankModel.CurrencyId).Result;
 
         public async Task<IActionResult> OnGetAsync(int id)
         {
@@ -40,8 +40,6 @@ namespace RatesParsingWeb.Pages.Banks
             if (bankDto == null)
                 return NotFound();
             BankModel = bankDto.Adapt<BankModel>();
-
-            CurrencySelectList = await GetCurrencySelectListAsync(BankModel.CurrencyId);
             return Page();            
         }
 
@@ -52,10 +50,10 @@ namespace RatesParsingWeb.Pages.Banks
                 return Page();
             }
             var bankUpdateDto = BankModel.Adapt<BankUpdateDto>();
+            
             if (!await bankService.UpdateBankAsync(bankUpdateDto))
             {
-                // Слетает почему-то.
-                CurrencySelectList = await GetCurrencySelectListAsync(bankUpdateDto.CurrencyId);
+                AddModelErrors(bankService.ModelState.ErrorDictioanry);
                 return Page();
             }
             return RedirectToPage("./Index");
@@ -71,6 +69,14 @@ namespace RatesParsingWeb.Pages.Banks
                                             nameof(CurrencySelectListModel.CodeWithName),
                                             currenciesSelectList.Single(i=>i.Id == SelectedId));
             return selectList;
+        }
+
+        private void AddModelErrors(IDictionary<string,string> errors)
+        {
+            foreach(var error in errors)
+            {
+                ModelState.AddModelError(error.Key, error.Value);
+            }
         }
     }
 }

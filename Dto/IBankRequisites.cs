@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace RatesParsingWeb.Dto.UpdateAndCreate
+namespace RatesParsingWeb.Dto
 {
-    interface IUpdateCreateFields
+    /// <summary>
+    /// Содержит основные реквизиты банка.
+    /// </summary>
+    interface IBankRequisites
     {
         string SwiftCode { get; set; }
 

@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
+using RatesParsingWeb.Extentions;
 
 namespace RatesParsingWeb.Services
 {
@@ -38,18 +39,14 @@ namespace RatesParsingWeb.Services
 
         public async Task<bool> UpdateBankAsync(BankUpdateDto updateDto)
         {
-            // TODO: Выпихнуть результат проверки на верхний слой
-            // для отображения на странице ошибок валидации и проверки на уникальность.
-            ModelStateDictionary modelState = new ModelStateDictionary();
-            if (!await IsUpdatable(updateDto, modelState))
+            ValidationCheck(updateDto);
+            await UniqueCheck(updateDto, i => i.Id != updateDto.Id);
+            if (!ModelState.IsValid)
                 return false;
 
             Bank bankToUpdate = await bankRepository.GetSingleAsync(
                 i => i.Id == updateDto.Id,
                 i => i.ParsingSettings);
-
-            if (bankToUpdate == null)
-                throw new Exception($"Банк с Id '{updateDto.Id}' не найден.");
 
             updateDto.Adapt(bankToUpdate);
             bankRepository.SetStateModifed(bankToUpdate);
@@ -57,64 +54,41 @@ namespace RatesParsingWeb.Services
             return true;
         }
 
-        private async Task<bool> IsUpdatable(BankUpdateDto updateDto, ModelStateDictionary modelState) =>
-            IsValid(updateDto, modelState) && (await IsUniqueForUpdate(updateDto, modelState));
-
-        private async Task<bool> IsCreatable(BankCreateDto createDto, ModelStateDictionary modelState) =>
-            IsValid(createDto, modelState) && (await IsUniqueForCreate(createDto, modelState));
-
-        private bool IsValid(IUpdateCreateFields bank, ModelStateDictionary modelState)
+        private void ValidationCheck(IBankRequisites bank)
         {
             // Проверить SwiftCode.
             if (string.IsNullOrEmpty(bank.SwiftCode))
-                modelState.AddModelError("SwiftRequired", "SWIFT код обязателен.");
-            if (string.IsNullOrEmpty(bank.SwiftCode) && bank.SwiftCode.Length != 11)
-                modelState.AddModelError("SwiftLength", "Длина SWIFT кода составляет 11 символов.");
+                ModelState.AddError("SwiftRequired", "SWIFT код обязателен.");
+            else if (bank.SwiftCode.Length != 11)
+                ModelState.AddError("SwiftLength", "Длина SWIFT кода составляет 11 символов.");
 
             // Проверить Name.
             if (string.IsNullOrEmpty(bank.Name))
-                modelState.AddModelError("NameRequired", "Название банка обязательно.");
-            if (bank.Name.Length > 50)
-                modelState.AddModelError("NameLength", "Максимальная длина названия банка не более 50 символов.");
+                ModelState.AddError("NameRequired", "Название банка обязательно.");
+            else if (bank.Name.Length > 50)
+                ModelState.AddError("NameLength", "Максимальная длина названия банка не более 50 символов.");
 
             // Проверить BankUrl.
             if (!Uri.TryCreate(bank.BankUrl, UriKind.Absolute, out _))
-                modelState.AddModelError("BankUrl", "Ссылка страницы банка некорректна.");
+                ModelState.AddError("BankUrl", "Ссылка страницы банка некорректна.");
 
             // Проверить RatesUrl.
-            if (string.IsNullOrEmpty(bank.Name))
-                modelState.AddModelError("NameRequired", "Страница курсов обязательна.");
-            if (!Uri.TryCreate(bank.RatesUrl, UriKind.Absolute, out _))
-                modelState.AddModelError("RatesUrl", "Ссылка страницы курсов банка некорректна.");
-            return modelState.IsValid;
+            if (string.IsNullOrEmpty(bank.RatesUrl))
+                ModelState.AddError("NameRequired", "Страница курсов обязательна.");
+            else if (!Uri.TryCreate(bank.RatesUrl, UriKind.Absolute, out _))
+                ModelState.AddError("RatesUrl", "Ссылка страницы курсов банка некорректна.");
         }
 
-        private async Task<bool> IsUniqueForUpdate(BankUpdateDto updateDto, ModelStateDictionary modelState)
-        {
-            await UniqueCheck(updateDto, i => i.Id != updateDto.Id, modelState);
-            return modelState.IsValid;
-        }
+        private async Task UniqueCheck(IBankRequisites bank, Expression<Func<Bank, bool>> where)
+        {            
+            // Объединить выражение where с выражением отбора по имени.
+            var nameExpession = where.CombineWith(i => i.Name == bank.Name);
+            if (await bankRepository.AnyAsync(nameExpession))
+                ModelState.AddError("Name", $"Банк с именем '{bank.Name}' уже существует.");
 
-        private async Task<bool> IsUniqueForCreate(BankCreateDto createDto, ModelStateDictionary modelState)
-        {
-            await UniqueCheck(createDto, null, modelState);
-            return modelState.IsValid;
-        }
-
-        private async Task UniqueCheck(IUpdateCreateFields fields, Expression<Func<Bank, bool>> where, ModelStateDictionary modelState)
-        {
-            // Объединить два выражения Func: 
-            Expression<Func<Bank, bool>> exprName = i => i.Name == fields.Name;
-            var nameBody = Expression.AndAlso(where.Body, exprName.Body);
-            var nameLambda = Expression.Lambda<Func<Bank, bool>>(nameBody, where.Parameters[0]);
-            if (await bankRepository.AnyAsync(nameLambda))
-                modelState.AddModelError("Name", $"Банк с именем '{fields.Name}' уже существует.");
-
-            Expression<Func<Bank, bool>> exprSwift = i => i.SwiftCode == fields.SwiftCode;
-            var swiftBody = Expression.AndAlso(where.Body, exprSwift.Body);
-            var swiftLambda = Expression.Lambda<Func<Bank, bool>>(swiftBody, where.Parameters[0]);
-            if (await bankRepository.AnyAsync(swiftLambda))
-                modelState.AddModelError("Name", $"Банк со SWIFT кодом '{fields.SwiftCode}' уже существует.");
+            var swiftExpression = where.CombineWith(i => i.SwiftCode == bank.SwiftCode);
+            if (await bankRepository.AnyAsync(swiftExpression))
+                ModelState.AddError("Name", $"Банк со SWIFT кодом '{bank.SwiftCode}' уже существует.");
         }
     }
 }
