@@ -13,7 +13,7 @@
 @{
     if (Model.ValidationErrorList != null)
     {
-        <ul class="text-danger">Ошибки при обновлении данных:</ul>
+        <span class="text-danger">Ошибки при обновлении данных:</span>
         @Html.CreteErrorList(Model.ValidationErrorList);
     }
 }

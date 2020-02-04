@@ -67,7 +67,6 @@ namespace RatesParsingWeb.Models
         /// Символ разделения групп разрядов числа.
         /// </summary>
         [DisplayName("Разделитель групп разрядов")]
-        [Required(ErrorMessage = "Поле является обязательным")]
         [StringLength(1, MinimumLength = 1, ErrorMessage = "Разделитель представляется одиночным символом")]
         public string NumberGroupSeparator { get; set; }
     }

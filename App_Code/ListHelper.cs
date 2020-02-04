@@ -21,13 +21,12 @@ namespace RatesParsingWeb.App_Code
         /// <returns></returns>
         public static HtmlString CreteErrorList(this IHtmlHelper _, IEnumerable<string> items)
         {
-            var listAttribute = new KeyValuePair<string, string>("class", "list - group - item - danger");
+            var listAttribute = new KeyValuePair<string, string>("class", "list-group-item-danger");
             TagBuilder ul = new TagBuilder("ul");
             foreach (var item in items)
             {
                 TagBuilder li = new TagBuilder("li");
                 li.InnerHtml.Append(item);
-                li.Attributes.Add(listAttribute);
                 ul.InnerHtml.AppendHtml(li);
             }
             ul.Attributes.Add(listAttribute);

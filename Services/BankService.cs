@@ -76,46 +76,89 @@ namespace RatesParsingWeb.Services
         private void CheckForValidity(IBankRequisites bank)
         {
             // Проверить основные свойства банка.
+
             // SwiftCode.
             if (string.IsNullOrEmpty(bank.SwiftCode))
-                ValidationDictionary.AddError("SwiftRequired", "SWIFT код обязателен.");
+                ValidationDictionary.AddError(nameof(bank.SwiftCode), "SWIFT код обязателен.");
             else if (bank.SwiftCode.Length != 11)
-                ValidationDictionary.AddError("SwiftLength", "Длина SWIFT кода составляет 11 символов.");
+                ValidationDictionary.AddError(nameof(bank.SwiftCode), "Длина SWIFT кода составляет 11 символов.");
 
             // Name.
             if (string.IsNullOrEmpty(bank.Name))
-                ValidationDictionary.AddError("NameRequired", "Название банка обязательно.");
+                ValidationDictionary.AddError(nameof(bank.Name), "Название банка обязательно.");
             else if (bank.Name.Length > 50)
-                ValidationDictionary.AddError("NameLength", "Максимальная длина названия банка не более 50 символов.");
+                ValidationDictionary.AddError(nameof(bank.Name), "Максимальная длина названия банка не более 50 символов.");
 
             // BankUrl.
-            if (!Uri.TryCreate(bank.BankUrl, UriKind.Absolute, out _))
-                ValidationDictionary.AddError("BankUrl", "Ссылка страницы банка некорректна.");
+            if (!string.IsNullOrEmpty(bank.BankUrl) && !Uri.TryCreate(bank.BankUrl, UriKind.Absolute, out _))
+                ValidationDictionary.AddError(nameof(bank.BankUrl), "Ссылка на страницу банка некорректна.");
 
             // RatesUrl.
             if (string.IsNullOrEmpty(bank.RatesUrl))
-                ValidationDictionary.AddError("NameRequired", "Страница курсов обязательна.");
+                ValidationDictionary.AddError(nameof(bank.RatesUrl), "Страница курсов обязательна.");
             else if (!Uri.TryCreate(bank.RatesUrl, UriKind.Absolute, out _))
-                ValidationDictionary.AddError("RatesUrl", "Ссылка страницы курсов банка некорректна.");
+                ValidationDictionary.AddError(nameof(bank.RatesUrl), "Ссылка на страницу курсов банка некорректна.");
 
 
             // Проверить настройки парсинга.
 
+            // TextCodeXPath.
+            if (string.IsNullOrEmpty(bank.ParsingSettings.TextCodeXpath))
+                ValidationDictionary.AddError(nameof(bank.ParsingSettings.TextCodeXpath), "XPath для текстового кода обязателен.");
+            else if (bank.ParsingSettings.TextCodeXpath.Length > 2000)
+                ValidationDictionary.AddError(nameof(bank.ParsingSettings.TextCodeXpath), "Максимальная длина XPath для текстового кода составляет 2000 символов.");
+
+            // UnitXPath.
+            if (string.IsNullOrEmpty(bank.ParsingSettings.UnitXpath))
+                ValidationDictionary.AddError(nameof(bank.ParsingSettings.UnitXpath), "XPath для единицы измерения обязателен.");
+            else if (bank.ParsingSettings.UnitXpath.Length > 2000)
+                ValidationDictionary.AddError(nameof(bank.ParsingSettings.UnitXpath), "Максимальная длина XPath для единицы измерения составляет 2000 символов.");
+
+            // ExchangeRateXpath.
+            if (string.IsNullOrEmpty(bank.ParsingSettings.ExchangeRateXpath))
+                ValidationDictionary.AddError(nameof(bank.ParsingSettings.ExchangeRateXpath), "XPath для обменного курса обязателен.");
+            else if (bank.ParsingSettings.ExchangeRateXpath.Length > 2000)
+                ValidationDictionary.AddError(nameof(bank.ParsingSettings.ExchangeRateXpath), "Максимальная длина XPath для обменного курса составляет 2000 символов.");
+
+            // ExchangeRateXpath.
+            if (string.IsNullOrEmpty(bank.ParsingSettings.VariablePartOfXpath))
+                ValidationDictionary.AddError(nameof(bank.ParsingSettings.VariablePartOfXpath), "Изменяемая часть XPath обязателена.");
+            else if (bank.ParsingSettings.VariablePartOfXpath.Length > 50)
+                ValidationDictionary.AddError(nameof(bank.ParsingSettings.VariablePartOfXpath), "Максимальная длина изменяемой части XPath составляет 50 символов.");
+
+            // StartXpathRow.
+            if (bank.ParsingSettings.StartXpathRow < 1)
+                ValidationDictionary.AddError(nameof(bank.ParsingSettings.VariablePartOfXpath), "Номер первой строки для парсинга должен быть не менее единицы.");
+
+            // EndXpathRow.
+            if (bank.ParsingSettings.EndXpathRow < bank.ParsingSettings.StartXpathRow)
+                ValidationDictionary.AddError(nameof(bank.ParsingSettings.VariablePartOfXpath), "Номер последней строки для парсинга должен быть больше номера первой строки.");
+
+            // NumberDecimalSeparator.
+            if (string.IsNullOrEmpty(bank.ParsingSettings.NumberDecimalSeparator))
+                ValidationDictionary.AddError(nameof(bank.ParsingSettings.NumberDecimalSeparator), "Разделитель десятичной части обязателен.");
+            else if (bank.ParsingSettings.NumberDecimalSeparator.Length != 1)
+                ValidationDictionary.AddError(nameof(bank.ParsingSettings.NumberDecimalSeparator), "Разделитель десятичной части должен быть представлен одним символом.");
+
+            // NumberGroupSeparator.
+            if (!string.IsNullOrEmpty(bank.ParsingSettings.NumberGroupSeparator) &&
+                bank.ParsingSettings.NumberGroupSeparator.Length != 1)
+                ValidationDictionary.AddError(nameof(bank.ParsingSettings.NumberGroupSeparator), "Разделитель десятичной части должен быть представлен одним символом.");
         }
 
         private async Task CheckUpdateForUniqueness(BankUpdateDto bankUpdate)
-        {            
-            Expression<Func<Bank, bool>> nameExpession = i => 
+        {
+            Expression<Func<Bank, bool>> nameExpession = i =>
                 i.Id != bankUpdate.Id &&
                 i.Name == bankUpdate.Name;
             if (await bankRepository.AnyAsync(nameExpession))
-                ValidationDictionary.AddError("Name", $"Банк с именем '{bankUpdate.Name}' уже существует.");
+                ValidationDictionary.AddError(nameof(bankUpdate.Name), $"Банк с именем '{bankUpdate.Name}' уже существует.");
 
             Expression<Func<Bank, bool>> swiftExpression = i =>
                 i.Id != bankUpdate.Id &&
                 i.SwiftCode == bankUpdate.SwiftCode;
             if (await bankRepository.AnyAsync(swiftExpression))
-                ValidationDictionary.AddError("Name", $"Банк со SWIFT кодом '{bankUpdate.SwiftCode}' уже существует.");
+                ValidationDictionary.AddError(nameof(bankUpdate.SwiftCode), $"Банк со SWIFT кодом '{bankUpdate.SwiftCode}' уже существует.");
         }
 
         private async Task CheckCreateForUniqueness(BankCreateDto bankCreate)
@@ -123,12 +166,12 @@ namespace RatesParsingWeb.Services
             Expression<Func<Bank, bool>> nameExpession = i =>
                 i.Name == bankCreate.Name;
             if (await bankRepository.AnyAsync(nameExpession))
-                ValidationDictionary.AddError("Name", $"Банк с именем '{bankCreate.Name}' уже существует.");
+                ValidationDictionary.AddError(nameof(bankCreate.Name), $"Банк с именем '{bankCreate.Name}' уже существует.");
 
             Expression<Func<Bank, bool>> swiftExpression = i =>
                 i.SwiftCode == bankCreate.SwiftCode;
             if (await bankRepository.AnyAsync(swiftExpression))
-                ValidationDictionary.AddError("Name", $"Банк со SWIFT кодом '{bankCreate.SwiftCode}' уже существует.");
+                ValidationDictionary.AddError(nameof(bankCreate.SwiftCode), $"Банк со SWIFT кодом '{bankCreate.SwiftCode}' уже существует.");
         }
     }
 }

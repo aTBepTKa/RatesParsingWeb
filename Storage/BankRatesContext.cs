@@ -46,6 +46,11 @@ namespace RatesParsingWeb.Storage
             modelBuilder.Entity<Script>().HasIndex(i => i.Name).IsUnique();
 
             // Установить свойства для ParsingSettings.
+            modelBuilder.Entity<ParsingSettings>().Property(i => i.TextCodeXpath).IsRequired();
+            modelBuilder.Entity<ParsingSettings>().Property(i => i.UnitXpath).IsRequired();
+            modelBuilder.Entity<ParsingSettings>().Property(i => i.ExchangeRateXpath).IsRequired();
+            modelBuilder.Entity<ParsingSettings>().Property(i => i.VariablePartOfXpath).IsRequired();
+            modelBuilder.Entity<ParsingSettings>().Property(i => i.NumberDecimalSeparator).IsRequired();            
             modelBuilder.Entity<ParsingSettings>().Property(i => i.TextCodeXpath).HasMaxLength(2000);
             modelBuilder.Entity<ParsingSettings>().Property(i => i.UnitXpath).HasMaxLength(2000);
             modelBuilder.Entity<ParsingSettings>().Property(i => i.ExchangeRateXpath).HasMaxLength(2000);
