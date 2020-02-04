@@ -89,7 +89,7 @@ namespace RatesParsingWeb.Services
                 ValidationDictionary.AddError("NameLength", "Максимальная длина названия банка не более 50 символов.");
 
             // BankUrl.
-            if (!Uri.TryCreate(bank.BankUrl, UriKind.Absolute, out _))
+            if (!string.IsNullOrEmpty(bank.BankUrl) && !Uri.TryCreate(bank.BankUrl, UriKind.Absolute, out _))
                 ValidationDictionary.AddError("BankUrl", "Ссылка страницы банка некорректна.");
 
             // RatesUrl.
