@@ -11,6 +11,7 @@ using RatesParsingWeb.Models;
 using RatesParsingWeb.Services.Interfaces;
 using RatesParsingWeb.Storage;
 using RatesParsingWeb.Dto.UpdateAndCreate;
+using RatesParsingWeb.App_Code;
 
 namespace RatesParsingWeb.Pages.Banks
 {
@@ -45,7 +46,7 @@ namespace RatesParsingWeb.Pages.Banks
             if (!await bankService.CreateBankAsync(bankCreateDto))
             {
                 await SetCurrencySelectListAsync(null, currencyService);
-                ValidationDictionary = bankService.ValidationDictionary;
+                ValidationErrorList = bankService.ValidationDictionary.GetErrorListWithoutKeys();
                 return Page();
             }
 

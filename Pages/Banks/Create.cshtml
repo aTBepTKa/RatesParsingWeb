@@ -1,5 +1,6 @@
 ﻿@page
 @model RatesParsingWeb.Pages.Banks.CreateModel
+@using RatesParsingWeb.App_Code;
 
 @{
     ViewData["Title"] = "Создать";
@@ -9,22 +10,17 @@
 
 <h4>Банк</h4>
 <hr />
+@{
+    if (Model.ValidationErrorList != null)
+    {
+        <ul class="text-danger">Ошибки при обновлении данных:</ul>
+        @Html.CreteErrorList(Model.ValidationErrorList);
+    }
+}
 <div class="row">
     <div class="col-md-4">
         <form method="post">
             <h4>Реквизиты банка</h4>
-            @{
-                if (Model.ValidationDictionary != null && !Model.ValidationDictionary.IsValid)
-                {
-                    <span class="text-danger">Ошибки при обновлении данных:</span>
-                    foreach (var error in Model.ValidationDictionary.ErrorDictioanry)
-                    {
-                        <div>
-                            <span class="text-danger">@error.Key: @error.Value</span>
-                        </div>
-                    }
-                }
-            }
             <div class="form-group">
                 <label asp-for="BankModel.Name" class="control-label"></label>
                 <input asp-for="BankModel.Name" class="form-control" />

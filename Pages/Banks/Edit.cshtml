@@ -1,5 +1,6 @@
 ﻿@page
 @model EditModel
+@using RatesParsingWeb.App_Code;
 
 @{
     ViewData["Title"] = "Редактировать";
@@ -9,22 +10,17 @@
 
 <h4>Банк</h4>
 <hr />
+@{
+    if (Model.ValidationErrorList != null)
+    {
+        <ul class="text-danger">Ошибки при обновлении данных:</ul>
+        @Html.CreteErrorList(Model.ValidationErrorList);
+    }
+}
 <div class="row">
     <div class="col-md-4">
         <form method="post">
             <h4>Реквизиты банка</h4>
-            @{ 
-                if (Model.ValidationDictionary != null && !Model.ValidationDictionary.IsValid)
-                {
-                    <span class="text-danger">Ошибки при обновлении данных:</span>
-                    foreach(var error in Model.ValidationDictionary.ErrorDictioanry)
-                    {
-                        <div>
-                            <span class="text-danger">@error.Key: @error.Value</span>
-                        </div>
-                    }
-                }
-            }
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="BankModel.Id" />
             <div class="form-group">
@@ -105,5 +101,5 @@
 </div>
 
 @section Scripts {
-    {await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }

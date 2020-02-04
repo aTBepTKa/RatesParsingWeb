@@ -26,7 +26,7 @@ namespace RatesParsingWeb.Pages.Banks
         /// <summary>
         /// Список ошибок валидации.
         /// </summary>
-        public IValidationDictionary ValidationDictionary { get; set; }
+        public IEnumerable<string> ValidationErrorList { get; set; }
 
         /// <summary>
         /// Задать данные для выпадающего списка.
