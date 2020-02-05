@@ -30,13 +30,20 @@ namespace RatesParsingWeb.Services.Interfaces
         /// </summary>
         /// <param name="createDto"></param>
         /// <returns></returns>
-        Task<bool> CreateBankAsync(BankCreateDto createDto);
+        Task<bool> CreateAsync(BankCreateDto createDto);
 
         /// <summary>
         /// Обновить данные банка.
         /// </summary>
         /// <param name="updateDto"></param>
         /// <returns></returns>
-        Task<bool> UpdateBankAsync(BankUpdateDto updateDto);
+        Task<bool> UpdateAsync(BankUpdateDto updateDto);
+
+        /// <summary>
+        /// Удалить банк по Id.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        Task DeleteAsync(int id);
     }
 }

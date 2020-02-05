@@ -8,7 +8,7 @@ namespace RatesParsingWeb.Services.Interfaces
     /// <summary>
     /// Представляет словарь полей с соответствующим списком ошибок для каждого поля.
     /// </summary>
-    public interface IValidationDictionary
+    public interface IValidationService
     {
         /// <summary>
         /// Словарь ошибок.
@@ -26,13 +26,13 @@ namespace RatesParsingWeb.Services.Interfaces
         /// Получить список ошибок с ключами (именами свойств).
         /// </summary>
         /// <returns></returns>
-        IEnumerable<string> GetErrorListWithKeys();
+        IEnumerable<string> ErrorListWithKeys { get; }
 
         /// <summary>
         /// Получить список ошибок без полей (имен свойств).
         /// </summary>
         /// <returns></returns>
-        IEnumerable<string> GetErrorListWithoutKeys();
+        IEnumerable<string> ErrorListWithoutKeys { get; }
 
         /// <summary>
         /// Валидация прошла успешно.

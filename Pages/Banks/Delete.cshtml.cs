@@ -1,60 +1,46 @@
-﻿//using System;
-//using System.Collections.Generic;
-//using System.Linq;
-//using System.Threading.Tasks;
-//using Microsoft.AspNetCore.Mvc;
-//using Microsoft.AspNetCore.Mvc.RazorPages;
-//using Microsoft.EntityFrameworkCore;
-//using RatesParsingWeb.Domain;
-//using RatesParsingWeb.Storage;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Mapster;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
+using RatesParsingWeb.Domain;
+using RatesParsingWeb.Dto;
+using RatesParsingWeb.Models;
+using RatesParsingWeb.Services.Interfaces;
+using RatesParsingWeb.Storage;
 
-//namespace RatesParsingWeb
-//{
-//    public class DeleteModel : PageModel
-//    {
-//        private readonly RatesParsingWeb.Storage.BankRatesContext _context;
+namespace RatesParsingWeb.Pages.Banks
+{
+    public class DeleteModel : PageModel
+    {
+        private readonly IBankService bankService;
 
-//        public DeleteModel(RatesParsingWeb.Storage.BankRatesContext context)
-//        {
-//            _context = context;
-//        }
+        public DeleteModel(IBankService bank)
+        {
+            bankService = bank;
+        }
 
-//        [BindProperty]
-//        public Bank Bank { get; set; }
+        [BindProperty]
+        public BankModel BankModel { get; set; }
 
-//        public async Task<IActionResult> OnGetAsync(int? id)
-//        {
-//            if (id == null)
-//            {
-//                return NotFound();
-//            }
+        public async Task<IActionResult> OnGetAsync(int id)
+        {
+            BankDto bankDto = await bankService.GetById(id);
+            if (bankDto == null)
+            {
+                return NotFound();
+            }
+            BankModel = bankDto.Adapt<BankModel>();
+            return Page();
+        }
 
-//            Bank = await _context.Banks
-//                .Include(b => b.Currency).FirstOrDefaultAsync(m => m.Id == id);
-
-//            if (Bank == null)
-//            {
-//                return NotFound();
-//            }
-//            return Page();
-//        }
-
-//        public async Task<IActionResult> OnPostAsync(int? id)
-//        {
-//            if (id == null)
-//            {
-//                return NotFound();
-//            }
-
-//            Bank = await _context.Banks.FindAsync(id);
-
-//            if (Bank != null)
-//            {
-//                _context.Banks.Remove(Bank);
-//                await _context.SaveChangesAsync();
-//            }
-
-//            return RedirectToPage("./Index");
-//        }
-//    }
-//}
+        public async Task<IActionResult> OnPostAsync(int id)
+        {
+            await bankService.DeleteAsync(id);
+            return RedirectToPage("./Index");
+        }
+    }
+}

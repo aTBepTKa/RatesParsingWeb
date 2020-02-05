@@ -39,7 +39,7 @@ namespace RatesParsingWeb.Services
             return bankDomain.Adapt<BankDto>();
         }
 
-        public async Task<bool> CreateBankAsync(BankCreateDto createDto)
+        public async Task<bool> CreateAsync(BankCreateDto createDto)
         {
             // TODO: Добавить валидацию настроек парсинга.
             CheckForValidity(createDto);
@@ -53,7 +53,7 @@ namespace RatesParsingWeb.Services
             return true;
         }
 
-        public async Task<bool> UpdateBankAsync(BankUpdateDto updateDto)
+        public async Task<bool> UpdateAsync(BankUpdateDto updateDto)
         {
             CheckForValidity(updateDto);
             await CheckUpdateForUniqueness(updateDto);
@@ -71,6 +71,15 @@ namespace RatesParsingWeb.Services
             bankRepository.SetStateModifed(bankToUpdate);
             await bankRepository.SaveChangesAsync();
             return true;
+        }
+
+        public async Task DeleteAsync(int id)
+        {
+            var bankToDelete = await bankRepository.FindAsync(id);
+            if (bankToDelete == null)
+                throw new Exception($"Банк с Id '{bankToDelete.Id}' не найден.");
+            bankRepository.Remove(bankToDelete);
+            await bankRepository.SaveChangesAsync();
         }
 
         private void CheckForValidity(IBankRequisites bank)
@@ -148,29 +157,24 @@ namespace RatesParsingWeb.Services
 
         private async Task CheckUpdateForUniqueness(BankUpdateDto bankUpdate)
         {
-            Expression<Func<Bank, bool>> nameExpession = i =>
-                i.Id != bankUpdate.Id &&
-                i.Name == bankUpdate.Name;
-            if (await bankRepository.AnyAsync(nameExpession))
+            if (await bankRepository.AnyAsync(i => i.Id != bankUpdate.Id && i.Name == bankUpdate.Name))
+            {
                 ValidationDictionary.AddError(nameof(bankUpdate.Name), $"Банк с именем '{bankUpdate.Name}' уже существует.");
+            }
 
-            Expression<Func<Bank, bool>> swiftExpression = i =>
-                i.Id != bankUpdate.Id &&
-                i.SwiftCode == bankUpdate.SwiftCode;
-            if (await bankRepository.AnyAsync(swiftExpression))
+
+            if (await bankRepository.AnyAsync(i => i.Id != bankUpdate.Id && i.SwiftCode == bankUpdate.SwiftCode))
+            {
                 ValidationDictionary.AddError(nameof(bankUpdate.SwiftCode), $"Банк со SWIFT кодом '{bankUpdate.SwiftCode}' уже существует.");
+            }
         }
 
         private async Task CheckCreateForUniqueness(BankCreateDto bankCreate)
         {
-            Expression<Func<Bank, bool>> nameExpession = i =>
-                i.Name == bankCreate.Name;
-            if (await bankRepository.AnyAsync(nameExpession))
+            if (await bankRepository.AnyAsync(i => i.Name == bankCreate.Name))
                 ValidationDictionary.AddError(nameof(bankCreate.Name), $"Банк с именем '{bankCreate.Name}' уже существует.");
 
-            Expression<Func<Bank, bool>> swiftExpression = i =>
-                i.SwiftCode == bankCreate.SwiftCode;
-            if (await bankRepository.AnyAsync(swiftExpression))
+            if (await bankRepository.AnyAsync(i => i.SwiftCode == bankCreate.SwiftCode))
                 ValidationDictionary.AddError(nameof(bankCreate.SwiftCode), $"Банк со SWIFT кодом '{bankCreate.SwiftCode}' уже существует.");
         }
     }

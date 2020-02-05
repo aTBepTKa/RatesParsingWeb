@@ -43,10 +43,10 @@ namespace RatesParsingWeb.Pages.Banks
                 return Page();
             }
             var bankCreateDto = BankModel.Adapt<BankCreateDto>();
-            if (!await bankService.CreateBankAsync(bankCreateDto))
+            if (!await bankService.CreateAsync(bankCreateDto))
             {
                 await SetCurrencySelectListAsync(null, currencyService);
-                ValidationErrorList = bankService.ValidationDictionary.GetErrorListWithoutKeys();
+                ValidationErrorList = bankService.ValidationDictionary.ErrorListWithoutKeys;
                 return Page();
             }
 

@@ -19,6 +19,12 @@ namespace RatesParsingWeb.Storage.Repositories.Interfaces
         Task AddRangeAsync(T[] entity);
 
         /// <summary>
+        /// Удалить банк по Id.
+        /// </summary>
+        /// <param name="id"></param>
+        void Remove(T t);
+
+        /// <summary>
         /// Определить существют ли элементы в последовательности, удовлетворяющие выражению.
         /// </summary>
         /// <param name="predicate">Выражение для проверки каждого элемента.</param>

@@ -1,46 +1,40 @@
-﻿@*@page
-@model RatesParsingWeb.DeleteModel
+﻿@page
+@model RatesParsingWeb.Pages.Banks.DeleteModel
 
 @{
-    ViewData["Title"] = "Delete";
+    ViewData["Title"] = "Удалить";
 }
 
-<h1>Delete</h1>
+<h1>Удалить</h1>
 
-<h3>Are you sure you want to delete this?</h3>
+<h3>Удалить банк?</h3>
 <div>
-    <h4>Bank</h4>
+    <h4>Банк</h4>
     <hr />
     <dl class="row">
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Bank.BankName)
+            @Html.DisplayNameFor(model => model.BankModel.Name)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Bank.BankName)
+            @Html.DisplayFor(model => model.BankModel.Name)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Bank.BankUrl)
+            @Html.DisplayNameFor(model => model.BankModel.SwiftCode)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Bank.BankUrl)
+            @Html.DisplayFor(model => model.BankModel.SwiftCode)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Bank.RatesUrl)
+            @Html.DisplayNameFor(model => model.BankModel.Currency.TextCode)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Bank.RatesUrl)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Bank.Currency)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Bank.Currency.Id)
+            @Html.DisplayFor(model => model.BankModel.Currency.TextCode)
         </dd>
     </dl>
     
     <form method="post">
-        <input type="hidden" asp-for="Bank.Id" />
+        <input type="hidden" asp-for="BankModel.Id" />
         <input type="submit" value="Delete" class="btn btn-danger" /> |
         <a asp-page="./Index">Back to List</a>
     </form>
-</div>*@
+</div>

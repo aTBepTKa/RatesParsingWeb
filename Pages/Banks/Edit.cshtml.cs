@@ -51,9 +51,9 @@ namespace RatesParsingWeb.Pages.Banks
             }
             var bankUpdateDto = BankModel.Adapt<BankUpdateDto>();
 
-            if (!await bankService.UpdateBankAsync(bankUpdateDto))
+            if (!await bankService.UpdateAsync(bankUpdateDto))
             {
-                ValidationErrorList = bankService.ValidationDictionary.GetErrorListWithoutKeys();
+                ValidationErrorList = bankService.ValidationDictionary.ErrorListWithoutKeys;
                 await SetCurrencySelectListAsync(BankModel.CurrencyId, currencyService);
                 return Page();
             }

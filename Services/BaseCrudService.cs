@@ -24,7 +24,7 @@ namespace RatesParsingWeb.Services
             ValidationDictionary = new ValidationDictionary();
         }
 
-        public IValidationDictionary ValidationDictionary { get; }
+        public IValidationService ValidationDictionary { get; }
 
         protected IRepository<RepositoryType> BaseRepository { get; }
 

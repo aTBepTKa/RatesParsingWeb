@@ -73,6 +73,9 @@ namespace RatesParsingWeb.Storage.Repositories
 
         public void SetStateModifed(T t) =>
             bankRatesContext.Attach(t).State = EntityState.Modified;
+
+        public void Remove(T t) =>
+            dbSet.Remove(t);
     }
 }
 // Гуглить Generic Repository, Unit of work.
