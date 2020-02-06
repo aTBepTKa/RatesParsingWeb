@@ -1,0 +1,2986 @@
+[
+  {
+    "SwiftCode": "BNLNGE22XXX",
+    "Name": "National Bank of Georgia",
+    "ExchangeRateLists": [
+      {
+        "DateTimeStamp": "2020-02-06T21:43:59.6380894+03:00",
+        "ExchangeRates": [
+          {
+            "Unit": 10,
+            "ExchangeRateValue": 7.7803,
+            "TextCode": "AED"
+          },
+          {
+            "Unit": 1000,
+            "ExchangeRateValue": 5.9753,
+            "TextCode": "AMD"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 1.9338,
+            "TextCode": "AUD"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 1.6823,
+            "TextCode": "AZN"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 1.6112,
+            "TextCode": "BGN"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 0.6717,
+            "TextCode": "BRL"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 1.3260,
+            "TextCode": "BYN"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 2.1529,
+            "TextCode": "CAD"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 2.9388,
+            "TextCode": "CHF"
+          },
+          {
+            "Unit": 10,
+            "ExchangeRateValue": 4.0950,
+            "TextCode": "CNY"
+          },
+          {
+            "Unit": 10,
+            "ExchangeRateValue": 1.2548,
+            "TextCode": "CZK"
+          },
+          {
+            "Unit": 10,
+            "ExchangeRateValue": 4.2150,
+            "TextCode": "DKK"
+          },
+          {
+            "Unit": 10,
+            "ExchangeRateValue": 1.8113,
+            "TextCode": "EGP"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 3.1498,
+            "TextCode": "EUR"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 3.7327,
+            "TextCode": "GBP"
+          },
+          {
+            "Unit": 10,
+            "ExchangeRateValue": 3.6811,
+            "TextCode": "HKD"
+          },
+          {
+            "Unit": 100,
+            "ExchangeRateValue": 0.9379,
+            "TextCode": "HUF"
+          },
+          {
+            "Unit": 10,
+            "ExchangeRateValue": 8.2779,
+            "TextCode": "ILS"
+          },
+          {
+            "Unit": 100,
+            "ExchangeRateValue": 4.0109,
+            "TextCode": "INR"
+          },
+          {
+            "Unit": 10000,
+            "ExchangeRateValue": 0.6804,
+            "TextCode": "IRR"
+          },
+          {
+            "Unit": 100,
+            "ExchangeRateValue": 2.2809,
+            "TextCode": "ISK"
+          },
+          {
+            "Unit": 100,
+            "ExchangeRateValue": 2.6057,
+            "TextCode": "JPY"
+          },
+          {
+            "Unit": 100,
+            "ExchangeRateValue": 4.0585,
+            "TextCode": "KGS"
+          },
+          {
+            "Unit": 1000,
+            "ExchangeRateValue": 2.3988,
+            "TextCode": "KRW"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 9.3972,
+            "TextCode": "KWD"
+          },
+          {
+            "Unit": 100,
+            "ExchangeRateValue": 0.7554,
+            "TextCode": "KZT"
+          },
+          {
+            "Unit": 10,
+            "ExchangeRateValue": 1.6428,
+            "TextCode": "MDL"
+          },
+          {
+            "Unit": 10,
+            "ExchangeRateValue": 3.1105,
+            "TextCode": "NOK"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 1.8555,
+            "TextCode": "NZD"
+          },
+          {
+            "Unit": 10,
+            "ExchangeRateValue": 7.3930,
+            "TextCode": "PLN"
+          },
+          {
+            "Unit": 10,
+            "ExchangeRateValue": 7.7971,
+            "TextCode": "QAR"
+          },
+          {
+            "Unit": 10,
+            "ExchangeRateValue": 6.5949,
+            "TextCode": "RON"
+          },
+          {
+            "Unit": 100,
+            "ExchangeRateValue": 2.6783,
+            "TextCode": "RSD"
+          },
+          {
+            "Unit": 100,
+            "ExchangeRateValue": 4.5567,
+            "TextCode": "RUB"
+          },
+          {
+            "Unit": 10,
+            "ExchangeRateValue": 2.9824,
+            "TextCode": "SEK"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 2.0702,
+            "TextCode": "SGD"
+          },
+          {
+            "Unit": 10,
+            "ExchangeRateValue": 2.9472,
+            "TextCode": "TJS"
+          },
+          {
+            "Unit": 10,
+            "ExchangeRateValue": 8.1649,
+            "TextCode": "TMT"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 0.4777,
+            "TextCode": "TRY"
+          },
+          {
+            "Unit": 10,
+            "ExchangeRateValue": 1.1558,
+            "TextCode": "UAH"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 2.8577,
+            "TextCode": "USD"
+          },
+          {
+            "Unit": 1000,
+            "ExchangeRateValue": 0.2995,
+            "TextCode": "UZS"
+          },
+          {
+            "Unit": 10,
+            "ExchangeRateValue": 1.9425,
+            "TextCode": "ZAR"
+          }
+        ]
+      },
+      {
+        "DateTimeStamp": "2020-02-05T21:43:59.6380894+03:00",
+        "ExchangeRates": [
+          {
+            "Unit": 10,
+            "ExchangeRateValue": 7.7803,
+            "TextCode": "AED"
+          },
+          {
+            "Unit": 1000,
+            "ExchangeRateValue": 5.9753,
+            "TextCode": "AMD"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 1.9338,
+            "TextCode": "AUD"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 1.6823,
+            "TextCode": "AZN"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 1.6112,
+            "TextCode": "BGN"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 0.6717,
+            "TextCode": "BRL"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 1.3260,
+            "TextCode": "BYN"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 2.1529,
+            "TextCode": "CAD"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 2.9388,
+            "TextCode": "CHF"
+          },
+          {
+            "Unit": 10,
+            "ExchangeRateValue": 4.0950,
+            "TextCode": "CNY"
+          },
+          {
+            "Unit": 10,
+            "ExchangeRateValue": 1.2548,
+            "TextCode": "CZK"
+          },
+          {
+            "Unit": 10,
+            "ExchangeRateValue": 4.2150,
+            "TextCode": "DKK"
+          },
+          {
+            "Unit": 10,
+            "ExchangeRateValue": 1.8113,
+            "TextCode": "EGP"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 3.1498,
+            "TextCode": "EUR"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 3.7327,
+            "TextCode": "GBP"
+          },
+          {
+            "Unit": 10,
+            "ExchangeRateValue": 3.6811,
+            "TextCode": "HKD"
+          },
+          {
+            "Unit": 100,
+            "ExchangeRateValue": 0.9379,
+            "TextCode": "HUF"
+          },
+          {
+            "Unit": 10,
+            "ExchangeRateValue": 8.2779,
+            "TextCode": "ILS"
+          },
+          {
+            "Unit": 100,
+            "ExchangeRateValue": 4.0109,
+            "TextCode": "INR"
+          },
+          {
+            "Unit": 10000,
+            "ExchangeRateValue": 0.6804,
+            "TextCode": "IRR"
+          },
+          {
+            "Unit": 100,
+            "ExchangeRateValue": 2.2809,
+            "TextCode": "ISK"
+          },
+          {
+            "Unit": 100,
+            "ExchangeRateValue": 2.6057,
+            "TextCode": "JPY"
+          },
+          {
+            "Unit": 100,
+            "ExchangeRateValue": 4.0585,
+            "TextCode": "KGS"
+          },
+          {
+            "Unit": 1000,
+            "ExchangeRateValue": 2.3988,
+            "TextCode": "KRW"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 9.3972,
+            "TextCode": "KWD"
+          },
+          {
+            "Unit": 100,
+            "ExchangeRateValue": 0.7554,
+            "TextCode": "KZT"
+          },
+          {
+            "Unit": 10,
+            "ExchangeRateValue": 1.6428,
+            "TextCode": "MDL"
+          },
+          {
+            "Unit": 10,
+            "ExchangeRateValue": 3.1105,
+            "TextCode": "NOK"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 1.8555,
+            "TextCode": "NZD"
+          },
+          {
+            "Unit": 10,
+            "ExchangeRateValue": 7.3930,
+            "TextCode": "PLN"
+          },
+          {
+            "Unit": 10,
+            "ExchangeRateValue": 7.7971,
+            "TextCode": "QAR"
+          },
+          {
+            "Unit": 10,
+            "ExchangeRateValue": 6.5949,
+            "TextCode": "RON"
+          },
+          {
+            "Unit": 100,
+            "ExchangeRateValue": 2.6783,
+            "TextCode": "RSD"
+          },
+          {
+            "Unit": 100,
+            "ExchangeRateValue": 4.5567,
+            "TextCode": "RUB"
+          },
+          {
+            "Unit": 10,
+            "ExchangeRateValue": 2.9824,
+            "TextCode": "SEK"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 2.0702,
+            "TextCode": "SGD"
+          },
+          {
+            "Unit": 10,
+            "ExchangeRateValue": 2.9472,
+            "TextCode": "TJS"
+          },
+          {
+            "Unit": 10,
+            "ExchangeRateValue": 8.1649,
+            "TextCode": "TMT"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 0.4777,
+            "TextCode": "TRY"
+          },
+          {
+            "Unit": 10,
+            "ExchangeRateValue": 1.1558,
+            "TextCode": "UAH"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 2.8577,
+            "TextCode": "USD"
+          },
+          {
+            "Unit": 1000,
+            "ExchangeRateValue": 0.2995,
+            "TextCode": "UZS"
+          },
+          {
+            "Unit": 10,
+            "ExchangeRateValue": 1.9425,
+            "TextCode": "ZAR"
+          }
+        ]
+      },
+      {
+        "DateTimeStamp": "2020-02-04T21:43:59.6380894+03:00",
+        "ExchangeRates": [
+          {
+            "Unit": 10,
+            "ExchangeRateValue": 7.7803,
+            "TextCode": "AED"
+          },
+          {
+            "Unit": 1000,
+            "ExchangeRateValue": 5.9753,
+            "TextCode": "AMD"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 1.9338,
+            "TextCode": "AUD"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 1.6823,
+            "TextCode": "AZN"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 1.6112,
+            "TextCode": "BGN"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 0.6717,
+            "TextCode": "BRL"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 1.3260,
+            "TextCode": "BYN"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 2.1529,
+            "TextCode": "CAD"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 2.9388,
+            "TextCode": "CHF"
+          },
+          {
+            "Unit": 10,
+            "ExchangeRateValue": 4.0950,
+            "TextCode": "CNY"
+          },
+          {
+            "Unit": 10,
+            "ExchangeRateValue": 1.2548,
+            "TextCode": "CZK"
+          },
+          {
+            "Unit": 10,
+            "ExchangeRateValue": 4.2150,
+            "TextCode": "DKK"
+          },
+          {
+            "Unit": 10,
+            "ExchangeRateValue": 1.8113,
+            "TextCode": "EGP"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 3.1498,
+            "TextCode": "EUR"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 3.7327,
+            "TextCode": "GBP"
+          },
+          {
+            "Unit": 10,
+            "ExchangeRateValue": 3.6811,
+            "TextCode": "HKD"
+          },
+          {
+            "Unit": 100,
+            "ExchangeRateValue": 0.9379,
+            "TextCode": "HUF"
+          },
+          {
+            "Unit": 10,
+            "ExchangeRateValue": 8.2779,
+            "TextCode": "ILS"
+          },
+          {
+            "Unit": 100,
+            "ExchangeRateValue": 4.0109,
+            "TextCode": "INR"
+          },
+          {
+            "Unit": 10000,
+            "ExchangeRateValue": 0.6804,
+            "TextCode": "IRR"
+          },
+          {
+            "Unit": 100,
+            "ExchangeRateValue": 2.2809,
+            "TextCode": "ISK"
+          },
+          {
+            "Unit": 100,
+            "ExchangeRateValue": 2.6057,
+            "TextCode": "JPY"
+          },
+          {
+            "Unit": 100,
+            "ExchangeRateValue": 4.0585,
+            "TextCode": "KGS"
+          },
+          {
+            "Unit": 1000,
+            "ExchangeRateValue": 2.3988,
+            "TextCode": "KRW"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 9.3972,
+            "TextCode": "KWD"
+          },
+          {
+            "Unit": 100,
+            "ExchangeRateValue": 0.7554,
+            "TextCode": "KZT"
+          },
+          {
+            "Unit": 10,
+            "ExchangeRateValue": 1.6428,
+            "TextCode": "MDL"
+          },
+          {
+            "Unit": 10,
+            "ExchangeRateValue": 3.1105,
+            "TextCode": "NOK"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 1.8555,
+            "TextCode": "NZD"
+          },
+          {
+            "Unit": 10,
+            "ExchangeRateValue": 7.3930,
+            "TextCode": "PLN"
+          },
+          {
+            "Unit": 10,
+            "ExchangeRateValue": 7.7971,
+            "TextCode": "QAR"
+          },
+          {
+            "Unit": 10,
+            "ExchangeRateValue": 6.5949,
+            "TextCode": "RON"
+          },
+          {
+            "Unit": 100,
+            "ExchangeRateValue": 2.6783,
+            "TextCode": "RSD"
+          },
+          {
+            "Unit": 100,
+            "ExchangeRateValue": 4.5567,
+            "TextCode": "RUB"
+          },
+          {
+            "Unit": 10,
+            "ExchangeRateValue": 2.9824,
+            "TextCode": "SEK"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 2.0702,
+            "TextCode": "SGD"
+          },
+          {
+            "Unit": 10,
+            "ExchangeRateValue": 2.9472,
+            "TextCode": "TJS"
+          },
+          {
+            "Unit": 10,
+            "ExchangeRateValue": 8.1649,
+            "TextCode": "TMT"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 0.4777,
+            "TextCode": "TRY"
+          },
+          {
+            "Unit": 10,
+            "ExchangeRateValue": 1.1558,
+            "TextCode": "UAH"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 2.8577,
+            "TextCode": "USD"
+          },
+          {
+            "Unit": 1000,
+            "ExchangeRateValue": 0.2995,
+            "TextCode": "UZS"
+          },
+          {
+            "Unit": 10,
+            "ExchangeRateValue": 1.9425,
+            "TextCode": "ZAR"
+          }
+        ]
+      },
+      {
+        "DateTimeStamp": "2020-02-03T21:43:59.6380894+03:00",
+        "ExchangeRates": [
+          {
+            "Unit": 10,
+            "ExchangeRateValue": 7.7803,
+            "TextCode": "AED"
+          },
+          {
+            "Unit": 1000,
+            "ExchangeRateValue": 5.9753,
+            "TextCode": "AMD"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 1.9338,
+            "TextCode": "AUD"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 1.6823,
+            "TextCode": "AZN"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 1.6112,
+            "TextCode": "BGN"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 0.6717,
+            "TextCode": "BRL"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 1.3260,
+            "TextCode": "BYN"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 2.1529,
+            "TextCode": "CAD"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 2.9388,
+            "TextCode": "CHF"
+          },
+          {
+            "Unit": 10,
+            "ExchangeRateValue": 4.0950,
+            "TextCode": "CNY"
+          },
+          {
+            "Unit": 10,
+            "ExchangeRateValue": 1.2548,
+            "TextCode": "CZK"
+          },
+          {
+            "Unit": 10,
+            "ExchangeRateValue": 4.2150,
+            "TextCode": "DKK"
+          },
+          {
+            "Unit": 10,
+            "ExchangeRateValue": 1.8113,
+            "TextCode": "EGP"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 3.1498,
+            "TextCode": "EUR"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 3.7327,
+            "TextCode": "GBP"
+          },
+          {
+            "Unit": 10,
+            "ExchangeRateValue": 3.6811,
+            "TextCode": "HKD"
+          },
+          {
+            "Unit": 100,
+            "ExchangeRateValue": 0.9379,
+            "TextCode": "HUF"
+          },
+          {
+            "Unit": 10,
+            "ExchangeRateValue": 8.2779,
+            "TextCode": "ILS"
+          },
+          {
+            "Unit": 100,
+            "ExchangeRateValue": 4.0109,
+            "TextCode": "INR"
+          },
+          {
+            "Unit": 10000,
+            "ExchangeRateValue": 0.6804,
+            "TextCode": "IRR"
+          },
+          {
+            "Unit": 100,
+            "ExchangeRateValue": 2.2809,
+            "TextCode": "ISK"
+          },
+          {
+            "Unit": 100,
+            "ExchangeRateValue": 2.6057,
+            "TextCode": "JPY"
+          },
+          {
+            "Unit": 100,
+            "ExchangeRateValue": 4.0585,
+            "TextCode": "KGS"
+          },
+          {
+            "Unit": 1000,
+            "ExchangeRateValue": 2.3988,
+            "TextCode": "KRW"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 9.3972,
+            "TextCode": "KWD"
+          },
+          {
+            "Unit": 100,
+            "ExchangeRateValue": 0.7554,
+            "TextCode": "KZT"
+          },
+          {
+            "Unit": 10,
+            "ExchangeRateValue": 1.6428,
+            "TextCode": "MDL"
+          },
+          {
+            "Unit": 10,
+            "ExchangeRateValue": 3.1105,
+            "TextCode": "NOK"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 1.8555,
+            "TextCode": "NZD"
+          },
+          {
+            "Unit": 10,
+            "ExchangeRateValue": 7.3930,
+            "TextCode": "PLN"
+          },
+          {
+            "Unit": 10,
+            "ExchangeRateValue": 7.7971,
+            "TextCode": "QAR"
+          },
+          {
+            "Unit": 10,
+            "ExchangeRateValue": 6.5949,
+            "TextCode": "RON"
+          },
+          {
+            "Unit": 100,
+            "ExchangeRateValue": 2.6783,
+            "TextCode": "RSD"
+          },
+          {
+            "Unit": 100,
+            "ExchangeRateValue": 4.5567,
+            "TextCode": "RUB"
+          },
+          {
+            "Unit": 10,
+            "ExchangeRateValue": 2.9824,
+            "TextCode": "SEK"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 2.0702,
+            "TextCode": "SGD"
+          },
+          {
+            "Unit": 10,
+            "ExchangeRateValue": 2.9472,
+            "TextCode": "TJS"
+          },
+          {
+            "Unit": 10,
+            "ExchangeRateValue": 8.1649,
+            "TextCode": "TMT"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 0.4777,
+            "TextCode": "TRY"
+          },
+          {
+            "Unit": 10,
+            "ExchangeRateValue": 1.1558,
+            "TextCode": "UAH"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 2.8577,
+            "TextCode": "USD"
+          },
+          {
+            "Unit": 1000,
+            "ExchangeRateValue": 0.2995,
+            "TextCode": "UZS"
+          },
+          {
+            "Unit": 10,
+            "ExchangeRateValue": 1.9425,
+            "TextCode": "ZAR"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "SwiftCode": "NBPLPLPWBAN",
+    "Name": "National Bank of Poland",
+    "ExchangeRateLists": [
+      {
+        "DateTimeStamp": "2020-02-06T21:43:58.3901511+03:00",
+        "ExchangeRates": [
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 2.6070,
+            "TextCode": "AUD"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 0.1245,
+            "TextCode": "THB"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 0.9131,
+            "TextCode": "BRL"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 2.1748,
+            "TextCode": "BGN"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 2.9117,
+            "TextCode": "CAD"
+          },
+          {
+            "Unit": 100,
+            "ExchangeRateValue": 0.4979,
+            "TextCode": "CLP"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 0.1695,
+            "TextCode": "CZK"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 0.5692,
+            "TextCode": "DKK"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 4.2535,
+            "TextCode": "EUR"
+          },
+          {
+            "Unit": 100,
+            "ExchangeRateValue": 1.2618,
+            "TextCode": "HUF"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 0.4981,
+            "TextCode": "HKD"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 0.1573,
+            "TextCode": "UAH"
+          },
+          {
+            "Unit": 100,
+            "ExchangeRateValue": 3.0756,
+            "TextCode": "ISK"
+          },
+          {
+            "Unit": 100,
+            "ExchangeRateValue": 5.4282,
+            "TextCode": "INR"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 0.5704,
+            "TextCode": "HRK"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 0.9381,
+            "TextCode": "MYR"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 0.2077,
+            "TextCode": "MXN"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 1.1239,
+            "TextCode": "ILS"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 2.4993,
+            "TextCode": "NZD"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 0.4192,
+            "TextCode": "NOK"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 0.0762,
+            "TextCode": "PHP"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 5.0177,
+            "TextCode": "GBP"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 0.2603,
+            "TextCode": "ZAR"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 0.8928,
+            "TextCode": "RON"
+          },
+          {
+            "Unit": 10000,
+            "ExchangeRateValue": 2.8393,
+            "TextCode": "IDR"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 0.0612,
+            "TextCode": "RUB"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 2.7917,
+            "TextCode": "SGD"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 0.4030,
+            "TextCode": "SEK"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 3.9680,
+            "TextCode": "CHF"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 0.6454,
+            "TextCode": "TRY"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 3.8672,
+            "TextCode": "USD"
+          },
+          {
+            "Unit": 100,
+            "ExchangeRateValue": 0.3264,
+            "TextCode": "KRW"
+          },
+          {
+            "Unit": 100,
+            "ExchangeRateValue": 3.5199,
+            "TextCode": "JPY"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 0.5546,
+            "TextCode": "CNY"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 5.3074,
+            "TextCode": "XDR"
+          }
+        ]
+      },
+      {
+        "DateTimeStamp": "2020-02-05T21:43:58.3901511+03:00",
+        "ExchangeRates": [
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 2.6070,
+            "TextCode": "AUD"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 0.1245,
+            "TextCode": "THB"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 0.9131,
+            "TextCode": "BRL"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 2.1748,
+            "TextCode": "BGN"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 2.9117,
+            "TextCode": "CAD"
+          },
+          {
+            "Unit": 100,
+            "ExchangeRateValue": 0.4979,
+            "TextCode": "CLP"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 0.1695,
+            "TextCode": "CZK"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 0.5692,
+            "TextCode": "DKK"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 4.2535,
+            "TextCode": "EUR"
+          },
+          {
+            "Unit": 100,
+            "ExchangeRateValue": 1.2618,
+            "TextCode": "HUF"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 0.4981,
+            "TextCode": "HKD"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 0.1573,
+            "TextCode": "UAH"
+          },
+          {
+            "Unit": 100,
+            "ExchangeRateValue": 3.0756,
+            "TextCode": "ISK"
+          },
+          {
+            "Unit": 100,
+            "ExchangeRateValue": 5.4282,
+            "TextCode": "INR"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 0.5704,
+            "TextCode": "HRK"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 0.9381,
+            "TextCode": "MYR"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 0.2077,
+            "TextCode": "MXN"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 1.1239,
+            "TextCode": "ILS"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 2.4993,
+            "TextCode": "NZD"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 0.4192,
+            "TextCode": "NOK"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 0.0762,
+            "TextCode": "PHP"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 5.0177,
+            "TextCode": "GBP"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 0.2603,
+            "TextCode": "ZAR"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 0.8928,
+            "TextCode": "RON"
+          },
+          {
+            "Unit": 10000,
+            "ExchangeRateValue": 2.8393,
+            "TextCode": "IDR"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 0.0612,
+            "TextCode": "RUB"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 2.7917,
+            "TextCode": "SGD"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 0.4030,
+            "TextCode": "SEK"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 3.9680,
+            "TextCode": "CHF"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 0.6454,
+            "TextCode": "TRY"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 3.8672,
+            "TextCode": "USD"
+          },
+          {
+            "Unit": 100,
+            "ExchangeRateValue": 0.3264,
+            "TextCode": "KRW"
+          },
+          {
+            "Unit": 100,
+            "ExchangeRateValue": 3.5199,
+            "TextCode": "JPY"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 0.5546,
+            "TextCode": "CNY"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 5.3074,
+            "TextCode": "XDR"
+          }
+        ]
+      },
+      {
+        "DateTimeStamp": "2020-02-04T21:43:58.3901511+03:00",
+        "ExchangeRates": [
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 2.6070,
+            "TextCode": "AUD"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 0.1245,
+            "TextCode": "THB"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 0.9131,
+            "TextCode": "BRL"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 2.1748,
+            "TextCode": "BGN"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 2.9117,
+            "TextCode": "CAD"
+          },
+          {
+            "Unit": 100,
+            "ExchangeRateValue": 0.4979,
+            "TextCode": "CLP"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 0.1695,
+            "TextCode": "CZK"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 0.5692,
+            "TextCode": "DKK"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 4.2535,
+            "TextCode": "EUR"
+          },
+          {
+            "Unit": 100,
+            "ExchangeRateValue": 1.2618,
+            "TextCode": "HUF"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 0.4981,
+            "TextCode": "HKD"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 0.1573,
+            "TextCode": "UAH"
+          },
+          {
+            "Unit": 100,
+            "ExchangeRateValue": 3.0756,
+            "TextCode": "ISK"
+          },
+          {
+            "Unit": 100,
+            "ExchangeRateValue": 5.4282,
+            "TextCode": "INR"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 0.5704,
+            "TextCode": "HRK"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 0.9381,
+            "TextCode": "MYR"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 0.2077,
+            "TextCode": "MXN"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 1.1239,
+            "TextCode": "ILS"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 2.4993,
+            "TextCode": "NZD"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 0.4192,
+            "TextCode": "NOK"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 0.0762,
+            "TextCode": "PHP"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 5.0177,
+            "TextCode": "GBP"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 0.2603,
+            "TextCode": "ZAR"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 0.8928,
+            "TextCode": "RON"
+          },
+          {
+            "Unit": 10000,
+            "ExchangeRateValue": 2.8393,
+            "TextCode": "IDR"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 0.0612,
+            "TextCode": "RUB"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 2.7917,
+            "TextCode": "SGD"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 0.4030,
+            "TextCode": "SEK"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 3.9680,
+            "TextCode": "CHF"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 0.6454,
+            "TextCode": "TRY"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 3.8672,
+            "TextCode": "USD"
+          },
+          {
+            "Unit": 100,
+            "ExchangeRateValue": 0.3264,
+            "TextCode": "KRW"
+          },
+          {
+            "Unit": 100,
+            "ExchangeRateValue": 3.5199,
+            "TextCode": "JPY"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 0.5546,
+            "TextCode": "CNY"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 5.3074,
+            "TextCode": "XDR"
+          }
+        ]
+      },
+      {
+        "DateTimeStamp": "2020-02-03T21:43:58.3901511+03:00",
+        "ExchangeRates": [
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 2.6070,
+            "TextCode": "AUD"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 0.1245,
+            "TextCode": "THB"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 0.9131,
+            "TextCode": "BRL"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 2.1748,
+            "TextCode": "BGN"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 2.9117,
+            "TextCode": "CAD"
+          },
+          {
+            "Unit": 100,
+            "ExchangeRateValue": 0.4979,
+            "TextCode": "CLP"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 0.1695,
+            "TextCode": "CZK"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 0.5692,
+            "TextCode": "DKK"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 4.2535,
+            "TextCode": "EUR"
+          },
+          {
+            "Unit": 100,
+            "ExchangeRateValue": 1.2618,
+            "TextCode": "HUF"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 0.4981,
+            "TextCode": "HKD"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 0.1573,
+            "TextCode": "UAH"
+          },
+          {
+            "Unit": 100,
+            "ExchangeRateValue": 3.0756,
+            "TextCode": "ISK"
+          },
+          {
+            "Unit": 100,
+            "ExchangeRateValue": 5.4282,
+            "TextCode": "INR"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 0.5704,
+            "TextCode": "HRK"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 0.9381,
+            "TextCode": "MYR"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 0.2077,
+            "TextCode": "MXN"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 1.1239,
+            "TextCode": "ILS"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 2.4993,
+            "TextCode": "NZD"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 0.4192,
+            "TextCode": "NOK"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 0.0762,
+            "TextCode": "PHP"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 5.0177,
+            "TextCode": "GBP"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 0.2603,
+            "TextCode": "ZAR"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 0.8928,
+            "TextCode": "RON"
+          },
+          {
+            "Unit": 10000,
+            "ExchangeRateValue": 2.8393,
+            "TextCode": "IDR"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 0.0612,
+            "TextCode": "RUB"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 2.7917,
+            "TextCode": "SGD"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 0.4030,
+            "TextCode": "SEK"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 3.9680,
+            "TextCode": "CHF"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 0.6454,
+            "TextCode": "TRY"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 3.8672,
+            "TextCode": "USD"
+          },
+          {
+            "Unit": 100,
+            "ExchangeRateValue": 0.3264,
+            "TextCode": "KRW"
+          },
+          {
+            "Unit": 100,
+            "ExchangeRateValue": 3.5199,
+            "TextCode": "JPY"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 0.5546,
+            "TextCode": "CNY"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 5.3074,
+            "TextCode": "XDR"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "SwiftCode": "CBRFRUMMXXX",
+    "Name": "The Central Bank of the Russian Federation",
+    "ExchangeRateLists": [
+      {
+        "DateTimeStamp": "2020-02-06T21:43:58.3463959+03:00",
+        "ExchangeRates": [
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 42.3822,
+            "TextCode": "AUD"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 37.0160,
+            "TextCode": "AZN"
+          },
+          {
+            "Unit": 100,
+            "ExchangeRateValue": 13.1239,
+            "TextCode": "AMD"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 29.0421,
+            "TextCode": "BYN"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 35.3133,
+            "TextCode": "BGN"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 14.8276,
+            "TextCode": "BRL"
+          },
+          {
+            "Unit": 100,
+            "ExchangeRateValue": 20.4740,
+            "TextCode": "HUF"
+          },
+          {
+            "Unit": 1000,
+            "ExchangeRateValue": 53.1360,
+            "TextCode": "KRW"
+          },
+          {
+            "Unit": 10,
+            "ExchangeRateValue": 80.8957,
+            "TextCode": "HKD"
+          },
+          {
+            "Unit": 10,
+            "ExchangeRateValue": 92.4298,
+            "TextCode": "DKK"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 62.7977,
+            "TextCode": "USD"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 69.0837,
+            "TextCode": "EUR"
+          },
+          {
+            "Unit": 100,
+            "ExchangeRateValue": 88.1647,
+            "TextCode": "INR"
+          },
+          {
+            "Unit": 100,
+            "ExchangeRateValue": 16.6431,
+            "TextCode": "KZT"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 47.2910,
+            "TextCode": "CAD"
+          },
+          {
+            "Unit": 100,
+            "ExchangeRateValue": 89.8815,
+            "TextCode": "KGS"
+          },
+          {
+            "Unit": 10,
+            "ExchangeRateValue": 90.0958,
+            "TextCode": "CNY"
+          },
+          {
+            "Unit": 10,
+            "ExchangeRateValue": 35.9872,
+            "TextCode": "MDL"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 17.9679,
+            "TextCode": "TMT"
+          },
+          {
+            "Unit": 10,
+            "ExchangeRateValue": 68.1658,
+            "TextCode": "NOK"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 16.2385,
+            "TextCode": "PLN"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 14.4865,
+            "TextCode": "RON"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 86.3732,
+            "TextCode": "XDR"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 45.3773,
+            "TextCode": "SGD"
+          },
+          {
+            "Unit": 10,
+            "ExchangeRateValue": 64.7740,
+            "TextCode": "TJS"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 10.4869,
+            "TextCode": "TRY"
+          },
+          {
+            "Unit": 10000,
+            "ExchangeRateValue": 65.8167,
+            "TextCode": "UZS"
+          },
+          {
+            "Unit": 10,
+            "ExchangeRateValue": 25.5509,
+            "TextCode": "UAH"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 81.5554,
+            "TextCode": "GBP"
+          },
+          {
+            "Unit": 10,
+            "ExchangeRateValue": 27.5513,
+            "TextCode": "CZK"
+          },
+          {
+            "Unit": 10,
+            "ExchangeRateValue": 65.5235,
+            "TextCode": "SEK"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 64.4608,
+            "TextCode": "CHF"
+          },
+          {
+            "Unit": 10,
+            "ExchangeRateValue": 42.5257,
+            "TextCode": "ZAR"
+          },
+          {
+            "Unit": 100,
+            "ExchangeRateValue": 57.1226,
+            "TextCode": "JPY"
+          }
+        ]
+      },
+      {
+        "DateTimeStamp": "2020-02-05T21:43:58.3463959+03:00",
+        "ExchangeRates": [
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 42.3822,
+            "TextCode": "AUD"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 37.0160,
+            "TextCode": "AZN"
+          },
+          {
+            "Unit": 100,
+            "ExchangeRateValue": 13.1239,
+            "TextCode": "AMD"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 29.0421,
+            "TextCode": "BYN"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 35.3133,
+            "TextCode": "BGN"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 14.8276,
+            "TextCode": "BRL"
+          },
+          {
+            "Unit": 100,
+            "ExchangeRateValue": 20.4740,
+            "TextCode": "HUF"
+          },
+          {
+            "Unit": 1000,
+            "ExchangeRateValue": 53.1360,
+            "TextCode": "KRW"
+          },
+          {
+            "Unit": 10,
+            "ExchangeRateValue": 80.8957,
+            "TextCode": "HKD"
+          },
+          {
+            "Unit": 10,
+            "ExchangeRateValue": 92.4298,
+            "TextCode": "DKK"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 62.7977,
+            "TextCode": "USD"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 69.0837,
+            "TextCode": "EUR"
+          },
+          {
+            "Unit": 100,
+            "ExchangeRateValue": 88.1647,
+            "TextCode": "INR"
+          },
+          {
+            "Unit": 100,
+            "ExchangeRateValue": 16.6431,
+            "TextCode": "KZT"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 47.2910,
+            "TextCode": "CAD"
+          },
+          {
+            "Unit": 100,
+            "ExchangeRateValue": 89.8815,
+            "TextCode": "KGS"
+          },
+          {
+            "Unit": 10,
+            "ExchangeRateValue": 90.0958,
+            "TextCode": "CNY"
+          },
+          {
+            "Unit": 10,
+            "ExchangeRateValue": 35.9872,
+            "TextCode": "MDL"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 17.9679,
+            "TextCode": "TMT"
+          },
+          {
+            "Unit": 10,
+            "ExchangeRateValue": 68.1658,
+            "TextCode": "NOK"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 16.2385,
+            "TextCode": "PLN"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 14.4865,
+            "TextCode": "RON"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 86.3732,
+            "TextCode": "XDR"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 45.3773,
+            "TextCode": "SGD"
+          },
+          {
+            "Unit": 10,
+            "ExchangeRateValue": 64.7740,
+            "TextCode": "TJS"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 10.4869,
+            "TextCode": "TRY"
+          },
+          {
+            "Unit": 10000,
+            "ExchangeRateValue": 65.8167,
+            "TextCode": "UZS"
+          },
+          {
+            "Unit": 10,
+            "ExchangeRateValue": 25.5509,
+            "TextCode": "UAH"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 81.5554,
+            "TextCode": "GBP"
+          },
+          {
+            "Unit": 10,
+            "ExchangeRateValue": 27.5513,
+            "TextCode": "CZK"
+          },
+          {
+            "Unit": 10,
+            "ExchangeRateValue": 65.5235,
+            "TextCode": "SEK"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 64.4608,
+            "TextCode": "CHF"
+          },
+          {
+            "Unit": 10,
+            "ExchangeRateValue": 42.5257,
+            "TextCode": "ZAR"
+          },
+          {
+            "Unit": 100,
+            "ExchangeRateValue": 57.1226,
+            "TextCode": "JPY"
+          }
+        ]
+      },
+      {
+        "DateTimeStamp": "2020-02-04T21:43:58.3463959+03:00",
+        "ExchangeRates": [
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 42.3822,
+            "TextCode": "AUD"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 37.0160,
+            "TextCode": "AZN"
+          },
+          {
+            "Unit": 100,
+            "ExchangeRateValue": 13.1239,
+            "TextCode": "AMD"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 29.0421,
+            "TextCode": "BYN"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 35.3133,
+            "TextCode": "BGN"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 14.8276,
+            "TextCode": "BRL"
+          },
+          {
+            "Unit": 100,
+            "ExchangeRateValue": 20.4740,
+            "TextCode": "HUF"
+          },
+          {
+            "Unit": 1000,
+            "ExchangeRateValue": 53.1360,
+            "TextCode": "KRW"
+          },
+          {
+            "Unit": 10,
+            "ExchangeRateValue": 80.8957,
+            "TextCode": "HKD"
+          },
+          {
+            "Unit": 10,
+            "ExchangeRateValue": 92.4298,
+            "TextCode": "DKK"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 62.7977,
+            "TextCode": "USD"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 69.0837,
+            "TextCode": "EUR"
+          },
+          {
+            "Unit": 100,
+            "ExchangeRateValue": 88.1647,
+            "TextCode": "INR"
+          },
+          {
+            "Unit": 100,
+            "ExchangeRateValue": 16.6431,
+            "TextCode": "KZT"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 47.2910,
+            "TextCode": "CAD"
+          },
+          {
+            "Unit": 100,
+            "ExchangeRateValue": 89.8815,
+            "TextCode": "KGS"
+          },
+          {
+            "Unit": 10,
+            "ExchangeRateValue": 90.0958,
+            "TextCode": "CNY"
+          },
+          {
+            "Unit": 10,
+            "ExchangeRateValue": 35.9872,
+            "TextCode": "MDL"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 17.9679,
+            "TextCode": "TMT"
+          },
+          {
+            "Unit": 10,
+            "ExchangeRateValue": 68.1658,
+            "TextCode": "NOK"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 16.2385,
+            "TextCode": "PLN"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 14.4865,
+            "TextCode": "RON"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 86.3732,
+            "TextCode": "XDR"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 45.3773,
+            "TextCode": "SGD"
+          },
+          {
+            "Unit": 10,
+            "ExchangeRateValue": 64.7740,
+            "TextCode": "TJS"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 10.4869,
+            "TextCode": "TRY"
+          },
+          {
+            "Unit": 10000,
+            "ExchangeRateValue": 65.8167,
+            "TextCode": "UZS"
+          },
+          {
+            "Unit": 10,
+            "ExchangeRateValue": 25.5509,
+            "TextCode": "UAH"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 81.5554,
+            "TextCode": "GBP"
+          },
+          {
+            "Unit": 10,
+            "ExchangeRateValue": 27.5513,
+            "TextCode": "CZK"
+          },
+          {
+            "Unit": 10,
+            "ExchangeRateValue": 65.5235,
+            "TextCode": "SEK"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 64.4608,
+            "TextCode": "CHF"
+          },
+          {
+            "Unit": 10,
+            "ExchangeRateValue": 42.5257,
+            "TextCode": "ZAR"
+          },
+          {
+            "Unit": 100,
+            "ExchangeRateValue": 57.1226,
+            "TextCode": "JPY"
+          }
+        ]
+      },
+      {
+        "DateTimeStamp": "2020-02-03T21:43:58.3463959+03:00",
+        "ExchangeRates": [
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 42.3822,
+            "TextCode": "AUD"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 37.0160,
+            "TextCode": "AZN"
+          },
+          {
+            "Unit": 100,
+            "ExchangeRateValue": 13.1239,
+            "TextCode": "AMD"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 29.0421,
+            "TextCode": "BYN"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 35.3133,
+            "TextCode": "BGN"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 14.8276,
+            "TextCode": "BRL"
+          },
+          {
+            "Unit": 100,
+            "ExchangeRateValue": 20.4740,
+            "TextCode": "HUF"
+          },
+          {
+            "Unit": 1000,
+            "ExchangeRateValue": 53.1360,
+            "TextCode": "KRW"
+          },
+          {
+            "Unit": 10,
+            "ExchangeRateValue": 80.8957,
+            "TextCode": "HKD"
+          },
+          {
+            "Unit": 10,
+            "ExchangeRateValue": 92.4298,
+            "TextCode": "DKK"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 62.7977,
+            "TextCode": "USD"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 69.0837,
+            "TextCode": "EUR"
+          },
+          {
+            "Unit": 100,
+            "ExchangeRateValue": 88.1647,
+            "TextCode": "INR"
+          },
+          {
+            "Unit": 100,
+            "ExchangeRateValue": 16.6431,
+            "TextCode": "KZT"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 47.2910,
+            "TextCode": "CAD"
+          },
+          {
+            "Unit": 100,
+            "ExchangeRateValue": 89.8815,
+            "TextCode": "KGS"
+          },
+          {
+            "Unit": 10,
+            "ExchangeRateValue": 90.0958,
+            "TextCode": "CNY"
+          },
+          {
+            "Unit": 10,
+            "ExchangeRateValue": 35.9872,
+            "TextCode": "MDL"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 17.9679,
+            "TextCode": "TMT"
+          },
+          {
+            "Unit": 10,
+            "ExchangeRateValue": 68.1658,
+            "TextCode": "NOK"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 16.2385,
+            "TextCode": "PLN"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 14.4865,
+            "TextCode": "RON"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 86.3732,
+            "TextCode": "XDR"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 45.3773,
+            "TextCode": "SGD"
+          },
+          {
+            "Unit": 10,
+            "ExchangeRateValue": 64.7740,
+            "TextCode": "TJS"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 10.4869,
+            "TextCode": "TRY"
+          },
+          {
+            "Unit": 10000,
+            "ExchangeRateValue": 65.8167,
+            "TextCode": "UZS"
+          },
+          {
+            "Unit": 10,
+            "ExchangeRateValue": 25.5509,
+            "TextCode": "UAH"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 81.5554,
+            "TextCode": "GBP"
+          },
+          {
+            "Unit": 10,
+            "ExchangeRateValue": 27.5513,
+            "TextCode": "CZK"
+          },
+          {
+            "Unit": 10,
+            "ExchangeRateValue": 65.5235,
+            "TextCode": "SEK"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 64.4608,
+            "TextCode": "CHF"
+          },
+          {
+            "Unit": 10,
+            "ExchangeRateValue": 42.5257,
+            "TextCode": "ZAR"
+          },
+          {
+            "Unit": 100,
+            "ExchangeRateValue": 57.1226,
+            "TextCode": "JPY"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "SwiftCode": "ECBFDEFFEUM",
+    "Name": "European Central Bank",
+    "ExchangeRateLists": [
+      {
+        "DateTimeStamp": "2020-02-06T21:43:59.5104335+03:00",
+        "ExchangeRates": [
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 1.1003,
+            "TextCode": "USD"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 120.87,
+            "TextCode": "JPY"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 1.9558,
+            "TextCode": "BGN"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 24.893,
+            "TextCode": "CZK"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 7.4725,
+            "TextCode": "DKK"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 0.84835,
+            "TextCode": "GBP"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 336.76,
+            "TextCode": "HUF"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 4.2451,
+            "TextCode": "PLN"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 4.7655,
+            "TextCode": "RON"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 10.5550,
+            "TextCode": "SEK"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 1.0715,
+            "TextCode": "CHF"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 138.10,
+            "TextCode": "ISK"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 10.1288,
+            "TextCode": "NOK"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 7.4563,
+            "TextCode": "HRK"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 69.4575,
+            "TextCode": "RUB"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 6.5886,
+            "TextCode": "TRY"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 1.6282,
+            "TextCode": "AUD"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 4.6553,
+            "TextCode": "BRL"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 1.4610,
+            "TextCode": "CAD"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 7.6676,
+            "TextCode": "CNY"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 8.5420,
+            "TextCode": "HKD"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 15000.81,
+            "TextCode": "IDR"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 3.7770,
+            "TextCode": "ILS"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 78.2845,
+            "TextCode": "INR"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 1301.78,
+            "TextCode": "KRW"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 20.4852,
+            "TextCode": "MXN"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 4.5349,
+            "TextCode": "MYR"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 1.6994,
+            "TextCode": "NZD"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 55.817,
+            "TextCode": "PHP"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 1.5233,
+            "TextCode": "SGD"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 34.197,
+            "TextCode": "THB"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 16.3028,
+            "TextCode": "ZAR"
+          }
+        ]
+      },
+      {
+        "DateTimeStamp": "2020-02-05T21:43:59.5104335+03:00",
+        "ExchangeRates": [
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 1.1003,
+            "TextCode": "USD"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 120.87,
+            "TextCode": "JPY"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 1.9558,
+            "TextCode": "BGN"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 24.893,
+            "TextCode": "CZK"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 7.4725,
+            "TextCode": "DKK"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 0.84835,
+            "TextCode": "GBP"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 336.76,
+            "TextCode": "HUF"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 4.2451,
+            "TextCode": "PLN"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 4.7655,
+            "TextCode": "RON"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 10.5550,
+            "TextCode": "SEK"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 1.0715,
+            "TextCode": "CHF"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 138.10,
+            "TextCode": "ISK"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 10.1288,
+            "TextCode": "NOK"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 7.4563,
+            "TextCode": "HRK"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 69.4575,
+            "TextCode": "RUB"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 6.5886,
+            "TextCode": "TRY"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 1.6282,
+            "TextCode": "AUD"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 4.6553,
+            "TextCode": "BRL"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 1.4610,
+            "TextCode": "CAD"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 7.6676,
+            "TextCode": "CNY"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 8.5420,
+            "TextCode": "HKD"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 15000.81,
+            "TextCode": "IDR"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 3.7770,
+            "TextCode": "ILS"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 78.2845,
+            "TextCode": "INR"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 1301.78,
+            "TextCode": "KRW"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 20.4852,
+            "TextCode": "MXN"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 4.5349,
+            "TextCode": "MYR"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 1.6994,
+            "TextCode": "NZD"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 55.817,
+            "TextCode": "PHP"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 1.5233,
+            "TextCode": "SGD"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 34.197,
+            "TextCode": "THB"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 16.3028,
+            "TextCode": "ZAR"
+          }
+        ]
+      },
+      {
+        "DateTimeStamp": "2020-02-04T21:43:59.5104335+03:00",
+        "ExchangeRates": [
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 1.1003,
+            "TextCode": "USD"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 120.87,
+            "TextCode": "JPY"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 1.9558,
+            "TextCode": "BGN"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 24.893,
+            "TextCode": "CZK"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 7.4725,
+            "TextCode": "DKK"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 0.84835,
+            "TextCode": "GBP"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 336.76,
+            "TextCode": "HUF"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 4.2451,
+            "TextCode": "PLN"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 4.7655,
+            "TextCode": "RON"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 10.5550,
+            "TextCode": "SEK"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 1.0715,
+            "TextCode": "CHF"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 138.10,
+            "TextCode": "ISK"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 10.1288,
+            "TextCode": "NOK"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 7.4563,
+            "TextCode": "HRK"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 69.4575,
+            "TextCode": "RUB"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 6.5886,
+            "TextCode": "TRY"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 1.6282,
+            "TextCode": "AUD"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 4.6553,
+            "TextCode": "BRL"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 1.4610,
+            "TextCode": "CAD"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 7.6676,
+            "TextCode": "CNY"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 8.5420,
+            "TextCode": "HKD"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 15000.81,
+            "TextCode": "IDR"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 3.7770,
+            "TextCode": "ILS"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 78.2845,
+            "TextCode": "INR"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 1301.78,
+            "TextCode": "KRW"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 20.4852,
+            "TextCode": "MXN"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 4.5349,
+            "TextCode": "MYR"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 1.6994,
+            "TextCode": "NZD"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 55.817,
+            "TextCode": "PHP"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 1.5233,
+            "TextCode": "SGD"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 34.197,
+            "TextCode": "THB"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 16.3028,
+            "TextCode": "ZAR"
+          }
+        ]
+      },
+      {
+        "DateTimeStamp": "2020-02-03T21:43:59.5104335+03:00",
+        "ExchangeRates": [
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 1.1003,
+            "TextCode": "USD"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 120.87,
+            "TextCode": "JPY"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 1.9558,
+            "TextCode": "BGN"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 24.893,
+            "TextCode": "CZK"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 7.4725,
+            "TextCode": "DKK"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 0.84835,
+            "TextCode": "GBP"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 336.76,
+            "TextCode": "HUF"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 4.2451,
+            "TextCode": "PLN"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 4.7655,
+            "TextCode": "RON"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 10.5550,
+            "TextCode": "SEK"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 1.0715,
+            "TextCode": "CHF"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 138.10,
+            "TextCode": "ISK"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 10.1288,
+            "TextCode": "NOK"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 7.4563,
+            "TextCode": "HRK"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 69.4575,
+            "TextCode": "RUB"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 6.5886,
+            "TextCode": "TRY"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 1.6282,
+            "TextCode": "AUD"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 4.6553,
+            "TextCode": "BRL"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 1.4610,
+            "TextCode": "CAD"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 7.6676,
+            "TextCode": "CNY"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 8.5420,
+            "TextCode": "HKD"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 15000.81,
+            "TextCode": "IDR"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 3.7770,
+            "TextCode": "ILS"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 78.2845,
+            "TextCode": "INR"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 1301.78,
+            "TextCode": "KRW"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 20.4852,
+            "TextCode": "MXN"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 4.5349,
+            "TextCode": "MYR"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 1.6994,
+            "TextCode": "NZD"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 55.817,
+            "TextCode": "PHP"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 1.5233,
+            "TextCode": "SGD"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 34.197,
+            "TextCode": "THB"
+          },
+          {
+            "Unit": 1,
+            "ExchangeRateValue": 16.3028,
+            "TextCode": "ZAR"
+          }
+        ]
+      }
+    ]
+  }
+]

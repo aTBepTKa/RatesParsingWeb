@@ -17,7 +17,7 @@ namespace RatesParsingWeb.Services
         public bool IsValid => ErrorDictioanry.Count == 0;
 
         public IDictionary<string, List<string>> ErrorDictioanry { get; }
-
+   
         public void AddError(string key, string value)
         {
             if (!ErrorDictioanry.ContainsKey(key))
@@ -32,7 +32,7 @@ namespace RatesParsingWeb.Services
         private IEnumerable<string> GetErrorList(bool withKeys)
         {
             if (withKeys)
-                return ErrorDictioanry.SelectMany(keyValuePair => keyValuePair.Value.Select(error => $"{keyValuePair.Key}ХУЙ: {error}"));
+                return ErrorDictioanry.SelectMany(keyValuePair => keyValuePair.Value.Select(error => $"{keyValuePair.Key}: {error}"));
             else
                 return ErrorDictioanry.SelectMany(keyValuePair => keyValuePair.Value);
         }

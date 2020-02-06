@@ -1,5 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Mapster;
+using Microsoft.EntityFrameworkCore;
 using RatesParsingWeb.Domain;
+using RatesParsingWeb.Storage.SerializeJson;
 using RatesParsingWeb.Storage.SerializeXml;
 using System;
 using System.Collections.Generic;
@@ -31,6 +33,7 @@ namespace RatesParsingWeb.Storage
             SeedCurrencies();
             SeedBanks();
             SeedParsingSettings();
+            SeedExchangeRates();
         }
 
         /// <summary>
@@ -78,7 +81,7 @@ namespace RatesParsingWeb.Storage
                     Id = bankId++,
                     SwiftCode = "NBPLPLPWBAN",
                     Name = "National Bank of Poland",
-                    CurrencyId = Currencies.Single(i=>i.TextCode == "PLN").Id,                    
+                    CurrencyId = Currencies.Single(i=>i.TextCode == "PLN").Id,
                     BankUrl = "https://www.nbp.pl",
                     RatesUrl = "https://www.nbp.pl/homen.aspx?f=/kursy/RatesA.html"
                 },
@@ -87,7 +90,7 @@ namespace RatesParsingWeb.Storage
                     Id = bankId++,
                     SwiftCode = "CBRFRUMMXXX",
                     Name = "The Central Bank of the Russian Federation",
-                    CurrencyId = Currencies.Single(i=>i.TextCode == "RUB").Id,                    
+                    CurrencyId = Currencies.Single(i=>i.TextCode == "RUB").Id,
                     BankUrl = "https://www.cbr.ru",
                     RatesUrl = "https://www.cbr.ru/eng/currency_base/daily/"
                 },
@@ -96,7 +99,7 @@ namespace RatesParsingWeb.Storage
                     Id = bankId++,
                     SwiftCode = "ECBFDEFFEUM",
                     Name = "European Central Bank",
-                    CurrencyId = Currencies.Single(i=>i.TextCode == "EUR").Id,                    
+                    CurrencyId = Currencies.Single(i=>i.TextCode == "EUR").Id,
                     BankUrl = "https://www.ecb.europa.eu",
                     RatesUrl = "https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/index.en.html"
                 }
@@ -167,6 +170,11 @@ namespace RatesParsingWeb.Storage
                 },
             };
             ModelBuilder.Entity<ParsingSettings>().HasData(settings);
+        }
+
+        private void SeedExchangeRates()
+        {
+            var serializer = new ExchangeRatesSerializer();
         }
     }
 }

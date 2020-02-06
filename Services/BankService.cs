@@ -1,4 +1,4 @@
-﻿using Mapster;
+﻿  using Mapster;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using RatesParsingWeb.Domain;
 using RatesParsingWeb.Dto;
@@ -31,7 +31,7 @@ namespace RatesParsingWeb.Services
         }
 
         public async Task<BankDto> GetById(int id)
-        {
+        {         
             var bankDomain = await bankRepository.GetSingleAsync(
                 i => i.Id == id,
                 c => c.Currency,
@@ -42,8 +42,8 @@ namespace RatesParsingWeb.Services
         public async Task<bool> CreateAsync(BankCreateDto createDto)
         {
             // TODO: Добавить валидацию настроек парсинга.
-            CheckForValidity(createDto);
             await CheckCreateForUniqueness(createDto);
+            CheckForValidity(createDto);
             if (!ValidationDictionary.IsValid)
                 return false;
 
@@ -55,8 +55,8 @@ namespace RatesParsingWeb.Services
 
         public async Task<bool> UpdateAsync(BankUpdateDto updateDto)
         {
-            CheckForValidity(updateDto);
             await CheckUpdateForUniqueness(updateDto);
+            CheckForValidity(updateDto);
             if (!ValidationDictionary.IsValid)
                 return false;
 

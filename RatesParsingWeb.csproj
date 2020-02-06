@@ -4,6 +4,13 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="App_Data\Temp\**" />
+    <Content Remove="App_Data\Temp\**" />
+    <EmbeddedResource Remove="App_Data\Temp\**" />
+    <None Remove="App_Data\Temp\**" />
+  </ItemGroup>
+
 
   <ItemGroup>
     <None Remove=".gitattributes" />
@@ -20,10 +27,6 @@
     </PackageReference>
     <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="3.1.0" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="App_Data\Temp\" />
   </ItemGroup>
 
   <ItemGroup>

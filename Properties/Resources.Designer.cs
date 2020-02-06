@@ -61,6 +61,16 @@ namespace RatesParsingWeb.Properties {
         }
         
         /// <summary>
+        ///   Поиск локализованного ресурса типа System.Byte[].
+        /// </summary>
+        internal static byte[] FakeExchangeRates {
+            get {
+                object obj = ResourceManager.GetObject("FakeExchangeRates", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;yes&quot;?&gt;
         ///&lt;ISO_4217 Pblshd=&quot;2018-08-29&quot;&gt;
         ///	&lt;CcyTbl&gt;
