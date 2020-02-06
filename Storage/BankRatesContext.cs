@@ -13,7 +13,7 @@ namespace RatesParsingWeb.Storage
     {
         public BankRatesContext(DbContextOptions<BankRatesContext> options)
             : base(options)
-        {
+        {            
         }
 
         public DbSet<Bank> Banks { get; set; }
@@ -82,8 +82,6 @@ namespace RatesParsingWeb.Storage
             // Заполнить базу данных начальными данными.
             var seedData = new SeedData(modelBuilder);
             seedData.SeedAll();
-
-
         }
     }
 }

@@ -11,6 +11,13 @@
     <None Remove="App_Data\Temp\**" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Remove="Migrations\20200206214421_SeedExchangeRates.cs" />
+    <Compile Remove="Migrations\20200206214421_SeedExchangeRates.Designer.cs" />
+    <Compile Remove="Migrations\20200206215537_SeedExchangeRates.cs" />
+    <Compile Remove="Migrations\20200206215537_SeedExchangeRates.Designer.cs" />
+  </ItemGroup>
+
 
   <ItemGroup>
     <None Remove=".gitattributes" />

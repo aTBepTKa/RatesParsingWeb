@@ -172,9 +172,21 @@ namespace RatesParsingWeb.Storage
             ModelBuilder.Entity<ParsingSettings>().HasData(settings);
         }
 
+        /// <summary>
+        /// Заполнить таблицы ExchangeRateLists и ExchangeRates
+        /// </summary>
         private void SeedExchangeRates()
         {
-            var serializer = new ExchangeRatesSerializer();
+            // Получить обменные курсы валют по спискам и заполнить таблицы списков и курсов.
+            var serializer = new ExchangeRatesSerializer(Banks, Currencies);
+            IEnumerable<ExchangeRateList> lists = serializer.GetExchangeRateLists();
+            ModelBuilder.Entity<ExchangeRateList>().HasData(lists.Select(i => new ExchangeRateList()
+            {
+                Id = i.Id,
+                BankId = i.BankId,
+                DateTimeStamp = i.DateTimeStamp
+            }));
+            ModelBuilder.Entity<ExchangeRate>().HasData(lists.SelectMany(i => i.ExchangeRates));
         }
     }
 }
