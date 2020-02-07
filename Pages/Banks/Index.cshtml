@@ -33,7 +33,7 @@
                     <a href="@item.BankUrl" target="_blank">@item.Name</a>
                 </td>
                 <td>
-                    <a asp-page="./ExchangeRateLists/Index" asp-route-bankId="@item.Id">Курсы</a>
+                    <a asp-page="./ExchangeRateLists/Index" asp-route-id="@item.Id">Курсы</a>
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Currency.TextCode) (@Html.DisplayFor(modelItem => item.Currency.Name))
@@ -47,3 +47,4 @@
         }
     </tbody>
 </table>
+

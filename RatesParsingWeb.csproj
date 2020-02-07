@@ -51,10 +51,6 @@
     </EmbeddedResource>
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Pages\Banks\ExchangeRateLists\ExchangeRates\" />
-  </ItemGroup>
-
 
 
 </Project>

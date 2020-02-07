@@ -12,8 +12,9 @@
     @foreach(var list in Model.ExchangeRateLists)
     {
         <li>
-            Обменные курсы на @list.DateTimeStamp.ToShortDateString()
+            <a asp-page="./ExchangeRates/Index" asp-route-id="@list.Id">Обменные курсы на @list.DateTimeStamp.ToShortDateString()</a>
         </li>
     }
 </ul>
+<a asp-page="/Banks/Index">Назад к списку банков</a>
 

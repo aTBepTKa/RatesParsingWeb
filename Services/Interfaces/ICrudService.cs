@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc.ModelBinding;
+using RatesParsingWeb.Dto;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +15,13 @@ namespace RatesParsingWeb.Services.Interfaces
         /// </summary>
         /// <returns></returns>
         Task<IEnumerable<T>> GetAllAsync();
+
+        /// <summary>
+        /// Получить элемент по Id.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        Task<T> GetByIdAsync(int id);
 
         /// <summary>
         /// Содержит данные о валидации.

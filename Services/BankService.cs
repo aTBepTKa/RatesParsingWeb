@@ -1,4 +1,4 @@
-﻿  using Mapster;
+﻿using Mapster;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using RatesParsingWeb.Domain;
 using RatesParsingWeb.Dto;
@@ -30,9 +30,9 @@ namespace RatesParsingWeb.Services
             return banks.Adapt<IEnumerable<BankDto>>();
         }
 
-        public async Task<BankDto> GetByIdAsync(int id)
-        {         
-            var bankDomain = await bankRepository.GetSingleAsync(
+        public override async Task<BankDto> GetByIdAsync(int id)
+        {
+            var bankDomain = await bankRepository.GetFirstOrDefaultAsync(
                 i => i.Id == id,
                 c => c.Currency,
                 s => s.ParsingSettings);

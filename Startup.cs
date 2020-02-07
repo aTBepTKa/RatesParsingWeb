@@ -39,12 +39,14 @@ namespace RatesParsingWeb
             services.AddScoped<ICurrencyRepository, CurrencyRepository>();   
             services.AddScoped<IParsingSettingsRepository, ParsingSettingsRepository>();
             services.AddScoped<IExchangeRateListRepository, ExchangeRateListRepository>();
+            services.AddScoped<IExchangeRateRepository, ExchangeRateRepository>();
 
             // Слой сервиса.
             services.AddScoped<IBankService, BankService>();
             services.AddScoped<IParsingSettingsService, ParsingSettingsService>();
             services.AddScoped<ICurrencyService, CurrencyService>();
             services.AddScoped<IExchangeRateListService, ExchangeRateListService>();
+            services.AddScoped<IExchangeRateService, ExchangeRateService>();
 
         }
 

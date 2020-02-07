@@ -24,16 +24,16 @@ namespace RatesParsingWeb.Pages.Banks.ExchangeRateLists
         public List<ExchangeRateListModel> ExchangeRateLists { get; set; }
         public BankModel BankModel { get; set; }
 
-        public async Task<IActionResult> OnGet(int bankId)
+        public async Task<IActionResult> OnGet(int id)
         {
-            var bankDto = await bankService.GetByIdAsync(bankId);
-            if (bankDto == null)
+            var bank = await bankService.GetByIdAsync(id);
+            if (bank == null)
                 return NotFound();
-            BankModel = bankDto.Adapt<BankModel>();
+            BankModel = bank.Adapt<BankModel>();
 
-            var listDto = await listService.GetBankExchangeRateLists(bankId);
-            if (listDto.Any())
-                ExchangeRateLists = new List<ExchangeRateListModel>(listDto.Adapt<IEnumerable<ExchangeRateListModel>>());
+            var list = await listService.GetBankExchangeRateLists(id);
+            if (list.Any())
+                ExchangeRateLists = new List<ExchangeRateListModel>(list.Adapt<IEnumerable<ExchangeRateListModel>>());
             return Page();
         }
     }

@@ -15,15 +15,5 @@ namespace RatesParsingWeb.Dto
         public DateTime DateTimeStamp { get; set; }
 
         public int BankId { get; set; }
-
-        /// <summary>
-        /// Ссылка на банк.
-        /// </summary>
-        public virtual BankDto Bank { get; set; }
-
-        /// <summary>
-        /// Список обменных курсов.
-        /// </summary>
-        public virtual ICollection<ExchangeRateDto> ExchangeRates { get; set; }
     }
 }
