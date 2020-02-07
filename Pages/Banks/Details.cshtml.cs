@@ -24,7 +24,7 @@ namespace RatesParsingWeb.Pages.Banks
         
         public async Task<IActionResult> OnGetAsync(int id)
         {
-            BankDto bankDto = await bankService.GetById(id);
+            BankDto bankDto = await bankService.GetByIdAsync(id);
             if (bankDto == null)
                 return NotFound();
             BankModel = bankDto.Adapt<BankModel>();

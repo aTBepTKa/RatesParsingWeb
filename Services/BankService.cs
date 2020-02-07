@@ -30,7 +30,7 @@ namespace RatesParsingWeb.Services
             return banks.Adapt<IEnumerable<BankDto>>();
         }
 
-        public async Task<BankDto> GetById(int id)
+        public async Task<BankDto> GetByIdAsync(int id)
         {         
             var bankDomain = await bankRepository.GetSingleAsync(
                 i => i.Id == id,

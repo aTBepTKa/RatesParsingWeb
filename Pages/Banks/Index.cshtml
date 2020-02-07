@@ -17,7 +17,7 @@
                 @Html.DisplayNameFor(model => model.FirstBankObject.Name)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.FirstBankObject.RatesUrl)
+                Списки обменных курсов
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.FirstBankObject.Currency.Name)
@@ -33,7 +33,7 @@
                     <a href="@item.BankUrl" target="_blank">@item.Name</a>
                 </td>
                 <td>
-                    <a href="@item.RatesUrl" target="_blank">Курсы</a>
+                    <a asp-page="./ExchangeRateLists/Index" asp-route-bankId="@item.Id">Курсы</a>
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Currency.TextCode) (@Html.DisplayFor(modelItem => item.Currency.Name))

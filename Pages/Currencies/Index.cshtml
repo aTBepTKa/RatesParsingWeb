@@ -6,10 +6,6 @@
 }
 
 <h1>Список валют</h1>
-
-<p>
-    <a asp-page="Create">Создать новую</a>
-</p>
 <table class="table">
     <thead>
         <tr>
@@ -22,7 +18,6 @@
             <th>
                 @Html.DisplayNameFor(model => model.FirstCurrencyObject.Id)
             </th>
-            @*<th></th>*@
         </tr>
     </thead>
     <tbody>
@@ -38,11 +33,6 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Id)
                 </td>
-                @*<td>
-                    <a asp-page="./Edit" asp-route-id="@item.Id">Редактировать</a> |
-                    <a asp-page="./Details" asp-route-id="@item.Id">Подробнее</a> |
-                    <a asp-page="./Delete" asp-route-id="@item.Id">Удалить</a>
-                </td>*@
             </tr>
         }
     </tbody>

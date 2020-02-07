@@ -1,0 +1,19 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Список обменных курсов валют";
+}
+
+<h1>Список обменных курсов валют</h1>
+
+<h4>@Model.BankModel.Name</h4>
+
+<ul>
+    @foreach(var list in Model.ExchangeRateLists)
+    {
+        <li>
+            Обменные курсы на @list.DateTimeStamp.ToShortDateString()
+        </li>
+    }
+</ul>
+
