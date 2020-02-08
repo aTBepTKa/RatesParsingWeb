@@ -33,7 +33,7 @@ namespace RatesParsingWeb.Pages.Banks.ExchangeRateLists
 
             var list = await listService.GetBankExchangeRateLists(id);
             if (list.Any())
-                ExchangeRateLists = new List<ExchangeRateListModel>(list.Adapt<IEnumerable<ExchangeRateListModel>>());
+                ExchangeRateLists = list.Adapt<List<ExchangeRateListModel>>();                
             return Page();
         }
     }

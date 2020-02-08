@@ -7,14 +7,20 @@
 <h1>Список обменных курсов валют</h1>
 
 <h4>@Model.BankModel.Name</h4>
-
-<ul>
-    @foreach(var list in Model.ExchangeRateLists)
-    {
-        <li>
-            <a asp-page="./ExchangeRates/Index" asp-route-id="@list.Id">Обменные курсы на @list.DateTimeStamp.ToShortDateString()</a>
-        </li>
-    }
-</ul>
+@if (Model.ExchangeRateLists != null)
+{
+    <ul>
+        @foreach (var list in Model.ExchangeRateLists)
+        {
+            <li>
+                <a asp-page="./ExchangeRates/Index" asp-route-id="@list.Id">Обменные курсы на @list.DateTimeStamp.ToShortDateString()</a>
+            </li>
+        }
+    </ul>
+}
+else
+{
+    <h5>Данные об обменных курсах отсутствуют.</h5>
+}
 <a asp-page="/Banks/Index">Назад к списку банков</a>
 

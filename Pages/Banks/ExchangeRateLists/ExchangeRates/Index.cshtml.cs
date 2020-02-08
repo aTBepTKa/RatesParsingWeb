@@ -44,7 +44,7 @@ namespace RatesParsingWeb.Pages.Banks.ExchangeRateLists.ExchangeRates
 
             if (rates.Any())
             {
-                ExchangeRateModels = new List<ExchangeRateModel>(rates.Adapt<IEnumerable<ExchangeRateModel>>());
+                ExchangeRateModels = rates.Adapt<List<ExchangeRateModel>>();
             }
             return Page();
         }

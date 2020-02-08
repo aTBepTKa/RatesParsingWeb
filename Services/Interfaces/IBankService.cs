@@ -23,7 +23,7 @@ namespace RatesParsingWeb.Services.Interfaces
         /// </summary>
         /// <param name="id">ID получаемого банка.</param>
         /// <returns></returns>
-        Task<BankDto> GetByIdAsync(int id);
+        new Task<BankDto> GetByIdAsync(int id);
 
         /// <summary>
         /// Создать новый банк.

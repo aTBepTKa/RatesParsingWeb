@@ -14,10 +14,10 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.FirstBankObject.Name)
+                @Html.DisplayNameFor(model => model.FirstBankObject.BankUrl)
             </th>
             <th>
-                Списки обменных курсов
+                @Html.DisplayNameFor(model => model.FirstBankObject.RatesUrl)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.FirstBankObject.Currency.Name)
@@ -33,7 +33,7 @@
                     <a href="@item.BankUrl" target="_blank">@item.Name</a>
                 </td>
                 <td>
-                    <a asp-page="./ExchangeRateLists/Index" asp-route-id="@item.Id">Курсы</a>
+                    <a href="@item.RatesUrl" target="_blank">Курсы</a>
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Currency.TextCode) (@Html.DisplayFor(modelItem => item.Currency.Name))
@@ -41,7 +41,8 @@
                 <td>
                     <a asp-page="./Edit" asp-route-id="@item.Id">Редактировать</a> |
                     <a asp-page="./Details" asp-route-id="@item.Id">Подробнее</a> |
-                    <a asp-page="./Delete" asp-route-id="@item.Id">Удалить</a>
+                    <a asp-page="./Delete" asp-route-id="@item.Id">Удалить</a> |
+                    <a asp-page="./ExchangeRateLists/Index" asp-route-id="@item.Id">Список курсов</a>
                 </td>
             </tr>
         }

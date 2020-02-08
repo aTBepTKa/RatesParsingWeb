@@ -4,7 +4,41 @@
     ViewData["Title"] = "Rates Parsing Web";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<h1>Банки и последние обменные курсы</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.FirstBankRateListModel.Bank.Name)</th>
+            <th>@Html.DisplayNameFor(model => model.FirstBankRateListModel.Bank.Currency.TextCode)</th>
+            <th>@Html.DisplayNameFor(model => model.FirstBankRateListModel.Bank.Currency.Name)</th>
+            <th>@Html.DisplayNameFor(model => model.FirstBankRateListModel.ExchangeRateList.DateTimeStamp)</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var bank in Model.BankRateListModels)
+        {
+            <tr>
+                <td>
+                    <a asp-page="./Banks/Details" asp-route-id="@bank.Bank.Id">
+                        @Html.DisplayFor(i => bank.Bank.Name)
+                    </a>
+                </td>
+                <td>@Html.DisplayFor(i => bank.Bank.Currency.TextCode)</td>
+                <td>@Html.DisplayFor(i => bank.Bank.Currency.Name)</td>
+                <td>
+                    @if (bank.ExchangeRateList != null)
+                    {
+                        <a asp-page="./Banks/ExchangeRateLists/ExchangeRates/Index" asp-route-id="@bank.ExchangeRateList.Id">
+                            @Html.DisplayFor(i => bank.ExchangeRateList.DateTimeStamp)
+                        </a>
+                    }
+                    else
+                    {
+                        <span>Данные отсутствуют</span>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

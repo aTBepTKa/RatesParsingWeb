@@ -83,7 +83,7 @@ namespace RatesParsingWeb.Storage.SerializeJson
         /// <returns></returns>
         private ICollection<ExchangeRate> GetExchangeRates(ICollection<ExchangeRateJson> ratesJsons, int exchangeRateListId, ref int exchangeRateId)
         {
-            var exchangeRates = new List<ExchangeRate>(ratesJsons.Count());
+            var exchangeRates = new List<ExchangeRate>(ratesJsons.Count);
             foreach (var rateJson in ratesJsons)
             {
                 var rate = new ExchangeRate()

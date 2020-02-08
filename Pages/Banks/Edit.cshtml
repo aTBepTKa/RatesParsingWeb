@@ -9,7 +9,6 @@
 <h1>Редактировать</h1>
 
 <h4>Банк</h4>
-<hr />
 @if (Model.ValidationErrorList != null)
 {
     <div class="text-danger">Ошибки при обновлении данных:</div>
@@ -19,6 +18,7 @@
     <div class="col-md-4">
         <form method="post">
             <h4>Реквизиты банка</h4>
+            <hr />
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="BankModel.Id" />
             <div class="form-group">
@@ -47,6 +47,7 @@
                 <span asp-validation-for="BankModel.CurrencyId" class="text-danger"></span>
             </div>
             <h4> Настройки парсинга банка</h4>
+            <hr />
             <div class="form-group">
                 <label asp-for="BankModel.ParsingSettings.TextCodeXpath" class="control-label"></label>
                 <input asp-for="BankModel.ParsingSettings.TextCodeXpath" class="form-control" />

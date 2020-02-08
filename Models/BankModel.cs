@@ -30,14 +30,14 @@ namespace RatesParsingWeb.Models
         /// <summary>
         /// Ссылка на главную страницу банка.
         /// </summary>
-        [DisplayName("Страница банка")]
+        [DisplayName("Сайт банка")]
         [Url(ErrorMessage = "Необходимо ввести ссылку")]
         public string BankUrl { get; set; }
 
         /// <summary>
         /// Ссылка на страницу, содержащую обменные курсы валют.
         /// </summary>
-        [DisplayName("Страница курсов банка")]
+        [DisplayName("Страница курсов")]
         [Required(ErrorMessage = "Поле является обязательным")]
         [Url(ErrorMessage = "Необходимо ввести ссылку")]
         public string RatesUrl { get; set; }

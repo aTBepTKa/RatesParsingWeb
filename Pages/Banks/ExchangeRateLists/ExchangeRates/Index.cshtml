@@ -7,7 +7,7 @@
 <h1>@Model.BankModel.Name</h1>
 
 <h4>Обменные курсы валют на @Model.ExchangeRateListModel.DateTimeStamp.ToShortDateString()</h4>
-<a asp-page="/Banks/ExchangeRateLists/Index" asp-route-id="@Model.BankModel.Id">Назад к списку курсов</a>
+<a asp-page="/Banks/ExchangeRateLists/Index" asp-route-id="@Model.BankModel.Id">К списку курсов</a>
 <table class="table">
     <thead>
         <tr>
@@ -45,4 +45,4 @@
         }
     </tbody>
 </table>
-<a asp-page="/Banks/ExchangeRateLists/Index" asp-route-id="@Model.BankModel.Id">Назад к списку курсов</a>
+<a asp-page="/Banks/ExchangeRateLists/Index" asp-route-id="@Model.BankModel.Id">К списку курсов</a>
