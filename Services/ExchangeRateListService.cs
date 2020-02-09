@@ -12,17 +12,36 @@ namespace RatesParsingWeb.Services
 {
     public class ExchangeRateListService : BaseCrudService<ExchangeRateListDto, ExchangeRateList>, IExchangeRateListService
     {
-        private readonly IExchangeRateListRepository rateListRepository;
-        
+        private readonly IExchangeRateListRepository listRepository;
+
         public ExchangeRateListService(IExchangeRateListRepository exchangeRate) : base(exchangeRate)
         {
-            rateListRepository = exchangeRate;
+            listRepository = exchangeRate;
         }
 
         public async Task<IEnumerable<ExchangeRateListDto>> GetBankExchangeRateLists(int bankId)
         {
-            var exchangeRateList = await rateListRepository.GetManyAsync(i => i.BankId == bankId);
+            var exchangeRateList = await listRepository.GetManyAsync(i => i.BankId == bankId);
             return exchangeRateList.Adapt<IEnumerable<ExchangeRateListDto>>();
+        }
+
+        public  IEnumerable<ExchangeRateListDto> GetLastExchangeRateLists()
+        {
+            // Не работает в EF .Core 3.0.
+            //var listQuery = listRepository.Query()                
+            //    .GroupBy(i => i.BankId)                
+            //    .Select(g => g.OrderByDescending(i => i.DateTimeStamp).FirstOrDefault())
+            //    .ToArray();
+
+            var lists = listRepository.Query();
+            var lastLists = lists
+                .Select(i => i.BankId)
+                .Distinct()
+                .Select(bankId => lists
+                    .OrderByDescending(i => i.DateTimeStamp)
+                    .FirstOrDefault(i => i.BankId == bankId))
+                .ToArray();
+            return lastLists.Adapt<IEnumerable<ExchangeRateListDto>>();
         }
     }
 }

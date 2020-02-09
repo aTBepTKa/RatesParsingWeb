@@ -13,13 +13,11 @@ namespace RatesParsingWeb.Pages
 {
     public class IndexModel : PageModel
     {
-        private readonly ILogger<IndexModel> _logger;
         private readonly IBankService bankService;
         private readonly IExchangeRateListService listService;
 
-        public IndexModel(ILogger<IndexModel> logger, IBankService bank, IExchangeRateListService list)
+        public IndexModel(IBankService bank, IExchangeRateListService list)
         {
-            _logger = logger;
             bankService = bank;
             listService = list;
         }
@@ -34,16 +32,14 @@ namespace RatesParsingWeb.Pages
                 return;
             banks = banks.OrderBy(i => i.Name);
 
-            var lists = await listService.GetAllAsync();
+            var lastLists = listService.GetLastExchangeRateLists();
 
             // Сформировать список банков с данными последних обменных курсов.
             BankRateListModels = banks.Select(bank => new BankRateListModel()
             {
                 Bank = bank.Adapt<BankModel>(),
-                ExchangeRateList = lists
-                    .Where(list => list.BankId == bank.Id)
-                    .OrderByDescending(list => list.DateTimeStamp)
-                    .FirstOrDefault()
+                ExchangeRateList = lastLists
+                    .FirstOrDefault(i=>i.BankId == bank.Id)
                     .Adapt<ExchangeRateListModel>()
             });
             FirstBankRateListModel = BankRateListModels.FirstOrDefault();
