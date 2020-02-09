@@ -30,14 +30,12 @@ namespace RatesParsingWeb.Services
             return banks.Adapt<IEnumerable<BankDto>>();
         }
 
-        public override async Task<BankDto> GetByIdAsync(int id)
-        {
-            var bankDomain = await bankRepository.GetFirstOrDefaultAsync(
+        public async Task<BankDto> GetBank(int id) =>
+            (await bankRepository.GetFirstOrDefaultAsync(
                 i => i.Id == id,
-                c => c.Currency,
-                s => s.ParsingSettings);
-            return bankDomain.Adapt<BankDto>();
-        }
+                i => i.Currency,
+                includes => includes.ParsingSettings))
+            .Adapt<BankDto>();
 
         public async Task<bool> CreateAsync(BankCreateDto createDto)
         {

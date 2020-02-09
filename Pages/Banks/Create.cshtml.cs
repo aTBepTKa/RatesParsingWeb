@@ -1,17 +1,9 @@
-﻿using System;
-using Mapster;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Mapster;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using RatesParsingWeb.Domain;
+using RatesParsingWeb.Dto.UpdateAndCreate;
 using RatesParsingWeb.Models;
 using RatesParsingWeb.Services.Interfaces;
-using RatesParsingWeb.Storage;
-using RatesParsingWeb.Dto.UpdateAndCreate;
-using RatesParsingWeb.App_Code;
+using System.Threading.Tasks;
 
 namespace RatesParsingWeb.Pages.Banks
 {
@@ -34,7 +26,7 @@ namespace RatesParsingWeb.Pages.Banks
 
         [BindProperty]
         public BankModel BankModel { get; set; }
-                                                                                                                                                                                          
+
         public async Task<IActionResult> OnPostAsync()
         {
             if (!ModelState.IsValid)

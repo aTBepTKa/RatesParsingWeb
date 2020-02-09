@@ -1,13 +1,10 @@
-﻿using System;
+﻿using Mapster;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using RatesParsingWeb.Models;
+using RatesParsingWeb.Services.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.Extensions.Logging;
-using RatesParsingWeb.Services.Interfaces;
-using RatesParsingWeb.Models;
-using Mapster;
 
 namespace RatesParsingWeb.Pages
 {
@@ -39,7 +36,7 @@ namespace RatesParsingWeb.Pages
             {
                 Bank = bank.Adapt<BankModel>(),
                 ExchangeRateList = lastLists
-                    .FirstOrDefault(i=>i.BankId == bank.Id)
+                    .FirstOrDefault(i => i.BankId == bank.Id)
                     .Adapt<ExchangeRateListModel>()
             });
             FirstBankRateListModel = BankRateListModels.FirstOrDefault();

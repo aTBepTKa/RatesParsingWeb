@@ -1,12 +1,9 @@
-﻿using System;
+﻿using RatesParsingWeb.Dto;
+using RatesParsingWeb.Dto.UpdateAndCreate;
+using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
-using RatesParsingWeb.Domain;
-using RatesParsingWeb.Dto;
-using RatesParsingWeb.Dto.UpdateAndCreate;
-using RatesParsingWeb.Services.Interfaces;
 
 namespace RatesParsingWeb.Services.Interfaces
 {
@@ -19,11 +16,11 @@ namespace RatesParsingWeb.Services.Interfaces
         Task<IEnumerable<BankDto>> GetList();
 
         /// <summary>
-        /// Получить банк с подчиненными данными.
+        /// Получить банк со связанными сущностями.
         /// </summary>
         /// <param name="id">ID получаемого банка.</param>
         /// <returns></returns>
-        new Task<BankDto> GetByIdAsync(int id);
+        Task<BankDto> GetBank(int id);
 
         /// <summary>
         /// Создать новый банк.
