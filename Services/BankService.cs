@@ -1,5 +1,4 @@
 ﻿using Mapster;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
 using RatesParsingWeb.Domain;
 using RatesParsingWeb.Dto;
 using RatesParsingWeb.Dto.UpdateAndCreate;
@@ -7,10 +6,7 @@ using RatesParsingWeb.Services.Interfaces;
 using RatesParsingWeb.Storage.Repositories.Interfaces;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
 using System.Threading.Tasks;
-using RatesParsingWeb.Extentions;
 
 namespace RatesParsingWeb.Services
 {
@@ -30,12 +26,27 @@ namespace RatesParsingWeb.Services
             return banks.Adapt<IEnumerable<BankDto>>();
         }
 
+        #region GetBank
         public async Task<BankDto> GetBank(int id) =>
             (await bankRepository.GetFirstOrDefaultAsync(
                 i => i.Id == id,
                 i => i.Currency,
                 includes => includes.ParsingSettings))
             .Adapt<BankDto>();
+
+        public async Task<BankDto> GetBankCurrency(int id) =>
+            (await bankRepository.GetFirstOrDefaultAsync(
+                i => i.Id == id,
+                i => i.Currency))
+            .Adapt<BankDto>();
+
+        public async Task<BankDto> GetBankParsingSettings(int id) =>
+            (await bankRepository.GetFirstOrDefaultAsync(
+                i => i.Id == id,
+                includes => includes.ParsingSettings))
+            .Adapt<BankDto>();
+        #endregion
+
 
         public async Task<bool> CreateAsync(BankCreateDto createDto)
         {

@@ -1,8 +1,6 @@
 ﻿using RatesParsingWeb.Dto;
 using RatesParsingWeb.Dto.UpdateAndCreate;
-using System;
 using System.Collections.Generic;
-using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace RatesParsingWeb.Services.Interfaces
@@ -21,6 +19,20 @@ namespace RatesParsingWeb.Services.Interfaces
         /// <param name="id">ID получаемого банка.</param>
         /// <returns></returns>
         Task<BankDto> GetBank(int id);
+
+        /// <summary>
+        /// Получить банк с Currency.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        Task<BankDto> GetBankCurrency(int id);
+
+        /// <summary>
+        /// Получить банк с ParsingSettings.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        Task<BankDto> GetBankParsingSettings(int id);
 
         /// <summary>
         /// Создать новый банк.

@@ -11,13 +11,13 @@ namespace RatesParsingWeb.Services.Interfaces
     public interface ICrudService<T> where T : class
     {
         /// <summary>
-        /// Получить все элементы.
+        /// Получить все элементы без связанных таблиц.
         /// </summary>
         /// <returns></returns>
         Task<IEnumerable<T>> GetAllAsync();
 
         /// <summary>
-        /// Получить элемент по Id.
+        /// Получить элемент по Id без связанных таблиц.
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>

@@ -1,16 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Mapster;
+﻿using Mapster;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.EntityFrameworkCore;
-using RatesParsingWeb.Domain;
 using RatesParsingWeb.Dto;
 using RatesParsingWeb.Models;
 using RatesParsingWeb.Services.Interfaces;
-using RatesParsingWeb.Storage;
+using System.Threading.Tasks;
 
 namespace RatesParsingWeb.Pages.Banks
 {
@@ -28,7 +22,7 @@ namespace RatesParsingWeb.Pages.Banks
 
         public async Task<IActionResult> OnGetAsync(int id)
         {
-            BankDto bankDto = await bankService.GetBank(id);
+            BankDto bankDto = await bankService.GetBankCurrency(id);
             if (bankDto == null)
             {
                 return NotFound();
