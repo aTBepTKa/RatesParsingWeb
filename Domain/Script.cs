@@ -13,18 +13,33 @@ namespace RatesParsingWeb.Domain
         public int Id { get; set; }
 
         /// <summary>
-        /// Наименование скрипта.
+        /// Наименование скрипта для дальнейшей работы с рефлексией.
         /// </summary>
         public string Name { get; set; }
 
         /// <summary>
-        /// Количество параметров скрипта.
+        /// Наименование скрипта для пользователя.
         /// </summary>
-        public int ParamsNum { get; set; }
+        public string FullName { get; set; }
 
         /// <summary>
-        /// Ссылка на скрипт с параметрами.
+        /// Описание скрипта.
         /// </summary>
-        public virtual ICollection<UnitScriptAssignment> ScriptAssignments { get; set; }
+        public string Description { get; set; }
+
+        /// <summary>
+        /// Параметры скрипта.
+        /// </summary>
+        public ICollection<ScriptParameter> ScriptParameter { get; set; }
+
+        /// <summary>
+        /// Назначение скрипта для единицы измерения.
+        /// </summary>
+        public virtual ICollection<UnitScriptAssignment> UnitScriptAssignments{ get; set; }
+
+        /// <summary>
+        /// Назначение скрипта для текстового кода.
+        /// </summary>
+        public virtual ICollection<TextCodeScriptAssignment> TextCodeScriptAssignments { get; set; }
     }
 }

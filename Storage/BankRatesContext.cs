@@ -26,6 +26,7 @@ namespace RatesParsingWeb.Storage
         public DbSet<UnitScriptAssignment> UnitScriptAssignments { get; set; }
         public DbSet<UnitScriptParameter> UnitScriptParameters { get; set; }
         public DbSet<Script> Scripts { get; set; }
+        public DbSet<ScriptParameter> ScriptParameters { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -78,6 +79,11 @@ namespace RatesParsingWeb.Storage
             // Установить свойства для TextCode.
             modelBuilder.Entity<TextCodeScriptParameter>().Property(i => i.Value).IsRequired();
             modelBuilder.Entity<TextCodeScriptParameter>().Property(i => i.Value).HasMaxLength(50);
+
+            // Установить свойства для ScriptParemeter.
+            modelBuilder.Entity<ScriptParameter>().Property(i => i.Name).IsRequired();
+            modelBuilder.Entity<ScriptParameter>().Property(i => i.Name).HasMaxLength(20);
+            modelBuilder.Entity<ScriptParameter>().Property(i => i.FullName).HasMaxLength(50);
 
             // Заполнить базу данных начальными данными.
             var seedData = new SeedData(modelBuilder);
