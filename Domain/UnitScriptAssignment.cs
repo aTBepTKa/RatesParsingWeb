@@ -13,7 +13,7 @@ namespace RatesParsingWeb.Domain
         public int Id { get; set; }
 
         public virtual int ScriptId { get; set; }
-        public virtual int BankId { get; set; }
+        public virtual int ParsingSettingsId { get; set; }
 
         /// <summary>
         /// Наименование скрипта.
@@ -23,7 +23,7 @@ namespace RatesParsingWeb.Domain
         /// <summary>
         /// Банк, для которого выполняется скрипт.
         /// </summary>
-        public virtual Bank Bank { get; set; }
+        public virtual ParsingSettings ParsingSettings { get; set; }
 
         /// <summary>
         /// Параметры скрипта.
