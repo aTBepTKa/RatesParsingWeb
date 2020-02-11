@@ -16,6 +16,8 @@
     <Compile Remove="Migrations\20200206214421_SeedExchangeRates.Designer.cs" />
     <Compile Remove="Migrations\20200206215537_SeedExchangeRates.cs" />
     <Compile Remove="Migrations\20200206215537_SeedExchangeRates.Designer.cs" />
+    <Compile Remove="Migrations\20200211124632_SeedScripts.cs" />
+    <Compile Remove="Migrations\20200211124632_SeedScripts.Designer.cs" />
   </ItemGroup>
 
 

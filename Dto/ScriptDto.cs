@@ -3,12 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace RatesParsingWeb.Domain
+namespace RatesParsingWeb.Dto
 {
-    /// <summary>
-    /// Скрипт для обработки строки.
-    /// </summary>
-    public class Script
+    public class ScriptDto
     {
         public int Id { get; set; }
 
@@ -30,16 +27,6 @@ namespace RatesParsingWeb.Domain
         /// <summary>
         /// Параметры скрипта.
         /// </summary>
-        public ICollection<ScriptParameter> ScriptParameters { get; set; }
-
-        /// <summary>
-        /// Назначение скрипта для единицы измерения.
-        /// </summary>
-        public virtual ICollection<UnitScriptAssignment> UnitScriptAssignments{ get; set; }
-
-        /// <summary>
-        /// Назначение скрипта для текстового кода.
-        /// </summary>
-        public virtual ICollection<TextCodeScriptAssignment> TextCodeScriptAssignments { get; set; }
+        public ICollection<ScriptParameterDto> ScriptParameters { get; set; }
     }
 }

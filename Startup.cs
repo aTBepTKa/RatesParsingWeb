@@ -40,6 +40,7 @@ namespace RatesParsingWeb
             services.AddScoped<IParsingSettingsRepository, ParsingSettingsRepository>();
             services.AddScoped<IExchangeRateListRepository, ExchangeRateListRepository>();
             services.AddScoped<IExchangeRateRepository, ExchangeRateRepository>();
+            services.AddScoped<IScriptRepository, ScriptRepository>();
 
             // Слой сервиса.
             services.AddScoped<IBankService, BankService>();
@@ -47,7 +48,7 @@ namespace RatesParsingWeb
             services.AddScoped<ICurrencyService, CurrencyService>();
             services.AddScoped<IExchangeRateListService, ExchangeRateListService>();
             services.AddScoped<IExchangeRateService, ExchangeRateService>();
-
+            services.AddScoped<IScriptService, ScriptService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

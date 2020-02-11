@@ -1,0 +1,57 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Скрипты";
+}
+
+<h1>Скрипты</h1>
+<p>
+    <a asp-page="Create">Создать новый</a>
+</p>
+@if (Model.ScriptModels != null)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.FirstScriptModelObject.Name)</th>
+                <th>@Html.DisplayNameFor(model => model.FirstScriptModelObject.FullName)</th>
+                <th>@Html.DisplayNameFor(model => model.FirstScriptModelObject.Description)</th>
+                <th>@Html.DisplayNameFor(model => model.FirstScriptModelObject.ScriptParameters)</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.ScriptModels)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.Name)</td>
+                    <td>@Html.DisplayFor(modelItem => item.FullName)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Description)</td>
+                    <td>
+                        @{string parametersResult = "";}
+                        @if (item.ScriptParameters.Any())
+                        {
+                            var isFirstIteration = true;
+                            foreach (var parameter in item.ScriptParameters)
+                            {
+                                if (!isFirstIteration)
+                                    parametersResult += ", ";
+                                parametersResult += parameter.Name;
+                                if (isFirstIteration)
+                                    isFirstIteration = false;
+                            }
+                        }
+                        else
+                        {
+                            parametersResult = "Отсутствуют";
+                        }
+                        @parametersResult
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <div>Скрипты отсутствуют</div>
+}
