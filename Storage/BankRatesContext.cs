@@ -13,7 +13,7 @@ namespace RatesParsingWeb.Storage
     {
         public BankRatesContext(DbContextOptions<BankRatesContext> options)
             : base(options)
-        {            
+        {
         }
 
         public DbSet<Bank> Banks { get; set; }
@@ -21,12 +21,12 @@ namespace RatesParsingWeb.Storage
         public DbSet<Currency> Currencies { get; set; }
         public DbSet<ExchangeRateList> ExchangeRateLists { get; set; }
         public DbSet<ExchangeRate> ExchangeRates { get; set; }
-        public DbSet<TextCodeScriptAssignment> TextCodeScriptAssignments { get; set; }
-        public DbSet<TextCodeScriptParameter> TextCodeScriptParameters { get; set; }
-        public DbSet<UnitScriptAssignment> UnitScriptAssignments { get; set; }
-        public DbSet<UnitScriptParameter> UnitScriptParameters { get; set; }
-        public DbSet<Script> Scripts { get; set; }
-        public DbSet<ScriptParameter> ScriptParameters { get; set; }
+        public DbSet<TextCodeCommandAssignment> TextCodeCommandAssignments { get; set; }
+        public DbSet<TextCodeCommandParameter> TextCodeCommandParameters { get; set; }
+        public DbSet<UnitCommandAssignment> UnitCommandAssignments { get; set; }
+        public DbSet<UnitCommandParameter> UnitCommandParameters { get; set; }
+        public DbSet<Command> Commands { get; set; }
+        public DbSet<CommandParameter> CommandParameters { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -41,17 +41,18 @@ namespace RatesParsingWeb.Storage
             modelBuilder.Entity<Bank>().Property(i => i.BankUrl).HasMaxLength(2000);
             modelBuilder.Entity<Bank>().Property(i => i.RatesUrl).HasMaxLength(2000);
 
-            // Установить свойства для Script.
-            modelBuilder.Entity<Script>().Property(i => i.Name).IsRequired();
-            modelBuilder.Entity<Script>().Property(i => i.Name).HasMaxLength(50);
-            modelBuilder.Entity<Script>().HasIndex(i => i.Name).IsUnique();
+            // Установить свойства для Command.
+            modelBuilder.Entity<Command>().Property(i => i.Name).IsRequired();
+            modelBuilder.Entity<Command>().Property(i => i.Name).HasMaxLength(20);
+            modelBuilder.Entity<Command>().HasIndex(i => i.Name).IsUnique();
+            modelBuilder.Entity<Command>().Property(i => i.FullName).HasMaxLength(50);
 
             // Установить свойства для ParsingSettings.
             modelBuilder.Entity<ParsingSettings>().Property(i => i.TextCodeXpath).IsRequired();
             modelBuilder.Entity<ParsingSettings>().Property(i => i.UnitXpath).IsRequired();
             modelBuilder.Entity<ParsingSettings>().Property(i => i.ExchangeRateXpath).IsRequired();
             modelBuilder.Entity<ParsingSettings>().Property(i => i.VariablePartOfXpath).IsRequired();
-            modelBuilder.Entity<ParsingSettings>().Property(i => i.NumberDecimalSeparator).IsRequired();            
+            modelBuilder.Entity<ParsingSettings>().Property(i => i.NumberDecimalSeparator).IsRequired();
             modelBuilder.Entity<ParsingSettings>().Property(i => i.TextCodeXpath).HasMaxLength(2000);
             modelBuilder.Entity<ParsingSettings>().Property(i => i.UnitXpath).HasMaxLength(2000);
             modelBuilder.Entity<ParsingSettings>().Property(i => i.ExchangeRateXpath).HasMaxLength(2000);
@@ -72,18 +73,18 @@ namespace RatesParsingWeb.Storage
             modelBuilder.Entity<Currency>().HasMany(i => i.ExchangeRates).WithOne(i => i.Currency)
                 .OnDelete(DeleteBehavior.Restrict);
 
-            // Установить свойства UnitScript.
-            modelBuilder.Entity<UnitScriptParameter>().Property(i => i.Value).IsRequired();
-            modelBuilder.Entity<UnitScriptParameter>().Property(i => i.Value).HasMaxLength(50);
+            // Установить свойства UnitCommand.
+            modelBuilder.Entity<UnitCommandParameter>().Property(i => i.Value).IsRequired();
+            modelBuilder.Entity<UnitCommandParameter>().Property(i => i.Value).HasMaxLength(50);
 
-            // Установить свойства для TextCode.
-            modelBuilder.Entity<TextCodeScriptParameter>().Property(i => i.Value).IsRequired();
-            modelBuilder.Entity<TextCodeScriptParameter>().Property(i => i.Value).HasMaxLength(50);
+            // Установить свойства для TextCodeCommand.
+            modelBuilder.Entity<TextCodeCommandParameter>().Property(i => i.Value).IsRequired();
+            modelBuilder.Entity<TextCodeCommandParameter>().Property(i => i.Value).HasMaxLength(50);
 
-            // Установить свойства для ScriptParemeter.
-            modelBuilder.Entity<ScriptParameter>().Property(i => i.Name).IsRequired();
-            modelBuilder.Entity<ScriptParameter>().Property(i => i.Name).HasMaxLength(20);
-            modelBuilder.Entity<ScriptParameter>().Property(i => i.FullName).HasMaxLength(50);
+            // Установить свойства для CommandParemeter.
+            modelBuilder.Entity<CommandParameter>().Property(i => i.Name).IsRequired();
+            modelBuilder.Entity<CommandParameter>().Property(i => i.Name).HasMaxLength(20);
+            modelBuilder.Entity<CommandParameter>().Property(i => i.FullName).HasMaxLength(50);
 
             // Заполнить базу данных начальными данными.
             var seedData = new SeedData(modelBuilder);

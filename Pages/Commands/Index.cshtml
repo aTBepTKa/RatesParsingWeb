@@ -1,26 +1,26 @@
 ﻿@page
 @model IndexModel
 @{
-    ViewData["Title"] = "Скрипты";
+    ViewData["Title"] = "Команды";
 }
 
-<h1>Скрипты</h1>
+<h1>Команды</h1>
 <p>
-    <a asp-page="Create">Создать новый</a>
+    <a asp-page="Create">Создать новую</a>
 </p>
-@if (Model.ScriptModels != null)
+@if (Model.CommandModels != null)
 {
     <table class="table">
         <thead>
             <tr>
-                <th>@Html.DisplayNameFor(model => model.FirstScriptModelObject.Name)</th>
-                <th>@Html.DisplayNameFor(model => model.FirstScriptModelObject.FullName)</th>
-                <th>@Html.DisplayNameFor(model => model.FirstScriptModelObject.Description)</th>
-                <th>@Html.DisplayNameFor(model => model.FirstScriptModelObject.ScriptParameters)</th>
+                <th>@Html.DisplayNameFor(model => model.FirstCommandModelObject.Name)</th>
+                <th>@Html.DisplayNameFor(model => model.FirstCommandModelObject.FullName)</th>
+                <th>@Html.DisplayNameFor(model => model.FirstCommandModelObject.Description)</th>
+                <th>@Html.DisplayNameFor(model => model.FirstCommandModelObject.CommandParameters)</th>
             </tr>
         </thead>
         <tbody>
-            @foreach (var item in Model.ScriptModels)
+            @foreach (var item in Model.CommandModels)
             {
                 <tr>
                     <td>@Html.DisplayFor(modelItem => item.Name)</td>
@@ -28,10 +28,10 @@
                     <td>@Html.DisplayFor(modelItem => item.Description)</td>
                     <td>
                         @{string parametersResult = "";}
-                        @if (item.ScriptParameters.Any())
+                        @if (item.CommandParameters.Any())
                         {
                             var isFirstIteration = true;
-                            foreach (var parameter in item.ScriptParameters)
+                            foreach (var parameter in item.CommandParameters)
                             {
                                 if (!isFirstIteration)
                                     parametersResult += ", ";
@@ -53,5 +53,5 @@
 }
 else
 {
-    <div>Скрипты отсутствуют</div>
+    <div>Команды отсутствуют</div>
 }

@@ -5,28 +5,28 @@ using System.Threading.Tasks;
 
 namespace RatesParsingWeb.Dto
 {
-    public class ScriptDto
+    public class CommandDto
     {
         public int Id { get; set; }
 
         /// <summary>
-        /// Наименование скрипта для дальнейшей работы с рефлексией.
+        /// Наименование команды для дальнейшей работы с рефлексией.
         /// </summary>
         public string Name { get; set; }
 
         /// <summary>
-        /// Наименование скрипта для пользователя.
+        /// Наименование команды для пользователя.
         /// </summary>
         public string FullName { get; set; }
 
         /// <summary>
-        /// Описание скрипта.
+        /// Описание команды.
         /// </summary>
         public string Description { get; set; }
 
         /// <summary>
-        /// Параметры скрипта.
+        /// Параметры команды.
         /// </summary>
-        public ICollection<ScriptParameterDto> ScriptParameters { get; set; }
+        public ICollection<CommandParameterDto> CommandParameters { get; set; }
     }
 }

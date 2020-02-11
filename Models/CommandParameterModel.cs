@@ -5,20 +5,20 @@ using System.Threading.Tasks;
 
 namespace RatesParsingWeb.Models
 {
-    public class ScriptParameterModel
+    public class CommandParameterModel
     {
         public int Id { get; set; }
 
         /// <summary>
-        /// Наименование скрипта для дальнейшей работы с рефлексией.
+        /// Наименование команды для дальнейшей работы с рефлексией.
         /// </summary>
         public string Name { get; set; }
 
         /// <summary>
-        /// Полное наименование скрипта для пользователя.
+        /// Полное наименование команды для пользователя.
         /// </summary>
         public string FullName { get; set; }
 
-        public virtual int ScriptId { get; set; }
+        public virtual int CommandId { get; set; }
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RatesParsingWeb.Storage.Repositories.Interfaces
 {
-    public interface IScriptRepository : IRepository<Script>
+    public interface ICommandRepository : IRepository<Command>
     {
     }
 }

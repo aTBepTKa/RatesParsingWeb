@@ -53,14 +53,14 @@ namespace RatesParsingWeb.Domain
         public char NumberGroupSeparator { get; set; }
 
         /// <summary>
-        /// Сценарии для обработки единицы измерения валюты.
+        /// Команды для обработки единицы измерения валюты.
         /// </summary>
-        public virtual ICollection<UnitScriptAssignment> UnitScripts { get; set; }
+        public virtual ICollection<UnitCommandAssignment> UnitCommands { get; set; }
 
         /// <summary>
-        /// Сценарии для обработки текстового кода валюты.
+        /// Команды для обработки текстового кода валюты.
         /// </summary>
-        public virtual ICollection<TextCodeScriptAssignment> TextCodeScripts { get; set; }
+        public virtual ICollection<TextCodeCommandAssignment> TextCodeCommands { get; set; }
                
         public int BankId { get; set; }
         /// <summary>

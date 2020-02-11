@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 namespace RatesParsingWeb.Domain
 {
     /// <summary>
-    /// Параметр скрипта для выполнения парсинга.
+    /// Параметр команды для выполнения парсинга.
     /// </summary>
-    public class UnitScriptParameter
+    public class TextCodeCommandParameter
     {
         public int Id { get; set; }
 
@@ -17,11 +17,11 @@ namespace RatesParsingWeb.Domain
         /// </summary>
         public string Value { get; set; }
 
-        public int UnitScriptAssignmentId { get; set; }
+        public int TextCodeCommandAssignmentId { get; set; }
 
         /// <summary>
-        /// Ссылка на скрипт.
+        /// Ссылка на команду.
         /// </summary>
-        public virtual UnitScriptAssignment UnitScriptAssignment { get; set; }
+        public virtual TextCodeCommandAssignment TextCodeCommandAssignment { get; set; }
     }
 }

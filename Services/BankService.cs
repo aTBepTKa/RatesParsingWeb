@@ -50,7 +50,6 @@ namespace RatesParsingWeb.Services
 
         public async Task<bool> CreateAsync(BankCreateDto createDto)
         {
-            // TODO: Добавить валидацию настроек парсинга.
             await CheckCreateForUniqueness(createDto);
             CheckForValidity(createDto);
             if (!ValidationDictionary.IsValid)
@@ -91,7 +90,7 @@ namespace RatesParsingWeb.Services
             await bankRepository.SaveChangesAsync();
         }
 
-        private void CheckForValidity(IBankRequisites bank)
+        private void CheckForValidity(IBankValidity bank)
         {
             // Проверить основные свойства банка.
 

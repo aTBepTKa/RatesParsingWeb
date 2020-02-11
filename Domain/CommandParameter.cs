@@ -6,24 +6,24 @@ using System.Threading.Tasks;
 namespace RatesParsingWeb.Domain
 {
     /// <summary>
-    /// Параметр для скрипта.
+    /// Параметр для команды.
     /// </summary>
-    public class ScriptParameter
+    public class CommandParameter
     {
         public int Id { get; set; }
 
         /// <summary>
-        /// Наименование скрипта для дальнейшей работы с рефлексией.
+        /// Наименование команды для дальнейшей работы с рефлексией.
         /// </summary>
         public string Name { get; set; }
 
         /// <summary>
-        /// Полное наименование скрипта для пользователя.
+        /// Полное наименование команды для пользователя.
         /// </summary>
         public string FullName { get; set; }
 
 
-        public virtual int ScriptId { get; set; }
-        public virtual Script Script { get; set; }
+        public virtual int CommandId { get; set; }
+        public virtual Command Command { get; set; }
     }
 }

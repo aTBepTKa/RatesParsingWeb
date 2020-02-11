@@ -18,6 +18,8 @@
     <Compile Remove="Migrations\20200206215537_SeedExchangeRates.Designer.cs" />
     <Compile Remove="Migrations\20200211124632_SeedScripts.cs" />
     <Compile Remove="Migrations\20200211124632_SeedScripts.Designer.cs" />
+    <Compile Remove="Migrations\20200211192636_RenameScriptToCommand.cs" />
+    <Compile Remove="Migrations\20200211192636_RenameScriptToCommand.Designer.cs" />
   </ItemGroup>
 
 

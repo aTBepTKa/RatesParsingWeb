@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace RatesParsingWeb.Dto
+﻿namespace RatesParsingWeb.Dto.UpdateAndCreate
 {
     /// <summary>
     /// Содержит основные реквизиты банка.
     /// </summary>
-    interface IBankRequisites
+    interface IBankValidity
     {
         string SwiftCode { get; set; }
 

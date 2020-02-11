@@ -34,7 +34,7 @@ namespace RatesParsingWeb.Storage
             SeedBanks();
             SeedParsingSettings();
             SeedExchangeRates();
-            SeedScripts();
+            SeedCommands();
         }
 
         /// <summary>
@@ -191,29 +191,29 @@ namespace RatesParsingWeb.Storage
         }
 
         /// <summary>
-        /// Заполнить таблицу Scripts.
+        /// Заполнить таблицу Commands.
         /// </summary>
-        private void SeedScripts()
+        private void SeedCommands()
         {
             int scriptId = 1;
             int parameterId = 1;
-            var scripts = new Script[]
+            var commands = new Command[]
             {
-                new Script
+                new Command
                 {
                     Id = scriptId++,
                     Name = "GetNumberFromText",
                     FullName = "Получить числа из текста",
                     Description = "Возвращает числа из текстовой строки"
                 },
-                new Script
+                new Command
                 {
                     Id = scriptId++,
                     Name = "GetTextFromEnd",
                     FullName = "Получить текст с конца строки",
                     Description = "Возвращает строку заданной длины начиная начиная с конца исходной строки"
                 },
-                new Script
+                new Command
                 {
                     Id = scriptId++,
                     Name = "ReplaceSubString",
@@ -221,34 +221,34 @@ namespace RatesParsingWeb.Storage
                     Description = "Находит строку и заменяет новой"
                 }
             };
-            ModelBuilder.Entity<Script>().HasData(scripts);
+            ModelBuilder.Entity<Command>().HasData(commands);
 
-            var scriptParameters = new ScriptParameter[]
+            var commandParameters = new CommandParameter[]
             {
-                new ScriptParameter
+                new CommandParameter
                 {
                     Id = parameterId++,
                     Name = "Length",
                     FullName = "Длина строки",
-                    ScriptId = scripts.Single(i=>i.Name == "GetTextFromEnd").Id
+                    CommandId = commands.Single(i=>i.Name == "GetTextFromEnd").Id
                 },
-                new ScriptParameter
+                new CommandParameter
                 {
                     Id = parameterId++,
                     Name = "OldString",
                     FullName = "Исходная строка",
-                    ScriptId = scripts.Single(i=>i.Name == "ReplaceSubString").Id
+                    CommandId = commands.Single(i=>i.Name == "ReplaceSubString").Id
                 },
-                new ScriptParameter
+                new CommandParameter
                 {
                     Id = parameterId++,
                     Name = "NewString",
                     FullName = "Новая строка",
-                    ScriptId = scripts.Single(i=>i.Name == "ReplaceSubString").Id
+                    CommandId = commands.Single(i=>i.Name == "ReplaceSubString").Id
                 }
             };
 
-            ModelBuilder.Entity<ScriptParameter>().HasData(scriptParameters);
+            ModelBuilder.Entity<CommandParameter>().HasData(commandParameters);
         }
     }
 }
