@@ -15,6 +15,6 @@ namespace RatesParsingWeb.Dto.UpdateAndCreate
         /// <summary>
         /// Полное наименование команды для пользователя.
         /// </summary>
-        public string FullName { get; set; }
+        public string Description { get; set; }
     }
 }

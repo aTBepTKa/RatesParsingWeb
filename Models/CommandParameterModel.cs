@@ -17,7 +17,7 @@ namespace RatesParsingWeb.Models
         /// <summary>
         /// Полное наименование команды для пользователя.
         /// </summary>
-        public string FullName { get; set; }
+        public string Description { get; set; }
 
         public virtual int CommandId { get; set; }
     }

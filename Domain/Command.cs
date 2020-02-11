@@ -15,11 +15,6 @@ namespace RatesParsingWeb.Domain
         public string Name { get; set; }
 
         /// <summary>
-        /// Наименование команды для пользователя.
-        /// </summary>
-        public string FullName { get; set; }
-
-        /// <summary>
         /// Описание команды.
         /// </summary>
         public string Description { get; set; }

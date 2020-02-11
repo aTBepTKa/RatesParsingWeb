@@ -13,12 +13,7 @@ namespace RatesParsingWeb.Dto
         /// Наименование команды для дальнейшей работы с рефлексией.
         /// </summary>
         public string Name { get; set; }
-
-        /// <summary>
-        /// Наименование команды для пользователя.
-        /// </summary>
-        public string FullName { get; set; }
-
+        
         /// <summary>
         /// Описание команды.
         /// </summary>

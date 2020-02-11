@@ -1,6 +1,7 @@
 ﻿using Mapster;
 using RatesParsingWeb.Domain;
 using RatesParsingWeb.Dto;
+using RatesParsingWeb.Dto.ExternalCommand;
 using RatesParsingWeb.Dto.UpdateAndCreate;
 using RatesParsingWeb.Services.Interfaces;
 using RatesParsingWeb.Storage.Repositories.Interfaces;
@@ -37,16 +38,23 @@ namespace RatesParsingWeb.Services
             return true;
         }
 
+        public IEnumerable<CommandCreateDto> GetExternalCommands()
+        {
+            var commandsFactory = new FakeTaxi();
+            IEnumerable<ExternalCommandDto> externalCommands = commandsFactory.GetCommands();
+            return externalCommands.Adapt<IEnumerable<CommandCreateDto>>();
+        }
+
         private void CheckForValidity(ICommandValidity command)
         {
             // Проверить Command.
             if (string.IsNullOrEmpty(command.Name))
-                ValidationDictionary.AddError(nameof(command.Name), "Краткое наименование команды обязательно.");
+                ValidationDictionary.AddError(nameof(command.Name), "Наименование команды обязательно.");
             else if (command.Name.Length > 20)
-                ValidationDictionary.AddError(nameof(command.Name), "Максимальная длина краткого имени команды составляет 20 символов.");
+                ValidationDictionary.AddError(nameof(command.Name), "Максимальная длина имени команды составляет 20 символов.");
             
-            if (!string.IsNullOrEmpty(command.FullName) && command.FullName.Length > 50)
-                ValidationDictionary.AddError(nameof(command.FullName), "Максимальная длина полного имени команды составляет 50 символов.");            
+            if (!string.IsNullOrEmpty(command.Description) && command.Description.Length > 200)
+                ValidationDictionary.AddError(nameof(command.Description), "Максимальная длина описания команды составляет 200 символов.");            
         }
 
         private async Task CheckCreateForUniquinessAsync(CommandCreateDto command)
@@ -55,10 +63,10 @@ namespace RatesParsingWeb.Services
                 ValidationDictionary.AddError(nameof(command.Name), "Команда с таким именем уже существует");
         }
 
-        private async Task CheckUpdateForUniquinessAsync(CommandUpdateDto command)
-        {
-            if (await commandRepository.AnyAsync(i => i.Id != command.Id && i.Name == command.Name))
-                ValidationDictionary.AddError(nameof(command.Name), "Команда с таким именем уже существует");
-        }
+        //private async Task CheckUpdateForUniquinessAsync(CommandUpdateDto command)
+        //{
+        //    if (await commandRepository.AnyAsync(i => i.Id != command.Id && i.Name == command.Name))
+        //        ValidationDictionary.AddError(nameof(command.Name), "Команда с таким именем уже существует");
+        //}
     }
 }

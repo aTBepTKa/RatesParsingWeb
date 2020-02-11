@@ -17,12 +17,6 @@ namespace RatesParsingWeb.Models
         public string Name { get; set; }
 
         /// <summary>
-        /// Наименование команды для пользователя.
-        /// </summary>
-        [DisplayName("Полное наименование команды")]
-        public string FullName { get; set; }
-
-        /// <summary>
         /// Описание команды.
         /// </summary>
         [DisplayName("Описание команды")]

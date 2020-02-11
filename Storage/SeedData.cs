@@ -203,21 +203,18 @@ namespace RatesParsingWeb.Storage
                 {
                     Id = scriptId++,
                     Name = "GetNumberFromText",
-                    FullName = "Получить числа из текста",
                     Description = "Возвращает числа из текстовой строки"
                 },
                 new Command
                 {
                     Id = scriptId++,
                     Name = "GetTextFromEnd",
-                    FullName = "Получить текст с конца строки",
                     Description = "Возвращает строку заданной длины начиная начиная с конца исходной строки"
                 },
                 new Command
                 {
                     Id = scriptId++,
                     Name = "ReplaceSubString",
-                    FullName = "Заменить строку",
                     Description = "Находит строку и заменяет новой"
                 }
             };
@@ -229,21 +226,21 @@ namespace RatesParsingWeb.Storage
                 {
                     Id = parameterId++,
                     Name = "Length",
-                    FullName = "Длина строки",
+                    Description = "Длина строки",
                     CommandId = commands.Single(i=>i.Name == "GetTextFromEnd").Id
                 },
                 new CommandParameter
                 {
                     Id = parameterId++,
                     Name = "OldString",
-                    FullName = "Исходная строка",
+                    Description = "Исходная строка",
                     CommandId = commands.Single(i=>i.Name == "ReplaceSubString").Id
                 },
                 new CommandParameter
                 {
                     Id = parameterId++,
                     Name = "NewString",
-                    FullName = "Новая строка",
+                    Description = "Новая строка",
                     CommandId = commands.Single(i=>i.Name == "ReplaceSubString").Id
                 }
             };

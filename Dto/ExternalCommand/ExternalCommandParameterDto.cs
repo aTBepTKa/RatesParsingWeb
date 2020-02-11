@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace RatesParsingWeb.Dto.UpdateAndCreate
+namespace RatesParsingWeb.Dto.ExternalCommand
 {
     /// <summary>
-    /// Объект для создания новой команды.
+    /// Параметры внешней команды.
     /// </summary>
-    public class CommandCreateDto : ICommandValidity
+    public class ExternalCommandParameterDto
     {
         /// <summary>
         /// Наименование команды для дальнейшей работы с рефлексией.
@@ -16,13 +16,8 @@ namespace RatesParsingWeb.Dto.UpdateAndCreate
         public string Name { get; set; }
 
         /// <summary>
-        /// Описание команды.
+        /// Полное наименование команды для пользователя.
         /// </summary>
         public string Description { get; set; }
-
-        /// <summary>
-        /// Параметры команды.
-        /// </summary>
-        public ICollection<CommandParameterCreateDto> CommandParameters { get; set; }
     }
 }

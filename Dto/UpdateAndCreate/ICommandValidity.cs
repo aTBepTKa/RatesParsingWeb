@@ -5,6 +5,9 @@ using System.Threading.Tasks;
 
 namespace RatesParsingWeb.Dto
 {
+    /// <summary>
+    /// Представляет свойства подлежащие валидации.
+    /// </summary>
     public interface ICommandValidity
     {
         /// <summary>
@@ -13,18 +16,8 @@ namespace RatesParsingWeb.Dto
         string Name { get; set; }
 
         /// <summary>
-        /// Наименование команды для пользователя.
-        /// </summary>
-        string FullName { get; set; }
-
-        /// <summary>
         /// Описание команды.
         /// </summary>
         string Description { get; set; }
-
-        /// <summary>
-        /// Параметры команды.
-        /// </summary>
-        ICollection<CommandParameterDto> CommandParameters { get; set; }
     }
 }

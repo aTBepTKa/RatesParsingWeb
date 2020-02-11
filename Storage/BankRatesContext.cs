@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using RatesParsingWeb.Domain;
-using RatesParsingWeb.Storage.SerializeXml;
 
 namespace RatesParsingWeb.Storage
 {
@@ -45,7 +39,7 @@ namespace RatesParsingWeb.Storage
             modelBuilder.Entity<Command>().Property(i => i.Name).IsRequired();
             modelBuilder.Entity<Command>().Property(i => i.Name).HasMaxLength(20);
             modelBuilder.Entity<Command>().HasIndex(i => i.Name).IsUnique();
-            modelBuilder.Entity<Command>().Property(i => i.FullName).HasMaxLength(50);
+            modelBuilder.Entity<Command>().Property(i => i.Description).HasMaxLength(200);
 
             // Установить свойства для ParsingSettings.
             modelBuilder.Entity<ParsingSettings>().Property(i => i.TextCodeXpath).IsRequired();
@@ -84,7 +78,7 @@ namespace RatesParsingWeb.Storage
             // Установить свойства для CommandParemeter.
             modelBuilder.Entity<CommandParameter>().Property(i => i.Name).IsRequired();
             modelBuilder.Entity<CommandParameter>().Property(i => i.Name).HasMaxLength(20);
-            modelBuilder.Entity<CommandParameter>().Property(i => i.FullName).HasMaxLength(50);
+            modelBuilder.Entity<CommandParameter>().Property(i => i.Description).HasMaxLength(200);
 
             // Заполнить базу данных начальными данными.
             var seedData = new SeedData(modelBuilder);
