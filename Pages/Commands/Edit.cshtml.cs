@@ -1,19 +1,20 @@
-﻿using Mapster;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Mapster;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using RatesParsingWeb.Dto.UpdateAndCreate;
 using RatesParsingWeb.Models;
 using RatesParsingWeb.Services.Interfaces;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace RatesParsingWeb.Pages.Commands
 {
-    public class CreateModel : BaseCreateUpdatePageModel
+    public class EditModel : BaseCreateUpdatePageModel
     {
-        public CreateModel(ICommandService command) : base(command)
+        public EditModel(ICommandService command) : base(command)
         { }
 
         [BindProperty]

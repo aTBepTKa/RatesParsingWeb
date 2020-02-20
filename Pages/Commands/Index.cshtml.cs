@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Mapster;
-using Microsoft.AspNetCore.Mvc;
+﻿using Mapster;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using RatesParsingWeb.Dto;
 using RatesParsingWeb.Models;
 using RatesParsingWeb.Services.Interfaces;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace RatesParsingWeb.Pages.Commands
 {
@@ -25,7 +23,7 @@ namespace RatesParsingWeb.Pages.Commands
 
         public async Task OnGet()
         {
-            IEnumerable<CommandDto> commands = await commandService.GetCommandsWithParameters();
+            IEnumerable<CommandDto> commands = await commandService.GetCommandParameterListAsync();
             if (commands.Any())
             {
                 CommandModels = commands.Adapt<IEnumerable<CommandModel>>();

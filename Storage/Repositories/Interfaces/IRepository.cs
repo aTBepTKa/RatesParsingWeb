@@ -19,9 +19,8 @@ namespace RatesParsingWeb.Storage.Repositories.Interfaces
         Task AddRangeAsync(T[] entity);
 
         /// <summary>
-        /// Удалить банк по Id.
+        /// Удалить объект.
         /// </summary>
-        /// <param name="id"></param>
         void Remove(T t);
 
         /// <summary>

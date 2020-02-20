@@ -20,7 +20,7 @@ namespace RatesParsingWeb.Dto.ExternalCommand
         }
 
         /// <summary>
-        /// Сериализовать список команд.
+        /// Получить сериализованный список команд.
         /// </summary>
         /// <returns></returns>
         private string GetCommandsListFromConsoleApp()

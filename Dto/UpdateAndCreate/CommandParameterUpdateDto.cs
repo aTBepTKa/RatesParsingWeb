@@ -3,21 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace RatesParsingWeb.Dto
+namespace RatesParsingWeb.Dto.UpdateAndCreate
 {
-    /// <summary>
-    /// Представляет свойства подлежащие валидации.
-    /// </summary>
-    public interface ICommandValidity
+    public class CommandParameterUpdateDto
     {
+        public int Id { get; set; }
         /// <summary>
         /// Наименование команды для дальнейшей работы с рефлексией.
         /// </summary>
-        string Name { get; set; }
+        public string Name { get; set; }
 
         /// <summary>
-        /// Описание команды.
+        /// Полное наименование команды для пользователя.
         /// </summary>
-        string Description { get; set; }
+        public string Description { get; set; }
     }
 }

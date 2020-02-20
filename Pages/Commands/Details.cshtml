@@ -1,0 +1,48 @@
+﻿@page
+@model DetailsModel
+@{
+    ViewData["Title"] = "Подробности";
+}
+
+<h1>Подробности</h1>
+
+<div>
+    <h4>Команда</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CommandModel.Name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CommandModel.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CommandModel.Description)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CommandModel.Description)
+        </dd>
+    </dl>
+</div>
+<div>
+    <h4>Параметры</h4>
+    <hr />
+    @if (Model.CommandModel.CommandParameters != null)
+    {
+        @foreach (var parameter in Model.CommandModel.CommandParameters)
+        {
+            <div>
+                <span class="font-weight-bold">@Html.DisplayFor(model => parameter.Name)</span>: @Html.DisplayFor(model => parameter.Description)
+            </div>
+        }
+    }
+    else
+    {
+        <div>
+            Параметры отсутствуют
+        </div>
+    }
+</div>
+<div>
+    <a asp-page="./Index">К списку команд</a>
+</div>

@@ -1,0 +1,32 @@
+﻿@page
+@model DeleteModel
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Удалить команду?</h1>
+<div>
+    <h4>Команда</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CommandModel.Name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CommandModel.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CommandModel.Description)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CommandModel.Description)
+        </dd>
+    </dl>
+
+    <form method="post">
+        <input type="hidden" asp-for="CommandModel.Id" />
+        <input type="submit" value="Удалить" class="btn btn-danger" />
+        <a asp-page="./Index"> К списку команд</a>
+    </form>
+</div>
+

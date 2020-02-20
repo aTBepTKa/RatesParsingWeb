@@ -5,11 +5,9 @@ using System.Threading.Tasks;
 
 namespace RatesParsingWeb.Dto.UpdateAndCreate
 {
-    /// <summary>
-    /// Объект для создания новой команды.
-    /// </summary>
-    public class CommandCreateDto
+    public class CommandUpdateDto
     {
+        public int Id { get; set; }
         /// <summary>
         /// Наименование команды для дальнейшей работы с рефлексией.
         /// </summary>
@@ -23,6 +21,6 @@ namespace RatesParsingWeb.Dto.UpdateAndCreate
         /// <summary>
         /// Параметры команды.
         /// </summary>
-        public ICollection<CommandParameterCreateDto> CommandParameters { get; set; }
+        public ICollection<CommandParameterUpdateDto> CommandParameters { get; set; }
     }
 }

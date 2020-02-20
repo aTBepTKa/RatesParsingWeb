@@ -22,10 +22,30 @@ namespace RatesParsingWeb.Services.Interfaces
         Task<bool> CreateAsync(CommandCreateDto commandCreateDto);
 
         /// <summary>
-        /// Возвращает объект команды с зависимой таблицей параметров.
+        /// Удалить команду по Id.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        Task DeleteAsync(int id);
+
+        /// <summary>
+        /// Обновить данные банка.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        Task<bool> UpdateAsync(int id);
+
+        /// <summary>
+        /// Получить список команд с таблицей параметров.
         /// </summary>
         /// <returns></returns>
-        Task<IEnumerable<CommandDto>> GetCommandsWithParameters();
+        Task<IEnumerable<CommandDto>> GetCommandParameterListAsync();
+
+        /// <summary>
+        /// Получить команду с таблицей параметров
+        /// </summary>
+        /// <returns></returns>
+        Task<CommandDto> GetCommandParameterAsync(int id);
 
         /// <summary>
         /// Получить список команд из внешнего источника.

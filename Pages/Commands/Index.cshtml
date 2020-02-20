@@ -14,8 +14,8 @@
         <thead>
             <tr>
                 <th>@Html.DisplayNameFor(model => model.FirstCommandModelObject.Name)</th>
-                <th>@Html.DisplayNameFor(model => model.FirstCommandModelObject.Description)</th>
                 <th>@Html.DisplayNameFor(model => model.FirstCommandModelObject.CommandParameters)</th>
+                <th>@Html.DisplayNameFor(model => model.FirstCommandModelObject.Description)</th>
             </tr>
         </thead>
         <tbody>
@@ -23,7 +23,6 @@
             {
                 <tr>
                     <td>@Html.DisplayFor(modelItem => item.Name)</td>
-                    <td>@Html.DisplayFor(modelItem => item.Description)</td>
                     <td>
                         @{string parametersResult = "";}
                         @if (item.CommandParameters.Any())
@@ -43,6 +42,12 @@
                             parametersResult = "Отсутствуют";
                         }
                         @parametersResult
+                    </td>
+                    <td>@Html.DisplayFor(modelItem => item.Description)</td>
+                    <td>
+                        <a asp-page="./Edit" asp-route-id="@item.Id">Редактировать</a> |
+                        <a asp-page="./Details" asp-route-id="@item.Id">Подробнее</a> |
+                        <a asp-page="./Delete" asp-route-id="@item.Id">Удалить</a> |
                     </td>
                 </tr>
             }
