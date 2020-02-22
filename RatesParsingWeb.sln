@@ -5,6 +5,10 @@ VisualStudioVersion = 16.0.29613.14
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RatesParsingWeb", "RatesParsingWeb.csproj", "{DB1A16CC-1219-404C-919B-FF9D91143FDF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParsingMessages", "..\ParsingMessages\ParsingMessages.csproj", "{5E0A1B60-67FD-4E8C-A76A-3CA3DB11D769}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParsingService", "..\ParsingService\ParsingService.csproj", "{348E1BAB-8336-4C45-9E89-3E2FD9B5422F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{DB1A16CC-1219-404C-919B-FF9D91143FDF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DB1A16CC-1219-404C-919B-FF9D91143FDF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DB1A16CC-1219-404C-919B-FF9D91143FDF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5E0A1B60-67FD-4E8C-A76A-3CA3DB11D769}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5E0A1B60-67FD-4E8C-A76A-3CA3DB11D769}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5E0A1B60-67FD-4E8C-A76A-3CA3DB11D769}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5E0A1B60-67FD-4E8C-A76A-3CA3DB11D769}.Release|Any CPU.Build.0 = Release|Any CPU
+		{348E1BAB-8336-4C45-9E89-3E2FD9B5422F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{348E1BAB-8336-4C45-9E89-3E2FD9B5422F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{348E1BAB-8336-4C45-9E89-3E2FD9B5422F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{348E1BAB-8336-4C45-9E89-3E2FD9B5422F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

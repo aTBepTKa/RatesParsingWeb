@@ -1,19 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.EntityFrameworkCore;
+using RatesParsingWeb.Services;
+using RatesParsingWeb.Services.Interfaces;
 using RatesParsingWeb.Storage;
 using RatesParsingWeb.Storage.Repositories;
 using RatesParsingWeb.Storage.Repositories.Interfaces;
-using RatesParsingWeb.Services;
-using RatesParsingWeb.Services.Interfaces;
+using MassTransit.AspNetCoreIntegration;
+using MassTransit;
 
 namespace RatesParsingWeb
 {
@@ -30,13 +27,13 @@ namespace RatesParsingWeb
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddRazorPages();
-            
+
             services.AddDbContext<BankRatesContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("BankRatesContext")));
 
             // Слой репозитория.
             services.AddScoped<IBankRepository, BankRepository>();
-            services.AddScoped<ICurrencyRepository, CurrencyRepository>();   
+            services.AddScoped<ICurrencyRepository, CurrencyRepository>();
             services.AddScoped<IParsingSettingsRepository, ParsingSettingsRepository>();
             services.AddScoped<IExchangeRateListRepository, ExchangeRateListRepository>();
             services.AddScoped<IExchangeRateRepository, ExchangeRateRepository>();
@@ -49,6 +46,9 @@ namespace RatesParsingWeb
             services.AddScoped<IExchangeRateListService, ExchangeRateListService>();
             services.AddScoped<IExchangeRateService, ExchangeRateService>();
             services.AddScoped<ICommandService, CommandService>();
+
+            // Добавить MassTrantis.
+            services.AddMassTransit(CreateBus());
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -77,5 +77,9 @@ namespace RatesParsingWeb
                 endpoints.MapRazorPages();
             });
         }
+
+        private IBusControl CreateBus() =>
+            Bus.Factory.CreateUsingRabbitMq(cfg =>
+                cfg.Host("rabbitmq://localhost"));
     }
 }
