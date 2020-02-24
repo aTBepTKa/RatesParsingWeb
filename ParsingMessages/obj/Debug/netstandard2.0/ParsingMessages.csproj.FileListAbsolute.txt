@@ -1,0 +1,8 @@
+D:\Projects\WEB\ASP\ExchangeRatesParsing\ParsingMessages\bin\Debug\netstandard2.0\ParsingMessages.deps.json
+D:\Projects\WEB\ASP\ExchangeRatesParsing\ParsingMessages\bin\Debug\netstandard2.0\ParsingMessages.dll
+D:\Projects\WEB\ASP\ExchangeRatesParsing\ParsingMessages\bin\Debug\netstandard2.0\ParsingMessages.pdb
+D:\Projects\WEB\ASP\ExchangeRatesParsing\ParsingMessages\obj\Debug\netstandard2.0\ParsingMessages.csprojAssemblyReference.cache
+D:\Projects\WEB\ASP\ExchangeRatesParsing\ParsingMessages\obj\Debug\netstandard2.0\ParsingMessages.AssemblyInfoInputs.cache
+D:\Projects\WEB\ASP\ExchangeRatesParsing\ParsingMessages\obj\Debug\netstandard2.0\ParsingMessages.AssemblyInfo.cs
+D:\Projects\WEB\ASP\ExchangeRatesParsing\ParsingMessages\obj\Debug\netstandard2.0\ParsingMessages.dll
+D:\Projects\WEB\ASP\ExchangeRatesParsing\ParsingMessages\obj\Debug\netstandard2.0\ParsingMessages.pdb

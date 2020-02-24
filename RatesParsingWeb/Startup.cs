@@ -11,6 +11,9 @@ using RatesParsingWeb.Storage.Repositories;
 using RatesParsingWeb.Storage.Repositories.Interfaces;
 using MassTransit.AspNetCoreIntegration;
 using MassTransit;
+using System;
+using ParsingMessages;
+using MassTransit.ExtensionsDependencyInjectionIntegration;
 
 namespace RatesParsingWeb
 {
@@ -48,7 +51,9 @@ namespace RatesParsingWeb
             services.AddScoped<ICommandService, CommandService>();
 
             // Добавить MassTrantis.
-            services.AddMassTransit(CreateBus());
+            var bus = CreateBus();
+            
+            services.AddMassTransit(bus);            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -80,6 +85,8 @@ namespace RatesParsingWeb
 
         private IBusControl CreateBus() =>
             Bus.Factory.CreateUsingRabbitMq(cfg =>
-                cfg.Host("rabbitmq://localhost"));
+            {
+                cfg.Host("rabbitmq://localhost");
+            });
     }
 }

@@ -14,18 +14,22 @@ namespace RatesParsingWeb.Pages.Service
     public class IndexModel : PageModel
     {
         private readonly IBusControl busControl;
+        private readonly IRequestClient<IParsingRequest> requestClient;
         public IndexModel(IBusControl bus)
         {
             busControl = bus;
         }
         public string ResponsedData { get; set; }
-        public async Task OnGet()
+        public async Task OnGet()        
         {
             var serviceAddress = new Uri("rabbitmq://localhost/ParsingQueue");
-            IRequestClient<IParsingRequest, IParsingResponse> client =
-                busControl.CreateRequestClient<IParsingRequest, IParsingResponse>(serviceAddress, TimeSpan.FromSeconds(10));
-            var response =  await client.Request(new ParsingRequest("Welcome to Hell"));
-            ResponsedData = response.Message;
+            var client = busControl.CreateRequestClient<IParsingRequest>(serviceAddress);
+            var response = await client.GetResponse<IParsingResponse>(new ParsingRequest("OLOLO"));
+            ResponsedData = response.Message.Message;
+
+            //var responseMessage = await requestClient.GetResponse<IParsingResponse>(
+            //    new ParsingRequest("Message from asp."));
+            //ResponsedData = responseMessage.Message.Message;
         }
     }
 
