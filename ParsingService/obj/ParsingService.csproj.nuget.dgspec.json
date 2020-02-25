@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "d:\\Projects\\WEB\\ASP\\ExchangeRatesParsing\\ParsingService\\ParsingService.csproj": {}
+    "D:\\Projects\\WEB\\ASP\\ExchangeRatesParsing\\RatesParsingWeb\\ParsingService\\ParsingService.csproj": {}
   },
   "projects": {
-    "d:\\Projects\\WEB\\ASP\\ExchangeRatesParsing\\ParsingMessages\\ParsingMessages.csproj": {
+    "D:\\Projects\\WEB\\ASP\\ExchangeRatesParsing\\RatesParsingWeb\\ParsingMessages\\ParsingMessages.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "d:\\Projects\\WEB\\ASP\\ExchangeRatesParsing\\ParsingMessages\\ParsingMessages.csproj",
+        "projectUniqueName": "D:\\Projects\\WEB\\ASP\\ExchangeRatesParsing\\RatesParsingWeb\\ParsingMessages\\ParsingMessages.csproj",
         "projectName": "ParsingMessages",
-        "projectPath": "d:\\Projects\\WEB\\ASP\\ExchangeRatesParsing\\ParsingMessages\\ParsingMessages.csproj",
+        "projectPath": "D:\\Projects\\WEB\\ASP\\ExchangeRatesParsing\\RatesParsingWeb\\ParsingMessages\\ParsingMessages.csproj",
         "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-        "outputPath": "d:\\Projects\\WEB\\ASP\\ExchangeRatesParsing\\ParsingMessages\\obj\\",
+        "outputPath": "D:\\Projects\\WEB\\ASP\\ExchangeRatesParsing\\RatesParsingWeb\\ParsingMessages\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -59,14 +59,14 @@
         }
       }
     },
-    "d:\\Projects\\WEB\\ASP\\ExchangeRatesParsing\\ParsingService\\ParsingService.csproj": {
+    "D:\\Projects\\WEB\\ASP\\ExchangeRatesParsing\\RatesParsingWeb\\ParsingService\\ParsingService.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "d:\\Projects\\WEB\\ASP\\ExchangeRatesParsing\\ParsingService\\ParsingService.csproj",
+        "projectUniqueName": "D:\\Projects\\WEB\\ASP\\ExchangeRatesParsing\\RatesParsingWeb\\ParsingService\\ParsingService.csproj",
         "projectName": "ParsingService",
-        "projectPath": "d:\\Projects\\WEB\\ASP\\ExchangeRatesParsing\\ParsingService\\ParsingService.csproj",
+        "projectPath": "D:\\Projects\\WEB\\ASP\\ExchangeRatesParsing\\RatesParsingWeb\\ParsingService\\ParsingService.csproj",
         "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-        "outputPath": "d:\\Projects\\WEB\\ASP\\ExchangeRatesParsing\\ParsingService\\obj\\",
+        "outputPath": "D:\\Projects\\WEB\\ASP\\ExchangeRatesParsing\\RatesParsingWeb\\ParsingService\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -82,8 +82,8 @@
         "frameworks": {
           "netcoreapp3.1": {
             "projectReferences": {
-              "d:\\Projects\\WEB\\ASP\\ExchangeRatesParsing\\ParsingMessages\\ParsingMessages.csproj": {
-                "projectPath": "d:\\Projects\\WEB\\ASP\\ExchangeRatesParsing\\ParsingMessages\\ParsingMessages.csproj"
+              "D:\\Projects\\WEB\\ASP\\ExchangeRatesParsing\\RatesParsingWeb\\ParsingMessages\\ParsingMessages.csproj": {
+                "projectPath": "D:\\Projects\\WEB\\ASP\\ExchangeRatesParsing\\RatesParsingWeb\\ParsingMessages\\ParsingMessages.csproj"
               }
             }
           }
@@ -97,6 +97,14 @@
       "frameworks": {
         "netcoreapp3.1": {
           "dependencies": {
+            "HtmlAgilityPack": {
+              "target": "Package",
+              "version": "[1.11.21, )"
+            },
+            "Mapster": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            },
             "MassTransit": {
               "target": "Package",
               "version": "[6.1.0, )"

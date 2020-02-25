@@ -6,6 +6,6 @@ namespace ParsingMessages
 {
     public interface IParsingResponse
     {
-        string Message { get; set; }
+        IEnumerable<IExchangeRate> ExchangeRates { get; set; }
     }
 }

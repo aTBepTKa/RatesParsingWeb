@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using Mapster;
 using MassTransit;
 using ParsingMessages;
+using ParsingService.Models;
 
 namespace ParsingService
 {
@@ -11,17 +13,15 @@ namespace ParsingService
     {
         public async Task Consume(ConsumeContext<IParsingRequest> context)
         {
-            Console.WriteLine($"Получено сообщение: {context.Message.Message}");
-            await context.RespondAsync<IParsingResponse>(new ParsingResponse("Message from service."));
-        }
-    }
+            Console.WriteLine($"Получено задание для парсинга: {context.Message.TaskName}.");
 
-    class ParsingResponse : IParsingResponse
-    {
-        public ParsingResponse(string s)
-        {
-            Message = s;
+            var request = context.Message.Adapt<BankRequest>();
+            var factory = new ExchangeRatesFactory();
+            var rates = await factory.GetBankRatesAsync(request);
+            var ratesDto = rates.Adapt<IEnumerable<IExchangeRate>>();
+            var response = new ParsingResponse(ratesDto);
+
+            await context.RespondAsync(response);
         }
-        public string Message { get; set; }
     }
 }

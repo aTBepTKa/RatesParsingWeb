@@ -185,11 +185,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Projects\\WEB\\ASP\\ExchangeRatesParsing\\ParsingMessages\\ParsingMessages.csproj",
+      "projectUniqueName": "d:\\Projects\\WEB\\ASP\\ExchangeRatesParsing\\RatesParsingWeb\\ParsingMessages\\ParsingMessages.csproj",
       "projectName": "ParsingMessages",
-      "projectPath": "D:\\Projects\\WEB\\ASP\\ExchangeRatesParsing\\ParsingMessages\\ParsingMessages.csproj",
+      "projectPath": "d:\\Projects\\WEB\\ASP\\ExchangeRatesParsing\\RatesParsingWeb\\ParsingMessages\\ParsingMessages.csproj",
       "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-      "outputPath": "D:\\Projects\\WEB\\ASP\\ExchangeRatesParsing\\ParsingMessages\\obj\\",
+      "outputPath": "d:\\Projects\\WEB\\ASP\\ExchangeRatesParsing\\RatesParsingWeb\\ParsingMessages\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
