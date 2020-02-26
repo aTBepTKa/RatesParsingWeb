@@ -8,37 +8,33 @@ using System.Linq;
 using System.Threading.Tasks;
 using ParsingMessages;
 using System;
+using RatesParsingWeb.Dto.ParsingService;
 
 namespace RatesParsingWeb.Pages.Service
 {
     public class IndexModel : PageModel
     {
         private readonly IBusControl busControl;
-        private readonly IRequestClient<IParsingRequest> requestClient;
-        public IndexModel(IBusControl bus)
+        private readonly IBankService bankService;
+        public IndexModel(IBusControl bus, IBankService bank)
         {
             busControl = bus;
+            bankService = bank;
         }
-        public string ResponsedData { get; set; }
-        public async Task OnGet()        
+
+        public IEnumerable<ExchangeRateModel> ExchangeRateModels { get; set; }
+
+        public async Task OnGet()
         {
             var serviceAddress = new Uri("rabbitmq://localhost/ParsingQueue");
             var client = busControl.CreateRequestClient<IParsingRequest>(serviceAddress);
-            var response = await client.GetResponse<IParsingResponse>(new ParsingRequest("OLOLO"));
-            ResponsedData = response.Message.Message;
 
-            //var responseMessage = await requestClient.GetResponse<IParsingResponse>(
-            //    new ParsingRequest("Message from asp."));
-            //ResponsedData = responseMessage.Message.Message;
-        }
-    }
+            int bankId = 1;
+            var parsingSettings = bankService.GetBankParsingSettings(bankId);
+            var request = parsingSettings.Adapt<ParsingRequest>();
 
-    public class ParsingRequest : IParsingRequest
-    {
-        public ParsingRequest(string s)
-        {
-            Message = s;
+            var response = await client.GetResponse<IParsingResponse>(request);
+            ExchangeRateModels = response.Message.ExchangeRates.Adapt<IEnumerable<ExchangeRateModel>>();
         }
-        public string Message { get; set; }
     }
 }

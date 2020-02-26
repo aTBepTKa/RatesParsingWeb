@@ -1,12 +1,9 @@
-﻿using Mapster;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using RatesParsingWeb.Domain;
 using RatesParsingWeb.Storage.SerializeJson;
 using RatesParsingWeb.Storage.SerializeXml;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace RatesParsingWeb.Storage
 {
@@ -25,6 +22,10 @@ namespace RatesParsingWeb.Storage
         private IEnumerable<Currency> Currencies { get; set; }
         private IEnumerable<Bank> Banks { get; set; }
 
+        private IEnumerable<ParsingSettings> ParsingSettings { get; set; }
+        private IEnumerable<Command> Commands { get; set; }
+
+
         /// <summary>
         /// Заполнить базу данных.
         /// </summary>
@@ -35,6 +36,7 @@ namespace RatesParsingWeb.Storage
             SeedParsingSettings();
             SeedExchangeRates();
             SeedCommands();
+            SeedCommandAssignment();
         }
 
         /// <summary>
@@ -170,6 +172,7 @@ namespace RatesParsingWeb.Storage
                     ExchangeRateXpath = "//*[@id='ecb-content-col']/main/div/table/tbody/tr[$VARIABLE]/td[3]"
                 },
             };
+            ParsingSettings = settings;
             ModelBuilder.Entity<ParsingSettings>().HasData(settings);
         }
 
@@ -218,6 +221,7 @@ namespace RatesParsingWeb.Storage
                     Description = "Находит строку и заменяет новой"
                 }
             };
+            Commands = commands;
             ModelBuilder.Entity<Command>().HasData(commands);
 
             var commandParameters = new CommandParameter[]
@@ -225,27 +229,73 @@ namespace RatesParsingWeb.Storage
                 new CommandParameter
                 {
                     Id = parameterId++,
+                    CommandId = commands.Single(i=>i.Name == "GetTextFromEnd").Id,
                     Name = "Length",
-                    Description = "Длина строки",
-                    CommandId = commands.Single(i=>i.Name == "GetTextFromEnd").Id
+                    Description = "Длина строки"
                 },
                 new CommandParameter
                 {
                     Id = parameterId++,
+                    CommandId = commands.Single(i=>i.Name == "ReplaceSubString").Id,
                     Name = "OldString",
-                    Description = "Исходная строка",
-                    CommandId = commands.Single(i=>i.Name == "ReplaceSubString").Id
+                    Description = "Исходная строка"
                 },
                 new CommandParameter
                 {
                     Id = parameterId++,
+                    CommandId = commands.Single(i=>i.Name == "ReplaceSubString").Id,
                     Name = "NewString",
-                    Description = "Новая строка",
-                    CommandId = commands.Single(i=>i.Name == "ReplaceSubString").Id
+                    Description = "Новая строка"
                 }
             };
-
             ModelBuilder.Entity<CommandParameter>().HasData(commandParameters);
+        }
+
+        /// <summary>
+        /// Заполнить таблицы CommandAssignment.
+        /// </summary>
+        private void SeedCommandAssignment()
+        {
+            // Задать команды для National Bank of Poland.
+            // Обработка текстового кода валюты.
+            var textAssignmentId = 1;
+            var textAssignment = new TextCodeCommandAssignment
+            {
+                Id = textAssignmentId++,
+                ParsingSettingsId = ParsingSettings.Single(p =>
+                    p.BankId == Banks.Single(b => b.SwiftCode == "NBPLPLPWBAN").Id).Id,
+                CommandId = Commands.Single(c => c.Name == "GetStringFromEnd").Id
+            };
+            ModelBuilder.Entity<TextCodeCommandAssignment>().HasData(textAssignment);
+
+            var textParameterId = 1;
+            var textParameters = new TextCodeCommandParameter
+            {
+                Id = textParameterId++,
+                TextCodeCommandAssignmentId = 1,
+                Value = "3"
+            };
+            ModelBuilder.Entity<TextCodeCommandParameter>().HasData(textParameters);
+
+
+            // Обработка единицы измерения валюты.
+            var unitAssignmentId = 1;
+            var unitAssignment = new UnitCommandAssignment
+            {
+                Id = unitAssignmentId++,
+                ParsingSettingsId = ParsingSettings.Single(p =>
+                    p.BankId == Banks.Single(b => b.SwiftCode == "NBPLPLPWBAN").Id).Id,
+                CommandId = Commands.Single(c => c.Name == "GetNumberFromText").Id
+            };
+            ModelBuilder.Entity<UnitCommandAssignment>().HasData(unitAssignment);
+
+            var unitParameterId = 1;
+            var unitParameters = new UnitCommandParameter
+            {
+                Id = unitParameterId++,
+                UnitCommandAssignmentId = 1
+            };
+            ModelBuilder.Entity<UnitCommandParameter>().HasData(unitParameters);
         }
     }
 }
