@@ -36,7 +36,7 @@ namespace ParsingService
         /// </summary>
         /// <param name="length">Длина строки в формате string.</param>
         /// <returns></returns>
-        public WordProcessingHandler GetStringFromEnd(string length)
+        public WordProcessingHandler GetTextFromEnd(string length)
         {
             if (!int.TryParse(length, out int newLength))
                 newLength = 0;

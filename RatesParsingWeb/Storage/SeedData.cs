@@ -264,7 +264,7 @@ namespace RatesParsingWeb.Storage
                 Id = textAssignmentId++,
                 ParsingSettingsId = ParsingSettings.Single(p =>
                     p.BankId == Banks.Single(b => b.SwiftCode == "NBPLPLPWBAN").Id).Id,
-                CommandId = Commands.Single(c => c.Name == "GetStringFromEnd").Id
+                CommandId = Commands.Single(c => c.Name == "GetTextFromEnd").Id
             };
             ModelBuilder.Entity<TextCodeCommandAssignment>().HasData(textAssignment);
 
@@ -288,14 +288,6 @@ namespace RatesParsingWeb.Storage
                 CommandId = Commands.Single(c => c.Name == "GetNumberFromText").Id
             };
             ModelBuilder.Entity<UnitCommandAssignment>().HasData(unitAssignment);
-
-            var unitParameterId = 1;
-            var unitParameters = new UnitCommandParameter
-            {
-                Id = unitParameterId++,
-                UnitCommandAssignmentId = 1
-            };
-            ModelBuilder.Entity<UnitCommandParameter>().HasData(unitParameters);
         }
     }
 }

@@ -66,3 +66,4 @@ d:\Projects\WEB\ASP\ExchangeRatesParsing\RatesParsingWeb\ParsingService\obj\Debu
 d:\Projects\WEB\ASP\ExchangeRatesParsing\RatesParsingWeb\ParsingService\obj\Debug\netcoreapp3.1\ParsingService.pdb
 D:\Projects\WEB\ASP\ExchangeRatesParsing\RatesParsingWeb\ParsingService\bin\Debug\netcoreapp3.1\HtmlAgilityPack.dll
 D:\Projects\WEB\ASP\ExchangeRatesParsing\RatesParsingWeb\ParsingService\bin\Debug\netcoreapp3.1\System.Xml.XPath.XmlDocument.dll
+D:\Projects\WEB\ASP\ExchangeRatesParsing\RatesParsingWeb\ParsingService\bin\Debug\netcoreapp3.1\Mapster.dll
