@@ -18,7 +18,14 @@ namespace RatesParsingWeb.Services.Interfaces
         /// </summary>
         /// <param name="id">ID получаемого банка.</param>
         /// <returns></returns>
-        Task<BankDto> GetBank(int id);
+        Task<BankDto> GetBankAllData(int id);
+
+        /// <summary>
+        /// Получить банк по свифт коду.
+        /// </summary>
+        /// <param name="swiftCode"></param>
+        /// <returns></returns>
+        Task<BankDto> GetBankBySwiftCode(string swiftCode);
 
         /// <summary>
         /// Получить банк с Currency.

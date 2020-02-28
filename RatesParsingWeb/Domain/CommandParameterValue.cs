@@ -8,7 +8,7 @@ namespace RatesParsingWeb.Domain
     /// <summary>
     /// Параметр команды для выполнения парсинга.
     /// </summary>
-    public class UnitCommandParameter
+    public class CommandParameterValue
     {
         public int Id { get; set; }
 
@@ -17,11 +17,17 @@ namespace RatesParsingWeb.Domain
         /// </summary>
         public string Value { get; set; }
 
-        public int UnitCommandAssignmentId { get; set; }
+        /// <summary>
+        /// Назначение команды.
+        /// </summary>
+        public virtual CommandAssignment CommandAssignment { get; set; }
 
         /// <summary>
-        /// Ссылка на команду.
+        /// Параметр команды.
         /// </summary>
-        public virtual UnitCommandAssignment UnitCommandAssignment { get; set; }
+        public virtual CommandParameter CommandParameter { get; set; }
+
+        public virtual int CommandParameterId { get; set; }
+        public virtual int CommandAssignmentId { get; set; }
     }
 }

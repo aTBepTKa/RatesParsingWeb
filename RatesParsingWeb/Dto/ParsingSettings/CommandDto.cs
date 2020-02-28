@@ -1,11 +1,14 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
-namespace RatesParsingWeb.Domain
+namespace RatesParsingWeb.Dto.ParsingSettings
 {
     /// <summary>
     /// Команда для обработки текста.
     /// </summary>
-    public class Command
+    public class CommandDto
     {
         public int Id { get; set; }
 
@@ -22,11 +25,6 @@ namespace RatesParsingWeb.Domain
         /// <summary>
         /// Параметры команды.
         /// </summary>
-        public ICollection<CommandParameter> CommandParameters { get; set; }
-
-        /// <summary>
-        /// Назначение команды для единицы измерения.
-        /// </summary>
-        public virtual ICollection<CommandAssignment> CommandAssignments { get; set; }
+        public ICollection<CommandParameterDto> CommandParameters { get; set; }
     }
 }

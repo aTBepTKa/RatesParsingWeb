@@ -16,10 +16,12 @@ namespace RatesParsingWeb.Pages.Service
     {
         private readonly IBusControl busControl;
         private readonly IBankService bankService;
-        public IndexModel(IBusControl bus, IBankService bank)
+        private readonly IParsingSettingsService parsingService;
+        public IndexModel(IBusControl bus, IBankService bank,IParsingSettingsService settings)
         {
             busControl = bus;
             bankService = bank;
+            parsingService = settings;
         }
 
         public IEnumerable<ExchangeRateModel> ExchangeRateModels { get; set; }
@@ -29,8 +31,8 @@ namespace RatesParsingWeb.Pages.Service
             var serviceAddress = new Uri("rabbitmq://localhost/ParsingQueue");
             var client = busControl.CreateRequestClient<IParsingRequest>(serviceAddress);
 
-            int bankId = 1;
-            var parsingSettings = bankService.GetBankParsingSettings(bankId);
+            var bank = await bankService.GetBankBySwiftCode("NBPLPLPWBAN");
+            var parsingSettings = await parsingService.GetSettingsByBankId(bank.Id);
             var request = parsingSettings.Adapt<ParsingRequest>();
 
             var response = await client.GetResponse<IParsingResponse>(request);

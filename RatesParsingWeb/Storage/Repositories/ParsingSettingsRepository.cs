@@ -9,26 +9,23 @@ using System.Threading.Tasks;
 namespace RatesParsingWeb.Storage.Repositories
 {
     public class ParsingSettingsRepository : RepositoryBase<ParsingSettings>, IParsingSettingsRepository
-    {        
+    {
         public ParsingSettingsRepository(BankRatesContext context) : base(context)
         {
         }
 
-        public ParsingSettings GetCommands(int id)
+        public async Task<ParsingSettings> GetCommands(int id)
         {
-            var commands = dbSet
-                .Include(settings => settings.TextCodeCommands)
+            var commands = await dbSet
+                .Include(settings => settings.Commands)
                     .ThenInclude(assignment => assignment.Command)
-                .Include(settings => settings.TextCodeCommands)
-                    .ThenInclude(assignment => assignment.CommandParameters)
+                        .ThenInclude(command => command.CommandParameters)
+                .Include(settings => settings.Commands)
+                    .ThenInclude(assignment => assignment.CommandParameterValues)
+                .Include(settings => settings.Commands)
+                    .ThenInclude(assignment => assignment.AssignmentFieldName)
+                .FirstOrDefaultAsync(settings => settings.Id == id);
 
-                .Include(settings => settings.UnitCommands)
-                    .ThenInclude(assignment => assignment.Command)
-                .Include(settings => settings.UnitCommands)
-                    .ThenInclude(assignment => assignment.CommandParameters)
-
-                .FirstOrDefault(settings => settings.Id == id);
-            
             return commands;
         }
     }

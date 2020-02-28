@@ -41,6 +41,7 @@ namespace RatesParsingWeb
             services.AddScoped<IExchangeRateListRepository, ExchangeRateListRepository>();
             services.AddScoped<IExchangeRateRepository, ExchangeRateRepository>();
             services.AddScoped<ICommandRepository, CommandRepository>();
+            services.AddScoped<IParsingSettingsRepository, ParsingSettingsRepository>();
 
             // Слой сервиса.
             services.AddScoped<IBankService, BankService>();
@@ -49,6 +50,7 @@ namespace RatesParsingWeb
             services.AddScoped<IExchangeRateListService, ExchangeRateListService>();
             services.AddScoped<IExchangeRateService, ExchangeRateService>();
             services.AddScoped<ICommandService, CommandService>();
+            services.AddScoped<IParsingSettingsService, ParsingSettingsService>();
 
             // Добавить MassTrantis.
             var bus = CreateBus();

@@ -27,12 +27,15 @@ namespace RatesParsingWeb.Services
         }
 
         #region GetBank
-        public async Task<BankDto> GetBank(int id) =>
+        public async Task<BankDto> GetBankAllData(int id) =>
             (await bankRepository.GetFirstOrDefaultAsync(
                 i => i.Id == id,
                 i => i.Currency,
                 includes => includes.ParsingSettings))
             .Adapt<BankDto>();
+
+        public async Task<BankDto> GetBankBySwiftCode(string swiftCode) =>
+            (await bankRepository.GetFirstOrDefaultAsync(i => i.SwiftCode == swiftCode)).Adapt<BankDto>();
 
         public async Task<BankDto> GetBankCurrency(int id) =>
             (await bankRepository.GetFirstOrDefaultAsync(

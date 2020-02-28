@@ -6,6 +6,11 @@ namespace RatesParsingWeb.Services.Interfaces
 {
     public interface IParsingSettingsService : ICrudService<ParsingSettingsDto>
     {
-        Task<ParsingSettingsDto> GetSettings(int id);
+        /// <summary>
+        /// Получить настройки парсинга по Id банка.
+        /// </summary>
+        /// <param name="id">Id банка.</param>
+        /// <returns></returns>
+        Task<ParsingSettingsDto> GetSettingsByBankId(int id);
     }
 }

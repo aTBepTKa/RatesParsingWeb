@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.Collections.Generic;
 
 namespace RatesParsingWeb.Domain
 {
@@ -9,7 +6,7 @@ namespace RatesParsingWeb.Domain
     /// Содержит данные для выполнения парсинга страницы.
     /// </summary>
     public class ParsingSettings
-    {       
+    {
         public int Id { get; set; }
 
         /// <summary>
@@ -53,15 +50,10 @@ namespace RatesParsingWeb.Domain
         public char NumberGroupSeparator { get; set; }
 
         /// <summary>
-        /// Команды для обработки единицы измерения валюты.
+        /// Команды для обработки текстовых данных.
         /// </summary>
-        public virtual ICollection<UnitCommandAssignment> UnitCommands { get; set; }
+        public virtual ICollection<CommandAssignment> Commands { get; set; }
 
-        /// <summary>
-        /// Команды для обработки текстового кода валюты.
-        /// </summary>
-        public virtual ICollection<TextCodeCommandAssignment> TextCodeCommands { get; set; }
-               
         public int BankId { get; set; }
         /// <summary>
         /// Ссылка на банк.

@@ -20,6 +20,10 @@
     <Compile Remove="Migrations\20200211124632_SeedScripts.Designer.cs" />
     <Compile Remove="Migrations\20200211192636_RenameScriptToCommand.cs" />
     <Compile Remove="Migrations\20200211192636_RenameScriptToCommand.Designer.cs" />
+    <Compile Remove="Migrations\20200228195151_RefactorCommands.cs" />
+    <Compile Remove="Migrations\20200228195151_RefactorCommands.Designer.cs" />
+    <Compile Remove="Migrations\20200228195444_RefactorCommands.cs" />
+    <Compile Remove="Migrations\20200228195444_RefactorCommands.Designer.cs" />
   </ItemGroup>
 
 

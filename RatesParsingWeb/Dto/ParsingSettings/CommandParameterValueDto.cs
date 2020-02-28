@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace RatesParsingWeb.Domain
+namespace RatesParsingWeb.Dto.ParsingSettings
 {
     /// <summary>
     /// Параметр команды для выполнения парсинга.
     /// </summary>
-    public class TextCodeCommandParameter
+    public class CommandParameterValueDto
     {
         public int Id { get; set; }
 
@@ -17,11 +17,9 @@ namespace RatesParsingWeb.Domain
         /// </summary>
         public string Value { get; set; }
 
-        public int TextCodeCommandAssignmentId { get; set; }
-
         /// <summary>
-        /// Ссылка на команду.
+        /// Параметр команды.
         /// </summary>
-        public virtual TextCodeCommandAssignment TextCodeCommandAssignment { get; set; }
+        public virtual CommandParameterDto CommandParameter { get; set; }
     }
 }

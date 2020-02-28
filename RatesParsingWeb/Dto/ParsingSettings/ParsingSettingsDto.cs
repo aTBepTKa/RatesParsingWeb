@@ -7,6 +7,8 @@ namespace RatesParsingWeb.Dto.ParsingSettings
 {
     public class ParsingSettingsDto
     {
+        public int Id { get; set; }
+
         /// <summary>
         /// XPath для текстового кода валюты.
         /// </summary>
@@ -46,5 +48,10 @@ namespace RatesParsingWeb.Dto.ParsingSettings
         /// Символ разделения групп разрядов числа.
         /// </summary>
         public string NumberGroupSeparator { get; set; }
+
+        /// <summary>
+        /// Команды для обработки текстовых данных.
+        /// </summary>
+        public virtual ICollection<CommandAssignmentDto> Commands { get; set; }
     }
 }
