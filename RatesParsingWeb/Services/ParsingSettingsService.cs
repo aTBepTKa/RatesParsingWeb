@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc.ModelBinding;
 using RatesParsingWeb.Domain;
-using RatesParsingWeb.Dto;
+using RatesParsingWeb.Dto.ParsingSettings;
 using RatesParsingWeb.Services.Interfaces;
 using RatesParsingWeb.Storage;
 using RatesParsingWeb.Storage.Repositories;
@@ -14,10 +14,10 @@ namespace RatesParsingWeb.Services
 {
     public class ParsingSettingsService : BaseCrudService<ParsingSettingsDto, ParsingSettings>, IParsingSettingsService
     {
-        private readonly IParsingSettingsRepository ParsingSettingsRepository;
+        private readonly IParsingSettingsRepository settingsRepository;
         public ParsingSettingsService(IParsingSettingsRepository repository) : base(repository)
         {
-            ParsingSettingsRepository = repository;
+            settingsRepository = repository;
         }
     }
 }

@@ -8,5 +8,6 @@ namespace RatesParsingWeb.Storage.Repositories.Interfaces
 {
     public interface IParsingSettingsRepository : IRepository<ParsingSettings>
     {
+        ParsingSettings GetCommands(int id);
     }
 }

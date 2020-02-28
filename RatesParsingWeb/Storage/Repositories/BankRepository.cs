@@ -15,17 +15,5 @@ namespace RatesParsingWeb.Storage.Repositories
         public BankRepository(BankRatesContext context) :
             base(context)
         { }
-
-        public async Task<Bank> GetBankCommands(int id)
-        {
-            var bank = await dbSet
-                .Include(i => i.ParsingSettings)
-                    .ThenInclude(i => i.TextCodeCommands)
-                .Include(i => i.ParsingSettings)
-                    .ThenInclude(i => i.UnitCommands)
-                .FirstOrDefaultAsync(i => i.Id == id);
-            return bank;
-        }
-
     }
 }

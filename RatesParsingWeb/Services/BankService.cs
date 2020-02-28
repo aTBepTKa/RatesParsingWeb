@@ -40,7 +40,6 @@ namespace RatesParsingWeb.Services
                 i => i.Currency))
             .Adapt<BankDto>();
 
-        // TODO: Добавить Commands.
         public async Task<BankDto> GetBankParsingSettings(int id)
         {
             var bank = (await bankRepository.GetFirstOrDefaultAsync(

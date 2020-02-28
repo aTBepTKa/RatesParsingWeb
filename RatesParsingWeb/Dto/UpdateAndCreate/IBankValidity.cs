@@ -1,4 +1,6 @@
-﻿namespace RatesParsingWeb.Dto.UpdateAndCreate
+﻿using RatesParsingWeb.Dto.ParsingSettings;
+
+namespace RatesParsingWeb.Dto.UpdateAndCreate
 {
     /// <summary>
     /// Содержит основные реквизиты банка.
