@@ -40,6 +40,10 @@ namespace RatesParsingWeb.Storage.Repositories
                                                     params Expression<Func<T, object>>[] includes) =>
             await dbSet.GetIncludes(includes).SingleAsync(predicate);
 
+        public virtual T GetFirstOrDefault(Expression<Func<T, bool>> where,
+                                                     params Expression<Func<T, object>>[] includes) =>
+            dbSet.GetIncludes(includes).FirstOrDefault(where);
+
         public virtual Task<T> GetFirstOrDefaultAsync(Expression<Func<T, bool>> where,
                                                      params Expression<Func<T, object>>[] includes) =>
             dbSet.GetIncludes(includes).FirstOrDefaultAsync(where);

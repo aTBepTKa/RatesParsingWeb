@@ -10,6 +10,14 @@ namespace RatesParsingWeb.Models
     public class ParsingSettingsModel
     {
         /// <summary>
+        /// Ссылка на страницу, содержащую обменные курсы валют.
+        /// </summary>
+        [DisplayName("Страница курсов")]
+        [Required(ErrorMessage = "Поле является обязательным")]
+        [Url(ErrorMessage = "Необходимо ввести ссылку")]
+        public string RatesUrl { get; set; }
+
+        /// <summary>
         /// XPath для текстового кода валюты.
         /// </summary>
         [DisplayName("XPath для текстового кода")]

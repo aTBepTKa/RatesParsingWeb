@@ -10,6 +10,11 @@ namespace RatesParsingWeb.Domain
         public int Id { get; set; }
 
         /// <summary>
+        /// Ссылка на страницу, содержащую обменные курсы валют.
+        /// </summary>
+        public string RatesUrl { get; set; }
+
+        /// <summary>
         /// XPath для текстового кода валюты.
         /// </summary>
         public string TextCodeXpath { get; set; }

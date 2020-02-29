@@ -5,3 +5,40 @@
 }
 
 <h1>Проверка работы MassTransit</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstExchangeRateModel.Currency.TextCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstExchangeRateModel.Currency.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstExchangeRateModel.Unit)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstExchangeRateModel.ExchangeRateValue)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.ExchangeRateModels)
+        {
+            <tr>
+                <td>
+                    @item.Currency.TextCode
+                </td>
+                <td>
+                    @item.Currency.Name
+                </td>
+                <td>
+                    @item.Unit
+                </td>
+                <td>
+                    @item.ExchangeRateValue
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

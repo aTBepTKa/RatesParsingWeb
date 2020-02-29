@@ -7,8 +7,6 @@ namespace RatesParsingWeb.Dto
 {
     public class ExchangeRateDto
     {
-        public int Id { get; set; }
-
         /// <summary>
         /// Единица измерения валюты.
         /// </summary>
@@ -18,11 +16,6 @@ namespace RatesParsingWeb.Dto
         /// Значение обменного курса валюты.
         /// </summary>
         public decimal ExchangeRateValue { get; set; }
-
-
-        public int CurrencyId { get; set; }
-
-        public int ExchangeRateListId { get; set; }
 
         /// <summary>
         /// Тип валюты.

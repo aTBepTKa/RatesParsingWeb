@@ -77,7 +77,12 @@ namespace RatesParsingWeb.Storage.Repositories.Interfaces
         Task<T> GetSingleAsync(Expression<Func<T, bool>> predicate, params Expression<Func<T, object>>[] includes);
 
         /// <summary>
-        /// Получить элемент согласно выражению.
+        /// Получить элемент согласно выражению асинхронно.
+        /// </summary>
+        T GetFirstOrDefault(Expression<Func<T, bool>> where, params Expression<Func<T, object>>[] includes);
+
+        /// <summary>
+        /// Получить элемент согласно выражению асинхронно.
         /// </summary>
         Task<T> GetFirstOrDefaultAsync(Expression<Func<T, bool>> where, params Expression<Func<T, object>>[] includes);
 

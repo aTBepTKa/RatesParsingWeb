@@ -23,10 +23,6 @@ namespace RatesParsingWeb.Models
         [DisplayName("Курс")]
         public decimal ExchangeRateValue { get; set; }
 
-        public int CurrencyId { get; set; }
-
-        public int ExchangeRateListId { get; set; }
-
         /// <summary>
         /// Тип валюты.
         /// </summary>

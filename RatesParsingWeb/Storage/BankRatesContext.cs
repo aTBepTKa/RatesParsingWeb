@@ -33,11 +33,11 @@ namespace RatesParsingWeb.Storage
             modelBuilder.Entity<Bank>().Property(i => i.Name).IsRequired();
             modelBuilder.Entity<Bank>().Property(i => i.Name).HasMaxLength(50);
             modelBuilder.Entity<Bank>().HasIndex(i => i.Name).IsUnique();
-            modelBuilder.Entity<Bank>().Property(i => i.RatesUrl).IsRequired();
             modelBuilder.Entity<Bank>().Property(i => i.BankUrl).HasMaxLength(2000);
-            modelBuilder.Entity<Bank>().Property(i => i.RatesUrl).HasMaxLength(2000);
 
             // Установить свойства для ParsingSettings.
+            modelBuilder.Entity<ParsingSettings>().Property(i => i.RatesUrl).IsRequired();
+            modelBuilder.Entity<ParsingSettings>().Property(i => i.RatesUrl).HasMaxLength(2000);
             modelBuilder.Entity<ParsingSettings>().Property(i => i.TextCodeXpath).IsRequired();
             modelBuilder.Entity<ParsingSettings>().Property(i => i.UnitXpath).IsRequired();
             modelBuilder.Entity<ParsingSettings>().Property(i => i.ExchangeRateXpath).IsRequired();

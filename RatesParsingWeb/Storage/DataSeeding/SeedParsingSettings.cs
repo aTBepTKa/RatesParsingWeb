@@ -44,6 +44,7 @@ namespace RatesParsingWeb.Storage.DataSeeding
                 new ParsingSettings
                 {
                     Id = settingsId++,
+                    RatesUrl = "https://www.nbg.gov.ge/index.php?m=582&lng=eng",
                     BankId = Banks.Single(i=>i.SwiftCode == "BNLNGE22XXX").Id,
                     NumberDecimalSeparator = '.',
                     NumberGroupSeparator = ',',
@@ -57,6 +58,7 @@ namespace RatesParsingWeb.Storage.DataSeeding
                 new ParsingSettings
                 {
                     Id = settingsId++,
+                    RatesUrl = "https://www.nbp.pl/homen.aspx?f=/kursy/RatesA.html",
                     BankId = Banks.Single(i=>i.SwiftCode == "NBPLPLPWBAN").Id,
                     NumberDecimalSeparator = '.',
                     NumberGroupSeparator = ',',
@@ -70,6 +72,7 @@ namespace RatesParsingWeb.Storage.DataSeeding
                 new ParsingSettings
                 {
                     Id = settingsId++,
+                    RatesUrl = "https://www.cbr.ru/eng/currency_base/daily/",
                     BankId = Banks.Single(i=>i.SwiftCode == "CBRFRUMMXXX").Id,
                     NumberDecimalSeparator = '.',
                     NumberGroupSeparator = ',',
@@ -83,6 +86,7 @@ namespace RatesParsingWeb.Storage.DataSeeding
                 new ParsingSettings
                 {
                     Id = settingsId++,
+                    RatesUrl = "https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/index.en.html",
                     BankId = Banks.Single(i=>i.SwiftCode == "ECBFDEFFEUM").Id,
                     NumberDecimalSeparator = '.',
                     NumberGroupSeparator = ',',

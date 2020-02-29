@@ -125,6 +125,10 @@ namespace RatesParsingWeb.Services
 
 
             // Проверить настройки парсинга.
+            // RatesUrl
+            if (!string.IsNullOrEmpty(bank.ParsingSettings.RatesUrl) && 
+                !Uri.TryCreate(bank.ParsingSettings.RatesUrl, UriKind.Absolute, out _))
+                ValidationDictionary.AddError(nameof(bank.ParsingSettings.RatesUrl), "Ссылка на страницу банка некорректна.");
 
             // TextCodeXPath.
             if (string.IsNullOrEmpty(bank.ParsingSettings.TextCodeXpath))

@@ -13,7 +13,7 @@ namespace ParsingService
     {
         public async Task Consume(ConsumeContext<IParsingRequest> context)
         {
-            Console.WriteLine($"Получено задание для парсинга: {context.Message.TaskName}.");
+            Console.WriteLine($"Получено задание на парсинг: {context.Message.TaskName}.");
 
             var request = context.Message.Adapt<BankRequest>();
             var factory = new ExchangeRatesFactory();

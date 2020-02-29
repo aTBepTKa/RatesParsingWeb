@@ -12,8 +12,7 @@ namespace ParsingService.Models
         /// <summary>
         /// Ссылка на страницу с курсами.
         /// </summary>
-        public string RatesUrlPage { get; set; }
-
+        public string RatesUrl { get; set; }
 
         /// <summary>
         /// XPath для текстового кода валюты.
@@ -59,11 +58,11 @@ namespace ParsingService.Models
         /// <summary>
         /// Команды для обработки строки единицы измерения Unit.
         /// </summary>
-        public Dictionary<string, string[]> UnitScripts { get; set; }
+        public Dictionary<string, string[]> UnitCommands { get; set; }
 
         /// <summary>
         /// Команды для обработки строки текстового кода валюты TextCode.
         /// </summary>
-        public Dictionary<string, string[]> TextCodeScripts { get; set; }
+        public Dictionary<string, string[]> TextCodeCommands { get; set; }
     }
 }

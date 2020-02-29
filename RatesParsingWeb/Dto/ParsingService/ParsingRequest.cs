@@ -9,7 +9,7 @@ namespace RatesParsingWeb.Dto.ParsingService
     public class ParsingRequest : IParsingRequest
     {
         public string TaskName { get; set; }
-        public string RatesUrlPage { get; set; }
+        public string RatesUrl { get; set; }
 
         public string TextCodeXpath { get; set; }
         public string UnitXpath { get; set; }
@@ -22,7 +22,7 @@ namespace RatesParsingWeb.Dto.ParsingService
         public int StartXpathRow { get; set; }
         public int EndXpathRow { get; set; }
 
-        public Dictionary<string, string[]> UnitScripts { get; set; }
-        public Dictionary<string, string[]> TextCodeScripts { get; set; }
+        public Dictionary<string, string[]> UnitCommands { get; set; }
+        public Dictionary<string, string[]> TextCodeCommands { get; set; }
     }
 }

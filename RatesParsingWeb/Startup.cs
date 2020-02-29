@@ -51,6 +51,7 @@ namespace RatesParsingWeb
             services.AddScoped<IExchangeRateService, ExchangeRateService>();
             services.AddScoped<ICommandService, CommandService>();
             services.AddScoped<IParsingSettingsService, ParsingSettingsService>();
+            services.AddScoped<IParsingService, ParsingService>();
 
             // Добавить MassTrantis.
             var bus = CreateBus();

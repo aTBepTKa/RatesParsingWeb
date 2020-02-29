@@ -30,12 +30,6 @@
             <a href="@Model.BankModel.BankUrl" target="_blank">@Model.BankModel.BankUrl</a>
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.BankModel.RatesUrl)
-        </dt>
-        <dd class="col-sm-10">
-            <a href="@Model.BankModel.RatesUrl" target="_blank">@Model.BankModel.RatesUrl</a>
-        </dd>
-        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.BankModel.Currency.Name)
         </dt>
         <dd class="col-sm-10">
@@ -49,6 +43,12 @@
         <h4>Настройки парсинга</h4>
         <hr />
         <dl class="row">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.BankModel.ParsingSettings.RatesUrl)
+            </dt>
+            <dd class="col-sm-10">
+                <a href="@Model.BankModel.ParsingSettings.RatesUrl" target="_blank">@Model.BankModel.ParsingSettings.RatesUrl</a>
+            </dd>
             <dt class="col-sm-2">
                 @Html.DisplayNameFor(model => model.BankModel.ParsingSettings.TextCodeXpath)
             </dt>

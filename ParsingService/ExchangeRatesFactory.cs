@@ -21,14 +21,14 @@ namespace ParsingService
         public async Task<IEnumerable<ExchangeRate>> GetBankRatesAsync(BankRequest request)
         {
             var html = new HtmlWeb();
-            HtmlDocument htmlDocument = await html.LoadFromWebAsync(request.RatesUrlPage);
+            HtmlDocument htmlDocument = await html.LoadFromWebAsync(request.RatesUrl);
 
             if (html == null)
                 return Array.Empty<ExchangeRate>();
 
             // Получить методы для обработки строк.
-            WordProcessingHandler textCodeProcessor = GetMethods(request.TextCodeScripts);
-            WordProcessingHandler unitProcessor = GetMethods(request.UnitScripts);
+            WordProcessingHandler textCodeProcessor = GetMethods(request.TextCodeCommands);
+            WordProcessingHandler unitProcessor = GetMethods(request.UnitCommands);
 
             var currencyList = new List<ExchangeRate>(request.EndXpathRow - request.StartXpathRow + 1);
             for (var i = request.StartXpathRow; i <= request.EndXpathRow; i++)

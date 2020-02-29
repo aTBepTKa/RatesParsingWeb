@@ -65,8 +65,7 @@ namespace RatesParsingWeb.Storage.DataSeeding
                     SwiftCode = "BNLNGE22XXX",
                     Name = "National Bank of Georgia",
                     CurrencyId = Currencies.Single(i=>i.TextCode == "GEL").Id,
-                    BankUrl = "https://www.nbg.gov.ge",
-                    RatesUrl = "https://www.nbg.gov.ge/index.php?m=582&lng=eng"
+                    BankUrl = "https://www.nbg.gov.ge"                    
                 },
                 new Bank
                 {
@@ -74,8 +73,7 @@ namespace RatesParsingWeb.Storage.DataSeeding
                     SwiftCode = "NBPLPLPWBAN",
                     Name = "National Bank of Poland",
                     CurrencyId = Currencies.Single(i=>i.TextCode == "PLN").Id,
-                    BankUrl = "https://www.nbp.pl",
-                    RatesUrl = "https://www.nbp.pl/homen.aspx?f=/kursy/RatesA.html"
+                    BankUrl = "https://www.nbp.pl"                    
                 },
                 new Bank
                 {
@@ -83,8 +81,7 @@ namespace RatesParsingWeb.Storage.DataSeeding
                     SwiftCode = "CBRFRUMMXXX",
                     Name = "The Central Bank of the Russian Federation",
                     CurrencyId = Currencies.Single(i=>i.TextCode == "RUB").Id,
-                    BankUrl = "https://www.cbr.ru",
-                    RatesUrl = "https://www.cbr.ru/eng/currency_base/daily/"
+                    BankUrl = "https://www.cbr.ru"
                 },
                 new Bank
                 {
@@ -92,8 +89,7 @@ namespace RatesParsingWeb.Storage.DataSeeding
                     SwiftCode = "ECBFDEFFEUM",
                     Name = "European Central Bank",
                     CurrencyId = Currencies.Single(i=>i.TextCode == "EUR").Id,
-                    BankUrl = "https://www.ecb.europa.eu",
-                    RatesUrl = "https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/index.en.html"
+                    BankUrl = "https://www.ecb.europa.eu"
                 }
             };
             Banks = banks;

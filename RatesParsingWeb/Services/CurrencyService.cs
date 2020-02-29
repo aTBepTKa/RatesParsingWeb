@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc.ModelBinding;
+﻿using Mapster;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using RatesParsingWeb.Domain;
 using RatesParsingWeb.Dto;
 using RatesParsingWeb.Services.Interfaces;
@@ -14,10 +15,13 @@ namespace RatesParsingWeb.Services
 {
     public class CurrencyService : BaseCrudService<CurrencyDto, Currency>, ICurrencyService
     {
-        private readonly ICurrencyRepository CurrencyRepository;
+        private readonly ICurrencyRepository currencyRepository;
         public CurrencyService(ICurrencyRepository repository) : base(repository)
         {
-            CurrencyRepository = repository;
+            currencyRepository = repository;
         }
+
+        public CurrencyDto GetCurrencyByTextCode(string textCode) =>
+            currencyRepository.GetFirstOrDefault(i => i.TextCode == textCode).Adapt<CurrencyDto>();
     }
 }

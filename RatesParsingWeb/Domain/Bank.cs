@@ -27,10 +27,7 @@ namespace RatesParsingWeb.Domain
         /// </summary>
         public string BankUrl { get; set; }
 
-        /// <summary>
-        /// Ссылка на страницу, содержащую обменные курсы валют.
-        /// </summary>
-        public string RatesUrl { get; set; }
+
         
 
         public int CurrencyId { get; set; }

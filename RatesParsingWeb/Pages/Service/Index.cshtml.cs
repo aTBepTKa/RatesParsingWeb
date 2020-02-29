@@ -14,29 +14,28 @@ namespace RatesParsingWeb.Pages.Service
 {
     public class IndexModel : PageModel
     {
-        private readonly IBusControl busControl;
+
         private readonly IBankService bankService;
-        private readonly IParsingSettingsService parsingService;
-        public IndexModel(IBusControl bus, IBankService bank,IParsingSettingsService settings)
+        private readonly IParsingSettingsService parsingSettingsService;
+        private readonly IParsingService parsingService;
+
+        public IndexModel(IBankService bank, IParsingSettingsService settings, IParsingService parsingService)
         {
-            busControl = bus;
             bankService = bank;
-            parsingService = settings;
+            parsingSettingsService = settings;
+            this.parsingService = parsingService;
         }
 
         public IEnumerable<ExchangeRateModel> ExchangeRateModels { get; set; }
+        public ExchangeRateModel FirstExchangeRateModel { get; set; }
 
         public async Task OnGet()
         {
-            var serviceAddress = new Uri("rabbitmq://localhost/ParsingQueue");
-            var client = busControl.CreateRequestClient<IParsingRequest>(serviceAddress);
-
             var bank = await bankService.GetBankBySwiftCode("NBPLPLPWBAN");
-            var parsingSettings = await parsingService.GetSettingsByBankId(bank.Id);
-            var request = parsingSettings.Adapt<ParsingRequest>();
+            var parsingSettings = await parsingSettingsService.GetSettingsByBankId(bank.Id);
+            var response = await parsingService.GetExchangeRates(parsingSettings, "Получить список валют для польского банка");
 
-            var response = await client.GetResponse<IParsingResponse>(request);
-            ExchangeRateModels = response.Message.ExchangeRates.Adapt<IEnumerable<ExchangeRateModel>>();
+            ExchangeRateModels = response.Adapt<IEnumerable<ExchangeRateModel>>();
         }
     }
 }

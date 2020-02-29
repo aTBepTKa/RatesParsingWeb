@@ -35,14 +35,6 @@ namespace RatesParsingWeb.Models
         public string BankUrl { get; set; }
 
         /// <summary>
-        /// Ссылка на страницу, содержащую обменные курсы валют.
-        /// </summary>
-        [DisplayName("Страница курсов")]
-        [Required(ErrorMessage = "Поле является обязательным")]
-        [Url(ErrorMessage = "Необходимо ввести ссылку")]
-        public string RatesUrl { get; set; }
-
-        /// <summary>
         /// Основная валюта банка.
         /// </summary>
         [DisplayName("Основная валюта банка")]

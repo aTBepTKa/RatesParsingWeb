@@ -11,7 +11,7 @@ namespace ParsingMessages
         /// <summary>
         /// Ссылка на страницу с курсами.
         /// </summary>
-        string RatesUrlPage { get; set; }
+        string RatesUrl { get; set; }
 
 
         /// <summary>
@@ -58,11 +58,11 @@ namespace ParsingMessages
         /// <summary>
         /// Команды для обработки строки единицы измерения Unit.
         /// </summary>
-        Dictionary<string, string[]> UnitScripts { get; set; }
+        Dictionary<string, string[]> UnitCommands { get; set; }
 
         /// <summary>
         /// Команды для обработки строки текстового кода валюты TextCode.
         /// </summary>
-        Dictionary<string, string[]> TextCodeScripts { get; set; }
+        Dictionary<string, string[]> TextCodeCommands { get; set; }
     }
 }
