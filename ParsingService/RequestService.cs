@@ -1,33 +1,39 @@
 ﻿using MassTransit;
-using MassTransit.RabbitMqTransport;
 using MassTransit.Util;
 using System;
-using System.Collections.Generic;
-using System.Text;
-using Topshelf;
+using System.ServiceProcess;
 
 namespace ParsingService
 {
-    class RequestService : ServiceControl
+    class RequestService : ServiceBase
     {
         IBusControl _busControl;
 
-        public bool Start(HostControl hostControl)
+        public void StartApp()
         {
+            OnStart(null);
+        }
+        public void StopApp()
+        {
+            OnStop();
+        }
+
+        protected override void OnStart(string[] args)
+        {
+            ServiceName = "RequestService";
+
             _busControl = Bus.Factory.CreateUsingRabbitMq(cfg =>
             {
                 var host = cfg.Host("rabbitmq://localhost");
                 cfg.ReceiveEndpoint("ParsingQueue", e => e.Consumer<RequestConsumer>());
             });
-
             TaskUtil.Await(() => _busControl.StartAsync());
-            return true;
+            Console.WriteLine("Сервис запущен. Ожидаются входящие сообщения.");
         }
 
-        public bool Stop(HostControl hostControl)
+        protected override void OnStop()
         {
             _busControl?.Stop();
-            return true;
         }
     }
 }
