@@ -27,9 +27,9 @@ namespace RatesParsingWeb.Services
         {
             var bank = await bankRepository.GetFirstOrDefaultAsync(b => b.Id == id, i => i.ParsingSettings);
             var settingsId = bank.ParsingSettings.Id;
-            var commands = await settingsRepository.GetCommands(settingsId);
-            var commandsDto = commands.Adapt<ParsingSettingsDto>();
-            return commandsDto;
+            var settings = await settingsRepository.GetCommands(settingsId);
+            var settingsDto = settings.Adapt<ParsingSettingsDto>();
+            return settingsDto;
         }
     }
 }

@@ -53,22 +53,19 @@ namespace RatesParsingWeb
             services.AddScoped<IParsingSettingsService, ParsingSettingsService>();
             services.AddScoped<IParsingService, ParsingService>();
 
-            // Добавить MassTrantis.
-            //var bus = CreateBus();
-            //services.AddMassTransit(bus);
-
-            // Пробуем добавить клиента массТранзит через ДИ. Запросы отправляются, сервис их получает, но назад не приходит нихуя :(
+            // Добавить MassTrantis.            
             services.AddMassTransit(x =>
                 {
                     x.AddBus(provider =>
                         Bus.Factory.CreateUsingRabbitMq(cfg =>
-                        {
-                            cfg.ConfigureEndpoints(provider);
-                            cfg.Host("rabbitmq://localhost");
+                        {                         
+                            cfg.Host(Configuration["RabbitMqSettings:RabbitMqHost"]);
                         }));
-                    x.AddRequestClient<IParsingRequest>(new Uri("rabbitmq://localhost/ParsingQueue"));
+                    x.AddRequestClient<IParsingRequest>(new Uri(Configuration["RabbitMqSettings:ServiceAdress"]), RequestTimeout.After(s:10));
                 }
             );
+            // Сука! Клиент не получал ответа от сервиса на запрос. Хотя сервис запрос получал,
+            // и отправлял ответ. Вся проблема оказалась в отустствии этой строки. Як так то?
             services.AddMassTransitHostedService();
         }
 
@@ -98,11 +95,5 @@ namespace RatesParsingWeb
                 endpoints.MapRazorPages();
             });
         }
-
-        //private IBusControl CreateBus() =>
-        //    Bus.Factory.CreateUsingRabbitMq(cfg =>
-        //    {
-        //        cfg.Host("rabbitmq://localhost");
-        //    });
     }
 }
