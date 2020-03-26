@@ -57,6 +57,6 @@ namespace RatesParsingWeb.Dto.ParsingSettings
         /// <summary>
         /// Команды для обработки текстовых данных.
         /// </summary>
-        public virtual ICollection<CommandAssignmentDto> Commands { get; set; }
+        public CommandAssignmentDto[] Commands { get; set; }
     }
 }

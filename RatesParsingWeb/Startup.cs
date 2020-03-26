@@ -54,9 +54,22 @@ namespace RatesParsingWeb
             services.AddScoped<IParsingService, ParsingService>();
 
             // Добавить MassTrantis.
-            var bus = CreateBus();
-            
-            services.AddMassTransit(bus);            
+            //var bus = CreateBus();
+            //services.AddMassTransit(bus);
+
+            // Пробуем добавить клиента массТранзит через ДИ. Запросы отправляются, сервис их получает, но назад не приходит нихуя :(
+            services.AddMassTransit(x =>
+                {
+                    x.AddBus(provider =>
+                        Bus.Factory.CreateUsingRabbitMq(cfg =>
+                        {
+                            cfg.ConfigureEndpoints(provider);
+                            cfg.Host("rabbitmq://localhost");
+                        }));
+                    x.AddRequestClient<IParsingRequest>(new Uri("rabbitmq://localhost/ParsingQueue"));
+                }
+            );
+            services.AddMassTransitHostedService();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -86,10 +99,10 @@ namespace RatesParsingWeb
             });
         }
 
-        private IBusControl CreateBus() =>
-            Bus.Factory.CreateUsingRabbitMq(cfg =>
-            {
-                cfg.Host("rabbitmq://localhost");
-            });
+        //private IBusControl CreateBus() =>
+        //    Bus.Factory.CreateUsingRabbitMq(cfg =>
+        //    {
+        //        cfg.Host("rabbitmq://localhost");
+        //    });
     }
 }

@@ -6,13 +6,24 @@ using System.Globalization;
 using System.Reflection;
 using System.Threading.Tasks;
 
-namespace ParsingService
+namespace ParsingService.Services
 {
     /// <summary>
     /// Представляет средства для парсинга страницы банка.
     /// </summary>
-    class ExchangeRatesFactory
+    class ExchangeRatesService
     {
+        public bool IsSuccessfullParsed => ErrorDictionaryService.IsValid;
+        public Dictionary<string, IEnumerable<string>> ErrorDictionary => ErrorDictionaryService.ErrorDictionary;
+
+
+        public ExchangeRatesService()
+        {
+            ErrorDictionaryService = new ErrorDictionaryService();
+        }
+
+        private IErrorDictionaryService ErrorDictionaryService { get; set; }
+
         /// <summary>
         /// Получить курсы валют банка асинхронно.
         /// </summary>
@@ -20,11 +31,23 @@ namespace ParsingService
         /// <returns></returns>
         public async Task<IEnumerable<ExchangeRate>> GetBankRatesAsync(BankRequest request)
         {
+            HtmlDocument htmlDocument = null;
             var html = new HtmlWeb();
-            HtmlDocument htmlDocument = await html.LoadFromWebAsync(request.RatesUrl);
+            try
+            {
+                htmlDocument = await html.LoadFromWebAsync(request.RatesUrl);
+            }
+            catch (Exception ex)
+            {
 
-            if (html == null)
+                ErrorDictionaryService.AddError(MethodBase.GetCurrentMethod().Name, $"Ошибка при загрузке страницы {request.RatesUrl}: {ex.Message}");
                 return Array.Empty<ExchangeRate>();
+            }
+
+            if (htmlDocument == null)
+            {
+                return Array.Empty<ExchangeRate>();
+            }
 
             // Получить методы для обработки строк.
             WordProcessingHandler textCodeProcessor = GetMethods(request.TextCodeCommands);
@@ -51,7 +74,7 @@ namespace ParsingService
         }
 
         /// <summary>
-        /// Получить методы из словаря.
+        /// Получить методы обработки строки.
         /// </summary>
         /// <param name="methodNames">Наименование методов и соответствующие параметры.</param>
         /// <returns></returns>
@@ -61,20 +84,21 @@ namespace ParsingService
             {
                 WordProcessingHandler methods = null;
                 // Получить тип объекта, содержащего методы.
-                Type scriptsType = typeof(Commands);
+                Type commandsType = typeof(Commands);
                 // Создать объект, содержащий методы.
-                object scriptsObject = Activator.CreateInstance(scriptsType);
+                object commandsObject = Activator.CreateInstance(commandsType);
                 // Получить список методов.
                 foreach (var methodName in methodNames)
                 {
-                    // Получить метод по заданному имени из словаря.
-                    MethodInfo method = scriptsType.GetMethod(methodName.Key);
-                    var newMethod = method.Invoke(scriptsObject, methodName.Value);
+                    // Получить метод по заданному имени.
+                    MethodInfo method = commandsType.GetMethod(methodName.Key);
+                    var newMethod = method.Invoke(commandsObject, methodName.Value);
                     methods += newMethod as WordProcessingHandler;
                 }
                 return methods;
             }
             else
+                // Вернуть метод, который возвращает целевую строку не обрабатывая ее.
                 return text => text;
         }
 
@@ -88,7 +112,14 @@ namespace ParsingService
         private string GetTextCode(string xpath, HtmlDocument html, WordProcessingHandler handler)
         {
             string textCode = GetValueByXPath(html, xpath);
-            textCode = handler(textCode);
+            try
+            {
+                textCode = handler(textCode);
+            }
+            catch (Exception ex)
+            {
+                ErrorDictionaryService.AddError(MethodBase.GetCurrentMethod().Name, $"Ошибка при выполнении команды обработки текста: {ex.Message}");
+            }
             return textCode;
         }
 
@@ -105,9 +136,14 @@ namespace ParsingService
             unit = handler(unit);
 
             if (int.TryParse(unit, out int unitResult))
+            {
                 return unitResult;
+            }
             else
+            {
+                ErrorDictionaryService.AddError(MethodBase.GetCurrentMethod().Name, $"Ошибка при преобразовании строки '{unit}' в число.");
                 return 0;
+            }
         }
 
         /// <summary>
@@ -127,9 +163,14 @@ namespace ParsingService
             };
             string exchangeRate = GetValueByXPath(html, xpath);
             if (decimal.TryParse(exchangeRate, NumberStyles.Currency, formatInfo, out decimal exchangeRateResult))
+            {
                 return exchangeRateResult;
+            }
             else
+            {
+                ErrorDictionaryService.AddError(MethodBase.GetCurrentMethod().Name, $"Ошибка при преобразовании строки '{exchangeRate}' в число.");
                 return 0;
+            }
         }
 
         /// <summary>
@@ -138,13 +179,12 @@ namespace ParsingService
         /// <param name="html">Страница для парсинга.</param>
         /// <param name="xpath">Адрес XPath искомого значения.</param>
         /// <returns></returns>
-        private static string GetValueByXPath(HtmlDocument html, string xpath)
+        private string GetValueByXPath(HtmlDocument html, string xpath)
         {
             // Узел целевого значения.
-            HtmlNode resultNode;
+            HtmlNode resultNode = null;
             // Целевое значение.
-            string result;
-
+            string result = "";            
             // Попытка получить узел.
             try
             {
@@ -152,11 +192,13 @@ namespace ParsingService
             }
             catch (System.Xml.XPath.XPathException)
             {
-                throw new System.Xml.XPath.XPathException($"Ошибка при обработке XPath адреса {xpath}. ");
+                ErrorDictionaryService.AddError(MethodBase.GetCurrentMethod().Name, $"Ошибка при получении данных по  Xpath '{xpath}'.");
+                //throw new System.Xml.XPath.XPathException($"Ошибка при обработке XPath адреса {xpath}. ");
             }
             catch (ArgumentNullException)
             {
-                throw new ArgumentNullException("Отсутствует XPath адрес");
+                ErrorDictionaryService.AddError(MethodBase.GetCurrentMethod().Name, $"Отсутствует Xpath '{xpath}'.");
+                //throw new ArgumentNullException("Отсутствует XPath адрес");
             }
 
             if (resultNode != null)
@@ -166,7 +208,7 @@ namespace ParsingService
                 result = GetClearText(result);
             }
             else
-                throw new ArgumentNullException("При поиске по адресу XPath получено значение Null");
+                ErrorDictionaryService.AddError(MethodBase.GetCurrentMethod().Name, $"При получении данных по Xpath '{xpath}' полученно значение null.");
             return result;
         }
 

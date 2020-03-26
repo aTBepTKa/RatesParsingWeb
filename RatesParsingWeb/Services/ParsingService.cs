@@ -17,11 +17,9 @@ namespace RatesParsingWeb.Services
         private readonly IRequestClient<IParsingRequest> requestClient;
         private readonly ICurrencyService currencyService;
 
-        public ParsingService(IBusControl bus, ICurrencyService currency)
+        public ParsingService(IRequestClient<IParsingRequest> client, ICurrencyService currency)
         {
-            var serviceAddress = new Uri("rabbitmq://localhost/ParsingQueue");
-            requestClient = bus.CreateRequestClient<IParsingRequest>(serviceAddress);
-
+            requestClient = client;
             currencyService = currency;
         }
 
@@ -51,15 +49,8 @@ namespace RatesParsingWeb.Services
             return request;
         }
 
-        private Dictionary<string, string[]> GetCommands(IEnumerable<CommandAssignmentDto> commands, string commandsType)
-        {
-            var keyValuePairs = commands
-                    .Where(assignment => assignment.AssignmentFieldName.Name == commandsType)
-                    .Select(assignment => new KeyValuePair<string, string[]>
-                        (assignment.Command.Name,
-                        assignment.CommandParameterValues.Select(value => value.Value).ToArray()));
-            var commandDictionary = new Dictionary<string, string[]>(keyValuePairs);
-            return commandDictionary;
-        }
+        private static Dictionary<string, string[]> GetCommands(IEnumerable<CommandAssignmentDto> commands, string commandsType) => 
+            commands?.Where(assignment => assignment.AssignmentFieldName.Name == commandsType)
+                     .ToDictionary(x => x.Command.Name, x => x.CommandParameterValues.Select(value => value.Value).ToArray());
     }
 }
