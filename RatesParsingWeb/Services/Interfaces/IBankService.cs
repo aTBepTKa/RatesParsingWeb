@@ -35,11 +35,18 @@ namespace RatesParsingWeb.Services.Interfaces
         Task<BankDto> GetBankCurrency(int id);
 
         /// <summary>
-        /// Получить банк с ParsingSettings.
+        /// Получить банк с настройками парсинга.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="id">Id банка</param>
         /// <returns></returns>
-        Task<BankDto> GetBankParsingSettings(int id);
+        Task<BankDto> GetBankWithParsingSettings(int id);
+
+        /// <summary>
+        /// Получить банк с настройками парсинга.
+        /// </summary>
+        /// <param name="swiftCode">SWIFT-код банка.</param>
+        /// <returns></returns>
+        Task<BankDto> GetBankWithParsingSettings(string swiftCode);
 
         /// <summary>
         /// Создать новый банк.

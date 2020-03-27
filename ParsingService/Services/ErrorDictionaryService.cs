@@ -9,23 +9,23 @@ namespace ParsingService.Services
 
     public class ErrorDictionaryService : IErrorDictionaryService
     {
-        private Dictionary<string, List<string>> errorDictioanry { get; }
+        private Dictionary<string, List<string>> ErrorDictioanry { get; }
         public ErrorDictionaryService()
         {
-            errorDictioanry = new Dictionary<string, List<string>>();
+            ErrorDictioanry = new Dictionary<string, List<string>>();
         }
 
-        public bool IsValid => errorDictioanry.Count == 0;
+        public bool IsValid => ErrorDictioanry.Count == 0;
 
         public void AddError(string key, string value)
         {
-            if (!errorDictioanry.ContainsKey(key))
-                errorDictioanry.Add(key, new List<string>());
-            errorDictioanry[key].Add(value);
+            if (!ErrorDictioanry.ContainsKey(key))
+                ErrorDictioanry.Add(key, new List<string>());
+            ErrorDictioanry[key].Add(value);
         }
 
         public Dictionary<string, IEnumerable<string>> ErrorDictionary =>
-            errorDictioanry.Adapt<Dictionary<string, IEnumerable<string>>>();
+            ErrorDictioanry.Adapt<Dictionary<string, IEnumerable<string>>>();
 
         public IEnumerable<string> ErrorListWithKeys => GetErrorList(true);
 
@@ -34,9 +34,9 @@ namespace ParsingService.Services
         private IEnumerable<string> GetErrorList(bool withKeys)
         {
             if (withKeys)
-                return errorDictioanry.SelectMany(keyValuePair => keyValuePair.Value.Select(error => $"{keyValuePair.Key}: {error}"));
+                return ErrorDictioanry.SelectMany(keyValuePair => keyValuePair.Value.Select(error => $"{keyValuePair.Key}: {error}"));
             else
-                return errorDictioanry.SelectMany(keyValuePair => keyValuePair.Value);
+                return ErrorDictioanry.SelectMany(keyValuePair => keyValuePair.Value);
         }
     }
 }

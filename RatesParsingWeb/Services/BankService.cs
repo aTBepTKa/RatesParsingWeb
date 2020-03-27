@@ -13,11 +13,9 @@ namespace RatesParsingWeb.Services
     public class BankService : BaseCrudService<BankDto, Bank>, IBankService
     {
         private readonly IBankRepository bankRepository;
-        private readonly IParsingSettingsRepository parsingSettingsRepository;
-        public BankService(IBankRepository bank, IParsingSettingsRepository parsing) : base(bank)
+        public BankService(IBankRepository bank) : base(bank)
         {
             bankRepository = bank;
-            parsingSettingsRepository = parsing;
         }
 
         public async Task<IEnumerable<BankDto>> GetList()
@@ -43,14 +41,18 @@ namespace RatesParsingWeb.Services
                 i => i.Currency))
             .Adapt<BankDto>();
 
-        public async Task<BankDto> GetBankParsingSettings(int id)
+        public async Task<BankDto> GetBankWithParsingSettings(int id)
         {
-            var bank = (await bankRepository.GetFirstOrDefaultAsync(
-                i => i.Id == id,
-                includes => includes.ParsingSettings))
-            .Adapt<BankDto>();
-            //(await bankRepository.GetBankCommands(id)).Adapt<BankDto>();
-            return bank;
+            var bankSettings = await bankRepository.GetBankWithSettings(id);
+            var bankDto = bankSettings.Adapt<BankDto>();
+            return bankDto;
+        }
+        public async Task<BankDto> GetBankWithParsingSettings(string swiftCode)
+        {
+            var bank = await bankRepository.GetFirstOrDefaultAsync(b => b.SwiftCode == swiftCode);
+            var bankSettings = await bankRepository.GetBankWithSettings(bank.Id);
+            var bankDto = bankSettings.Adapt<BankDto>();
+            return bankDto;
         }
         #endregion
 

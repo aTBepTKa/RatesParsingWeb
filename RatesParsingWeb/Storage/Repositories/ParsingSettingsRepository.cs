@@ -14,7 +14,7 @@ namespace RatesParsingWeb.Storage.Repositories
         {
         }
 
-        public async Task<ParsingSettings> GetCommands(int id)
+        public async Task<ParsingSettings> GetSettingsWithCommands(int id)
         {
             var commands = await dbSet
                 .Include(settings => settings.Commands)

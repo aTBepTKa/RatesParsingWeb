@@ -64,8 +64,6 @@ namespace RatesParsingWeb
                     x.AddRequestClient<IParsingRequest>(new Uri(Configuration["RabbitMqSettings:ServiceAdress"]), RequestTimeout.After(s:10));
                 }
             );
-            // Сука! Клиент не получал ответа от сервиса на запрос. Хотя сервис запрос получал,
-            // и отправлял ответ. Вся проблема оказалась в отустствии этой строки. Як так то?
             services.AddMassTransitHostedService();
         }
 

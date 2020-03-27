@@ -15,5 +15,22 @@ namespace RatesParsingWeb.Storage.Repositories
         public BankRepository(BankRatesContext context) :
             base(context)
         { }
+
+        public Task<Bank> GetBankWithSettings(int id)
+        {
+            var bank = dbSet
+                .Include(bank => bank.ParsingSettings)
+                    .ThenInclude(settings => settings.Commands)
+                        .ThenInclude(assignment => assignment.Command)
+                            .ThenInclude(command => command.CommandParameters)
+                .Include(bank => bank.ParsingSettings)
+                    .ThenInclude(settings => settings.Commands)
+                        .ThenInclude(assignment => assignment.CommandParameterValues)
+                .Include(bank => bank.ParsingSettings)
+                    .ThenInclude(settings => settings.Commands)
+                        .ThenInclude(assignment => assignment.AssignmentFieldName)
+                .FirstOrDefaultAsync(bank => bank.Id == id);
+            return bank;
+        }
     }
 }

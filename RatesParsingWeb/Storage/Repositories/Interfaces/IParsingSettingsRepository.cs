@@ -13,6 +13,6 @@ namespace RatesParsingWeb.Storage.Repositories.Interfaces
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        Task<ParsingSettings> GetCommands(int id);
+        Task<ParsingSettings> GetSettingsWithCommands(int id);
     }
 }

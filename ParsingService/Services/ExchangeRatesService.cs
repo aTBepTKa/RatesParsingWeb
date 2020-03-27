@@ -39,7 +39,6 @@ namespace ParsingService.Services
             }
             catch (Exception ex)
             {
-
                 ErrorDictionaryService.AddError(MethodBase.GetCurrentMethod().Name, $"Ошибка при загрузке страницы {request.RatesUrl}: {ex.Message}");
                 return Array.Empty<ExchangeRate>();
             }
@@ -53,7 +52,7 @@ namespace ParsingService.Services
             WordProcessingHandler textCodeProcessor = GetMethods(request.TextCodeCommands);
             WordProcessingHandler unitProcessor = GetMethods(request.UnitCommands);
 
-            var currencyList = new List<ExchangeRate>(request.EndXpathRow - request.StartXpathRow + 1);
+            var rateList = new List<ExchangeRate>(request.EndXpathRow - request.StartXpathRow + 1);
             for (var i = request.StartXpathRow; i <= request.EndXpathRow; i++)
             {
                 var currencyData = new ExchangeRate();
@@ -68,9 +67,9 @@ namespace ParsingService.Services
                 currencyData.ExchangeRateValue = GetRate(rateXpath, htmlDocument,
                     request.NumberDecimalSeparator, request.NumberGroupSeparator);
 
-                currencyList.Add(currencyData);
+                rateList.Add(currencyData);
             }
-            return currencyList;
+            return rateList;
         }
 
         /// <summary>

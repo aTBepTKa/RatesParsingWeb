@@ -16,13 +16,11 @@ namespace RatesParsingWeb.Pages.Service
     {
 
         private readonly IBankService bankService;
-        private readonly IParsingSettingsService parsingSettingsService;
         private readonly IParsingService parsingService;
 
-        public IndexModel(IBankService bank, IParsingSettingsService settings, IParsingService parsingService)
+        public IndexModel(IBankService bank, IParsingService parsingService)
         {
             bankService = bank;
-            parsingSettingsService = settings;
             this.parsingService = parsingService;
         }
 
@@ -31,10 +29,8 @@ namespace RatesParsingWeb.Pages.Service
 
         public async Task OnGet()
         {
-            var bank = await bankService.GetBankBySwiftCode("NBPLPLPWBAN");
-            var parsingSettings = await parsingSettingsService.GetSettingsByBankId(bank.Id);
-            var response = await parsingService.GetExchangeRates(parsingSettings, "Получить список валют для польского банка");
-
+            var bank = await bankService.GetBankWithParsingSettings("NBPLPLPWBAN");
+            var response = await parsingService.GetExchangeRates(bank.ParsingSettings, "Получить список валют для польского банка");
             ExchangeRateModels = response.Adapt<IEnumerable<ExchangeRateModel>>();
         }
     }
