@@ -3,7 +3,7 @@ using MassTransit.Util;
 using System;
 using System.ServiceProcess;
 
-namespace ParsingService.Services
+namespace ParsingService
 {
     class RequestService : ServiceBase
     {

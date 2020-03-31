@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace ParsingService.Models
+﻿namespace ParsingService.Models
 {
     /// <summary>
     /// Содержит данные о валюте.

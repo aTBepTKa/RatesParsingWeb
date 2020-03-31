@@ -23,20 +23,34 @@ namespace RatesParsingWeb.Services
             currencyService = currency;
         }
 
-        public async Task<IEnumerable<ExchangeRateDto>> GetExchangeRates(ParsingSettingsDto parsingSettings, string taskName)
+        public async Task<ParsingResultDto> GetExchangeRates(ParsingSettingsDto parsingSettings, string taskName)
         {
-            var request = GetRequest(parsingSettings);
-            request.TaskName = taskName;
-            var response = await requestClient.GetResponse<IParsingResponse>(request);
-            var ratesResponse = response.Message.ExchangeRates;
-            var rates = ratesResponse.Select(response =>
-                new ExchangeRateDto
+            try
+            {
+                var request = GetRequest(parsingSettings);
+                request.TaskName = taskName;
+                var response = (await requestClient.GetResponse<IParsingResponse>(request)).Message;
+                var result = response.Adapt<ParsingResultDto>();
+                if (result.IsSuccesfullParsed)
+                    result.ExchangeRates = response.ExchangeRates.Select(response =>
+                            new ExchangeRateDto
+                            {
+                                Unit = response.Unit,
+                                ExchangeRateValue = response.ExchangeRateValue,
+                                Currency = currencyService.GetCurrencyByTextCode(response.TextCode)
+                            });
+
+                return result;
+            }
+            catch (Exception ex)
+            {
+                var result = new ParsingResultDto()
                 {
-                    Unit = response.Unit,
-                    ExchangeRateValue = response.ExchangeRateValue,
-                    Currency = currencyService.GetCurrencyByTextCode(response.TextCode)
-                });
-            return rates;
+                    IsSuccesfullParsed = false,
+                    ErrorDescription = $"Ошибка при получении данных от сервиса парсинга: {ex.Message}"
+                };
+                return result;
+            }
         }
 
         private ParsingRequest GetRequest(ParsingSettingsDto parsingSettings)
@@ -49,7 +63,7 @@ namespace RatesParsingWeb.Services
             return request;
         }
 
-        private static Dictionary<string, string[]> GetCommands(IEnumerable<CommandAssignmentDto> commands, string commandsType) => 
+        private static Dictionary<string, string[]> GetCommands(IEnumerable<CommandAssignmentDto> commands, string commandsType) =>
             commands?.Where(assignment => assignment.AssignmentFieldName.Name == commandsType)
                      .ToDictionary(x => x.Command.Name, x => x.CommandParameterValues.Select(value => value.Value).ToArray());
     }

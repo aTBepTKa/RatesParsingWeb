@@ -13,21 +13,20 @@ namespace ParsingService
     {
         public async Task Consume(ConsumeContext<IParsingRequest> context)
         {
-            Console.WriteLine($"Получено задание на парсинг: {context.Message.TaskName}.");
+            Console.WriteLine($"{DateTime.Now:dd.MM.yyyy HH:mm:ss} Получено задание на парсинг: '{context.Message.TaskName}'.");
 
-            var request = context.Message.Adapt<BankRequest>();
+            var request = context.Message.Adapt<ParsingRequest>();
             var response = await GetResponse(request);
             await context.RespondAsync(response);
 
-            Console.WriteLine($"Задание '{context.Message.TaskName}' выполнено. Ответ отправлен клиенту.");
+            Console.WriteLine($"{DateTime.Now:dd.MM.yyyy HH:mm:ss} Задание '{context.Message.TaskName}' выполнено. Ответ отправлен клиенту.");
         }
 
-        private async Task<IParsingResponse> GetResponse(BankRequest request)
+        private async Task<IParsingResponse> GetResponse(ParsingRequest request)
         {
-            var factory = new ExchangeRatesService();            
-            var rates = await factory.GetBankRatesAsync(request);
-            var ratesDto = rates.Adapt<IEnumerable<IExchangeRate>>();
-            var response = new ParsingResponse(ratesDto, factory.IsSuccessfullParsed, factory.ErrorDictionary);
+            var rateService = new ExchangeRatesService();
+            var result = await rateService.GetBankRatesAsync(request);
+            var response = result.Adapt<IParsingResponse>();
             return response;
         }
     }

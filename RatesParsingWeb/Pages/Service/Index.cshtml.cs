@@ -1,14 +1,10 @@
 ﻿using Mapster;
-using MassTransit;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using RatesParsingWeb.Models;
 using RatesParsingWeb.Services.Interfaces;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-using ParsingMessages;
-using System;
-using RatesParsingWeb.Dto.ParsingService;
+using System.Linq;
 
 namespace RatesParsingWeb.Pages.Service
 {
@@ -24,14 +20,16 @@ namespace RatesParsingWeb.Pages.Service
             this.parsingService = parsingService;
         }
 
-        public IEnumerable<ExchangeRateModel> ExchangeRateModels { get; set; }
+        public ParsingResultModel ParsingResultModel { get; set; }
         public ExchangeRateModel FirstExchangeRateModel { get; set; }
 
         public async Task OnGet()
         {
             var bank = await bankService.GetBankWithParsingSettings("NBPLPLPWBAN");
             var response = await parsingService.GetExchangeRates(bank.ParsingSettings, "Получить список валют для польского банка");
-            ExchangeRateModels = response.Adapt<IEnumerable<ExchangeRateModel>>();
+            ParsingResultModel = response.Adapt<ParsingResultModel>();
+            if(ParsingResultModel.IsSuccesfullParsed)
+                FirstExchangeRateModel = ParsingResultModel.ExchangeRates.FirstOrDefault();
         }
     }
 }

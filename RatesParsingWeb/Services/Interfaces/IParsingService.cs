@@ -1,5 +1,6 @@
 ﻿using ParsingMessages;
 using RatesParsingWeb.Dto;
+using RatesParsingWeb.Dto.ParsingService;
 using RatesParsingWeb.Dto.ParsingSettings;
 using System;
 using System.Collections.Generic;
@@ -13,6 +14,6 @@ namespace RatesParsingWeb.Services.Interfaces
     /// </summary>
     public interface IParsingService
     {
-        Task<IEnumerable<ExchangeRateDto>> GetExchangeRates(ParsingSettingsDto parsingSettings, string taskName = "Задание");
+        Task<ParsingResultDto> GetExchangeRates(ParsingSettingsDto parsingSettings, string taskName = "Задание");
     }
 }

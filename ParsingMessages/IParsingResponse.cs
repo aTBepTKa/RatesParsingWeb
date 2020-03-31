@@ -17,11 +17,11 @@ namespace ParsingMessages
         /// <summary>
         /// Успешность выполнения парсинга.
         /// </summary>
-        bool IsSuccefullParsed { get; set; }
+        bool IsSuccesfullParsed { get; set; }
 
         /// <summary>
-        /// Список ошибок при выполнении парсинга.
+        /// Текст ошибки при выполнении парсинга.
         /// </summary>
-        Dictionary<string, IEnumerable<string>> ErrorDictionary { get; set; }
+        string ErrorDescription { get; set; }
     }
 }

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using ParsingService.Models;
-
-namespace ParsingService
+﻿namespace ParsingService.Services
 {
     /// <summary>
     /// Команды для выполнения обработки строки.

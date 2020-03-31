@@ -17,12 +17,13 @@ namespace RatesParsingWeb.Services
         public bool IsValid => ErrorDictioanry.Count == 0;
 
         public IDictionary<string, List<string>> ErrorDictioanry { get; }
-   
+
         public void AddError(string key, string value)
         {
-            if (!ErrorDictioanry.ContainsKey(key))
-                ErrorDictioanry.Add(key, new List<string>());
-            ErrorDictioanry[key].Add(value);
+            if (ErrorDictioanry.TryGetValue(key, out List<string> errors))
+                errors.Add(value);
+            else
+                ErrorDictioanry.Add(key, new List<string> { value });
         }
 
         public IEnumerable<string> ErrorListWithKeys => GetErrorList(true);

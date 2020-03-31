@@ -3,6 +3,7 @@ using ParsingService.Models;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Net.Http;
 using System.Reflection;
 using System.Threading.Tasks;
 
@@ -13,40 +14,34 @@ namespace ParsingService.Services
     /// </summary>
     class ExchangeRatesService
     {
-        public bool IsSuccessfullParsed => ErrorDictionaryService.IsValid;
-        public Dictionary<string, IEnumerable<string>> ErrorDictionary => ErrorDictionaryService.ErrorDictionary;
-
-
-        public ExchangeRatesService()
-        {
-            ErrorDictionaryService = new ErrorDictionaryService();
-        }
-
-        private IErrorDictionaryService ErrorDictionaryService { get; set; }
-
         /// <summary>
         /// Получить курсы валют банка асинхронно.
         /// </summary>
         /// <param name="request">Данные для запроса к банку.</param>
         /// <returns></returns>
-        public async Task<IEnumerable<ExchangeRate>> GetBankRatesAsync(BankRequest request)
+        public async Task<ParsingResult> GetBankRatesAsync(ParsingRequest request)
         {
-            HtmlDocument htmlDocument = null;
-            var html = new HtmlWeb();
+            var result = new ParsingResult();
             try
             {
-                htmlDocument = await html.LoadFromWebAsync(request.RatesUrl);
+                result.ExchangeRates = await GetRatesAsync(request);
+            }
+            catch (HttpRequestException ex)
+            {
+                result.SetError($"Ошибка при выполнении запроса к сайту {request.RatesUrl}: {ex.Message}");
             }
             catch (Exception ex)
             {
-                ErrorDictionaryService.AddError(MethodBase.GetCurrentMethod().Name, $"Ошибка при загрузке страницы {request.RatesUrl}: {ex.Message}");
-                return Array.Empty<ExchangeRate>();
+                result.SetError($"Ошибка при выполнении парсинга страницы: {ex.Message}");
             }
+            return result;
+        }
 
-            if (htmlDocument == null)
-            {
-                return Array.Empty<ExchangeRate>();
-            }
+        private async Task<IEnumerable<ExchangeRate>> GetRatesAsync(ParsingRequest request)
+        {
+            var html = new HtmlWeb();
+            HtmlDocument htmlDocument;
+            htmlDocument = await html.LoadFromWebAsync(request.RatesUrl);
 
             // Получить методы для обработки строк.
             WordProcessingHandler textCodeProcessor = GetMethods(request.TextCodeCommands);
@@ -111,14 +106,7 @@ namespace ParsingService.Services
         private string GetTextCode(string xpath, HtmlDocument html, WordProcessingHandler handler)
         {
             string textCode = GetValueByXPath(html, xpath);
-            try
-            {
-                textCode = handler(textCode);
-            }
-            catch (Exception ex)
-            {
-                ErrorDictionaryService.AddError(MethodBase.GetCurrentMethod().Name, $"Ошибка при выполнении команды обработки текста: {ex.Message}");
-            }
+            textCode = handler(textCode);
             return textCode;
         }
 
@@ -135,14 +123,9 @@ namespace ParsingService.Services
             unit = handler(unit);
 
             if (int.TryParse(unit, out int unitResult))
-            {
                 return unitResult;
-            }
             else
-            {
-                ErrorDictionaryService.AddError(MethodBase.GetCurrentMethod().Name, $"Ошибка при преобразовании строки '{unit}' в число.");
-                return 0;
-            }
+                throw new Exception($"Ошибка при преобразовании строки единицы измерения {unit} в число.");
         }
 
         /// <summary>
@@ -162,14 +145,9 @@ namespace ParsingService.Services
             };
             string exchangeRate = GetValueByXPath(html, xpath);
             if (decimal.TryParse(exchangeRate, NumberStyles.Currency, formatInfo, out decimal exchangeRateResult))
-            {
                 return exchangeRateResult;
-            }
             else
-            {
-                ErrorDictionaryService.AddError(MethodBase.GetCurrentMethod().Name, $"Ошибка при преобразовании строки '{exchangeRate}' в число.");
-                return 0;
-            }
+                throw new Exception($"Ошибка при преобразовании строки обменного курса {exchangeRate} в число.");
         }
 
         /// <summary>
@@ -181,34 +159,18 @@ namespace ParsingService.Services
         private string GetValueByXPath(HtmlDocument html, string xpath)
         {
             // Узел целевого значения.
-            HtmlNode resultNode = null;
-            // Целевое значение.
-            string result = "";            
-            // Попытка получить узел.
-            try
-            {
-                resultNode = html.DocumentNode.SelectSingleNode(xpath);
-            }
-            catch (System.Xml.XPath.XPathException)
-            {
-                ErrorDictionaryService.AddError(MethodBase.GetCurrentMethod().Name, $"Ошибка при получении данных по  Xpath '{xpath}'.");
-                //throw new System.Xml.XPath.XPathException($"Ошибка при обработке XPath адреса {xpath}. ");
-            }
-            catch (ArgumentNullException)
-            {
-                ErrorDictionaryService.AddError(MethodBase.GetCurrentMethod().Name, $"Отсутствует Xpath '{xpath}'.");
-                //throw new ArgumentNullException("Отсутствует XPath адрес");
-            }
+            HtmlNode resultNode = html.DocumentNode.SelectSingleNode(xpath);
 
             if (resultNode != null)
             {
-                result = resultNode.InnerText;
-                // Привести форматирование текста к приемлемому виду.
+                var result = resultNode.InnerText;
                 result = GetClearText(result);
+                return result;
             }
             else
-                ErrorDictionaryService.AddError(MethodBase.GetCurrentMethod().Name, $"При получении данных по Xpath '{xpath}' полученно значение null.");
-            return result;
+            {
+                throw new Exception($"При получении данных по Xpath '{xpath}' полученно значение null.");
+            }
         }
 
         /// <summary>
