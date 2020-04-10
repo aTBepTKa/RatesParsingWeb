@@ -1,7 +1,7 @@
 ﻿using Mapster;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using RatesParsingWeb.Models;
+using RatesParsingWeb.Models.ParsingSettings;
 using RatesParsingWeb.Services.Interfaces;
 using System.Threading.Tasks;
 

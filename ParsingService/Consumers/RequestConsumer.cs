@@ -1,25 +1,26 @@
 ﻿using Mapster;
 using MassTransit;
-using ParsingMessages;
+using ParsingMessages.Parsing;
 using ParsingService.Models;
 using ParsingService.Services;
-using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace ParsingService
+namespace ParsingService.Consumers
 {
-    class RequestConsumer : IConsumer<IParsingRequest>
+    /// <summary>
+    /// Средства для парсинга сайта.
+    /// </summary>
+    public class RequestConsumer : IConsumer<IParsingRequest>
     {
         public async Task Consume(ConsumeContext<IParsingRequest> context)
         {
-            Console.WriteLine($"{DateTime.Now:dd.MM.yyyy HH:mm:ss} Получено задание на парсинг: '{context.Message.TaskName}'.");
+            ConsoleLog.ShowMessage($"Получено задание на парсинг: '{context.Message.TaskName}'.");
 
             var request = context.Message.Adapt<ParsingRequest>();
             var response = await GetResponse(request);
             await context.RespondAsync(response);
 
-            Console.WriteLine($"{DateTime.Now:dd.MM.yyyy HH:mm:ss} Задание '{context.Message.TaskName}' выполнено. Ответ отправлен клиенту.");
+            ConsoleLog.ShowMessage($"Задание '{context.Message.TaskName}' выполнено. Ответ отправлен клиенту.");
         }
 
         private async Task<IParsingResponse> GetResponse(ParsingRequest request)

@@ -8,45 +8,31 @@ namespace RatesParsingWeb.Services.Interfaces
     public interface IBankService : ICrudService<BankDto>
     {
         /// <summary>
-        /// Получить все объекты банка, включая основную валюту банка.
+        /// Получить все банки с основной валютой.
         /// </summary>
         /// <returns></returns>      
         Task<IEnumerable<BankDto>> GetList();
 
         /// <summary>
-        /// Получить банк со связанными сущностями.
-        /// </summary>
-        /// <param name="id">ID получаемого банка.</param>
-        /// <returns></returns>
-        Task<BankDto> GetBankAllData(int id);
-
-        /// <summary>
-        /// Получить банк по свифт коду.
-        /// </summary>
-        /// <param name="swiftCode"></param>
-        /// <returns></returns>
-        Task<BankDto> GetBankBySwiftCode(string swiftCode);
-
-        /// <summary>
-        /// Получить банк с Currency.
+        /// Получить банк с основной валютой.
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        Task<BankDto> GetBankCurrency(int id);
+        Task<BankDto> GetWithCurrency(int id);
 
         /// <summary>
         /// Получить банк с настройками парсинга.
         /// </summary>
         /// <param name="id">Id банка</param>
         /// <returns></returns>
-        Task<BankDto> GetBankWithParsingSettings(int id);
+        Task<BankDto> GetWithParsingSettings(int id);
 
         /// <summary>
         /// Получить банк с настройками парсинга.
         /// </summary>
         /// <param name="swiftCode">SWIFT-код банка.</param>
         /// <returns></returns>
-        Task<BankDto> GetBankWithParsingSettings(string swiftCode);
+        Task<BankDto> GetWithParsingSettings(string swiftCode);
 
         /// <summary>
         /// Создать новый банк.

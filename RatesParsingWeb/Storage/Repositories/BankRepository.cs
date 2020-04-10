@@ -16,9 +16,10 @@ namespace RatesParsingWeb.Storage.Repositories
             base(context)
         { }
 
-        public Task<Bank> GetBankWithSettings(int id)
+        public Task<Bank> GetWithSettings(int id)
         {
             var bank = dbSet
+                .Include(bank=>bank.Currency)
                 .Include(bank => bank.ParsingSettings)
                     .ThenInclude(settings => settings.Commands)
                         .ThenInclude(assignment => assignment.Command)
@@ -32,5 +33,6 @@ namespace RatesParsingWeb.Storage.Repositories
                 .FirstOrDefaultAsync(bank => bank.Id == id);
             return bank;
         }
+
     }
 }

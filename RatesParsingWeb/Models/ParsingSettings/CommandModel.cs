@@ -1,28 +1,31 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace RatesParsingWeb.Dto.ExternalCommand
+namespace RatesParsingWeb.Models.ParsingSettings
 {
-    /// <summary>
-    /// Команда полученная из внешнего источника.
-    /// </summary>
-    public class ExternalCommandDto
+    public class CommandModel
     {
+        public int Id { get; set; }
+
         /// <summary>
         /// Наименование команды для дальнейшей работы с рефлексией.
         /// </summary>
+        [DisplayName("Наименование команды")]
         public string Name { get; set; }
-        
+
         /// <summary>
         /// Описание команды.
         /// </summary>
+        [DisplayName("Описание команды")]
         public string Description { get; set; }
 
         /// <summary>
         /// Параметры команды.
         /// </summary>
-        public ICollection<ExternalCommandParameterDto> CommandParameters { get; set; }
+        [DisplayName("Параметры команды")]
+        public ICollection<CommandParameterModel> CommandParameters { get; set; }
     }
 }

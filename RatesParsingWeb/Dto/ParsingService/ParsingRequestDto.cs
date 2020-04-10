@@ -1,12 +1,9 @@
-﻿using ParsingMessages;
-using System;
+﻿using ParsingMessages.Parsing;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace RatesParsingWeb.Dto.ParsingService
 {
-    public class ParsingRequest : IParsingRequest
+    public class ParsingRequestDto : IParsingRequest
     {
         public string TaskName { get; set; }
         public string RatesUrl { get; set; }

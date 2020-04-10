@@ -3,17 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace RatesParsingWeb.Dto
+namespace RatesParsingWeb.Dto.CommandService
 {
     public class CommandDto
     {
-        public int Id { get; set; }
-
         /// <summary>
         /// Наименование команды для дальнейшей работы с рефлексией.
         /// </summary>
         public string Name { get; set; }
-        
+
         /// <summary>
         /// Описание команды.
         /// </summary>
@@ -22,6 +20,6 @@ namespace RatesParsingWeb.Dto
         /// <summary>
         /// Параметры команды.
         /// </summary>
-        public ICollection<CommandParameterDto> CommandParameters { get; set; }
+        public IEnumerable<CommandParameterDto> CommandParameters { get; set; }
     }
 }

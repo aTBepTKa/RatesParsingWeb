@@ -10,7 +10,7 @@
     <PackageReference Include="Mapster" Version="5.0.0" />
     <PackageReference Include="MassTransit" Version="6.1.0" />
     <PackageReference Include="MassTransit.RabbitMQ" Version="6.1.0" />
-    <PackageReference Include="Topshelf" Version="4.2.1" />
+    <PackageReference Include="System.ServiceProcess.ServiceController" Version="4.7.0" />
   </ItemGroup>
 
   <ItemGroup>

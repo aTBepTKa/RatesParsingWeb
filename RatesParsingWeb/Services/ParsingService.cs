@@ -1,6 +1,6 @@
 ﻿using Mapster;
 using MassTransit;
-using ParsingMessages;
+using ParsingMessages.Parsing;
 using RatesParsingWeb.Dto;
 using RatesParsingWeb.Dto.ParsingService;
 using RatesParsingWeb.Dto.ParsingSettings;
@@ -53,9 +53,9 @@ namespace RatesParsingWeb.Services
             }
         }
 
-        private ParsingRequest GetRequest(ParsingSettingsDto parsingSettings)
+        private ParsingRequestDto GetRequest(ParsingSettingsDto parsingSettings)
         {
-            var request = parsingSettings.Adapt<ParsingRequest>();
+            var request = parsingSettings.Adapt<ParsingRequestDto>();
             Dictionary<string, string[]> textCommands = GetCommands(parsingSettings.Commands, "TextCode");
             Dictionary<string, string[]> unitCommands = GetCommands(parsingSettings.Commands, "Unit");
             request.TextCodeCommands = textCommands;

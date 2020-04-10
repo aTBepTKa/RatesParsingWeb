@@ -1,7 +1,8 @@
 ﻿using Mapster;
+using MassTransit;
+using ParsingMessages.Command;
 using RatesParsingWeb.Domain;
-using RatesParsingWeb.Dto;
-using RatesParsingWeb.Dto.ExternalCommand;
+using RatesParsingWeb.Dto.CommandService;
 using RatesParsingWeb.Dto.UpdateAndCreate;
 using RatesParsingWeb.Services.Interfaces;
 using RatesParsingWeb.Storage.Repositories.Interfaces;
@@ -14,12 +15,13 @@ namespace RatesParsingWeb.Services
 {
     public class CommandService : BaseCrudService<CommandDto, Command>, ICommandService
     {
-        private readonly ICommandRepository commandRepository
-            ;
+        private readonly ICommandRepository commandRepository;
+        private readonly IRequestClient<ICommandRequest> requestClient;
 
-        public CommandService(ICommandRepository command) : base(command)
+        public CommandService(ICommandRepository command, IRequestClient<ICommandRequest> request) : base(command)
         {
             commandRepository = command;
+            requestClient = request;
         }
 
         public async Task<IEnumerable<CommandDto>> GetCommandParameterListAsync() =>
@@ -44,11 +46,24 @@ namespace RatesParsingWeb.Services
             return true;
         }
 
-        public IEnumerable<CommandCreateDto> GetExternalCommands()
+        public async Task<CommandResultDto> GetExternalCommands(string taskName)
         {
-            var commandsFactory = new FakeTaxi();
-            IEnumerable<ExternalCommandDto> externalCommands = commandsFactory.GetCommands();
-            return externalCommands.Adapt<IEnumerable<CommandCreateDto>>();
+            CommandResultDto resultDto;
+            try
+            {
+                var request = new CommandRequest(taskName);
+                var response = await requestClient.GetResponse<ICommandResponse>(request);
+                resultDto = response.Message.Adapt<CommandResultDto>();
+            }
+            catch (Exception ex)
+            {
+                resultDto = new CommandResultDto()
+                {
+                    IsSuccesfullParsed = false,
+                    ErrorDescription = $"Ошибка при получении списка команд: {ex.Message}"
+                };
+            }
+            return resultDto;
         }
 
         private void CheckForValidity(Command command)

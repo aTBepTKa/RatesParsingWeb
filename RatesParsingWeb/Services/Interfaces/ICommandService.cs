@@ -1,6 +1,5 @@
 ﻿using RatesParsingWeb.Domain;
-using RatesParsingWeb.Dto;
-using RatesParsingWeb.Dto.ExternalCommand;
+using RatesParsingWeb.Dto.CommandService;
 using RatesParsingWeb.Dto.UpdateAndCreate;
 using System;
 using System.Collections.Generic;
@@ -51,6 +50,6 @@ namespace RatesParsingWeb.Services.Interfaces
         /// Получить список команд из внешнего источника.
         /// </summary>
         /// <returns></returns>
-        IEnumerable<CommandCreateDto> GetExternalCommands();
+        Task<CommandResultDto> GetExternalCommands(string taskName = "Получить команды");
     }
 }

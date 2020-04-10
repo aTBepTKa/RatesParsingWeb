@@ -12,8 +12,9 @@ using RatesParsingWeb.Storage.Repositories.Interfaces;
 using MassTransit.AspNetCoreIntegration;
 using MassTransit;
 using System;
-using ParsingMessages;
 using MassTransit.ExtensionsDependencyInjectionIntegration;
+using ParsingMessages.Parsing;
+using ParsingMessages.Command;
 
 namespace RatesParsingWeb
 {
@@ -56,10 +57,11 @@ namespace RatesParsingWeb
                 {
                     x.AddBus(provider =>
                         Bus.Factory.CreateUsingRabbitMq(cfg =>
-                        {                         
+                        {
                             cfg.Host(Configuration["RabbitMqSettings:RabbitMqHost"]);
                         }));
-                    x.AddRequestClient<IParsingRequest>(new Uri(Configuration["RabbitMqSettings:ServiceAdress"]), RequestTimeout.After(s:10));
+                    AddRequestClient<IParsingRequest>(x, new Uri(Configuration["RabbitMqSettings:ParsingServiceAdress"]));
+                    AddRequestClient<ICommandRequest>(x, new Uri(Configuration["RabbitMqSettings:CommandServiceAdress"]));
                 }
             );
             services.AddMassTransitHostedService();
@@ -91,5 +93,9 @@ namespace RatesParsingWeb
                 endpoints.MapRazorPages();
             });
         }
+
+        // Добавить клиент MassTransit для обработки ответа на запрос.
+        private void AddRequestClient<T>(IServiceCollectionConfigurator configurator, Uri serviceAdress) where T : class =>
+            configurator.AddRequestClient<T>(serviceAdress, RequestTimeout.After(s: 10));
     }
 }

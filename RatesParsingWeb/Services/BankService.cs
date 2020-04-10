@@ -25,35 +25,26 @@ namespace RatesParsingWeb.Services
         }
 
         #region GetBank
-        public async Task<BankDto> GetBankAllData(int id) =>
-            (await bankRepository.GetFirstOrDefaultAsync(
-                i => i.Id == id,
-                i => i.Currency,
-                includes => includes.ParsingSettings))
-            .Adapt<BankDto>();
+        public async Task<BankDto> GetWithParsingSettings(int id)
+        {
+            var bankSettings = await bankRepository.GetWithSettings(id);
+            var bankDto = bankSettings.Adapt<BankDto>();
+            return bankDto;
+        }
 
-        public async Task<BankDto> GetBankBySwiftCode(string swiftCode) =>
-            (await bankRepository.GetFirstOrDefaultAsync(i => i.SwiftCode == swiftCode)).Adapt<BankDto>();
+        public async Task<BankDto> GetWithParsingSettings(string swiftCode)
+        {
+            var bank = await bankRepository.GetFirstOrDefaultAsync(b => b.SwiftCode == swiftCode);
+            var bankSettings = await bankRepository.GetWithSettings(bank.Id);
+            var bankDto = bankSettings.Adapt<BankDto>();
+            return bankDto;
+        }
 
-        public async Task<BankDto> GetBankCurrency(int id) =>
+        public async Task<BankDto> GetWithCurrency(int id) =>
             (await bankRepository.GetFirstOrDefaultAsync(
                 i => i.Id == id,
                 i => i.Currency))
             .Adapt<BankDto>();
-
-        public async Task<BankDto> GetBankWithParsingSettings(int id)
-        {
-            var bankSettings = await bankRepository.GetBankWithSettings(id);
-            var bankDto = bankSettings.Adapt<BankDto>();
-            return bankDto;
-        }
-        public async Task<BankDto> GetBankWithParsingSettings(string swiftCode)
-        {
-            var bank = await bankRepository.GetFirstOrDefaultAsync(b => b.SwiftCode == swiftCode);
-            var bankSettings = await bankRepository.GetBankWithSettings(bank.Id);
-            var bankDto = bankSettings.Adapt<BankDto>();
-            return bankDto;
-        }
         #endregion
 
 
@@ -178,16 +169,12 @@ namespace RatesParsingWeb.Services
 
         private async Task CheckUpdateForUniqueness(BankUpdateDto bankUpdate)
         {
-            if (await bankRepository.AnyAsync(i => i.Id != bankUpdate.Id && i.Name == bankUpdate.Name))
-            {
-                ValidationDictionary.AddError(nameof(bankUpdate.Name), $"Банк с именем '{bankUpdate.Name}' уже существует.");
-            }
+            if (await bankRepository.AnyAsync(i => i.Id != bankUpdate.Id && i.Name == bankUpdate.Name))            
+                ValidationDictionary.AddError(nameof(bankUpdate.Name), $"Банк с именем '{bankUpdate.Name}' уже существует.");   
 
-
-            if (await bankRepository.AnyAsync(i => i.Id != bankUpdate.Id && i.SwiftCode == bankUpdate.SwiftCode))
-            {
+            if (await bankRepository.AnyAsync(i => i.Id != bankUpdate.Id && i.SwiftCode == bankUpdate.SwiftCode))            
                 ValidationDictionary.AddError(nameof(bankUpdate.SwiftCode), $"Банк со SWIFT кодом '{bankUpdate.SwiftCode}' уже существует.");
-            }
+            
         }
 
         private async Task CheckCreateForUniqueness(BankCreateDto bankCreate)

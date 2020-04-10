@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using RatesParsingWeb.Dto.UpdateAndCreate;
-using RatesParsingWeb.Models;
+using RatesParsingWeb.Models.ParsingSettings;
 using RatesParsingWeb.Services.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -37,7 +37,13 @@ namespace RatesParsingWeb.Pages.Commands
         /// Получить список команд из внешнего приложения.
         /// </summary>
         /// <returns></returns>
-        protected IEnumerable<CommandCreateDto> GetExternalCommandsList() =>
-            commandService.GetExternalCommands().Adapt<IEnumerable<CommandCreateDto>>();
+        protected async Task<IEnumerable<CommandCreateDto>> GetExternalCommandsList()
+        {
+            var commands = await commandService.GetExternalCommands();
+            if (commands.IsSuccesfullParsed)
+                return commands.Commands.Adapt<IEnumerable<CommandCreateDto>>();
+            else
+                return Array.Empty<CommandCreateDto>();
+        }
     }
 }

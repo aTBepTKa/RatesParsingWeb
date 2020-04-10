@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace RatesParsingWeb.Dto.ParsingSettings
+﻿namespace RatesParsingWeb.Dto.ParsingSettings
 {
     public class ParsingSettingsDto
     {

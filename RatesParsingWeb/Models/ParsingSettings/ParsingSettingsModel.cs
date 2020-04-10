@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace RatesParsingWeb.Models
+namespace RatesParsingWeb.Models.ParsingSettings
 {
     public class ParsingSettingsModel
     {
@@ -77,5 +77,7 @@ namespace RatesParsingWeb.Models
         [DisplayName("Разделитель групп разрядов")]
         [StringLength(1, MinimumLength = 1, ErrorMessage = "Разделитель представляется одиночным символом")]
         public string NumberGroupSeparator { get; set; }
+
+        public CommandAssignmentModel[] Commands { get; set; }
     }
 }

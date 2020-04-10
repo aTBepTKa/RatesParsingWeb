@@ -1,6 +1,7 @@
 ﻿@page
 @model RatesParsingWeb.Pages.Banks.DetailsModel
-
+@using RatesParsingWeb.App_Code
+ 
 @{
     ViewData["Title"] = "Подробности";
 }
@@ -42,6 +43,7 @@
     {
         <h4>Настройки парсинга</h4>
         <hr />
+        <h5>Основные параметры парсинга</h5>
         <dl class="row">
             <dt class="col-sm-2">
                 @Html.DisplayNameFor(model => model.BankModel.ParsingSettings.RatesUrl)
@@ -98,6 +100,13 @@
                 @Html.DisplayFor(model => model.BankModel.ParsingSettings.NumberGroupSeparator)
             </dd>
         </dl>
+        <h5>Команды обработки строк</h5>
+        <h6>Текстовая строка</h6>
+        @Html.CreateCommandList(Model.TextCodeCommands, "TextCode")
+        <h6>Единица измерения</h6>
+        @Html.CreateCommandList(Model.UnitCommands, "Unit")
+        <h6>Обменный курс</h6>
+        @Html.CreateCommandList(Model.ExchangeRateCommands, "ExchangeRate")
     }
     else
     {

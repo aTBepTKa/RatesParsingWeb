@@ -6,10 +6,9 @@
     class Commands
     {
         /// <summary>
-        /// Получить число из текста.
+        /// !!! Получить число из текста.
         /// </summary>
-        /// <param name="text">Исходный текст.</param>
-        /// <returns></returns>
+        [Command("GetNumberFromText", "Получить число из текста.")]
         public WordProcessingHandler GetNumberFromText()
         {
             string handler(string text)
@@ -30,7 +29,8 @@
         /// Получить строку заданной длины начиная с конца исходной строки.
         /// </summary>
         /// <param name="length">Длина строки в формате string.</param>
-        /// <returns></returns>
+        [Command("GetTextFromEnd", "Получить строку заданной длины начиная с конца исходной строки.")]
+        [Parameter("length", "Длина строки в формате string.")]
         public WordProcessingHandler GetTextFromEnd(string length)
         {
             if (!int.TryParse(length, out int newLength))
@@ -48,7 +48,9 @@
         /// </summary>
         /// <param name="oldText">Заменяемая строка.</param>
         /// <param name="newText">Новая строка.</param>
-        /// <returns></returns>
+        [Command("ReplaceSubstring", "Найти и заменить строку в тексте.")]
+        [Parameter("oldText", "Заменяемая строка.")]
+        [Parameter("newText", "Новая строка.")]
         public WordProcessingHandler ReplaceSubstring(string oldText, string newText)
         {
             string handler(string text)
@@ -63,6 +65,8 @@
         /// </summary>
         /// <param name="value">Значение фиксированного значения.</param>
         /// <returns></returns>
+        [Command("GetFixedValue", "Получить фиксированное значение независимо от получаемой строки.")]
+        [Parameter("value", "Значение фиксированного значения.")]
         public WordProcessingHandler GetFixedValue(string value)
         {
             string handler(string text)

@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using RatesParsingWeb.Dto.UpdateAndCreate;
-using RatesParsingWeb.Models;
+using RatesParsingWeb.Models.ParsingSettings;
 using RatesParsingWeb.Services.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,18 +19,18 @@ namespace RatesParsingWeb.Pages.Commands
         [BindProperty]
         public CommandModel CommandModel { get; set; }
 
-        public void OnGet()
+        public async Task OnGet()
         {
-            var commands = GetExternalCommandsList().Adapt<IEnumerable<CommandModel>>();
+            var commands = (await GetExternalCommandsList()).Adapt<IEnumerable<CommandModel>>();
             SetCommandSelectList(commands);
         }
 
         /// <summary>
         /// Выбрать команду из списка для получения дополнительных сведений.
         /// </summary>
-        public IActionResult OnPostCommand()
+        public async Task<IActionResult> OnPostCommand()
         {
-            var commands = GetExternalCommandsList().Adapt<IEnumerable<CommandModel>>();
+            var commands = (await GetExternalCommandsList()).Adapt<IEnumerable<CommandModel>>();
             if (!commands.Any())
                 return Page();
             var command = commands.FirstOrDefault(i => i.Name == CommandModel.Name);
@@ -45,7 +45,7 @@ namespace RatesParsingWeb.Pages.Commands
         /// <returns></returns>
         public async Task<IActionResult> OnPostAsync()
         {
-            var commands = GetExternalCommandsList();
+            var commands = await GetExternalCommandsList();
             if (!commands.Any())
                 return Page();
 
