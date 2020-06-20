@@ -17,16 +17,15 @@ namespace ParsingService.Consumers
             ConsoleLog.ShowMessage($"Получено задание на парсинг: '{context.Message.TaskName}'.");
 
             var request = context.Message.Adapt<ParsingRequest>();
-            var response = await GetResponse(request);
+            var response = await GetResponseAsync(request);
             await context.RespondAsync(response);
 
             ConsoleLog.ShowMessage($"Задание '{context.Message.TaskName}' выполнено. Ответ отправлен клиенту.");
         }
 
-        private async Task<IParsingResponse> GetResponse(ParsingRequest request)
+        private async Task<IParsingResponse> GetResponseAsync(ParsingRequest request)
         {
-            var rateService = new ExchangeRatesService();
-            var result = await rateService.GetBankRatesAsync(request);
+            var result = await ExchangeRatesService.GetBankRatesAsync(request);
             var response = result.Adapt<IParsingResponse>();
             return response;
         }

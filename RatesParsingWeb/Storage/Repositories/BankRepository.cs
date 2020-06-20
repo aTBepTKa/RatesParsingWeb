@@ -1,11 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using RatesParsingWeb.Domain;
 using RatesParsingWeb.Storage.Repositories.Interfaces;
-using RatesParsingWeb.Extentions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace RatesParsingWeb.Storage.Repositories
@@ -19,7 +14,7 @@ namespace RatesParsingWeb.Storage.Repositories
         public Task<Bank> GetWithSettings(int id)
         {
             var bank = dbSet
-                .Include(bank=>bank.Currency)
+                .Include(bank => bank.Currency)
                 .Include(bank => bank.ParsingSettings)
                     .ThenInclude(settings => settings.Commands)
                         .ThenInclude(assignment => assignment.Command)

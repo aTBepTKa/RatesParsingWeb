@@ -40,7 +40,7 @@ namespace RatesParsingWeb.Pages.Banks.ExchangeRateLists.ExchangeRates
                 return NotFound();
             BankModel = bank.Adapt<BankModel>();
 
-            var rates = await rateService.GetExchangeRates(id);
+            var rates = await rateService.GetExchangeRatesAsync(id);
 
             if (rates.Any())
             {

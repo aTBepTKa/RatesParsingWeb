@@ -1,14 +1,8 @@
-﻿using RatesParsingWeb.Services.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Threading.Tasks;
-using RatesParsingWeb.Storage;
-using RatesParsingWeb.Storage.Repositories;
+﻿using Mapster;
+using RatesParsingWeb.Services.Interfaces;
 using RatesParsingWeb.Storage.Repositories.Interfaces;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
-using Mapster;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace RatesParsingWeb.Services
 {

@@ -8,9 +8,9 @@ namespace ParsingService.Services
     /// <summary>
     /// Предоставляет список команд для обработки строк.
     /// </summary>
-    class CommandService
+    static class CommandService
     {
-        public CommandListResult GetCommandsResponse()
+        public static CommandListResult GetCommandsResponse()
         {
             var result = new CommandListResult();
             try
@@ -28,7 +28,7 @@ namespace ParsingService.Services
         /// Получить список команд для обработки строк.
         /// </summary>
         /// <returns></returns>
-        private IEnumerable<Command> GetCommands()
+        private static IEnumerable<Command> GetCommands()
         {
             var commands = typeof(Commands)
                 .GetMethods()

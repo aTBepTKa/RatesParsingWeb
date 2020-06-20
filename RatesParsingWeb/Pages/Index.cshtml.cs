@@ -24,7 +24,7 @@ namespace RatesParsingWeb.Pages
 
         public async Task OnGet()
         {
-            var banks = await bankService.GetList();
+            var banks = await bankService.GetListAsync();
             if (!banks.Any())
                 return;
             banks = banks.OrderBy(i => i.Name);

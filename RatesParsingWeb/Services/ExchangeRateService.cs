@@ -16,7 +16,7 @@ namespace RatesParsingWeb.Services
             rateRepository = exchangeRate;
         }
 
-        public async Task<IEnumerable<ExchangeRateDto>> GetExchangeRates(int id)
+        public async Task<IEnumerable<ExchangeRateDto>> GetExchangeRatesAsync(int id)
         {
             var rates = await rateRepository.GetManyAsync(i => i.ExchangeRateListId == id, c => c.Currency);
             return rates.Adapt<IEnumerable<ExchangeRateDto>>();

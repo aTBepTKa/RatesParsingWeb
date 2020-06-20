@@ -25,7 +25,7 @@ namespace RatesParsingWeb.Pages.Service
 
         public async Task OnGet()
         {
-            var bank = await bankService.GetWithParsingSettings("NBPLPLPWBAN");
+            var bank = await bankService.GetWithParsingSettingsAsync("NBPLPLPWBAN");
             var response = await parsingService.GetExchangeRates(bank.ParsingSettings, "Получить список валют для польского банка");
             ParsingResultModel = response.Adapt<ParsingResultModel>();
             if(ParsingResultModel.IsSuccesfullParsed)

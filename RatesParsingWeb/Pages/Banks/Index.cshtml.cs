@@ -22,7 +22,7 @@ namespace RatesParsingWeb.Pages.Banks
 
         public async Task OnGetAsync()
         {
-            IEnumerable<BankDto> bankDtos = await bankService.GetList();
+            IEnumerable<BankDto> bankDtos = await bankService.GetListAsync();
             if (bankDtos.Any())
             {
                 BanksModelList = new List<BankModel>(MapDtoToModels(bankDtos));

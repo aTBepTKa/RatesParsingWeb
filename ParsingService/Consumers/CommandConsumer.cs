@@ -14,15 +14,14 @@ namespace ParsingService.Consumers
         public async Task Consume(ConsumeContext<ICommandRequest> context)
         {
             ConsoleLog.ShowMessage($"Получен запрос на получение списка команд: {context.Message.TaskName}.");
-            var response = GetCommandAsync();
+            var response = GetCommand();
             await context.RespondAsync(response);
             ConsoleLog.ShowMessage($"Список команд по запросу '{context.Message.TaskName}' отправлен клиенту.");
         }
 
-        private ICommandResponse GetCommandAsync()
+        private ICommandResponse GetCommand()
         {
-            var commandService = new CommandService();
-            var result = commandService.GetCommandsResponse();
+            var result = CommandService.GetCommandsResponse();
             var response = result.Adapt<ICommandResponse>();
             return response;
         }

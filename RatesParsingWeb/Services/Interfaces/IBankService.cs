@@ -11,28 +11,28 @@ namespace RatesParsingWeb.Services.Interfaces
         /// Получить все банки с основной валютой.
         /// </summary>
         /// <returns></returns>      
-        Task<IEnumerable<BankDto>> GetList();
+        Task<IEnumerable<BankDto>> GetListAsync();
 
         /// <summary>
         /// Получить банк с основной валютой.
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        Task<BankDto> GetWithCurrency(int id);
+        Task<BankDto> GetWithCurrencyAsync(int id);
 
         /// <summary>
         /// Получить банк с настройками парсинга.
         /// </summary>
         /// <param name="id">Id банка</param>
         /// <returns></returns>
-        Task<BankDto> GetWithParsingSettings(int id);
+        Task<BankDto> GetWithParsingSettingsAsync(int id);
 
         /// <summary>
         /// Получить банк с настройками парсинга.
         /// </summary>
         /// <param name="swiftCode">SWIFT-код банка.</param>
         /// <returns></returns>
-        Task<BankDto> GetWithParsingSettings(string swiftCode);
+        Task<BankDto> GetWithParsingSettingsAsync(string swiftCode);
 
         /// <summary>
         /// Создать новый банк.

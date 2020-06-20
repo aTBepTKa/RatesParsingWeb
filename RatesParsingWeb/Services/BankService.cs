@@ -13,26 +13,26 @@ namespace RatesParsingWeb.Services
     public class BankService : BaseCrudService<BankDto, Bank>, IBankService
     {
         private readonly IBankRepository bankRepository;
-        public BankService(IBankRepository bank) : base(bank)
+        public BankService(IBankRepository bankRepository) : base(bankRepository)
         {
-            bankRepository = bank;
+            this.bankRepository = bankRepository;
         }
 
-        public async Task<IEnumerable<BankDto>> GetList()
+        public async Task<IEnumerable<BankDto>> GetListAsync()
         {
             var banks = await bankRepository.GetAllAsync(i => i.Currency);
             return banks.Adapt<IEnumerable<BankDto>>();
         }
 
         #region GetBank
-        public async Task<BankDto> GetWithParsingSettings(int id)
+        public async Task<BankDto> GetWithParsingSettingsAsync(int id)
         {
             var bankSettings = await bankRepository.GetWithSettings(id);
             var bankDto = bankSettings.Adapt<BankDto>();
             return bankDto;
         }
 
-        public async Task<BankDto> GetWithParsingSettings(string swiftCode)
+        public async Task<BankDto> GetWithParsingSettingsAsync(string swiftCode)
         {
             var bank = await bankRepository.GetFirstOrDefaultAsync(b => b.SwiftCode == swiftCode);
             var bankSettings = await bankRepository.GetWithSettings(bank.Id);
@@ -40,7 +40,7 @@ namespace RatesParsingWeb.Services
             return bankDto;
         }
 
-        public async Task<BankDto> GetWithCurrency(int id) =>
+        public async Task<BankDto> GetWithCurrencyAsync(int id) =>
             (await bankRepository.GetFirstOrDefaultAsync(
                 i => i.Id == id,
                 i => i.Currency))

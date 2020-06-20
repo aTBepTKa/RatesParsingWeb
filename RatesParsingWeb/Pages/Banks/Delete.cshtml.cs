@@ -22,7 +22,7 @@ namespace RatesParsingWeb.Pages.Banks
 
         public async Task<IActionResult> OnGetAsync(int id)
         {
-            BankDto bankDto = await bankService.GetWithCurrency(id);
+            BankDto bankDto = await bankService.GetWithCurrencyAsync(id);
             if (bankDto == null)
             {
                 return NotFound();

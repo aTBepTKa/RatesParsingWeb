@@ -12,14 +12,14 @@ namespace ParsingService.Services
     /// <summary>
     /// Представляет средства для парсинга страницы банка.
     /// </summary>
-    class ExchangeRatesService
+    static class ExchangeRatesService
     {
         /// <summary>
         /// Получить курсы валют банка асинхронно.
         /// </summary>
         /// <param name="request">Данные для запроса к банку.</param>
         /// <returns></returns>
-        public async Task<ParsingResult> GetBankRatesAsync(ParsingRequest request)
+        public static async Task<ParsingResult> GetBankRatesAsync(ParsingRequest request)
         {
             var result = new ParsingResult();
             try
@@ -37,7 +37,7 @@ namespace ParsingService.Services
             return result;
         }
 
-        private async Task<IEnumerable<ExchangeRate>> GetRatesAsync(ParsingRequest request)
+        private static async Task<IEnumerable<ExchangeRate>> GetRatesAsync(ParsingRequest request)
         {
             var html = new HtmlWeb();
             HtmlDocument htmlDocument;
@@ -72,7 +72,7 @@ namespace ParsingService.Services
         /// </summary>
         /// <param name="methodNames">Наименование методов и соответствующие параметры.</param>
         /// <returns></returns>
-        private WordProcessingHandler GetMethods(IDictionary<string, string[]> methodNames)
+        private static WordProcessingHandler GetMethods(IDictionary<string, string[]> methodNames)
         {
             if (methodNames != null)
             {
@@ -103,7 +103,7 @@ namespace ParsingService.Services
         /// <param name="html"></param>
         /// <param name="handler"></param>
         /// <returns></returns>
-        private string GetTextCode(string xpath, HtmlDocument html, WordProcessingHandler handler)
+        private static string GetTextCode(string xpath, HtmlDocument html, WordProcessingHandler handler)
         {
             string textCode = GetValueByXPath(html, xpath);
             textCode = handler(textCode);
@@ -117,7 +117,7 @@ namespace ParsingService.Services
         /// <param name="html"></param>
         /// <param name="handler"></param>
         /// <returns></returns>
-        private int GetUnit(string xpath, HtmlDocument html, WordProcessingHandler handler)
+        private static int GetUnit(string xpath, HtmlDocument html, WordProcessingHandler handler)
         {
             string unit = GetValueByXPath(html, xpath);
             unit = handler(unit);
@@ -136,7 +136,7 @@ namespace ParsingService.Services
         /// <param name="decimalSeparator"></param>
         /// <param name="groupSeparator"></param>
         /// <returns></returns>
-        private decimal GetRate(string xpath, HtmlDocument html, string decimalSeparator, string groupSeparator)
+        private static decimal GetRate(string xpath, HtmlDocument html, string decimalSeparator, string groupSeparator)
         {
             var formatInfo = new NumberFormatInfo
             {
@@ -156,7 +156,7 @@ namespace ParsingService.Services
         /// <param name="html">Страница для парсинга.</param>
         /// <param name="xpath">Адрес XPath искомого значения.</param>
         /// <returns></returns>
-        private string GetValueByXPath(HtmlDocument html, string xpath)
+        private static string GetValueByXPath(HtmlDocument html, string xpath)
         {
             // Узел целевого значения.
             HtmlNode resultNode = html.DocumentNode.SelectSingleNode(xpath);
@@ -191,7 +191,7 @@ namespace ParsingService.Services
         /// <param name="variablePart">Переменная часть XPath адреса</param>
         /// <param name="variableValue">Значение переменной части XPath адреса</param>
         /// <returns></returns>
-        private string GetActualXpath(string initialXpath, string variablePart, string variableValue) =>
+        private static string GetActualXpath(string initialXpath, string variablePart, string variableValue) =>
             initialXpath.Replace(variablePart, variableValue);
     }
 }

@@ -8,6 +8,6 @@ namespace RatesParsingWeb.Services.Interfaces
 {
     public interface IExchangeRateService : ICrudService<ExchangeRateDto>
     {
-        Task<IEnumerable<ExchangeRateDto>> GetExchangeRates(int id);
+        Task<IEnumerable<ExchangeRateDto>> GetExchangeRatesAsync(int id);
     }
 }

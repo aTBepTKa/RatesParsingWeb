@@ -15,9 +15,9 @@ namespace RatesParsingWeb.Pages.Commands
     {
         protected readonly ICommandService commandService;
 
-        protected BaseCreateUpdatePageModel(ICommandService command)
+        protected BaseCreateUpdatePageModel(ICommandService commandService)
         {
-            commandService = command;
+            this.commandService = commandService;
         }
 
         public SelectList CommandSelectList { get; set; }
