@@ -32,6 +32,7 @@ namespace RatesParsingWeb
         {
             services.AddRazorPages();
 
+
             services.AddDbContext<BankRatesContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("BankRatesContext")));
 

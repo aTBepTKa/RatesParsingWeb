@@ -12,12 +12,12 @@ namespace ParsingService.Models
         /// <summary>
         /// Парсинг выполнен успешно.
         /// </summary>
-        public bool IsSuccesfullParsed { get; private set; } = true;
+        public bool IsSuccesfullParsed { get; set; } = true;
 
         /// <summary>
         /// Описание ошибки.
         /// </summary>
-        public string ErrorDescription { get; private set; }
+        public string ErrorDescription { get; set; }
 
         /// <summary>
         /// Задать ошибку.

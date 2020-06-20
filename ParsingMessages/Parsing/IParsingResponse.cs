@@ -7,11 +7,7 @@ namespace ParsingMessages.Parsing
     /// <summary>
     /// Ответ на запрос. Возвращает коллекцию обменных курсов по банку.
     /// </summary>
-    public interface IParsingResponse : IResponsable
+    public interface IParsingResponse : IResponsable<IExchangeRate>
     {
-        /// <summary>
-        /// Список валют банка с обменными курсами.
-        /// </summary>
-        IEnumerable<IExchangeRate> ExchangeRates { get; set; }
     }
 }

@@ -8,12 +8,12 @@ namespace ParsingService.Models
     /// <summary>
     /// Команда обработки текста.
     /// </summary>
-    class Command
+    class Command : ICommand
     {
         public string Name { get; set; }
 
         public string Description { get; set; }
 
-        public IEnumerable<CommandParameter> CommandParameters { get; set; }
+        public IEnumerable<ICommandParameter> CommandParameters { get; set; }
     }
 }

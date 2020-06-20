@@ -32,7 +32,7 @@ namespace RatesParsingWeb.Services
                 var response = (await requestClient.GetResponse<IParsingResponse>(request)).Message;
                 var result = response.Adapt<ParsingResultDto>();
                 if (result.IsSuccesfullParsed)
-                    result.ExchangeRates = response.ExchangeRates.Select(response =>
+                    result.ExchangeRates = response.Message.Select(response =>
                             new ExchangeRateDto
                             {
                                 Unit = response.Unit,

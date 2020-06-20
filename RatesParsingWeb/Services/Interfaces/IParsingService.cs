@@ -1,10 +1,5 @@
-﻿using ParsingMessages;
-using RatesParsingWeb.Dto;
-using RatesParsingWeb.Dto.ParsingService;
+﻿using RatesParsingWeb.Dto.ParsingService;
 using RatesParsingWeb.Dto.ParsingSettings;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace RatesParsingWeb.Services.Interfaces

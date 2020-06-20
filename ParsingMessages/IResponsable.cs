@@ -5,9 +5,9 @@ using System.Text;
 namespace ParsingMessages
 {
     /// <summary>
-    /// Объект предназначен для направления ответа на запрос.
+    /// Представляет ответ на запрос.
     /// </summary>
-    public interface IResponsable
+    public interface IResponsable<T>
     {
         /// <summary>
         /// Успешность обработки запроса.
@@ -18,5 +18,10 @@ namespace ParsingMessages
         /// Текст ошибки при выполнении обработки запроса.
         /// </summary>
         string ErrorDescription { get; set; }
+
+        /// <summary>
+        /// Содержание ответа на запрос.
+        /// </summary>
+        IEnumerable<T> Message { get; set; }
     }
 }

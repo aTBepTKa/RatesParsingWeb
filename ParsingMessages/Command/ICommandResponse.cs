@@ -4,11 +4,7 @@ using System.Text;
 
 namespace ParsingMessages.Command
 {
-    public interface ICommandResponse : IResponsable
+    public interface ICommandResponse : IResponsable<ICommand>
     {
-        /// <summary>
-        /// Список команд обработки текста.
-        /// </summary>
-        IEnumerable<ICommand> Commands { get; set; }
     }
 }

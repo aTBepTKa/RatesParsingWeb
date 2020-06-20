@@ -24,7 +24,7 @@ namespace ParsingService.Services
             var result = new ParsingResult();
             try
             {
-                result.ExchangeRates = await GetRatesAsync(request);
+                result.Message = await GetRatesAsync(request);
             }
             catch (HttpRequestException ex)
             {

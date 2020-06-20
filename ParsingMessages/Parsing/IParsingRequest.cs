@@ -6,6 +6,9 @@ namespace ParsingMessages.Parsing
 {
     public interface IParsingRequest
     {
+        /// <summary>
+        /// Наименование задачи.
+        /// </summary>
         string TaskName { get; set; }
 
         /// <summary>

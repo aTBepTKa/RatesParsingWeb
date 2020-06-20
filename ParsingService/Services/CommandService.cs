@@ -1,6 +1,7 @@
 ﻿using ParsingService.Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace ParsingService.Services
 {
@@ -14,7 +15,7 @@ namespace ParsingService.Services
             var result = new CommandListResult();
             try
             {
-                result.Commands = GetCommands();
+                result.Message = GetCommands();
             }
             catch (Exception ex)
             {
@@ -29,37 +30,25 @@ namespace ParsingService.Services
         /// <returns></returns>
         private IEnumerable<Command> GetCommands()
         {
-            Type methodsType = typeof(Commands);
-            var methods = methodsType.GetMethods();
-            var commands = new List<Command>(methods.Length);
-
-            foreach (var method in methods)
-            {
-                var commandAttributes = (CommandAttribute[])method.GetCustomAttributes(typeof(CommandAttribute), false);
-                if (commandAttributes == null || commandAttributes.Length < 1)
-                    continue;
-                var commandAttribute = commandAttributes[0];
-                var command = new Command()
+            var commands = typeof(Commands)
+                .GetMethods()
+                .Where(x => x.CustomAttributes.Any(c => c.AttributeType == typeof(CommandAttribute)))
+                .Select(method =>
                 {
-                    Name = commandAttribute.Name,
-                    Description = commandAttribute.Description
-                };
-
-                var parameterAttributes = (ParameterAttribute[])method.GetCustomAttributes(typeof(ParameterAttribute), false);
-                var commandParameters = new List<CommandParameter>(parameterAttributes.Length);
-                foreach (var parameterAttribute in parameterAttributes)
-                {
-                    var commandParameter = new CommandParameter()
+                    var commandAttributes = (CommandAttribute[])method.GetCustomAttributes(typeof(CommandAttribute), false);
+                    var commandAttribute = commandAttributes[0];
+                    var parameterAttributes = (ParameterAttribute[])method.GetCustomAttributes(typeof(ParameterAttribute), false);
+                    return new Command
                     {
-                        Name = parameterAttribute.Name,
-                        // TODO: Прикрутить описание параметра команды.
-                        Description = parameterAttribute.Description
+                        Name = commandAttribute.Name,
+                        Description = commandAttribute.Description,
+                        CommandParameters = parameterAttributes.Select(x => new CommandParameter
+                        {
+                            Name = x.Name,
+                            Description = x.Description
+                        })
                     };
-                    commandParameters.Add(commandParameter);
-                }
-                command.CommandParameters = commandParameters;
-                commands.Add(command);
-            }
+                }).ToArray();
             return commands;
         }
     }

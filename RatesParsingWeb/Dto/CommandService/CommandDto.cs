@@ -7,6 +7,7 @@ namespace RatesParsingWeb.Dto.CommandService
 {
     public class CommandDto
     {
+        public int Id { get; set; }
         /// <summary>
         /// Наименование команды для дальнейшей работы с рефлексией.
         /// </summary>

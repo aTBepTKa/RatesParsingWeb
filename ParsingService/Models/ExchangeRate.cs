@@ -1,9 +1,11 @@
-﻿namespace ParsingService.Models
+﻿using ParsingMessages.Parsing;
+
+namespace ParsingService.Models
 {
     /// <summary>
     /// Содержит данные о валюте.
     /// </summary>
-    public class ExchangeRate
+    public class ExchangeRate : IExchangeRate
     {
         /// <summary>
         /// Сокращенное название валюты.

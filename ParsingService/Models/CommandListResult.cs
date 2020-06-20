@@ -1,12 +1,13 @@
-﻿using ParsingMessages.Command;
+﻿using ParsingMessages;
+using ParsingMessages.Command;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace ParsingService.Models
 {
-    class CommandListResult : ResponseBase
+    class CommandListResult : ResponseBase, IResponsable<ICommand>
     {
-        public IEnumerable<Command> Commands { get; set; }
+        public IEnumerable<ICommand> Message { get; set; }
     }
 }
