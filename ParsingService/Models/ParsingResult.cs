@@ -9,7 +9,7 @@ namespace ParsingService.Models
     /// <summary>
     /// Результат выполнения парсинга.
     /// </summary>
-    class ParsingResult : ResponseBase, IResponsable<IExchangeRate>
+    class ParsingResult : ResponseBase, IParsingResponse
     {
         /// <summary>
         /// Список обменных курсов.

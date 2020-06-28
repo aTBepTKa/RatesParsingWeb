@@ -54,7 +54,7 @@ namespace RatesParsingWeb.Pages.Commands
 
             if (!await commandService.CreateAsync(command))
             {
-                ValidationErrors = commandService.ValidationDictionary.ErrorListWithoutKeys;
+                ValidationErrors = commandService.ValidationService.ErrorListWithoutKeys;
                 CommandModel = command.Adapt<CommandModel>();
                 return Page();
             }

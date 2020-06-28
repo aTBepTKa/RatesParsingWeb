@@ -23,7 +23,7 @@ namespace RatesParsingWeb.Pages.Commands
 
         public async Task<IActionResult> OnGetAsync(int id)
         {
-            var command = await commandService.GetCommandParameterAsync(id);
+            var command = await commandService.GetCommandWithParameterAsync(id);
             if (command == null)
                 return NotFound();
             CommandModel = command.Adapt<CommandModel>();

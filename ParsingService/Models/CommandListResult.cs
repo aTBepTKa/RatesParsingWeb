@@ -6,7 +6,7 @@ using System.Text;
 
 namespace ParsingService.Models
 {
-    class CommandListResult : ResponseBase, IResponsable<ICommand>
+    class CommandListResult : ResponseBase, ICommandResponse
     {
         public IEnumerable<ICommand> Message { get; set; }
     }

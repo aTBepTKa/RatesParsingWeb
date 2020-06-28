@@ -41,7 +41,7 @@ namespace RatesParsingWeb.Pages.Commands
         {
             var commands = await commandService.GetExternalCommands();
             if (commands.IsSuccesfullParsed)
-                return commands.Commands.Adapt<IEnumerable<CommandCreateDto>>();
+                return commands.Message.Adapt<IEnumerable<CommandCreateDto>>();
             else
                 return Array.Empty<CommandCreateDto>();
         }

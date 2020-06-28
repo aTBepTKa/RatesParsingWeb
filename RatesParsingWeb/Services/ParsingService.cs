@@ -31,7 +31,7 @@ namespace RatesParsingWeb.Services
                 request.TaskName = taskName;
                 var response = (await requestClient.GetResponse<IParsingResponse>(request)).Message;
                 var result = response.Adapt<ParsingResultDto>();
-                if (result.IsSuccesfullParsed)
+                if (response.IsSuccesfullParsed)
                     result.ExchangeRates = response.Message.Select(response =>
                             new ExchangeRateDto
                             {
@@ -40,6 +40,7 @@ namespace RatesParsingWeb.Services
                                 Currency = currencyService.GetCurrencyByTextCode(response.TextCode)
                             });
 
+                
                 return result;
             }
             catch (Exception ex)

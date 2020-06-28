@@ -1,14 +1,12 @@
-﻿using System;
+﻿using ParsingMessages.Command;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace RatesParsingWeb.Dto.CommandService
 {
     /// <summary>
     /// Результат запроса получения команд обработки текста.
     /// </summary>
-    public class CommandResultDto
+    public class CommandResultDto : ICommandResponse
     {
         /// <summary>
         /// Успешность обработки запроса.
@@ -23,6 +21,7 @@ namespace RatesParsingWeb.Dto.CommandService
         /// <summary>
         /// Список команд обработки текста.
         /// </summary>
-        public IEnumerable<CommandDto> Commands { get; set; }
+        public IEnumerable<ICommand> Message { get; set; }
+
     }
 }

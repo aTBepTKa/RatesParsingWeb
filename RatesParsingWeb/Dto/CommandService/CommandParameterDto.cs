@@ -1,11 +1,12 @@
-﻿using System;
+﻿using ParsingMessages.Command;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace RatesParsingWeb.Dto.CommandService
 {
-    public class CommandParameterDto
+    public class CommandParameterDto : ICommandParameter
     {
         /// <summary>
         /// Наименование команды для дальнейшей работы с рефлексией.

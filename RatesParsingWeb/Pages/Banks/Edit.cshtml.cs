@@ -53,7 +53,7 @@ namespace RatesParsingWeb.Pages.Banks
 
             if (!await bankService.UpdateAsync(bankUpdateDto))
             {
-                ValidationErrorList = bankService.ValidationDictionary.ErrorListWithoutKeys;
+                ValidationErrorList = bankService.ValidationService.ErrorListWithoutKeys;
                 await SetCurrencySelectListAsync(BankModel.CurrencyId, currencyService);
                 return Page();
             }

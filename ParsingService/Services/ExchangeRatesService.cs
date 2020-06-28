@@ -1,4 +1,5 @@
 ﻿using HtmlAgilityPack;
+using ParsingMessages.Parsing;
 using ParsingService.Models;
 using System;
 using System.Collections.Generic;
@@ -19,7 +20,7 @@ namespace ParsingService.Services
         /// </summary>
         /// <param name="request">Данные для запроса к банку.</param>
         /// <returns></returns>
-        public static async Task<ParsingResult> GetBankRatesAsync(ParsingRequest request)
+        public static async Task<ParsingResult> GetBankRatesAsync(IParsingRequest request)
         {
             var result = new ParsingResult();
             try
@@ -37,7 +38,7 @@ namespace ParsingService.Services
             return result;
         }
 
-        private static async Task<IEnumerable<ExchangeRate>> GetRatesAsync(ParsingRequest request)
+        private static async Task<IEnumerable<ExchangeRate>> GetRatesAsync(IParsingRequest request)
         {
             var html = new HtmlWeb();
             HtmlDocument htmlDocument;

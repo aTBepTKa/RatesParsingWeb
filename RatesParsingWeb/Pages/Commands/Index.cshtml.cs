@@ -23,7 +23,7 @@ namespace RatesParsingWeb.Pages.Commands
 
         public async Task OnGet()
         {
-            IEnumerable<CommandDto> commands = await commandService.GetCommandParameterListAsync();
+            IEnumerable<CommandDto> commands = await commandService.GetCommandListWithParameterAsync();
             if (commands.Any())
             {
                 CommandModels = commands.Adapt<IEnumerable<CommandModel>>();

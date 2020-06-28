@@ -26,6 +26,6 @@ namespace RatesParsingWeb.Services.Interfaces
         /// <summary>
         /// Содержит данные о валидации.
         /// </summary>
-        IValidationService ValidationDictionary { get; }
+        IValidationService ValidationService { get; }
     }
 }

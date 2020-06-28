@@ -1,4 +1,5 @@
-﻿using RatesParsingWeb.Domain;
+﻿using ParsingMessages.Command;
+using RatesParsingWeb.Domain;
 using RatesParsingWeb.Dto.CommandService;
 using RatesParsingWeb.Dto.UpdateAndCreate;
 using System;
@@ -38,18 +39,18 @@ namespace RatesParsingWeb.Services.Interfaces
         /// Получить список команд с таблицей параметров.
         /// </summary>
         /// <returns></returns>
-        Task<IEnumerable<CommandDto>> GetCommandParameterListAsync();
+        Task<IEnumerable<CommandDto>> GetCommandListWithParameterAsync();
 
         /// <summary>
         /// Получить команду с таблицей параметров
         /// </summary>
         /// <returns></returns>
-        Task<CommandDto> GetCommandParameterAsync(int id);
+        Task<CommandDto> GetCommandWithParameterAsync(int id);
 
         /// <summary>
         /// Получить список команд из внешнего источника.
         /// </summary>
         /// <returns></returns>
-        Task<CommandResultDto> GetExternalCommands(string taskName = "Получить команды");
+        Task<ICommandResponse> GetExternalCommands(string taskName = "Получить команды");
     }
 }

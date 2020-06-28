@@ -1,11 +1,12 @@
-﻿using System;
+﻿using ParsingMessages.Command;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace RatesParsingWeb.Dto.CommandService
 {
-    public class CommandDto
+    public class CommandDto : ICommand
     {
         public int Id { get; set; }
         /// <summary>
@@ -21,6 +22,6 @@ namespace RatesParsingWeb.Dto.CommandService
         /// <summary>
         /// Параметры команды.
         /// </summary>
-        public IEnumerable<CommandParameterDto> CommandParameters { get; set; }
+        public IEnumerable<ICommandParameter> CommandParameters { get; set; }
     }
 }

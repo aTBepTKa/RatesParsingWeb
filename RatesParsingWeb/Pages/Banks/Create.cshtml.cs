@@ -38,7 +38,7 @@ namespace RatesParsingWeb.Pages.Banks
             if (!await bankService.CreateAsync(bankCreateDto))
             {
                 await SetCurrencySelectListAsync(null, currencyService);
-                ValidationErrorList = bankService.ValidationDictionary.ErrorListWithoutKeys;
+                ValidationErrorList = bankService.ValidationService.ErrorListWithoutKeys;
                 return Page();
             }
 
