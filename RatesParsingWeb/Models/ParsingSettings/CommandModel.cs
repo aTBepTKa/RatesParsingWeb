@@ -26,6 +26,6 @@ namespace RatesParsingWeb.Models.ParsingSettings
         /// Параметры команды.
         /// </summary>
         [DisplayName("Параметры команды")]
-        public ICollection<CommandParameterModel> CommandParameters { get; set; }
+        public CommandParameterModel[] CommandParameters { get; set; }
     }
 }

@@ -1,0 +1,46 @@
+﻿@model RatesParsingWeb.Pages.Banks.EditModel
+<div>*Компонент представления CommandTable*</div>
+@if (Model.BankModel.ParsingSettings.Commands.Any())
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th style="width: 45%">Команда</th>
+                <th style="width: 45%">Параметры</th>
+                <th style="width: 10%"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var command in Model.BankModel.ParsingSettings.Commands)
+            {
+                <tr>
+                    <td>
+                        <h6>@command.Command.Name</h6>
+                        <div>@command.Command.Description</div>
+                    </td>
+                    <td>
+                        @if (command.CommandParameterValues.Any())
+                        {
+                            foreach (var parameter in command.CommandParameterValues)
+                            {
+                                <h6>@parameter.CommandParameter.Name <span style="font-weight:400">(@parameter.CommandParameter.Description)</span></h6>
+                                <input asp-for="@parameter.Value" />
+                            }
+                        }
+                        else
+                        {
+                            <div>Параметры отсутствуют</div>
+                        }
+                    </td>
+                    <td>
+                        <input type="button" value="Удалить" class="btn-primary" />
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <h6>Команды отсутствуют</h6>
+}

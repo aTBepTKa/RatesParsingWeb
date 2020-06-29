@@ -23,6 +23,6 @@ namespace RatesParsingWeb.Models.ParsingSettings
         /// <summary>
         /// Значения параметров команды.
         /// </summary>
-        public virtual ICollection<CommandParameterValueModel> CommandParameterValues { get; set; }
+        public virtual CommandParameterValueModel[] CommandParameterValues { get; set; }
     }
 }
