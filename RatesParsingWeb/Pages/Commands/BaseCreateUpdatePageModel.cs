@@ -22,6 +22,7 @@ namespace RatesParsingWeb.Pages.Commands
 
         public SelectList CommandSelectList { get; set; }
         public IEnumerable<string> ValidationErrors { get; set; }
+
         /// <summary>
         /// Сформировать данные для выпадающего списка.
         /// </summary>

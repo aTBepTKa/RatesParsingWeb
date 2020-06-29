@@ -7,20 +7,20 @@ using System.Threading.Tasks;
 
 namespace RatesParsingWeb.Pages.Banks
 {
-    public class CreateModel : BaseBankPageModel
+    public class CreateModel : BaseBankEditPageModel
     {
         private readonly IBankService bankService;
-        private readonly ICurrencyService currencyService;
 
-        public CreateModel(IBankService bank, ICurrencyService currency)
+        public CreateModel(IBankService bankService,
+                         ICurrencyService currencyService,
+                         ICommandService commandService) : base(currencyService, commandService)
         {
-            bankService = bank;
-            currencyService = currency;
+            this.bankService = bankService;
         }
 
         public async Task<IActionResult> OnGet()
         {
-            await SetCurrencySelectListAsync(null, currencyService);
+            await SetCurrencySelectListAsync();
             return Page();
         }
 
@@ -31,13 +31,13 @@ namespace RatesParsingWeb.Pages.Banks
         {
             if (!ModelState.IsValid)
             {
-                await SetCurrencySelectListAsync(null, currencyService);
+                await SetCurrencySelectListAsync();
                 return Page();
             }
             var bankCreateDto = BankModel.Adapt<BankCreateDto>();
             if (!await bankService.CreateAsync(bankCreateDto))
             {
-                await SetCurrencySelectListAsync(null, currencyService);
+                await SetCurrencySelectListAsync();
                 ValidationErrorList = bankService.ValidationService.ErrorListWithoutKeys;
                 return Page();
             }

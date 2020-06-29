@@ -5,9 +5,9 @@ VisualStudioVersion = 16.0.29613.14
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RatesParsingWeb", "RatesParsingWeb.csproj", "{DB1A16CC-1219-404C-919B-FF9D91143FDF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParsingMessages", "..\ParsingMessages\ParsingMessages.csproj", "{5E0A1B60-67FD-4E8C-A76A-3CA3DB11D769}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ParsingMessages", "..\ParsingMessages\ParsingMessages.csproj", "{5E0A1B60-67FD-4E8C-A76A-3CA3DB11D769}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParsingService", "..\ParsingService\ParsingService.csproj", "{348E1BAB-8336-4C45-9E89-3E2FD9B5422F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ParsingService", "..\ParsingService\ParsingService.csproj", "{348E1BAB-8336-4C45-9E89-3E2FD9B5422F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

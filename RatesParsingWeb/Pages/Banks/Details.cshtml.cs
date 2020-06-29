@@ -12,7 +12,7 @@ using Mapster;
 
 namespace RatesParsingWeb.Pages.Banks
 {
-    public class DetailsModel : BaseBankPageModel
+    public class DetailsModel : PageModel
     {
         private readonly IBankService bankService;
 

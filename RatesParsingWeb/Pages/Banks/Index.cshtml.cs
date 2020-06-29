@@ -5,10 +5,11 @@ using RatesParsingWeb.Models;
 using Mapster;
 using RatesParsingWeb.Services.Interfaces;
 using RatesParsingWeb.Dto;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace RatesParsingWeb.Pages.Banks
 {
-    public class IndexModel : BaseBankPageModel
+    public class IndexModel : PageModel
     {
         private readonly IBankService bankService;
 
@@ -17,7 +18,7 @@ namespace RatesParsingWeb.Pages.Banks
             bankService = context;
         }
 
-        public List<BankModel> BanksModelList { get; set; }
+        public IEnumerable<BankModel> Banks { get; set; }
         public BankModel FirstBankObject { get; set; }
 
         public async Task OnGetAsync()
@@ -25,8 +26,8 @@ namespace RatesParsingWeb.Pages.Banks
             IEnumerable<BankDto> bankDtos = await bankService.GetListAsync();
             if (bankDtos.Any())
             {
-                BanksModelList = new List<BankModel>(MapDtoToModels(bankDtos));
-                FirstBankObject = BanksModelList[0];            
+                Banks = bankDtos.Adapt<IEnumerable<BankModel>>();
+                FirstBankObject = Banks.FirstOrDefault();          
             }
         }
     }

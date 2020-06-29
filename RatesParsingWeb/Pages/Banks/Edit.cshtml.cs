@@ -18,35 +18,35 @@ namespace RatesParsingWeb.Pages.Banks
     // ДОПИЛИТЬ:
     // - сделать модель для селектЛист
     // - разобраться с внешними id.
-    public class EditModel : BaseBankPageModel
+    public class EditModel : BaseBankEditPageModel
     {
         private readonly IBankService bankService;
-        private readonly ICurrencyService currencyService;
 
-        public EditModel(IBankService bank, ICurrencyService currency)
+        public EditModel(IBankService bankService,
+                         ICurrencyService currencyService,
+                         ICommandService commandService) : base(currencyService, commandService)
         {
-            bankService = bank;
-            currencyService = currency;
+            this.bankService = bankService;
         }
 
         [BindProperty]
         public BankModel BankModel { get; set; }
-        
+
         public async Task<IActionResult> OnGetAsync(int id)
         {
             BankDto bankDto = await bankService.GetWithParsingSettingsAsync(id);
             if (bankDto == null)
                 return NotFound();
             BankModel = bankDto.Adapt<BankModel>();
-            await SetCurrencySelectListAsync(BankModel.CurrencyId, currencyService);
+            await SetSeletListsAsync(BankModel.CurrencyId);
             return Page();
         }
 
-        public async Task<IActionResult> OnPostAsync()
+        public async Task<IActionResult> OnPostAsync(bool isSaveAction = true)
         {
-            if (!ModelState.IsValid)
+            if (!ModelState.IsValid || !isSaveAction)
             {
-                await SetCurrencySelectListAsync(BankModel.CurrencyId, currencyService);
+                await SetSeletListsAsync(BankModel.CurrencyId);
                 return Page();
             }
             var bankUpdateDto = BankModel.Adapt<BankUpdateDto>();
@@ -54,7 +54,7 @@ namespace RatesParsingWeb.Pages.Banks
             if (!await bankService.UpdateAsync(bankUpdateDto))
             {
                 ValidationErrorList = bankService.ValidationService.ErrorListWithoutKeys;
-                await SetCurrencySelectListAsync(BankModel.CurrencyId, currencyService);
+                await SetSeletListsAsync(BankModel.CurrencyId);
                 return Page();
             }
             return RedirectToPage("./Index");
