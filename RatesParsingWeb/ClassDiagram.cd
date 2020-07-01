@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
+  <Class Name="RatesParsingWeb.Storage.Repositories.RepositoryBase&lt;T&gt;">
+    <Position X="12.5" Y="6.5" Width="2.75" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>IEEABAAACAAAAEAAAAAgTAEACAEICQgACAEAAAAAAAA=</HashCode>
+      <FileName>Storage\Repositories\RepositoryBase.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Orientation="Left" Position="0.1" />
+  </Class>
+  <Class Name="RatesParsingWeb.Storage.Repositories.BankRepository">
+    <Position X="5.5" Y="11.25" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Storage\Repositories\BankRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="RatesParsingWeb.Storage.Repositories.CommandRepository">
+    <Position X="6" Y="9.25" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Storage\Repositories\CommandRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="RatesParsingWeb.Storage.Repositories.CurrencyRepository">
+    <Position X="9.5" Y="11.5" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Storage\Repositories\CurrencyRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="RatesParsingWeb.Storage.Repositories.ExchangeRateListRepository">
+    <Position X="14.25" Y="9.25" Width="3.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Storage\Repositories\ExchangeRateListRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="RatesParsingWeb.Storage.Repositories.ExchangeRateRepository">
+    <Position X="10" Y="9.25" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Storage\Repositories\ExchangeRateRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="RatesParsingWeb.Storage.Repositories.ParsingSettingsRepository">
+    <Position X="14.25" Y="11.5" Width="4" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Storage\Repositories\ParsingSettingsRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="RatesParsingWeb.Services.BankService">
+    <Position X="9.75" Y="1" Width="4.25" />
+    <TypeIdentifier>
+      <HashCode>AAgAAAAAACCCAAAAAAIAAAAIAAgCAAgAAAAAQIAAAIA=</HashCode>
+      <FileName>Services\BankService.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="RatesParsingWeb.Services.BaseCrudService&lt;DtoType, RepositoryType&gt;">
+    <Position X="4.75" Y="1" Width="4.25" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAgIAA=</HashCode>
+      <FileName>Services\BaseCrudService.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Interface Name="RatesParsingWeb.Services.Interfaces.IBankService">
+    <Position X="4" Y="3.5" Width="4.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAACAAAAAAAAAAAAAAgCAAgAAAAAAIAAAIA=</HashCode>
+      <FileName>Services\Interfaces\IBankService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

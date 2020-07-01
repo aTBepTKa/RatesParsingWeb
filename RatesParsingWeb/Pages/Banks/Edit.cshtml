@@ -1,7 +1,6 @@
 ﻿@page
 @model EditModel
 @using RatesParsingWeb.App_Code;
-@using RatesParsingWeb.Models.ParsingSettings;
 
 @{
     ViewData["Title"] = "Редактировать";
@@ -89,21 +88,18 @@
                     <input asp-for="BankModel.ParsingSettings.NumberGroupSeparator" class="form-control" />
                     <span asp-validation-for="BankModel.ParsingSettings.NumberGroupSeparator" class="text-danger"></span>
                 </div>
-                
+
 
             </div>
             <h4>Параметры обработки строк</h4>
             <hr />
             <div class="form-group col-md">
-                    <input asp-for="BankModel.ParsingSettings.Commands[0].CommandParameterValues[0].Value" class="form-control"/>
-                <!--Пробовал сюда прикруть HTML helper, частичное представление, компонент представления,
-                но так и не удалось подружить форму со всеми этими средствами. Поэтому код дублируется три раза :(-->
                 <h5>Команды обработки текстового кода валюты</h5>
-                @await CreateCommandTable("TextCode")
+                @await Html.PartialAsync("_CommandsTable", Model.TextCodeCommandsModel)
                 <h5>Команды обработки единицы измерения валюты</h5>
-                @await CreateCommandTable("Unit")
+                @await Html.PartialAsync("_CommandsTable", Model.UnitCommandsModel)
                 <h5>Команды обработки курса валюты</h5>
-                @await CreateCommandTable("ExchangeRate")
+                @await Html.PartialAsync("_CommandsTable", Model.ExchangeRateCommandsModel)
             </div>
             <div class="form-group">
                 <input type="submit" value="Сохранить" class="btn btn-primary" />
@@ -118,53 +114,4 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
-@functions{
-    public async Task<string> CreateCommandTable(string commandsName)
-    {
-        @if (Model.BankModel.ParsingSettings.Commands.Any())
-        {
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th style="width: 45%">Команда</th>
-                        <th style="width: 45%">Параметры</th>
-                        <th style="width: 10%"></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var command in Model.BankModel.ParsingSettings.Commands)
-                    {
-                        if (command.AssignmentFieldName.Name != commandsName)
-                            continue;
-                        <tr>
-                            <td>
-                                <h6>@command.Command.Name</h6>
-                                <div>@command.Command.Description</div>
-                            </td>
-                            <td>
-                                @if (command.Command.CommandParameters.Any())
-                                {
-                                    foreach (var parameter in command.CommandParameterValues)
-                                    {
-                                        <h6>@parameter.CommandParameter.Name <span style="font-weight:400">(@parameter.CommandParameter.Description)</span></h6>
-                                        <input asp-for="@parameter.Value" class="form-control"/>
-                                        <span asp-validation-for="@parameter.Value"></span>
-                                    }
-                                }
-                                else
-                                {
-                                    <div>Параметры отсутствуют</div>
-                                }
-                            </td>
-                            <td>
-                                <input type="button" value="Удалить" class="btn-primary" />
-                            </td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-        }
-        return string.Empty;
-    }
 }

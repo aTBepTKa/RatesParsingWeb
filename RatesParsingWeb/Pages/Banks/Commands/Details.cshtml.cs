@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using RatesParsingWeb.Models.ParsingSettings;
 using RatesParsingWeb.Services.Interfaces;
 
-namespace RatesParsingWeb.Pages.Commands
+namespace RatesParsingWeb.Pages.Banks.Commands
 {
     public class DetailsModel : PageModel
     {
@@ -19,7 +19,7 @@ namespace RatesParsingWeb.Pages.Commands
             commandService = command;
         }
 
-        public CommandModel CommandModel { get; set; }
+        public CommandAssignmentModel CommandAssignment { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int id)
         {

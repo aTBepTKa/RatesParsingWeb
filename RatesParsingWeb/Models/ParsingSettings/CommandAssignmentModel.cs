@@ -10,6 +10,7 @@ namespace RatesParsingWeb.Models.ParsingSettings
     /// </summary>
     public class CommandAssignmentModel
     {
+        public int Id { get; set; }
         /// <summary>
         /// Имя поля для которого назначается команда обработки текста.
         /// </summary>

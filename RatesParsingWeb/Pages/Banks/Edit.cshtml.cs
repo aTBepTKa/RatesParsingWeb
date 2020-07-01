@@ -12,6 +12,8 @@ using RatesParsingWeb.Models;
 using RatesParsingWeb.Services.Interfaces;
 using RatesParsingWeb.Dto;
 using RatesParsingWeb.Dto.UpdateAndCreate;
+using RatesParsingWeb.Domain;
+using RatesParsingWeb.Models.ParsingSettings;
 
 namespace RatesParsingWeb.Pages.Banks
 {
@@ -31,6 +33,12 @@ namespace RatesParsingWeb.Pages.Banks
 
         [BindProperty]
         public BankModel BankModel { get; set; }
+        [BindProperty]
+        public CommandAssignmentModel[] TextCodeCommandsModel { get; set; }
+        [BindProperty]
+        public CommandAssignmentModel[] UnitCommandsModel { get; set; }
+        [BindProperty]
+        public CommandAssignmentModel[] ExchangeRateCommandsModel { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int id)
         {
@@ -38,6 +46,9 @@ namespace RatesParsingWeb.Pages.Banks
             if (bankDto == null)
                 return NotFound();
             BankModel = bankDto.Adapt<BankModel>();
+            TextCodeCommandsModel = BankModel.ParsingSettings.Commands.Where(x => x.AssignmentFieldName.Name == "TextCode").ToArray();
+            UnitCommandsModel = BankModel.ParsingSettings.Commands.Where(x => x.AssignmentFieldName.Name == "Unit").ToArray();
+            ExchangeRateCommandsModel = BankModel.ParsingSettings.Commands.Where(x => x.AssignmentFieldName.Name == "ExchangeRate").ToArray();
             await SetSeletListsAsync(BankModel.CurrencyId);
             return Page();
         }

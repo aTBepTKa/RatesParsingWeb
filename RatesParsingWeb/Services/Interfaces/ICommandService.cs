@@ -1,10 +1,7 @@
-﻿using ParsingMessages.Command;
-using RatesParsingWeb.Domain;
-using RatesParsingWeb.Dto.CommandService;
+﻿using RatesParsingWeb.Dto.CommandService;
+using RatesParsingWeb.Dto.ParsingSettings;
 using RatesParsingWeb.Dto.UpdateAndCreate;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace RatesParsingWeb.Services.Interfaces
@@ -12,14 +9,14 @@ namespace RatesParsingWeb.Services.Interfaces
     /// <summary>
     /// Представляет средства для работы с командами для парсинга страниц.
     /// </summary>
-    public interface ICommandService : ICrudService<CommandDto>
+    public interface ICommandService : ICrudService<CommandAssignmentDto>
     {
         /// <summary>
         /// Создать команду.
         /// </summary>
         /// <param name="commandCreateDto"></param>
         /// <returns></returns>
-        Task<bool> CreateAsync(CommandCreateDto commandCreateDto);
+        Task<bool> CreateAsync(CommandAssignmentDto commandCreateDto);
 
         /// <summary>
         /// Удалить команду по Id.
@@ -36,21 +33,15 @@ namespace RatesParsingWeb.Services.Interfaces
         Task<bool> UpdateAsync(int id);
 
         /// <summary>
-        /// Получить список команд с таблицей параметров.
+        /// Получить команду с таблицей параметров.
         /// </summary>
         /// <returns></returns>
-        Task<IEnumerable<CommandDto>> GetCommandListWithParameterAsync();
-
-        /// <summary>
-        /// Получить команду с таблицей параметров
-        /// </summary>
-        /// <returns></returns>
-        Task<CommandDto> GetCommandWithParameterAsync(int id);
+        CommandAssignmentDto GetCommandWithParameter(int id);
 
         /// <summary>
         /// Получить список команд из внешнего источника.
         /// </summary>
         /// <returns></returns>
-        Task<ICommandResponse> GetExternalCommands(string taskName = "Получить команды");
+        Task<CommandResultDto> GetExternalCommands(string taskName = "Получить команды");
     }
 }

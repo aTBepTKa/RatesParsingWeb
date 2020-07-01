@@ -6,7 +6,7 @@ namespace RatesParsingWeb.Dto.CommandService
     /// <summary>
     /// Результат запроса получения команд обработки текста.
     /// </summary>
-    public class CommandResultDto : ICommandResponse
+    public class CommandResultDto
     {
         /// <summary>
         /// Успешность обработки запроса.
@@ -21,7 +21,7 @@ namespace RatesParsingWeb.Dto.CommandService
         /// <summary>
         /// Список команд обработки текста.
         /// </summary>
-        public IEnumerable<ICommand> Message { get; set; }
+        public IEnumerable<CommandDto> Message { get; set; }
 
     }
 }

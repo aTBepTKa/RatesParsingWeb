@@ -42,7 +42,7 @@ namespace RatesParsingWeb
             services.AddScoped<IParsingSettingsRepository, ParsingSettingsRepository>();
             services.AddScoped<IExchangeRateListRepository, ExchangeRateListRepository>();
             services.AddScoped<IExchangeRateRepository, ExchangeRateRepository>();
-            services.AddScoped<ICommandRepository, CommandRepository>();
+            services.AddScoped<ICommandAssignmentRepository, CommandAssignmentRepository>();
             services.AddScoped<IParsingSettingsRepository, ParsingSettingsRepository>();
 
             // Слой сервиса.

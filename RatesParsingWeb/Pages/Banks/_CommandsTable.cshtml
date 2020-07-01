@@ -23,8 +23,11 @@
                         {
                             foreach (var parameter in command.CommandParameterValues)
                             {
-                                <h6>@parameter.CommandParameter.Name <span style="font-weight:400">(@parameter.CommandParameter.Description)</span></h6>
-                                <input asp-for="@parameter.Value" />
+                                <h6>
+                                    @parameter.CommandParameter.Name
+                                    <span style="font-weight:400">(@parameter.CommandParameter.Description):</span>
+                                    @parameter.Value
+                                </h6>
                             }
                         }
                         else
@@ -33,7 +36,9 @@
                         }
                     </td>
                     <td>
-                        <input type="button" value="Удалить" class="btn-primary" />
+                        <a asp-page="./Commands/Edit" asp-route-id="@command.Id">Редактировать</a> |
+                        <a asp-page="./Commands/Details" asp-route-id="@command.Id">Подробнее</a> |
+                        <a asp-page="./Commands/Delete" asp-route-id="@command.Id">Удалить</a> |
                     </td>
                 </tr>
             }

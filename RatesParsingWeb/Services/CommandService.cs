@@ -3,6 +3,7 @@ using MassTransit;
 using ParsingMessages.Command;
 using RatesParsingWeb.Domain;
 using RatesParsingWeb.Dto.CommandService;
+using RatesParsingWeb.Dto.ParsingSettings;
 using RatesParsingWeb.Dto.UpdateAndCreate;
 using RatesParsingWeb.Services.Interfaces;
 using RatesParsingWeb.Storage.Repositories.Interfaces;
@@ -13,72 +14,56 @@ using System.Threading.Tasks;
 
 namespace RatesParsingWeb.Services
 {
-    public class CommandService : BaseCrudService<CommandDto, Command>, ICommandService
+    public class CommandService : BaseCrudService<CommandAssignmentDto, CommandAssignment>, ICommandService
     {
-        private readonly ICommandRepository commandRepository;
+        private readonly ICommandAssignmentRepository commandAssignmentRepository;
         private readonly IRequestClient<ICommandRequest> requestClient;
 
-        public CommandService(ICommandRepository command, IRequestClient<ICommandRequest> request) : base(command)
+        public CommandService(ICommandAssignmentRepository commandAssignmentRepository, IRequestClient<ICommandRequest> requestClient) : base(commandAssignmentRepository)
         {
-            commandRepository = command;
-            requestClient = request;
+            this.commandAssignmentRepository = commandAssignmentRepository;
+            this.requestClient = requestClient;
         }
 
-        public async Task<IEnumerable<CommandDto>> GetCommandListWithParameterAsync()
+        public CommandAssignmentDto GetCommandWithParameter(int id)
         {
-            var commands = await commandRepository.GetAllAsync(i => i.CommandParameters);
-            // Mapster не позволяет сконвертировать IEnumerable<Command> в IEnumerable<CommandDto> 
-            // видимо из-за свойства IEnumerable<ICommandParameter> CommandParameters в классе CommandDto.
-            var commandsDto = commands.Select(x => new CommandDto()
-            {
-                Id = x.Id,
-                Name = x.Name,
-                Description = x.Description,
-                CommandParameters = x.CommandParameters.Select(y=>new CommandParameterDto()
-                {
-                    Description = y.Description,
-                    Name = y.Name
-                })
-            });
-            return commandsDto;
+            var command = commandAssignmentRepository.GetWithParameters(id);
+            var commandDto = command.Adapt<CommandAssignmentDto>();
+            return commandDto;
         }
-        public async Task<CommandDto> GetCommandWithParameterAsync(int id) =>
-            (await commandRepository
-            .GetFirstOrDefaultAsync(i => i.Id == id, i => i.CommandParameters))
-            .Adapt<CommandDto>();
 
 
-        public async Task<bool> CreateAsync(CommandCreateDto commandCreateDto)
+        public async Task<bool> CreateAsync(CommandAssignmentDto commandCreateDto)
         {
-            var command = commandCreateDto.Adapt<Command>();
+            var command = commandCreateDto.Adapt<CommandAssignment>();
             await CheckCreateForUniquinessAsync(command);
             CheckForValidity(command);
             if (!ValidationService.IsValid)
                 return false;
 
-            await commandRepository.AddAsync(command);
-            await commandRepository.SaveChangesAsync();
+            await commandAssignmentRepository.AddAsync(command);
+            await commandAssignmentRepository.SaveChangesAsync();
             return true;
         }
 
-        public async Task<ICommandResponse> GetExternalCommands(string taskName)
+        public async Task<CommandResultDto> GetExternalCommands(string taskName)
         {
-            ICommandResponse commands;
+            CommandResultDto commandResult;
             try
             {
                 var request = new CommandRequest(taskName);
                 var response = await requestClient.GetResponse<ICommandResponse>(request);
-                commands = response.Message;
+                commandResult = response.Message.Adapt<CommandResultDto>();
             }
             catch (Exception ex)
             {
-                commands = new CommandResultDto()
+                commandResult = new CommandResultDto()
                 {
                     IsSuccesfullParsed = false,
                     ErrorDescription = $"Ошибка при получении списка команд: {ex.Message}"
                 };
             }
-            return commands;
+            return commandResult;
         }
 
         private void CheckForValidity(Command command)
@@ -93,24 +78,24 @@ namespace RatesParsingWeb.Services
                 ValidationService.AddError(nameof(command.Description), "Максимальная длина описания команды составляет 200 символов.");
         }
 
-        private async Task CheckCreateForUniquinessAsync(Command command)
+        private async Task CheckCreateForUniquinessAsync(CommandAssignment command)
         {
-            if (await commandRepository.AnyAsync(i => i.Name == command.Name))
+            if (await commandAssignmentRepository.AnyAsync(i => i.Command.Name == command.Command.Name))
                 ValidationService.AddError(nameof(command.Name), $"Команда с именем '{command.Name}' уже существует");
         }
 
         public async Task DeleteAsync(int id)
         {
-            var command = await commandRepository.FindAsync(id);
+            var command = await commandAssignmentRepository.FindAsync(id);
             if (command == null)
                 throw new Exception($"Команда с Id '{command.Id}' не найдена.");
-            commandRepository.Remove(command);
-            await commandRepository.SaveChangesAsync();
+            commandAssignmentRepository.Remove(command);
+            await commandAssignmentRepository.SaveChangesAsync();
         }
 
         public async Task<bool> UpdateAsync(int id)
         {
-            var command = await commandRepository.FindAsync(id);
+            var command = await commandAssignmentRepository.FindAsync(id);
             if (command == null)
                 throw new Exception($"Команда с Id '{command.Id}' не найдена.");
             // TODO: Реализовать валидацию CommandParameter.
@@ -118,16 +103,14 @@ namespace RatesParsingWeb.Services
             CheckForValidity(command);
             if (!ValidationService.IsValid)
                 return false;
-            commandRepository.SetStateModifed(command);
-            await commandRepository.SaveChangesAsync();
+            commandAssignmentRepository.SetStateModifed(command);
+            await commandAssignmentRepository.SaveChangesAsync();
             return true;
         }
 
-
-
         private async Task CheckUpdateForUniquinessAsync(Command command)
         {
-            if (await commandRepository.AnyAsync(i => i.Id != command.Id && i.Name == command.Name))
+            if (await commandAssignmentRepository.AnyAsync(i => i.Id != command.Id && i.Name == command.Name))
                 ValidationService.AddError(nameof(command.Name), "Команда с таким именем уже существует");
         }
     }
