@@ -25,8 +25,17 @@ namespace RatesParsingWeb.Domain
         public ICollection<CommandParameter> CommandParameters { get; set; }
 
         /// <summary>
-        /// Назначение команды для единицы измерения.
+        /// Имя поля для которого назначается команда обработки текста.
         /// </summary>
-        public virtual ICollection<CommandAssignment> CommandAssignments { get; set; }
+        public virtual CommandFieldName CommandFieldName { get; set; }
+
+        /// <summary>
+        /// Настройки парсинга.
+        /// </summary>
+        public virtual ParsingSettings ParsingSettings { get; set; }
+
+
+        public virtual int CommandFieldNameId { get; set; }
+        public virtual int ParsingSettingsId { get; set; }
     }
 }

@@ -47,7 +47,7 @@ namespace RatesParsingWeb.App_Code
         /// <param name="items"></param>
         /// <param name="fieldName"></param>
         /// <returns></returns>
-        public static HtmlString CreateCommandList(this IHtmlHelper _, IEnumerable<CommandAssignmentModel> items, string fieldName)
+        public static HtmlString CreateCommandList(this IHtmlHelper _, IEnumerable<CommandModel> items, string fieldName)
         {
             IHtmlContent htmlContent;
             if (!items.Any())
@@ -62,79 +62,13 @@ namespace RatesParsingWeb.App_Code
                 foreach (var item in items)
                 {
                     var li = new TagBuilder("li");
-                    li.InnerHtml.Append(item.Command.Name);
+                    li.InnerHtml.Append(item.Name);
                     ul.InnerHtml.AppendHtml(li);
                 }
                 htmlContent = ul;
             }
             var htmlString = GetListHtmlString(htmlContent);
             return htmlString;
-        }
-
-        /// <summary>
-        /// Создать редактируемую таблицу команд.
-        /// </summary>
-        /// <param name="_"></param>
-        /// <param name="commands"></param>
-        /// <returns></returns>
-        public static HtmlString CreateEditableCommandList(this IHtmlHelper _, IEnumerable<CommandAssignmentModel> commands)
-        {
-
-
-            if (!commands.Any())
-            {
-                var div = new TagBuilder("div");
-                div.InnerHtml.Append("Команды отсутствуют.");
-                return GetListHtmlString(div);
-            }
-            var table = new TagBuilder("table");
-            table.AddCssClass("table");
-
-            // Заголовок таблицы.
-            var thead = new TagBuilder("thead");
-            var trThead = new TagBuilder("tr");
-            trThead.InnerHtml.AppendHtml("<th>Команда</th>");
-            trThead.InnerHtml.AppendHtml("<th>Параметры</th>");
-            trThead.InnerHtml.AppendHtml("<th>Действие</th>");
-            thead.InnerHtml.AppendHtml(trThead);
-            table.InnerHtml.AppendHtml(thead);
-
-            // Тело таблицы.
-            var tbody = new TagBuilder("tbody");
-            foreach (var command in commands)
-            {
-                var tr = new TagBuilder("tr");
-                var tdName = new TagBuilder("td");
-                var tdParameter = new TagBuilder("td");
-                var tdAction = new TagBuilder("td");
-
-                // Наименование команды.
-                var divCommandName = new TagBuilder("h6");
-                divCommandName.InnerHtml.Append(command.Command.Name);
-                var divCommandDescription = new TagBuilder("div");
-                divCommandDescription.InnerHtml.Append(command.Command.Description);
-                tdName.InnerHtml.AppendHtml(divCommandName);
-                tdName.InnerHtml.AppendHtml(divCommandDescription);
-
-                // Парметры команды.
-                foreach (var parameter in command.Command.CommandParameters)
-                {
-                    var label = new TagBuilder("label");
-                    label.MergeAttribute("asp-for", nameof(parameter.Name));
-                    label.AddCssClass("control-label");
-                    tdParameter.InnerHtml.AppendHtml(label);
-                }
-
-
-                // Формирование разметки.
-                tr.InnerHtml.AppendHtml(tdName);
-                tr.InnerHtml.AppendHtml(tdParameter);
-                tr.InnerHtml.AppendHtml(tdAction);
-                tbody.InnerHtml.AppendHtml(tr);
-            }
-            table.InnerHtml.AppendHtml(tbody);
-
-            return GetListHtmlString(table);
         }
 
         private static HtmlString GetListHtmlString(IHtmlContent list)

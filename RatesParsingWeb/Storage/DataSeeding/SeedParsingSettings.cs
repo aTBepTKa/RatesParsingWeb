@@ -21,16 +21,13 @@ namespace RatesParsingWeb.Storage.DataSeeding
         private IEnumerable<ParsingSettings> ParsingSettings { get; set; }
         private IEnumerable<Command> Commands { get; set; }
         private IEnumerable<CommandParameter> CommandParameters { get; set; }
-        private IEnumerable<CommandParameterValue> CommandParameterValues { get; set; }
-        private IEnumerable<AssignmentFieldName> AssignmentFieldNames { get; set; }
-        private IEnumerable<CommandAssignment> CommandAssignments { get; set; }
+        private IEnumerable<CommandFieldName> CommandFieldNames { get; set; }
 
         public void SeedAll()
         {
             SeedSettings();
+            SeedCommandFieldName();
             SeedCommands();
-            SeedAssignmentFieldName();
-            SeedCommandAssignment();
         }
 
         /// <summary>
@@ -102,31 +99,57 @@ namespace RatesParsingWeb.Storage.DataSeeding
         }
 
         /// <summary>
+        /// Заполнить наименования полей для применения команды обработки текста.
+        /// </summary>
+        public void SeedCommandFieldName()
+        {
+            var assignmentId = 1;
+            CommandFieldNames = new CommandFieldName[]
+            {
+                new CommandFieldName
+                {
+                    Id = assignmentId++,
+                    Name="TextCode"
+                },
+                new CommandFieldName
+                {
+                    Id=assignmentId++,
+                    Name="Unit"
+                },
+                new CommandFieldName
+                {
+                    Id = assignmentId,
+                    Name = "ExchangeRate"
+                }
+            };
+            ModelBuilder.Entity<CommandFieldName>().HasData(CommandFieldNames);
+        }
+        /// <summary>
         /// Заполнить таблицу Commands.
         /// </summary>
         private void SeedCommands()
         {
-            int scriptId = 1;
+            int commandId = 1;
             int parameterId = 1;
             Commands = new Command[]
             {
                 new Command
                 {
-                    Id = scriptId++,
-                    Name = "GetNumberFromText",
-                    Description = "Возвращает числа из текстовой строки"
-                },
-                new Command
-                {
-                    Id = scriptId++,
+                    Id = commandId++,
+                    ParsingSettingsId = ParsingSettings.Single(p =>
+                        p.BankId == Banks.Single(b => b.SwiftCode == "NBPLPLPWBAN").Id).Id,
+                    CommandFieldNameId = CommandFieldNames.Single(i=>i.Name == "TextCode").Id,
                     Name = "GetTextFromEnd",
-                    Description = "Возвращает строку заданной длины начиная начиная с конца исходной строки"
+                    Description = "Возвращает строку заданной длины начиная начиная с конца исходной строки",
                 },
                 new Command
                 {
-                    Id = scriptId++,
-                    Name = "ReplaceSubString",
-                    Description = "Находит строку и заменяет новой"
+                    Id = commandId++,
+                    ParsingSettingsId = ParsingSettings.Single(p =>
+                        p.BankId == Banks.Single(b => b.SwiftCode == "NBPLPLPWBAN").Id).Id,
+                    CommandFieldNameId = CommandFieldNames.Single(i=>i.Name == "Unit").Id,
+                    Name = "GetNumberFromText",
+                    Description = "Возвращает числа из текстовой строки",
                 }
             };
             ModelBuilder.Entity<Command>().HasData(Commands);
@@ -136,96 +159,17 @@ namespace RatesParsingWeb.Storage.DataSeeding
                 new CommandParameter
                 {
                     Id = parameterId++,
-                    CommandId = Commands.Single(i=>i.Name == "GetTextFromEnd").Id,
+                    CommandId = Commands
+                        .Where(i=>i.ParsingSettingsId == ParsingSettings
+                            .Single(p => p.BankId == Banks
+                                .Single(b => b.SwiftCode == "NBPLPLPWBAN").Id).Id)
+                        .Single(i=>i.Name == "GetTextFromEnd").Id,
                     Name = "Length",
-                    Description = "Длина строки"
-                },
-                new CommandParameter
-                {
-                    Id = parameterId++,
-                    CommandId = Commands.Single(i=>i.Name == "ReplaceSubString").Id,
-                    Name = "OldString",
-                    Description = "Исходная строка"
-                },
-                new CommandParameter
-                {
-                    Id = parameterId++,
-                    CommandId = Commands.Single(i=>i.Name == "ReplaceSubString").Id,
-                    Name = "NewString",
-                    Description = "Новая строка"
-                }
-            };
-            ModelBuilder.Entity<CommandParameter>().HasData(CommandParameters);
-        }
-
-        /// <summary>
-        /// Заполнить наименования полей для применения команды обработки текста.
-        /// </summary>
-        public void SeedAssignmentFieldName()
-        {
-            var assignmentId = 1;
-            AssignmentFieldNames = new AssignmentFieldName[]
-            {
-                new AssignmentFieldName
-                {
-                    Id = assignmentId++,
-                    Name="TextCode"
-                },
-                new AssignmentFieldName
-                {
-                    Id=assignmentId++,
-                    Name="Unit"
-                },
-                new AssignmentFieldName
-                {
-                    Id = assignmentId,
-                    Name = "ExchangeRate"
-                }
-            };
-            ModelBuilder.Entity<AssignmentFieldName>().HasData(AssignmentFieldNames);
-        }
-
-        /// <summary>
-        /// Заполнить таблицы CommandAssignment.
-        /// </summary>
-        private void SeedCommandAssignment()
-        {
-            // Задать команды для National Bank of Poland.
-            // Обработка текстового кода валюты.
-            var commandAssignmentId = 1;
-            CommandAssignments = new CommandAssignment[]
-            {
-                new CommandAssignment
-                {
-                    Id = commandAssignmentId++,
-                    AssignmentFieldNameId = AssignmentFieldNames.Single(i=>i.Name == "TextCode").Id,
-                    ParsingSettingsId = ParsingSettings.Single(p =>
-                        p.BankId == Banks.Single(b => b.SwiftCode == "NBPLPLPWBAN").Id).Id,
-                    CommandId = Commands.Single(c => c.Name == "GetTextFromEnd").Id
-                },
-                new CommandAssignment
-                {
-                    Id = commandAssignmentId++,
-                    AssignmentFieldNameId = AssignmentFieldNames.Single(i=>i.Name == "Unit").Id,
-                    ParsingSettingsId = ParsingSettings.Single(p =>
-                        p.BankId == Banks.Single(b => b.SwiftCode == "NBPLPLPWBAN").Id).Id,
-                    CommandId = Commands.Single(c => c.Name == "GetNumberFromText").Id
-                }
-            };
-            ModelBuilder.Entity<CommandAssignment>().HasData(CommandAssignments);
-
-            var commandParameterValueId = 1;
-            CommandParameterValues = new CommandParameterValue[]
-            {
-                new CommandParameterValue
-                {
-                    Id = commandParameterValueId++,
-                    CommandAssignmentId = 1,
-                    CommandParameterId = CommandParameters.Single(i=>i.Name == "Length").Id,
+                    Description = "Длина строки",
                     Value = "3"
                 }
             };
-            ModelBuilder.Entity<CommandParameterValue>().HasData(CommandParameterValues);
+            ModelBuilder.Entity<CommandParameter>().HasData(CommandParameters);
         }
     }
 }

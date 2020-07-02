@@ -23,14 +23,14 @@ namespace RatesParsingWeb.Domain
         public string Description { get; set; }
 
         /// <summary>
+        /// Значение параметра.
+        /// </summary>
+        public string Value { get; set; }
+
+        /// <summary>
         /// Команда обработки текста.
         /// </summary>
         public virtual Command Command { get; set; }
-
-        /// <summary>
-        /// Значения параметра.
-        /// </summary>
-        public virtual ICollection<CommandParameterValue> CommandParameterValues { get; set; }
 
         public virtual int CommandId { get; set; }
     }

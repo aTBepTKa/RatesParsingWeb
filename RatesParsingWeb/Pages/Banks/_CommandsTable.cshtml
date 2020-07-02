@@ -1,4 +1,4 @@
-﻿@model IEnumerable<RatesParsingWeb.Models.ParsingSettings.CommandAssignmentModel>
+﻿@model IEnumerable<RatesParsingWeb.Models.ParsingSettings.CommandModel>
 <div>*Частичное представление _CommandsTable*</div>
 @if (Model.Any())
 {
@@ -15,17 +15,17 @@
             {
                 <tr>
                     <td>
-                        <h6>@command.Command.Name</h6>
-                        <div>@command.Command.Description</div>
+                        <h6>@command.Name</h6>
+                        <div>@command.Description</div>
                     </td>
                     <td>
-                        @if (command.CommandParameterValues.Any())
+                        @if (command.CommandParameters.Any())
                         {
-                            foreach (var parameter in command.CommandParameterValues)
+                            foreach (var parameter in command.CommandParameters)
                             {
                                 <h6>
-                                    @parameter.CommandParameter.Name
-                                    <span style="font-weight:400">(@parameter.CommandParameter.Description):</span>
+                                    @parameter.Name
+                                    <span style="font-weight:400">(@parameter.Description):</span>
                                     @parameter.Value
                                 </h6>
                             }

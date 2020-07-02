@@ -52,6 +52,6 @@
         /// <summary>
         /// Команды для обработки текстовых данных.
         /// </summary>
-        public CommandAssignmentDto[] Commands { get; set; }
+        public CommandDto[] Commands { get; set; }
     }
 }

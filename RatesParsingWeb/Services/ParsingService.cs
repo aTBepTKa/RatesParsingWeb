@@ -64,8 +64,8 @@ namespace RatesParsingWeb.Services
             return request;
         }
 
-        private static Dictionary<string, string[]> GetCommands(IEnumerable<CommandAssignmentDto> commands, string commandsType) =>
-            commands?.Where(assignment => assignment.AssignmentFieldName.Name == commandsType)
-                     .ToDictionary(x => x.Command.Name, x => x.CommandParameterValues.Select(value => value.Value).ToArray());
+        private static Dictionary<string, string[]> GetCommands(IEnumerable<CommandDto> commands, string commandsType) =>
+            commands?.Where(c => c.CommandFieldName.Name == commandsType)
+                     .ToDictionary(x => x.Name, x => x.CommandParameters.Select(value => value.Value).ToArray());
     }
 }

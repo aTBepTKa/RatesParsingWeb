@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace RatesParsingWeb.Storage.Repositories
 {
-    public class ParsingSettingsRepository : RepositoryBase<ParsingSettings>, IParsingSettingsRepository
+    public class CommandRepository : RepositoryBase<Command>, ICommandRepository
     {
-        public ParsingSettingsRepository(BankRatesContext context) : base(context)
+        public CommandRepository(BankRatesContext context) : base(context)
         {
         }
     }

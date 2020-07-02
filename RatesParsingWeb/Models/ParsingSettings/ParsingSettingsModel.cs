@@ -78,6 +78,6 @@ namespace RatesParsingWeb.Models.ParsingSettings
         [StringLength(1, MinimumLength = 1, ErrorMessage = "Разделитель представляется одиночным символом")]
         public string NumberGroupSeparator { get; set; }
 
-        public CommandAssignmentModel[] Commands { get; set; }
+        public CommandModel[] Commands { get; set; }
     }
 }

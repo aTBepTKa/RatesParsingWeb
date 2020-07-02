@@ -4,60 +4,57 @@ using ParsingMessages.Command;
 using RatesParsingWeb.Domain;
 using RatesParsingWeb.Dto.CommandService;
 using RatesParsingWeb.Dto.ParsingSettings;
-using RatesParsingWeb.Dto.UpdateAndCreate;
 using RatesParsingWeb.Services.Interfaces;
 using RatesParsingWeb.Storage.Repositories.Interfaces;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace RatesParsingWeb.Services
 {
-    public class CommandService : BaseCrudService<CommandAssignmentDto, CommandAssignment>, ICommandService
+    public class CommandService : BaseCrudService<CommandDto, Command>, ICommandService
     {
-        private readonly ICommandAssignmentRepository commandAssignmentRepository;
+        private readonly ICommandRepository commandRepository;
         private readonly IRequestClient<ICommandRequest> requestClient;
 
-        public CommandService(ICommandAssignmentRepository commandAssignmentRepository, IRequestClient<ICommandRequest> requestClient) : base(commandAssignmentRepository)
+        public CommandService(ICommandRepository commandRepository, IRequestClient<ICommandRequest> requestClient) : base(commandRepository)
         {
-            this.commandAssignmentRepository = commandAssignmentRepository;
+            this.commandRepository = commandRepository;
             this.requestClient = requestClient;
         }
 
-        public CommandAssignmentDto GetCommandWithParameter(int id)
+        public CommandDto GetCommandWithParameter(int id)
         {
-            var command = commandAssignmentRepository.GetWithParameters(id);
-            var commandDto = command.Adapt<CommandAssignmentDto>();
+            var command = commandRepository.GetFirstOrDefault(x => x.Id == id, i => i.CommandParameters, i => i.CommandFieldName);
+            var commandDto = command.Adapt<CommandDto>();
             return commandDto;
         }
 
 
-        public async Task<bool> CreateAsync(CommandAssignmentDto commandCreateDto)
+        public async Task<bool> CreateAsync(CommandDto commandCreateDto)
         {
-            var command = commandCreateDto.Adapt<CommandAssignment>();
+            var command = commandCreateDto.Adapt<Command>();
             await CheckCreateForUniquinessAsync(command);
             CheckForValidity(command);
             if (!ValidationService.IsValid)
                 return false;
 
-            await commandAssignmentRepository.AddAsync(command);
-            await commandAssignmentRepository.SaveChangesAsync();
+            await commandRepository.AddAsync(command);
+            await commandRepository.SaveChangesAsync();
             return true;
         }
 
-        public async Task<CommandResultDto> GetExternalCommands(string taskName)
+        public async Task<CommandResponseDto> GetExternalCommands(string taskName)
         {
-            CommandResultDto commandResult;
+            CommandResponseDto commandResult;
             try
             {
                 var request = new CommandRequest(taskName);
                 var response = await requestClient.GetResponse<ICommandResponse>(request);
-                commandResult = response.Message.Adapt<CommandResultDto>();
+                commandResult = response.Message.Adapt<CommandResponseDto>();
             }
             catch (Exception ex)
             {
-                commandResult = new CommandResultDto()
+                commandResult = new CommandResponseDto()
                 {
                     IsSuccesfullParsed = false,
                     ErrorDescription = $"Ошибка при получении списка команд: {ex.Message}"
@@ -78,24 +75,24 @@ namespace RatesParsingWeb.Services
                 ValidationService.AddError(nameof(command.Description), "Максимальная длина описания команды составляет 200 символов.");
         }
 
-        private async Task CheckCreateForUniquinessAsync(CommandAssignment command)
+        private async Task CheckCreateForUniquinessAsync(Command command)
         {
-            if (await commandAssignmentRepository.AnyAsync(i => i.Command.Name == command.Command.Name))
+            if (await commandRepository.AnyAsync(i => i.Name == command.Name))
                 ValidationService.AddError(nameof(command.Name), $"Команда с именем '{command.Name}' уже существует");
         }
 
         public async Task DeleteAsync(int id)
         {
-            var command = await commandAssignmentRepository.FindAsync(id);
+            var command = await commandRepository.FindAsync(id);
             if (command == null)
                 throw new Exception($"Команда с Id '{command.Id}' не найдена.");
-            commandAssignmentRepository.Remove(command);
-            await commandAssignmentRepository.SaveChangesAsync();
+            commandRepository.Remove(command);
+            await commandRepository.SaveChangesAsync();
         }
 
         public async Task<bool> UpdateAsync(int id)
         {
-            var command = await commandAssignmentRepository.FindAsync(id);
+            var command = await commandRepository.FindAsync(id);
             if (command == null)
                 throw new Exception($"Команда с Id '{command.Id}' не найдена.");
             // TODO: Реализовать валидацию CommandParameter.
@@ -103,14 +100,14 @@ namespace RatesParsingWeb.Services
             CheckForValidity(command);
             if (!ValidationService.IsValid)
                 return false;
-            commandAssignmentRepository.SetStateModifed(command);
-            await commandAssignmentRepository.SaveChangesAsync();
+            commandRepository.SetStateModifed(command);
+            await commandRepository.SaveChangesAsync();
             return true;
         }
 
         private async Task CheckUpdateForUniquinessAsync(Command command)
         {
-            if (await commandAssignmentRepository.AnyAsync(i => i.Id != command.Id && i.Name == command.Name))
+            if (await commandRepository.AnyAsync(i => i.Id != command.Id && i.Name == command.Name))
                 ValidationService.AddError(nameof(command.Name), "Команда с таким именем уже существует");
         }
     }

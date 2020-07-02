@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RatesParsingWeb.Storage;
 
 namespace RatesParsingWeb.Migrations
 {
     [DbContext(typeof(BankRatesContext))]
-    partial class BankRatesContextModelSnapshot : ModelSnapshot
+    [Migration("20200701183610_RefactoringCommands")]
+    partial class RefactoringCommands
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -209,8 +211,7 @@ namespace RatesParsingWeb.Migrations
                             Id = 1,
                             CommandId = 1,
                             Description = "Длина строки",
-                            Name = "Length",
-                            Value = "3"
+                            Name = "Length"
                         });
                 });
 

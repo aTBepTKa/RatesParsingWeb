@@ -21,5 +21,10 @@ namespace RatesParsingWeb.Dto.ParsingSettings
         /// Описание параметра.
         /// </summary>
         public string Description { get; set; }
+
+        /// <summary>
+        /// Значение параметра.
+        /// </summary>
+        public string Value { get; set; }
     }
 }

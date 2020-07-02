@@ -19,6 +19,9 @@ namespace RatesParsingWeb.Models.ParsingSettings
         /// </summary>
         public string Description { get; set; }
 
-        public virtual int CommandId { get; set; }
+        /// <summary>
+        /// Значение параметра.
+        /// </summary>
+        public string Value { get; set; }
     }
 }

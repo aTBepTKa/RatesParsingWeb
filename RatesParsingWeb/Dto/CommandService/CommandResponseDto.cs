@@ -1,4 +1,5 @@
 ﻿using ParsingMessages.Command;
+using RatesParsingWeb.Dto.ParsingSettings;
 using System.Collections.Generic;
 
 namespace RatesParsingWeb.Dto.CommandService
@@ -6,7 +7,7 @@ namespace RatesParsingWeb.Dto.CommandService
     /// <summary>
     /// Результат запроса получения команд обработки текста.
     /// </summary>
-    public class CommandResultDto
+    public class CommandResponseDto
     {
         /// <summary>
         /// Успешность обработки запроса.

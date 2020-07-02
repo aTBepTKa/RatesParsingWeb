@@ -9,14 +9,14 @@ namespace RatesParsingWeb.Services.Interfaces
     /// <summary>
     /// Представляет средства для работы с командами для парсинга страниц.
     /// </summary>
-    public interface ICommandService : ICrudService<CommandAssignmentDto>
+    public interface ICommandService : ICrudService<CommandDto>
     {
         /// <summary>
         /// Создать команду.
         /// </summary>
         /// <param name="commandCreateDto"></param>
         /// <returns></returns>
-        Task<bool> CreateAsync(CommandAssignmentDto commandCreateDto);
+        Task<bool> CreateAsync(CommandDto commandCreateDto);
 
         /// <summary>
         /// Удалить команду по Id.
@@ -36,12 +36,12 @@ namespace RatesParsingWeb.Services.Interfaces
         /// Получить команду с таблицей параметров.
         /// </summary>
         /// <returns></returns>
-        CommandAssignmentDto GetCommandWithParameter(int id);
+        CommandDto GetCommandWithParameter(int id);
 
         /// <summary>
         /// Получить список команд из внешнего источника.
         /// </summary>
         /// <returns></returns>
-        Task<CommandResultDto> GetExternalCommands(string taskName = "Получить команды");
+        Task<CommandResponseDto> GetExternalCommands(string taskName = "Получить команды");
     }
 }

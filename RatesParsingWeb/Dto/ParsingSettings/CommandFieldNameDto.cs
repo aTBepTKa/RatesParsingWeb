@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace RatesParsingWeb.Models.ParsingSettings
+namespace RatesParsingWeb.Dto.ParsingSettings
 {
-    public class AssignmentFieldNameModel
+    public class CommandFieldNameDto
     {
+        public int Id { get; set; }
+
         /// <summary>
         /// Имя поля.
         /// </summary>

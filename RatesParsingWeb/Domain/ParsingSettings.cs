@@ -57,7 +57,7 @@ namespace RatesParsingWeb.Domain
         /// <summary>
         /// Команды для обработки текстовых данных.
         /// </summary>
-        public virtual ICollection<CommandAssignment> Commands { get; set; }
+        public virtual ICollection<Command> Commands { get; set; }
 
         public int BankId { get; set; }
         /// <summary>

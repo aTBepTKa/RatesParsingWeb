@@ -26,5 +26,10 @@ namespace RatesParsingWeb.Dto.ParsingSettings
         /// Параметры команды.
         /// </summary>
         public ICollection<CommandParameterDto> CommandParameters { get; set; }
+        /// <summary>
+        /// Имя поля для которого назначается команда обработки текста.
+        /// </summary>
+        
+        public virtual CommandFieldNameDto CommandFieldName { get; set; }
     }
 }

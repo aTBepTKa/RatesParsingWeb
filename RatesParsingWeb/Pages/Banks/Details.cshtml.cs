@@ -22,9 +22,9 @@ namespace RatesParsingWeb.Pages.Banks
         }
 
         public BankModel BankModel { get; set; }
-        public IEnumerable<CommandAssignmentModel> TextCodeCommands { get; set; }
-        public IEnumerable<CommandAssignmentModel> UnitCommands { get; set; }
-        public IEnumerable<CommandAssignmentModel> ExchangeRateCommands { get; set; }
+        public IEnumerable<CommandModel> TextCodeCommands { get; set; }
+        public IEnumerable<CommandModel> UnitCommands { get; set; }
+        public IEnumerable<CommandModel> ExchangeRateCommands { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int id)
         {
@@ -32,9 +32,9 @@ namespace RatesParsingWeb.Pages.Banks
             if (bankDto == null)
                 return NotFound();
             BankModel = bankDto.Adapt<BankModel>();
-            TextCodeCommands = BankModel.ParsingSettings.Commands.Where(c => c.AssignmentFieldName.Name == "TextCode");
-            UnitCommands = BankModel.ParsingSettings.Commands.Where(c => c.AssignmentFieldName.Name == "Unit");
-            ExchangeRateCommands = BankModel.ParsingSettings.Commands.Where(c => c.AssignmentFieldName.Name == "ExchangeRate");
+            TextCodeCommands = BankModel.ParsingSettings.Commands.Where(c => c.CommandFieldName.Name == "TextCode");
+            UnitCommands = BankModel.ParsingSettings.Commands.Where(c => c.CommandFieldName.Name == "Unit");
+            ExchangeRateCommands = BankModel.ParsingSettings.Commands.Where(c => c.CommandFieldName.Name == "ExchangeRate");
             return Page();
         }
     }

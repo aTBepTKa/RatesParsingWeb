@@ -5,7 +5,7 @@ using RatesParsingWeb.Models.ParsingSettings;
 using RatesParsingWeb.Services.Interfaces;
 using System.Threading.Tasks;
 
-namespace RatesParsingWeb.Pages.Commands
+namespace RatesParsingWeb.Pages.Banks.Commands
 {
     public class DeleteModel : PageModel
     {

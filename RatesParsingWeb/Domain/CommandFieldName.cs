@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace RatesParsingWeb.Domain
 {
     /// <summary>
     /// Имя поля для которого назначается команда обработки текста.
     /// </summary>
-    public class AssignmentFieldName
+    public class CommandFieldName
     {
         public int Id { get; set; }
 
@@ -17,6 +14,6 @@ namespace RatesParsingWeb.Domain
         /// </summary>
         public string Name { get; set; }
 
-        public virtual ICollection<CommandAssignment> CommandAssignments { get; set; }
+        public virtual ICollection<Command> Commands { get; set; }
     }
 }

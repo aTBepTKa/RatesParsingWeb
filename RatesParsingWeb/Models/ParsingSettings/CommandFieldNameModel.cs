@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace RatesParsingWeb.Dto.ParsingSettings
+namespace RatesParsingWeb.Models.ParsingSettings
 {
-    public class AssignmentFieldNameDto
+    public class CommandFieldNameModel
     {
         public int Id { get; set; }
 

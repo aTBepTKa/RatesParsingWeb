@@ -17,14 +17,10 @@ namespace RatesParsingWeb.Storage.Repositories
                 .Include(bank => bank.Currency)
                 .Include(bank => bank.ParsingSettings)
                     .ThenInclude(settings => settings.Commands)
-                        .ThenInclude(assignment => assignment.Command)
                             .ThenInclude(command => command.CommandParameters)
                 .Include(bank => bank.ParsingSettings)
                     .ThenInclude(settings => settings.Commands)
-                        .ThenInclude(assignment => assignment.CommandParameterValues)
-                .Include(bank => bank.ParsingSettings)
-                    .ThenInclude(settings => settings.Commands)
-                        .ThenInclude(assignment => assignment.AssignmentFieldName)
+                        .ThenInclude(commands => commands.CommandFieldName)
                 .FirstOrDefaultAsync(bank => bank.Id == id);
             return bank;
         }

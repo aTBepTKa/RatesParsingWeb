@@ -17,10 +17,7 @@ namespace RatesParsingWeb.Storage
         public DbSet<Currency> Currencies { get; set; }
         public DbSet<ExchangeRateList> ExchangeRateLists { get; set; }
         public DbSet<ExchangeRate> ExchangeRates { get; set; }
-
-        public DbSet<CommandAssignment> CommandAssignments { get; set; }
-        public DbSet<AssignmentFieldName> AssignmentFieldNames { get; set; }
-        public DbSet<CommandParameterValue> CommandParameterValues { get; set; }
+        public DbSet<CommandFieldName> AssignmentFieldNames { get; set; }
         public DbSet<Command> Commands { get; set; }
         public DbSet<CommandParameter> CommandParameters { get; set; }
 
@@ -65,25 +62,18 @@ namespace RatesParsingWeb.Storage
 
             // Установить свойства для Command.
             modelBuilder.Entity<Command>().Property(i => i.Name).IsRequired();
-            modelBuilder.Entity<Command>().Property(i => i.Name).HasMaxLength(20);
-            modelBuilder.Entity<Command>().HasIndex(i => i.Name).IsUnique();
+            modelBuilder.Entity<Command>().Property(i => i.Name).HasMaxLength(50);            
             modelBuilder.Entity<Command>().Property(i => i.Description).HasMaxLength(200);
 
             // Установить свойства для CommandParemeter.
             modelBuilder.Entity<CommandParameter>().Property(i => i.Name).IsRequired();
-            modelBuilder.Entity<CommandParameter>().Property(i => i.Name).HasMaxLength(20);
+            modelBuilder.Entity<CommandParameter>().Property(i => i.Name).HasMaxLength(50);
             modelBuilder.Entity<CommandParameter>().Property(i => i.Description).HasMaxLength(200);
-            // Запретить удаление параметра, если есть связанные записи.
-            modelBuilder.Entity<CommandParameter>().HasMany(i => i.CommandParameterValues).WithOne(i => i.CommandParameter)
-                .OnDelete(DeleteBehavior.Restrict);
+            modelBuilder.Entity<CommandParameter>().Property(i => i.Value).HasMaxLength(50);
 
-            // Установить свойства для CommandParameterValue.
-            modelBuilder.Entity<CommandParameterValue>().Property(i => i.Value).IsRequired();
-            modelBuilder.Entity<CommandParameterValue>().Property(i => i.Value).HasMaxLength(50);
-
-            // Установить свойства для AssignmentFieldName.
-            modelBuilder.Entity<AssignmentFieldName>().Property(i => i.Name).IsRequired();
-            modelBuilder.Entity<AssignmentFieldName>().Property(i => i.Name).HasMaxLength(20);
+            // Установить свойства для CommandFieldName.
+            modelBuilder.Entity<CommandFieldName>().Property(i => i.Name).IsRequired();
+            modelBuilder.Entity<CommandFieldName>().Property(i => i.Name).HasMaxLength(20);
 
             // Заполнить базу данных начальными данными.
             var seedData = new SeedBase(modelBuilder);

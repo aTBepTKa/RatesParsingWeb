@@ -19,11 +19,11 @@ namespace RatesParsingWeb.Pages.Banks.Commands
             commandService = command;
         }
 
-        public CommandAssignmentModel CommandAssignment { get; set; }
+        public CommandModel CommandModel { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int id)
         {
-            var command = await commandService.GetCommandWithParameterAsync(id);
+            var command = await commandService.GetByIdAsync(id);
             if (command == null)
                 return NotFound();
             CommandModel = command.Adapt<CommandModel>();

@@ -34,11 +34,11 @@ namespace RatesParsingWeb.Pages.Banks
         [BindProperty]
         public BankModel BankModel { get; set; }
         [BindProperty]
-        public CommandAssignmentModel[] TextCodeCommandsModel { get; set; }
+        public CommandModel[] TextCodeCommandsModel { get; set; }
         [BindProperty]
-        public CommandAssignmentModel[] UnitCommandsModel { get; set; }
+        public CommandModel[] UnitCommandsModel { get; set; }
         [BindProperty]
-        public CommandAssignmentModel[] ExchangeRateCommandsModel { get; set; }
+        public CommandModel[] ExchangeRateCommandsModel { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int id)
         {
@@ -46,9 +46,9 @@ namespace RatesParsingWeb.Pages.Banks
             if (bankDto == null)
                 return NotFound();
             BankModel = bankDto.Adapt<BankModel>();
-            TextCodeCommandsModel = BankModel.ParsingSettings.Commands.Where(x => x.AssignmentFieldName.Name == "TextCode").ToArray();
-            UnitCommandsModel = BankModel.ParsingSettings.Commands.Where(x => x.AssignmentFieldName.Name == "Unit").ToArray();
-            ExchangeRateCommandsModel = BankModel.ParsingSettings.Commands.Where(x => x.AssignmentFieldName.Name == "ExchangeRate").ToArray();
+            TextCodeCommandsModel = BankModel.ParsingSettings.Commands.Where(x => x.CommandFieldName.Name == "TextCode").ToArray();
+            UnitCommandsModel = BankModel.ParsingSettings.Commands.Where(x => x.CommandFieldName.Name == "Unit").ToArray();
+            ExchangeRateCommandsModel = BankModel.ParsingSettings.Commands.Where(x => x.CommandFieldName.Name == "ExchangeRate").ToArray();
             await SetSeletListsAsync(BankModel.CurrencyId);
             return Page();
         }
