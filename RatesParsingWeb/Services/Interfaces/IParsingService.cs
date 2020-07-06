@@ -1,5 +1,5 @@
-﻿using RatesParsingWeb.Dto.ParsingService;
-using RatesParsingWeb.Dto.ParsingSettings;
+﻿using RatesParsingWeb.Dto.Bank;
+using RatesParsingWeb.Dto.ParsingService;
 using System.Threading.Tasks;
 
 namespace RatesParsingWeb.Services.Interfaces

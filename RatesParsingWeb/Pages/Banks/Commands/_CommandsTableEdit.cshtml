@@ -1,5 +1,4 @@
 ﻿@model IEnumerable<RatesParsingWeb.Models.ParsingSettings.CommandModel>
-<div>*Частичное представление _CommandsTable*</div>
 @if (Model.Any())
 {
     <table class="table">
@@ -17,6 +16,7 @@
                     <td>
                         <h6>@command.Name</h6>
                         <div>@command.Description</div>
+
                     </td>
                     <td>
                         @if (command.CommandParameters.Any())
@@ -28,7 +28,7 @@
                                     <span style="font-weight:400">(@parameter.Description):</span>
                                     @parameter.Value
                                 </h6>
-                            }
+                            }                            
                         }
                         else
                         {
@@ -36,16 +36,18 @@
                         }
                     </td>
                     <td>
-                        <a asp-page="./Commands/Edit" asp-route-id="@command.Id">Редактировать</a> |
-                        <a asp-page="./Commands/Details" asp-route-id="@command.Id">Подробнее</a> |
-                        <a asp-page="./Commands/Delete" asp-route-id="@command.Id">Удалить</a> |
+                        @if (command.CommandParameters.Any())
+                        {
+                            <a asp-page="./Edit" 
+                               asp-route-commandId="@command.Id"
+                               asp-route-bankId="@ViewData["bankId"]">
+                                Параметры
+                            </a> @:|
+                        }
+                        <a asp-page="./Delete" asp-route-commandId="@command.Id">Удалить</a>
                     </td>
                 </tr>
             }
         </tbody>
     </table>
-}
-else
-{
-    <h6>Команды отсутствуют</h6>
 }

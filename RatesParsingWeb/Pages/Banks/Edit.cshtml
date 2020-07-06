@@ -88,23 +88,16 @@
                     <input asp-for="BankModel.ParsingSettings.NumberGroupSeparator" class="form-control" />
                     <span asp-validation-for="BankModel.ParsingSettings.NumberGroupSeparator" class="text-danger"></span>
                 </div>
-
-
-            </div>
-            <h4>Параметры обработки строк</h4>
-            <hr />
-            <div class="form-group col-md">
-                <h5>Команды обработки текстового кода валюты</h5>
-                @await Html.PartialAsync("_CommandsTable", Model.TextCodeCommandsModel)
-                <h5>Команды обработки единицы измерения валюты</h5>
-                @await Html.PartialAsync("_CommandsTable", Model.UnitCommandsModel)
-                <h5>Команды обработки курса валюты</h5>
-                @await Html.PartialAsync("_CommandsTable", Model.ExchangeRateCommandsModel)
             </div>
             <div class="form-group">
                 <input type="submit" value="Сохранить" class="btn btn-primary" />
             </div>
         </form>
+        <a asp-page="./Commands/Index"
+           asp-route-bankId="@Model.BankModel.Id"
+           class="btn btn-primary">
+            Перейти к командам обработки результатов парсинга
+        </a>
     </div>
 </div>
 

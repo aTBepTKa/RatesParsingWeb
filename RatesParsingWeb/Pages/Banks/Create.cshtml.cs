@@ -1,6 +1,6 @@
 ﻿using Mapster;
 using Microsoft.AspNetCore.Mvc;
-using RatesParsingWeb.Dto.UpdateAndCreate;
+using RatesParsingWeb.Dto.Bank;
 using RatesParsingWeb.Models;
 using RatesParsingWeb.Services.Interfaces;
 using System.Threading.Tasks;

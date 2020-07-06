@@ -2,8 +2,9 @@
 using MassTransit;
 using ParsingMessages.Parsing;
 using RatesParsingWeb.Dto;
+using RatesParsingWeb.Dto.Bank;
+using RatesParsingWeb.Dto.Bank.Command;
 using RatesParsingWeb.Dto.ParsingService;
-using RatesParsingWeb.Dto.ParsingSettings;
 using RatesParsingWeb.Services.Interfaces;
 using System;
 using System.Collections.Generic;

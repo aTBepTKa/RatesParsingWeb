@@ -2,11 +2,12 @@
 using MassTransit;
 using ParsingMessages.Command;
 using RatesParsingWeb.Domain;
+using RatesParsingWeb.Dto.Bank.Command;
 using RatesParsingWeb.Dto.CommandService;
-using RatesParsingWeb.Dto.ParsingSettings;
 using RatesParsingWeb.Services.Interfaces;
 using RatesParsingWeb.Storage.Repositories.Interfaces;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace RatesParsingWeb.Services
@@ -14,17 +15,23 @@ namespace RatesParsingWeb.Services
     public class CommandService : BaseCrudService<CommandDto, Command>, ICommandService
     {
         private readonly ICommandRepository commandRepository;
+        private readonly ICommandParameterRepository commandParameterRepository;
         private readonly IRequestClient<ICommandRequest> requestClient;
 
-        public CommandService(ICommandRepository commandRepository, IRequestClient<ICommandRequest> requestClient) : base(commandRepository)
+        public CommandService(ICommandRepository commandRepository,
+                              IRequestClient<ICommandRequest> requestClient,
+                              ICommandParameterRepository commandParameterRepository) : base(commandRepository)
         {
+            this.commandParameterRepository = commandParameterRepository;
             this.commandRepository = commandRepository;
             this.requestClient = requestClient;
         }
 
-        public CommandDto GetCommandWithParameter(int id)
+        public async Task<CommandDto> GetCommandWithParameterAsync(int id)
         {
-            var command = commandRepository.GetFirstOrDefault(x => x.Id == id, i => i.CommandParameters, i => i.CommandFieldName);
+            var command = await commandRepository.GetFirstOrDefaultAsync(x => x.Id == id, i => i.CommandParameters, i => i.CommandFieldName);
+            if (command is null)
+                throw new ArgumentNullException(nameof(id), $"Команда с Id '{id}' не найдена");
             var commandDto = command.Adapt<CommandDto>();
             return commandDto;
         }
@@ -90,25 +97,19 @@ namespace RatesParsingWeb.Services
             await commandRepository.SaveChangesAsync();
         }
 
-        public async Task<bool> UpdateAsync(int id)
+        public async Task<bool> UpdateParameterAsync(IEnumerable<CommandParameterUpdateDto> commandParameterUpdateDtos)
         {
-            var command = await commandRepository.FindAsync(id);
-            if (command == null)
-                throw new Exception($"Команда с Id '{command.Id}' не найдена.");
-            // TODO: Реализовать валидацию CommandParameter.
-            await CheckUpdateForUniquinessAsync(command);
-            CheckForValidity(command);
-            if (!ValidationService.IsValid)
-                return false;
-            commandRepository.SetStateModifed(command);
-            await commandRepository.SaveChangesAsync();
+            foreach (var parameterDto in commandParameterUpdateDtos)
+            {
+                var parameterToUpdate = await commandParameterRepository
+                    .GetFirstOrDefaultAsync(i => i.Id == parameterDto.Id);
+                if (parameterToUpdate is null)
+                    throw new ArgumentNullException(nameof(parameterDto.Id), $"Команда с Id '{parameterDto.Id}' не найдена.");
+                parameterToUpdate.Value = parameterDto.Value;
+                commandParameterRepository.SetStateModifed(parameterToUpdate);
+            }
+            await commandParameterRepository.SaveChangesAsync();
             return true;
-        }
-
-        private async Task CheckUpdateForUniquinessAsync(Command command)
-        {
-            if (await commandRepository.AnyAsync(i => i.Id != command.Id && i.Name == command.Name))
-                ValidationService.AddError(nameof(command.Name), "Команда с таким именем уже существует");
         }
     }
 }

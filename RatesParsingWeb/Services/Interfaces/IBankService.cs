@@ -1,5 +1,4 @@
-﻿using RatesParsingWeb.Dto;
-using RatesParsingWeb.Dto.UpdateAndCreate;
+﻿using RatesParsingWeb.Dto.Bank;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 

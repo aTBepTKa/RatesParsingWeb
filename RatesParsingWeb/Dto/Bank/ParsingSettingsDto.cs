@@ -1,4 +1,6 @@
-﻿namespace RatesParsingWeb.Dto.ParsingSettings
+﻿using RatesParsingWeb.Dto.Bank.Command;
+
+namespace RatesParsingWeb.Dto.Bank
 {
     public class ParsingSettingsDto
     {

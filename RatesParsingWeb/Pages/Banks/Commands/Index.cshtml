@@ -1,0 +1,40 @@
+﻿@page
+@model RatesParsingWeb.Pages.Banks.Commands.IndexModel
+@{
+    ViewData["Title"] = "Команды обработки результатов парсинга";
+    ViewData["bankId"] = Model.BankModel.Id;
+}
+
+<h1>@Model.BankModel.Name</h1>
+
+<div class="form-group col-md">
+    <h5>Команды обработки текстового кода валюты</h5>
+    <div>
+        <a asp-page="./Commands/Create"
+           asp-route-field="TextCode">
+            Добавить команду обработки текстового кода валюты
+        </a>
+    </div>
+    @await Html.PartialAsync("_CommandsTableEdit", Model.TextCodeCommandsModel, ViewData)
+    <h5>Команды обработки единицы измерения валюты</h5>
+    <div>
+        <a asp-page="./Commands/Create"
+           asp-route-field="Unit">
+            Добавить команду обработки единицы измерения валюты
+        </a>
+    </div>
+    @await Html.PartialAsync("_CommandsTableEdit", Model.UnitCommandsModel, ViewData)
+    <h5>Команды обработки обменного курса валюты</h5>
+    <div>
+        <a asp-page="./Commands/Create"
+           asp-route-field="ExchangeRate">
+            Добавить команду обработки обменного курса валюты
+        </a>
+    </div>
+    @await Html.PartialAsync("_CommandsTableEdit", Model.ExchangeRateCommandsModel, ViewData)
+</div>
+<div>
+    <a asp-page="../Edit" asp-route-id="@Model.BankModel.Id">Вернуться к редактированию банка</a>
+    <a asp-page="../Index">Вернуться к списку банков</a>
+</div>
+

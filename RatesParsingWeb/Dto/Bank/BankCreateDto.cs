@@ -1,10 +1,9 @@
-﻿using RatesParsingWeb.Dto.ParsingSettings;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace RatesParsingWeb.Dto.UpdateAndCreate
+namespace RatesParsingWeb.Dto.Bank
 {
     public class BankCreateDto : IBankValidity
     {

@@ -1,7 +1,6 @@
 ﻿using Mapster;
 using RatesParsingWeb.Domain;
-using RatesParsingWeb.Dto;
-using RatesParsingWeb.Dto.UpdateAndCreate;
+using RatesParsingWeb.Dto.Bank;
 using RatesParsingWeb.Services.Interfaces;
 using RatesParsingWeb.Storage.Repositories.Interfaces;
 using System;
@@ -47,8 +46,8 @@ namespace RatesParsingWeb.Services
         {
             var bank = await bankRepository.GetFirstOrDefaultAsync(b => b.SwiftCode == swiftCode);
 
-            if (bank == null)
-                throw new ArgumentNullException(swiftCode.ToString(), $"Банк со SWIFT кодом '{swiftCode}' не найден.");
+            if (bank is null)
+                throw new ArgumentNullException(nameof(swiftCode), $"Банк со SWIFT кодом '{swiftCode}' не найден.");
 
             var bankSettings = await bankRepository.GetWithSettings(bank.Id);
             var bankDto = bankSettings.Adapt<BankDto>();
@@ -62,8 +61,8 @@ namespace RatesParsingWeb.Services
                 i => i.Currency))
             .Adapt<BankDto>();
 
-            if (bankDto == null)
-                throw new ArgumentNullException(id.ToString(), $"Банк с Id '{id}' не найден.");
+            if (bankDto is null)
+                throw new ArgumentNullException(nameof(id), $"Банк с Id '{id}' не найден.");
 
             return bankDto;
         }
@@ -94,8 +93,8 @@ namespace RatesParsingWeb.Services
                 i => i.Id == updateDto.Id,
                 i => i.ParsingSettings);
 
-            if (bankToUpdate == null)
-                throw new ArgumentNullException(bankToUpdate.Id.ToString(), $"Банк с Id '{bankToUpdate.Id}' не найден.");
+            if (bankToUpdate is null)
+                throw new ArgumentNullException(nameof(bankToUpdate.Id), $"Банк с Id '{bankToUpdate.Id}' не найден.");
 
             updateDto.Adapt(bankToUpdate);
             bankRepository.SetStateModifed(bankToUpdate);
@@ -106,8 +105,8 @@ namespace RatesParsingWeb.Services
         public async Task DeleteAsync(int id)
         {
             var bankToDelete = await bankRepository.FindAsync(id);
-            if (bankToDelete == null)
-                throw new Exception($"Банк с Id '{bankToDelete.Id}' не найден.");
+            if (bankToDelete is null)
+                throw new ArgumentNullException(nameof(id),$"Банк с Id '{bankToDelete.Id}' не найден.");
             bankRepository.Remove(bankToDelete);
             await bankRepository.SaveChangesAsync();
         }

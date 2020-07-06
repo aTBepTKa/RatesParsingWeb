@@ -1,0 +1,45 @@
+﻿@model IEnumerable<RatesParsingWeb.Models.ParsingSettings.CommandModel> 
+@if (Model.Any())
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th style="width: 50%">Команда</th>
+                <th style="width: 50%">Параметры</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var command in Model)
+            {
+                <tr>
+                    <td>
+                        <h6>@command.Name</h6>
+                        <div>@command.Description</div>
+                        
+                    </td>
+                    <td>
+                        @if (command.CommandParameters.Any())
+                        {
+                            foreach (var parameter in command.CommandParameters)
+                            {
+                                <h6>
+                                    @parameter.Name
+                                    <span style="font-weight:400">(@parameter.Description):</span>
+                                    @parameter.Value
+                                </h6>
+                            }
+                        }
+                        else
+                        {
+                            <div>Параметры отсутствуют</div>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <h6>Команды отсутствуют</h6>
+}

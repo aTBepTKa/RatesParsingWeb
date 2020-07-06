@@ -1,19 +1,11 @@
-﻿using System;
-using Mapster;
-using System.Collections.Generic;
+﻿using Mapster;
+using Microsoft.AspNetCore.Mvc;
+using RatesParsingWeb.Dto.Bank;
+using RatesParsingWeb.Models;
+using RatesParsingWeb.Models.ParsingSettings;
+using RatesParsingWeb.Services.Interfaces;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
-using RatesParsingWeb.Models;
-using RatesParsingWeb.Services.Interfaces;
-using RatesParsingWeb.Dto;
-using RatesParsingWeb.Dto.UpdateAndCreate;
-using RatesParsingWeb.Domain;
-using RatesParsingWeb.Models.ParsingSettings;
 
 namespace RatesParsingWeb.Pages.Banks
 {
@@ -33,12 +25,7 @@ namespace RatesParsingWeb.Pages.Banks
 
         [BindProperty]
         public BankModel BankModel { get; set; }
-        [BindProperty]
-        public CommandModel[] TextCodeCommandsModel { get; set; }
-        [BindProperty]
-        public CommandModel[] UnitCommandsModel { get; set; }
-        [BindProperty]
-        public CommandModel[] ExchangeRateCommandsModel { get; set; }
+
 
         public async Task<IActionResult> OnGetAsync(int id)
         {
@@ -46,18 +33,15 @@ namespace RatesParsingWeb.Pages.Banks
             if (bankDto == null)
                 return NotFound();
             BankModel = bankDto.Adapt<BankModel>();
-            TextCodeCommandsModel = BankModel.ParsingSettings.Commands.Where(x => x.CommandFieldName.Name == "TextCode").ToArray();
-            UnitCommandsModel = BankModel.ParsingSettings.Commands.Where(x => x.CommandFieldName.Name == "Unit").ToArray();
-            ExchangeRateCommandsModel = BankModel.ParsingSettings.Commands.Where(x => x.CommandFieldName.Name == "ExchangeRate").ToArray();
-            await SetSeletListsAsync(BankModel.CurrencyId);
+            await SetCurrencySelectListAsync(BankModel.CurrencyId);
             return Page();
         }
 
-        public async Task<IActionResult> OnPostAsync(bool isSaveAction = true)
+        public async Task<IActionResult> OnPostAsync()
         {
-            if (!ModelState.IsValid || !isSaveAction)
+            if (!ModelState.IsValid)
             {
-                await SetSeletListsAsync(BankModel.CurrencyId);
+                await SetCurrencySelectListAsync(BankModel.CurrencyId);
                 return Page();
             }
             var bankUpdateDto = BankModel.Adapt<BankUpdateDto>();
@@ -65,7 +49,7 @@ namespace RatesParsingWeb.Pages.Banks
             if (!await bankService.UpdateAsync(bankUpdateDto))
             {
                 ValidationErrorList = bankService.ValidationService.ErrorListWithoutKeys;
-                await SetSeletListsAsync(BankModel.CurrencyId);
+                await SetCurrencySelectListAsync(BankModel.CurrencyId);
                 return Page();
             }
             return RedirectToPage("./Index");

@@ -7,8 +7,8 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using RatesParsingWeb.Models;
 using RatesParsingWeb.Models.ParsingSettings;
 using RatesParsingWeb.Services.Interfaces;
-using RatesParsingWeb.Dto;
 using Mapster;
+using RatesParsingWeb.Dto.Bank;
 
 namespace RatesParsingWeb.Pages.Banks
 {

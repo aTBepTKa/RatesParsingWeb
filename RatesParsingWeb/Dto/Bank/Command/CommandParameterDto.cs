@@ -3,24 +3,28 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace RatesParsingWeb.Dto.UpdateAndCreate
+namespace RatesParsingWeb.Dto.Bank.Command
 {
-    public class CommandUpdateDto
+    /// <summary>
+    /// Параметр команды.
+    /// </summary>
+    public class CommandParameterDto
     {
         public int Id { get; set; }
+
         /// <summary>
-        /// Наименование команды для дальнейшей работы с рефлексией.
+        /// Наименование параметра.
         /// </summary>
         public string Name { get; set; }
 
         /// <summary>
-        /// Описание команды.
+        /// Описание параметра.
         /// </summary>
         public string Description { get; set; }
 
         /// <summary>
-        /// Параметры команды.
+        /// Значение параметра.
         /// </summary>
-        public ICollection<CommandParameterUpdateDto> CommandParameters { get; set; }
+        public string Value { get; set; }
     }
 }

@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
-namespace RatesParsingWeb.Dto.UpdateAndCreate
+namespace RatesParsingWeb.Dto.CommandService
 {
     /// <summary>
-    /// Объект для создания новой команды.
+    /// Команда, полученная из внешнего сервиса.
     /// </summary>
-    public class CommandCreateDto
+    public class ExternalCommandDto
     {
         /// <summary>
         /// Наименование команды для дальнейшей работы с рефлексией.
@@ -23,6 +20,6 @@ namespace RatesParsingWeb.Dto.UpdateAndCreate
         /// <summary>
         /// Параметры команды.
         /// </summary>
-        public ICollection<CommandParameterCreateDto> CommandParameters { get; set; }
+        public IEnumerable<ExternalParameterDto> CommandParameters { get; set; }
     }
 }

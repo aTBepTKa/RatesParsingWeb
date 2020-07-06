@@ -1,15 +1,13 @@
-﻿using RatesParsingWeb.Dto.ParsingSettings;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace RatesParsingWeb.Dto
+namespace RatesParsingWeb.Dto.Bank
 {
-    public class BankDto
+    public class BankUpdateDto : IBankValidity
     {
         public int Id { get; set; }
-
         /// <summary>
         /// SWIFT код банка.
         /// </summary>
@@ -36,12 +34,7 @@ namespace RatesParsingWeb.Dto
         public int CurrencyId { get; set; }
 
         /// <summary>
-        /// Основная валюта банка.
-        /// </summary>
-        public CurrencyDto Currency { get; set; }
-
-        /// <summary>
-        /// Настройки парсинга для банка.
+        /// Настройки парсинга банка.
         /// </summary>
         public ParsingSettingsDto ParsingSettings { get; set; }
     }

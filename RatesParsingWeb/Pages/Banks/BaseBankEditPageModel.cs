@@ -1,17 +1,13 @@
-﻿using System;
+﻿using Mapster;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using RatesParsingWeb.Models;
+using RatesParsingWeb.Models.ParsingSettings;
+using RatesParsingWeb.Services.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using RatesParsingWeb.Models;
-using RatesParsingWeb.Domain;
-using RatesParsingWeb.Storage.Repositories;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-using RatesParsingWeb.Dto;
-using Mapster;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using RatesParsingWeb.Services.Interfaces;
-using Microsoft.AspNetCore.Identity;
-using RatesParsingWeb.Models.ParsingSettings;
 
 namespace RatesParsingWeb.Pages.Banks
 {
@@ -45,18 +41,6 @@ namespace RatesParsingWeb.Pages.Banks
         }
 
         /// <summary>
-        /// Задать выпадающий список выбора валют и команд.
-        /// </summary>
-        /// <param name="currencyId"></param>
-        /// <param name="commandId"></param>
-        /// <returns></returns>
-        protected async Task SetSeletListsAsync(int? currencyId = null, int? commandId = null)
-        {
-            await SetCurrencySelectListAsync(currencyId);
-            await SetCommandSelectListAsync(commandId);
-        }
-
-        /// <summary>
         /// Задать выпадающий список для выбора валюты.
         /// </summary>
         /// <param name="selectedId"></param>
@@ -70,29 +54,6 @@ namespace RatesParsingWeb.Pages.Banks
                                             nameof(CurrencySelectListModel.Id),
                                             nameof(CurrencySelectListModel.CodeWithName),
                                             currenciesSelectList.FirstOrDefault(i => i.Id == selectedId));
-        }
-
-        /// <summary>
-        /// Задать выпадающий список для выбора команды.
-        /// </summary>
-        /// <param name="selectedCommand"></param>
-        /// <returns></returns>
-        protected async Task SetCommandSelectListAsync(int? selectedId = null)
-        {
-            var commands = await GetExternalCommandsList();
-            CommandSelectList = new SelectList(commands,
-                                               nameof(CommandModel.Name),
-                                               $"{nameof(CommandModel.Name)} - {nameof(CommandModel.Description)}",
-                                               commands.FirstOrDefault(i=>i.Id == selectedId));
-        }
-
-        private async Task<IEnumerable<CommandModel>> GetExternalCommandsList()
-        {
-            var commands = await commandService.GetExternalCommands();
-            if (commands.IsSuccesfullParsed)
-                return commands.Message.Adapt<IEnumerable<CommandModel>>();
-            else
-                return Array.Empty<CommandModel>();
         }
     }
 }

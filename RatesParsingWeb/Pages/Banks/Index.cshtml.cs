@@ -4,8 +4,8 @@ using System.Threading.Tasks;
 using RatesParsingWeb.Models;
 using Mapster;
 using RatesParsingWeb.Services.Interfaces;
-using RatesParsingWeb.Dto;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using RatesParsingWeb.Dto.Bank;
 
 namespace RatesParsingWeb.Pages.Banks
 {

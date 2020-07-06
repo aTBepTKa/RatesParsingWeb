@@ -3,15 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace RatesParsingWeb.Dto.ParsingSettings
+namespace RatesParsingWeb.Dto.Bank.Command
 {
     /// <summary>
-    /// Команда для обработки текста.
+    /// Объект для создания новой команды.
     /// </summary>
-    public class CommandDto
+    public class CommandCreateDto
     {
-        public int Id { get; set; }
-
         /// <summary>
         /// Наименование команды для дальнейшей работы с рефлексией.
         /// </summary>
@@ -25,11 +23,6 @@ namespace RatesParsingWeb.Dto.ParsingSettings
         /// <summary>
         /// Параметры команды.
         /// </summary>
-        public ICollection<CommandParameterDto> CommandParameters { get; set; }
-        /// <summary>
-        /// Имя поля для которого назначается команда обработки текста.
-        /// </summary>
-        
-        public virtual CommandFieldNameDto CommandFieldName { get; set; }
+        public ICollection<CommandParameterCreateDto> CommandParameters { get; set; }
     }
 }

@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace RatesParsingWeb.Dto.UpdateAndCreate
+namespace RatesParsingWeb.Dto.Bank.Command
 {
-    public class CommandParameterUpdateDto
+    public class CommandParameterCreateDto
     {
-        public int Id { get; set; }
         /// <summary>
         /// Наименование команды для дальнейшей работы с рефлексией.
         /// </summary>

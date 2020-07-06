@@ -1,0 +1,32 @@
+﻿@page
+@model RatesParsingWeb.Pages.Banks.Commands.EditModel
+@{
+    ViewData["Title"] = "Редактировать команду";
+}
+
+<h1>Редактировать команду</h1>
+<h2>@Model.CommandModel.Name</h2>
+<div>@Model.CommandModel.Description</div>
+<h4>Параметры</h4>
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <input type="hidden" asp-for="BankId" />
+            @for (int i = 0; i < Model.CommandParameterValues.Length; i++)
+            {
+                <input type="hidden" asp-for="CommandParameterValues[i].Id" />
+                <div class="form-group">
+                    <h6>
+                        @Model.CommandModel.CommandParameters[i].Name
+                        <span style="font-weight:400">(@Model.CommandModel.CommandParameters[i].Description):</span>
+                    </h6>
+                    <input asp-for="CommandParameterValues[i].Value" class="form-control" />
+                    <span asp-validation-for="CommandParameterValues[i].Value" class="text-danger"></span>
+                </div>
+            }
+            <div class="form-group">
+                <input type="submit" value="Сохранить" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using RatesParsingWeb.Domain;
 using RatesParsingWeb.Storage.Repositories.Interfaces;
+using System;
 using System.Threading.Tasks;
 
 namespace RatesParsingWeb.Storage.Repositories
@@ -22,6 +23,8 @@ namespace RatesParsingWeb.Storage.Repositories
                     .ThenInclude(settings => settings.Commands)
                         .ThenInclude(commands => commands.CommandFieldName)
                 .FirstOrDefaultAsync(bank => bank.Id == id);
+            if (bank is null)
+                throw new ArgumentNullException(nameof(id), $"Банк с Id '{id} не найден.");
             return bank;
         }
 

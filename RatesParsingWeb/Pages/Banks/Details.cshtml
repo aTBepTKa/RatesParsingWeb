@@ -9,7 +9,7 @@
 <h1>Подробности</h1>
 
 <div>
-    <h4>Банк</h4>
+    <h4>Реквизиты банка</h4>
     <hr />
     <dl class="row">
         <dt class="col-sm-2">
@@ -41,9 +41,8 @@
 <div>
     @if (Model.BankModel.ParsingSettings != null)
     {
-        <h4>Настройки парсинга</h4>
+        <h4>Основные параметры парсинга</h4>
         <hr />
-        <h5>Основные параметры парсинга</h5>
         <dl class="row">
             <dt class="col-sm-2">
                 @Html.DisplayNameFor(model => model.BankModel.ParsingSettings.RatesUrl)
@@ -100,13 +99,16 @@
                 @Html.DisplayFor(model => model.BankModel.ParsingSettings.NumberGroupSeparator)
             </dd>
         </dl>
-        <h5>Команды обработки строк</h5>
-        <h6>Текстовая строка</h6>
-        @Html.CreateCommandList(Model.TextCodeCommands, "TextCode")
-        <h6>Единица измерения</h6>
-        @Html.CreateCommandList(Model.UnitCommands, "Unit")
-        <h6>Обменный курс</h6>
-        @Html.CreateCommandList(Model.ExchangeRateCommands, "ExchangeRate")
+        <h4>Параметры обработки строк</h4>
+        <hr />
+        <div class="form-group col-md">
+            <h5>Команды обработки текстового кода валюты</h5>
+            @await Html.PartialAsync("_CommandsTableDetails", Model.TextCodeCommands)
+            <h5>Команды обработки единицы измерения валюты</h5>
+            @await Html.PartialAsync("_CommandsTableDetails", Model.UnitCommands)
+            <h5>Команды обработки курса валюты</h5>
+            @await Html.PartialAsync("_CommandsTableDetails", Model.ExchangeRateCommands)
+        </div>
     }
     else
     {

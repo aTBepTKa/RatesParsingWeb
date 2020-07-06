@@ -1,6 +1,5 @@
-﻿using RatesParsingWeb.Dto.CommandService;
-using RatesParsingWeb.Dto.ParsingSettings;
-using RatesParsingWeb.Dto.UpdateAndCreate;
+﻿using RatesParsingWeb.Dto.Bank.Command;
+using RatesParsingWeb.Dto.CommandService;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -26,17 +25,17 @@ namespace RatesParsingWeb.Services.Interfaces
         Task DeleteAsync(int id);
 
         /// <summary>
-        /// Обновить данные банка.
+        /// Обновить данные команды.
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        Task<bool> UpdateAsync(int id);
+        Task<bool> UpdateParameterAsync(IEnumerable<CommandParameterUpdateDto> commandParameterUpdateDtos);
 
         /// <summary>
         /// Получить команду с таблицей параметров.
         /// </summary>
         /// <returns></returns>
-        CommandDto GetCommandWithParameter(int id);
+        Task<CommandDto> GetCommandWithParameterAsync(int id);
 
         /// <summary>
         /// Получить список команд из внешнего источника.
